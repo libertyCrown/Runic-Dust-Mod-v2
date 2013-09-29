@@ -1,0 +1,22 @@
+[
+{
+  "modid": "RunicDust",
+  "name": "Runic Dust Mod v2",
+  "description": "A continuation of the popular Runic Dust Mod with a magical twist.",
+  "version": "v2.0.0_1",
+  "mcversion": "1.6.4",
+  "url": "",
+  "updateUrl": "",
+  "authors": [
+    "zombiepig333"
+  ],
+  "credits": "billythegoat101 for making the original mod.",
+  "logoFile": "assets/runicdust/logo/RunicDust.png",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  "mod_MinecraftForge"
+  ]
+}
+]
