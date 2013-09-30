@@ -2,6 +2,7 @@ package com.runicdust.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -165,8 +166,8 @@ public class BlockDust extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World world) 
 	{
-		// TODO Make the tileentity
-		return null;
+		//TODO-make tile!!
+		return null; //new TileEntityDust();
 	}
 	
 	@Override

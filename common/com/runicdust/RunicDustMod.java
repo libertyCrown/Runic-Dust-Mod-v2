@@ -1,8 +1,11 @@
 package com.runicdust;
 
+import com.runicdust.core.CommonProxy;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -30,6 +33,9 @@ public class RunicDustMod
 {
 	@Instance("RunicDust")
 	public static RunicDustMod instance;
+	
+	@SidedProxy(clientSide="com.runicdust.client.ClientProxy", serverSide="com.runicdust.core.CommonProxy")
+	public static CommonProxy proxy;
 	
 	@EventHandler
 	public static void modStarting(FMLPreInitializationEvent event)
