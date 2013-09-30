@@ -1,4 +1,4 @@
-package zpig333.runicdust.blocks;
+package com.runicdust.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
