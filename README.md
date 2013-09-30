@@ -6,3 +6,6 @@ allow for collaboration on what is one of the larger continuation projects out t
 
 If you want to submit a code change, make a pull request and I will see if it should be merged into the branch; they usually 
 will unless it is something stupid (such as throwing a ton of spam into the minecraft log for no real reason).
+
+
+Forum Thread: http://www.minecraftforum.net/topic/1991128-wip-forge-runic-dust-mod-v2/
