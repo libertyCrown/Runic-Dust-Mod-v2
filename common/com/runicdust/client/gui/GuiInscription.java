@@ -5,20 +5,23 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import com.runicdust.DustItemManager;
+import com.runicdust.DustMod;
+import com.runicdust.InscriptionGuiContainer;
+import com.runicdust.InventoryInscription;
+import com.runicdust.PacketHandler;
+import com.runicdust.item.ItemInk;
+
 import cpw.mods.fml.client.FMLClientHandler;
-import dustmod.DustItemManager;
-import dustmod.DustMod;
-import dustmod.InscriptionGuiContainer;
-import dustmod.InventoryInscription;
-import dustmod.ItemInk;
-import dustmod.PacketHandler;
 
 public class GuiInscription extends GuiContainer {
 
+	private ResourceLocation texture = new ResourceLocation(DustMod.path + "/inscription.png");
 	public InventoryInscription insc;
 	public InventoryPlayer playerInv;
 	public EntityPlayer player;
@@ -40,7 +43,7 @@ public class GuiInscription extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2,
 			int var3) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.func_98187_b(DustMod.path + "/inscription.png");
+        this.mc.renderEngine.bindTexture(texture);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
@@ -57,7 +60,7 @@ public class GuiInscription extends GuiContainer {
 		GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
 		GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.func_98187_b(DustMod.path + "/inscription.png");
+        this.mc.renderEngine.bindTexture(texture);
 
 		Slot info = this.inventorySlots.getSlot(0);
 		if(info.getHasStack() && insc.canEdit()){

@@ -11,9 +11,10 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  * 
@@ -85,7 +86,7 @@ public class DEFarm extends DustEvent {
 			int k = e.getZ();
 			// System.out.println("R = " + r + " " + dustID);
 			World world = e.worldObj;
-			world.setBlockAndMetadataWithNotify(i, j - 1, k, Block.waterStill.blockID,0,3);
+			world.setBlock(i, j - 1, k, Block.waterStill.blockID,0,3);
 			Random rand = new Random();
 
 			ArrayList<Double> locs = new ArrayList<Double>();
@@ -102,7 +103,7 @@ public class DEFarm extends DustEvent {
 								|| bidb == Block.grass.blockID
 								|| bidb == Block.tilledField.blockID || bidb == Block.sand.blockID)
 								&& (bidt == 0 || DustMod.isDust(bidt) || bidt == Block.tallGrass.blockID)) {
-							world.setBlockAndMetadataWithNotify(i + di, j + dj - 1,
+							world.setBlock(i + di, j + dj - 1,
 									k + dk, Block.tilledField.blockID,0,3);
 							int meta = cBase + rand.nextInt(cRand);
 
@@ -110,9 +111,9 @@ public class DEFarm extends DustEvent {
 								meta = 7;
 							}
 
-							world.setBlockAndMetadataWithNotify(i + di, j + dj,
+							world.setBlock(i + di, j + dj,
 									k + dk, 0, 0,3);
-							world.setBlockAndMetadataWithNotify(i + di, j + dj,
+							world.setBlock(i + di, j + dj,
 									k + dk, Block.crops.blockID, meta,3);
 							locs.add(i+di +0.5);
 							locs.add((double)j+dj);
@@ -132,7 +133,7 @@ public class DEFarm extends DustEvent {
 			locs.add((double)i);
 			locs.add(j-1D);
 			locs.add((double)k);
-			world.setBlockAndMetadataWithNotify(i, j - 1, k, Block.waterStill.blockID,0,3);
+			world.setBlock(i, j - 1, k, Block.waterStill.blockID,0,3);
 			
 			double[] locations = new double[locs.size()];
 			for(int d = 0; d < locs.size(); d++){

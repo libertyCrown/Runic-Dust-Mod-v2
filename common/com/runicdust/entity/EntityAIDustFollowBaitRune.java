@@ -8,6 +8,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 
+import com.runicdust.DustMod;
+
 /**
  *
  * @author billythegoat101

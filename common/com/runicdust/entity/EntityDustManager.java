@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import com.runicdust.DustMod;
+
 import cpw.mods.fml.common.FMLLog;
 
 public class EntityDustManager {

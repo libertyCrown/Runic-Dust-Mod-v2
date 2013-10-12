@@ -14,12 +14,13 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
-import dustmod.DustMod;
-import dustmod.EntityDust;
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
 
 /**
  *
@@ -138,7 +139,8 @@ public class RenderEntityDust extends Render implements IRenderLast
         Tessellator tessellator = Tessellator.instance;
         RenderHelper.disableStandardItemLighting();
         GL11.glDisable(GL11.GL_CULL_FACE);
-        loadTexture(DustMod.path + "/beam.png");
+        //TODO-fix textures
+        //loadTexture(DustMod.path + "/beam.png");
         GL11.glShadeModel(GL11.GL_SMOOTH);
         float f9 = 0.0F - ((float)(ticks)) * 0.01F;
         float f10 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6) / 32F - ((float)(ticks)) * 0.01F;
@@ -185,7 +187,8 @@ public class RenderEntityDust extends Render implements IRenderLast
             RenderHelper.disableStandardItemLighting();
             var10.setBrightness(Integer.MAX_VALUE);
             RenderHelper.disableStandardItemLighting();
-            loadTexture("/misc/beam.png");
+            //TODO-fix textures
+            //loadTexture("/misc/beam.png");
             RenderHelper.disableStandardItemLighting();
             GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
             RenderHelper.disableStandardItemLighting();
@@ -419,7 +422,8 @@ public class RenderEntityDust extends Render implements IRenderLast
         float scaley = 0.5F;
 //        GL11.glScalef(1F, scaley, 1F);
 //        GL11.glTranslatef(0, -scaley, 0);
-        loadTexture("/terrain.png");
+        //TODO-fix textures
+        //loadTexture("/terrain.png");
         int i = MathHelper.floor_double(e.posX);
         int j = MathHelper.floor_double(e.posY);
         int k = MathHelper.floor_double(e.posZ);
@@ -455,7 +459,8 @@ public class RenderEntityDust extends Render implements IRenderLast
     	System.out.println("BLOCK FIRE");
     	GL11.glPushMatrix();
 //      GL11.glTranslatef((float)d, (float)d1+1, (float)d2);
-      loadTexture("/terrain.png");
+    	 //TODO-fix textures
+      //loadTexture("/terrain.png");
       Block block = Block.fire;//Block.blocksList[Block.fire.blockID];
       GL11.glDisable(GL11.GL_LIGHTING);
       float f = 0.5F;
@@ -475,28 +480,29 @@ public class RenderEntityDust extends Render implements IRenderLast
 
       tessellator.setColorOpaque_F((float)(r / 255), (float)(g / 255), (float)(b / 255));
 
+      //TODO-fix renders
       if (sides[0] == 1)
       {
-          renderBlocks.renderEastFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(2));
-          renderBlocks.renderWestFace(block, -0.5D, -0.5D, -1.5D, block.getBlockTextureFromSide(3));
+          //renderBlocks.renderEastFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(2));
+          //renderBlocks.renderWestFace(block, -0.5D, -0.5D, -1.5D, block.getBlockTextureFromSide(3));
       }
 
       if (sides[1] == 1)
       {
-          renderBlocks.renderWestFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(3));
-          renderBlocks.renderEastFace(block, -0.5D, -0.5D, 0.5D, block.getBlockTextureFromSide(2));
+          //renderBlocks.renderWestFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(3));
+          //renderBlocks.renderEastFace(block, -0.5D, -0.5D, 0.5D, block.getBlockTextureFromSide(2));
       }
 
       if (sides[2] == 1)
       {
-          renderBlocks.renderNorthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(4));
-          renderBlocks.renderSouthFace(block, -1.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(5));
+          //renderBlocks.renderNorthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(4));
+          //renderBlocks.renderSouthFace(block, -1.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(5));
       }
 
       if (sides[3] == 1)
       {
-          renderBlocks.renderSouthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(5));
-          renderBlocks.renderNorthFace(block, 0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(4));
+          //renderBlocks.renderSouthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(5));
+          //renderBlocks.renderNorthFace(block, 0.5D, -0.5D, -0.5D, block.getBlockTextureFromSide(4));
       }
 
       tessellator.draw();
@@ -581,4 +587,10 @@ public class RenderEntityDust extends Render implements IRenderLast
 //        GL11.glDisable(GL11.GL_DEPTH_TEST);
 //        GL11.glPopAttrib();
     }
+
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

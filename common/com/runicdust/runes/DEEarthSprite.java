@@ -12,9 +12,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import dustmod.EntityBlock;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
+
+import com.runicdust.PoweredEvent;
+import com.runicdust.entity.EntityBlock;
+import com.runicdust.entity.EntityDust;
 
 /**
  *
@@ -93,7 +94,7 @@ public class DEEarthSprite  extends PoweredEvent
             int ind = 0;
 //            Vec3D v = Vec3D.createVector(p.motionX, p.motionY, p.motionZ);
 //            double vel = v.lengthVector();
-            float vel = p.getMoveHelper().getSpeed();//DustModBouncer.getMoveForward(p);
+            float vel = p.getAIMoveSpeed();//DustModBouncer.getMoveForward(p);
             boolean wasSneaking = e.data[2] == 1;
             boolean wasProtect = e.data[3] == 1;
             boolean protect = (vel == 0) && p.isSneaking() && Math.abs(p.motionY) < 0.08D && p.onGround;
@@ -110,8 +111,11 @@ public class DEEarthSprite  extends PoweredEvent
 //                p.posY = py + p.yOffset+0.1D;
 //                p.posZ = pz+0.5D;
                 if(p.isSneaking() && !wasSneaking) p.setPositionAndUpdate((double)px + 0.5D, (double)py + p.yOffset, (double)pz + 0.5D);
-                p.setMoveForward(0);
-//                p.setVelocity(0,0,0);
+                {
+               		//TODO-de-break rune effect
+                	//p.setMovement(0);
+//               	p.setVelocity(0,0,0);
+                }
             }
             if(!protect && wasProtect){
             	p.setPositionAndUpdate((double)px + 0.5D, (double)py + p.yOffset, (double)pz + 0.5D);

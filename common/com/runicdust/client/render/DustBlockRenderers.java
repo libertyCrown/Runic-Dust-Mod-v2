@@ -3,16 +3,14 @@ package com.runicdust.client.render;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 
-import org.lwjgl.opengl.GL11;
+import com.runicdust.DustItemManager;
+import com.runicdust.block.BlockDust;
+import com.runicdust.tileentity.TileEntityDust;
+import com.runicdust.tileentity.TileEntityRut;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import dustmod.BlockDust;
-import dustmod.DustItemManager;
-import dustmod.TileEntityDust;
-import dustmod.TileEntityRut;
 
 
 /**

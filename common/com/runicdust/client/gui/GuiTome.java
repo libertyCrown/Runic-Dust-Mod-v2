@@ -12,11 +12,13 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
-import dustmod.DustManager;
-import dustmod.DustMod;
-import dustmod.DustShape;
-import dustmod.InscriptionEvent;
-import dustmod.InscriptionManager;
+import com.runicdust.DustManager;
+import com.runicdust.DustMod;
+import com.runicdust.DustShape;
+import com.runicdust.client.PageHelper;
+import com.runicdust.client.render.RenderDustTable;
+import com.runicdust.event.InscriptionEvent;
+import com.runicdust.event.InscriptionManager;
 
 /**
  *

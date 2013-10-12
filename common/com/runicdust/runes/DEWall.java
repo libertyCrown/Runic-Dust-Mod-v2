@@ -8,9 +8,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -88,8 +89,8 @@ public class DEWall extends DustEvent
                         return;
                     }
 
-                    world.setBlockAndMetadataWithNotify(x + (dir ? w : 0), y - t + currentHeight + 1, z + (dir ? 0 : w), b, m,3);
-                    world.setBlockAndMetadataWithNotify(x + (dir ? w : 0), y - t + currentHeight, z + (dir ? 0 : w), /*(t == height+1) ? Block.brick.blockID:*/0,0,3);
+                    world.setBlock(x + (dir ? w : 0), y - t + currentHeight + 1, z + (dir ? 0 : w), b, m,3);
+                    world.setBlock(x + (dir ? w : 0), y - t + currentHeight, z + (dir ? 0 : w), /*(t == height+1) ? Block.brick.blockID:*/0,0,3);
                 }
             }
 

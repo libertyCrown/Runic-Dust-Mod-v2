@@ -12,6 +12,9 @@ import java.util.logging.Level;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+
+import com.runicdust.entity.EntityDust;
+
 import cpw.mods.fml.common.FMLLog;
 
 public class VoidTeleManager {

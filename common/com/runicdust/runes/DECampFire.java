@@ -14,9 +14,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.ForgeDirection;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
-import dustmod.TileEntityDust;
+
+import com.runicdust.PoweredEvent;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.tileentity.TileEntityDust;
 
 /**
  *
@@ -59,7 +60,7 @@ public class DECampFire extends PoweredEvent
 
             if (block == 0 && under != 0 && Block.blocksList[under].isBlockSolidOnSide(e.worldObj, e.getX(), e.getY() - 1, e.getZ(), ForgeDirection.UP))
             {
-                e.worldObj.setBlockAndMetadataWithNotify(e.getX(), e.getY(), e.getZ(), Block.fire.blockID,0,3);
+                e.worldObj.setBlock(e.getX(), e.getY(), e.getZ(), Block.fire.blockID,0,3);
             }
         }
         e.posY += 0.65d;
@@ -95,7 +96,7 @@ public class DECampFire extends PoweredEvent
 
             if (block == 0 && under != 0 && Block.blocksList[under].isBlockSolidOnSide(e.worldObj, e.getX(), e.getY() - 1, e.getZ(), ForgeDirection.UP))
             {
-                e.worldObj.setBlockAndMetadataWithNotify(e.getX(), e.getY(), e.getZ(), Block.fire.blockID,0,3);
+                e.worldObj.setBlock(e.getX(), e.getY(), e.getZ(), Block.fire.blockID,0,3);
             }
             else
             {

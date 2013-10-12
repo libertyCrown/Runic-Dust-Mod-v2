@@ -4,11 +4,12 @@ import java.util.List;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
-import dustmod.InscriptionManager;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.event.InscriptionEvent;
+import com.runicdust.event.InscriptionManager;
 
 public class DEChargeInscription extends DustEvent {
 

@@ -13,8 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -92,7 +93,7 @@ public class DEPit extends DustEvent
             {
                 block.onBlockDestroyedByPlayer(world, x, y - dy, z, world.getBlockMetadata(x, y - dy, z));
                 block.dropBlockAsItem(world, x, y - dy, z, world.getBlockMetadata(x, y - dy, z), 0);
-                world.setBlockAndMetadataWithNotify(x, y - dy, z, 0,0,3);
+                world.setBlock(x, y - dy, z, 0,0,3);
             }
         }
 

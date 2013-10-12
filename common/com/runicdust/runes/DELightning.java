@@ -11,7 +11,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
 
 /**
  *

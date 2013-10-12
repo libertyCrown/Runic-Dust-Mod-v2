@@ -107,7 +107,7 @@ public class ItemDust extends DustModItem
                 int var13 = var12.onBlockPlaced(world, i, j, k, face, x, y, z, 0);
 
 
-                if (world.setBlockMetadataWithNotify(i, j, k, this.blockID, 0))
+                if (world.setBlock(i, j, k, this.blockID, 0, 6))
                 {
                     if (world.getBlockId(i, j, k) == this.blockID)
                     {

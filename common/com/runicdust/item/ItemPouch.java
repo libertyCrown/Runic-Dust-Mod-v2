@@ -96,7 +96,7 @@ public class ItemPouch extends DustModItem {
                 Block var12 = Block.blocksList[this.blockID];
                 int var13 = var12.onBlockPlaced(world, i, j, k, face, x, y, z, 0);
 
-                if (world.setBlockAndMetadataWithNotify(i, j, k, this.blockID, 0, 3))
+                if (world.setBlock(i, j, k, this.blockID, 0, 3))
                 {
                     if (world.getBlockId(i, j, k) == this.blockID)
                     {
@@ -196,8 +196,8 @@ public class ItemPouch extends DustModItem {
     }
     
     @Override
-    public ItemStack getContainerItemStack(ItemStack itemStack) {
-    	// TODO Auto-generated method stub
+    public ItemStack getContainerItemStack(ItemStack itemStack) 
+    {
     	return container;
     }
     

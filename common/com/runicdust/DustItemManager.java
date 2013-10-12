@@ -46,7 +46,7 @@ public class DustItemManager {
 		LanguageRegistry.instance().addStringLocalization("tile.dust." + idName + ".name", "en_US", name + " Runic Dust");
 		LanguageRegistry.instance().addStringLocalization("tile.ink." + idName + ".name", "en_US", name + " Runic Ink");
 		LanguageRegistry.instance().addStringLocalization("pouch." + idName + ".name", "en_US", name + " Dust Pouch");
-		reloadLanguage();
+		//reloadLanguage();
 		
 
     	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});
@@ -79,20 +79,14 @@ public class DustItemManager {
 		GameRegistry.addRecipe(craft, new Object[] {" s ", "ldl", " l ", 's', new ItemStack(Item.silk, 1), 'd', new ItemStack(DustMod.idust, 1, value), 'l', new ItemStack(Item.leather, 1)});
 //		GameRegistry.addShapelessRecipe(craft, new Object[]{craft, new ItemStack(DustMod.idust,1,value)});
 		GameRegistry.addShapelessRecipe(new ItemStack(DustMod.idust,1,value),new ItemStack(DustMod.pouch, 1, value*2+1));
-		reloadLanguage();
+		//reloadLanguage();
 	}
 	
-	public static void reloadLanguage(){
+	/*public static void reloadLanguage(){
 		if(FMLCommonHandler.instance().getSide() != Side.CLIENT) return;
 		try{
-			StringTranslate st = StringTranslate.getInstance();
-			String curLan = st.currentLanguage;
-//			String trick = "ar_SA"; //I pick this one because its the second one I see a hard-coded reference to in StringTranslate >_>
-//			if(curLan.equals(trick)){
-//				trick = "zh_TW"; //in case someone is using ar_SA. Not even 100% sure what that is.
-//			}
-//			st.setLanguage(trick);
-//			st.setLanguage(curLan);
+			StringTranslate st = new StringTranslate();
+			//String curLan = st.currentLanguage;
 			
 			Properties var2 = new Properties();
 
@@ -114,7 +108,7 @@ public class DustItemManager {
                     loadLanguage(st,var2, curLan);
                     Enumeration var3 = var2.propertyNames();
 
-                    while (var3.hasMoreElements() && !st.isUnicode())
+                    while (var3.hasMoreElements() && !st.())
                     {
                         Object var4 = var3.nextElement();
                         Object var5 = var2.get(var4);
@@ -146,7 +140,7 @@ public class DustItemManager {
 		}catch(Exception e){
 			
 		}
-	}
+	}*/
 	
 	private static void loadLanguage(StringTranslate st, Properties par1Properties, String par2Str) throws IOException
     {

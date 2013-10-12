@@ -13,10 +13,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
-import dustmod.Sacrifice;
-import dustmod.TileEntityRut;
+
+import com.runicdust.Sacrifice;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.tileentity.TileEntityRut;
 
 /**
  *
@@ -229,9 +230,9 @@ public class DELiftTerrain extends DustEvent
                         //                        e.fade();
                         //                        return;
                         //                    }
-                        world.setBlockAndMetadataWithNotify(x, y + c + 1, z, 0, 0,3);
-                        world.setBlockAndMetadataWithNotify(x, y + c + 1, z, b, m,3);
-                        world.setBlockAndMetadataWithNotify(x, y + c, z, Block.stone.blockID,0,3);
+                        world.setBlock(x, y + c + 1, z, 0, 0,3);
+                        world.setBlock(x, y + c + 1, z, b, m,3);
+                        world.setBlock(x, y + c, z, Block.stone.blockID,0,3);
 
                         if (isContainer)
                         {

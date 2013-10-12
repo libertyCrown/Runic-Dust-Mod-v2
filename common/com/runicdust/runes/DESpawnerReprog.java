@@ -12,9 +12,11 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityMobSpawner;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+
 import cpw.mods.fml.common.network.PacketDispatcher;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
 
 /**
  *
@@ -105,7 +107,8 @@ public class DESpawnerReprog extends DustEvent
             if (true || e.worldObj.getBlockId(fin[0], fin[1], fin[2]) == Block.mobSpawner.blockID)
             {
                 TileEntityMobSpawner tems = ((TileEntityMobSpawner)e.worldObj.getBlockTileEntity(fin[0], fin[1], fin[2]));
-                tems.func_98049_a().func_98272_a(mob);
+                //TODO-see if this is fixed
+                tems.getSpawnerLogic().setMobID(mob);
                 tems.validate();
                 
 //                e.worldObj.setBlockWithNotify(fin[0], fin[1], fin[2],0);
@@ -113,7 +116,7 @@ public class DESpawnerReprog extends DustEvent
                 e.worldObj.markBlockForUpdate(fin[0], fin[1], fin[2]);
                 e.worldObj.setBlockTileEntity(fin[0], fin[1], fin[2],tems);
                 e.worldObj.notifyBlockChange(fin[0], fin[1], fin[2],0);
-                PacketDispatcher.sendPacketToAllAround(fin[0], fin[1], fin[2], 64, e.worldObj.getWorldInfo().getDimension(), tems.getDescriptionPacket());
+                PacketDispatcher.sendPacketToAllAround(fin[0], fin[1], fin[2], 64, e.worldObj.getWorldInfo().getVanillaDimension(), tems.getDescriptionPacket());
 //                if(e.ticksExisted > 100){
 //                    e.worldObj.setBlockWithNotify(fin[0],fin[1],fin[2],0);
 //                    e.worldObj.markBlockNeedsUpdate(fin[0],fin[1],fin[2]);
@@ -145,7 +148,7 @@ public class DESpawnerReprog extends DustEvent
             fin[1] /= 8;
             fin[2] /= 8;
             TileEntityMobSpawner tems = ((TileEntityMobSpawner)e.worldObj.getBlockTileEntity(fin[0], fin[1], fin[2]));
-            tems.func_98049_a().field_98287_c = 0;
+            tems.getSpawnerLogic().field_98287_c = 0;
         }
     }
 }

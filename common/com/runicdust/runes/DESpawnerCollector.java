@@ -8,10 +8,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -75,7 +75,7 @@ public class DESpawnerCollector extends DustEvent
 
             if (e.ticksExisted > 100)
             {
-                e.worldObj.setBlockAndMetadataWithNotify(fin[0], fin[1], fin[2], 0,0,3);
+                e.worldObj.setBlock(fin[0], fin[1], fin[2], 0,0,3);
                 EntityItem ei = new EntityItem(e.worldObj);
                 ei.setPosition(e.posX, e.posY - e.yOffset, e.posZ);
                 ItemStack item = new ItemStack(Block.mobSpawner, 1);

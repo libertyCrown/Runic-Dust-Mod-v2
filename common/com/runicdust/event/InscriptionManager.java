@@ -4,15 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.World;
 import net.minecraftforge.common.Configuration;
+
+import com.runicdust.DustMod;
+import com.runicdust.item.ItemInscription;
+
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -68,7 +70,7 @@ public class InscriptionManager {
 		LanguageRegistry.instance().addStringLocalization(
 				"insc." + evt.idName + ".name", "en_US",
 				evt.properName);
-		DustItemManager.reloadLanguage();
+		//DustItemManager.reloadLanguage();
 		DustMod.proxy.checkInscriptionPage(evt);
 		evt.isRemote = true;
 	}
@@ -90,7 +92,8 @@ public class InscriptionManager {
 		InscriptionEvent event = getEvent(p);
 		ItemStack last = lastArmor.get(DustMod.getUsername(p));
 		boolean equal = (item != null && last != null && item.itemID == last.itemID && item.getTagCompound().equals(last.getTagCompound()));
-		if(event != null && equal) {
+		if(event != null && equal) 
+		{
 			event.onUpdate((EntityPlayer) p, item, buttons);
 		}
 //		lastArmor.put(DustMod.getUsername(p), item);
@@ -230,7 +233,7 @@ public class InscriptionManager {
 		return event.getArmorPoints(player, item);
 	}
 
-	public static void onDamage(EntityLiving entity, ItemStack item,
+	public static void onDamage(EntityLivingBase entity, ItemStack item,
 			DamageSource source, int damage) {
 		if(entity.worldObj.isRemote) return;
 
@@ -240,15 +243,15 @@ public class InscriptionManager {
 		event.onDamage(entity, item, source, damage);
 	}
 
-	public static int getPreventedDamage(EntityLiving entity, ItemStack item,
+	public static int getPreventedDamage(EntityLivingBase player, ItemStack item,
 			DamageSource source, int damage) {
-		if(entity.worldObj.isRemote) return damage;
+		if(player.worldObj.isRemote) return damage;
 
 		InscriptionEvent event = getEvent(item);
 //		System.out.println("Hey wtf " + event);
 		if (event == null)
 			return damage;
-		return event.getPreventedDamage(entity, item, source, damage);
+		return event.getPreventedDamage(player, item, source, damage);
 	}
 
 	public static void onEquip(EntityPlayer player, ItemStack item) {

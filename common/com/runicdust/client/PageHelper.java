@@ -8,10 +8,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.IntBuffer;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.logging.Level;
@@ -19,17 +17,16 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.RenderEngine;
-import net.minecraft.client.texturepacks.ITexturePack;
 import net.minecraft.src.ModLoader;
-import dustmod.DustItemManager;
-import dustmod.DustMod;
-import dustmod.DustShape;
-import dustmod.InscriptionEvent;
+
+import org.lwjgl.opengl.GL11;
+
+import com.runicdust.DustItemManager;
+import com.runicdust.DustMod;
+import com.runicdust.DustShape;
+import com.runicdust.event.InscriptionEvent;
 
 /**
  *

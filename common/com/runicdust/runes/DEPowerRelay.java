@@ -13,10 +13,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import dustmod.DustMod;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
-import dustmod.TileEntityDust;
+
+import com.runicdust.DustMod;
+import com.runicdust.PoweredEvent;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.tileentity.TileEntityDust;
 
 /**
  *

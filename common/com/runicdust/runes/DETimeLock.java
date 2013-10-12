@@ -7,8 +7,9 @@ package com.runicdust.runes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
+
+import com.runicdust.PoweredEvent;
+import com.runicdust.entity.EntityDust;
 
 /**
  *

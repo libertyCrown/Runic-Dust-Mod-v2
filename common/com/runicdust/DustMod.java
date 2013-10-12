@@ -443,9 +443,9 @@ public class DustMod {
 
 		ISaveHandler save = evt.world.getSaveHandler();
 		int nameLength = (new StringBuilder())
-				.append(save.getSaveDirectoryName()).append(".dat").length();
+				.append(save.getWorldDirectoryName()).append(".dat").length();
 
-		File mapFile = save.getMapFileFromName(save.getSaveDirectoryName());
+		File mapFile = save.getMapFileFromName(save.getWorldDirectoryName());
 		if (mapFile == null)
 			return;
 		String savePath = mapFile.getPath();
@@ -485,7 +485,7 @@ public class DustMod {
 		Packet packet = PacketHandler.getParticlePacket(type, (short) 0,
 				locations, velx, vely, velz, amt, rx, ry, rz);
 		PacketDispatcher.sendPacketToAllInDimension(packet, world
-				.getWorldInfo().getDimension());
+				.getWorldInfo().getVanillaDimension());
 	}
 
 	/**
@@ -557,13 +557,13 @@ public class DustMod {
 	public static void sendEntMotionTraits(EntityLiving e) {
 		PacketDispatcher.sendPacketToAllInDimension(PacketHandler
 				.getSetVelocityPacket(e), e.worldObj.getWorldInfo()
-				.getDimension());
+				.getVanillaDimension());
 	}
 	
 	public static void sendRenderBreakItem(EntityPlayer ent, ItemStack tool){
 		PacketDispatcher.sendPacketToAllInDimension(PacketHandler
 				.getRenderBrokenToolPacket(ent, tool), ent.worldObj.getWorldInfo()
-				.getDimension());
+				.getVanillaDimension());
 	}
 
 	/**
@@ -708,7 +708,7 @@ public class DustMod {
 		entdrops.put(new ItemStack(Item.silk.itemID, 16, 0), 52); // spider
 		entdrops.put(new ItemStack(Item.rottenFlesh.itemID, 8, 0), 54); // zombie
 		entdrops.put(new ItemStack(Block.snow.blockID, 8, 0), 97); // snow golem
-		entdrops.put(new ItemStack(Block.blockSteel.blockID, 8, 0), 99); // iron
+		entdrops.put(new ItemStack(Block.blockIron.blockID, 8, 0), 99); // iron
 																			// golem
 		entdrops.put(new ItemStack(Block.dragonEgg.blockID, 64, 0), 63); // ender
 																			// dragon

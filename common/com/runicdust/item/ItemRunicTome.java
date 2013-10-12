@@ -60,7 +60,7 @@ public class ItemRunicTome  extends DustModItem
         {
             if (world.getBlockMetadata(i, j, k) == DustMod.DustMetaUsed)
             {
-                world.setBlockAndMetadataWithNotify(i, j, k, 0,0,3);
+                world.setBlock(i, j, k, 0,0,3);
                 j--;
             }
             else

@@ -21,6 +21,8 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import com.runicdust.event.DustEvent;
+
 /**
  *
  * @author billythegoat101
@@ -157,7 +159,7 @@ public class EntityBlock extends EntityFallingSand
         {
             if (lingering && getDistance(lx, ly, lz) > 1.5D && canPlace(lx,ly,lz))
             {
-                worldObj.setBlockAndMetadataWithNotify(lx, ly, lz, 0,0,3);
+                worldObj.setBlock(lx, ly, lz, 0,0,3);
                 lingering = false;
                 this.updateDataWatcher();
             }
@@ -197,7 +199,7 @@ public class EntityBlock extends EntityFallingSand
                 }
                 lingering = false;
                 if(canPlace(lx,ly,lz))
-                	worldObj.setBlockAndMetadataWithNotify(lx, ly, lz, 0,0,3);
+                	worldObj.setBlock(lx, ly, lz, 0,0,3);
             	
                 this.setPosition(gx,gy,gz);
                 place();
@@ -279,7 +281,7 @@ public class EntityBlock extends EntityFallingSand
                     {
                         this.setDead();
 
-                        if (this.worldObj.canPlaceEntityOnSide(this.blockID, var1, var2, var3, true, 1, (Entity)null, null) && !BlockSand.canFallBelow(this.worldObj, var1, var2 - 1, var3) && this.worldObj.setBlockAndMetadataWithNotify(var1, var2, var3, this.blockID, this.metadata,3))
+                        if (this.worldObj.canPlaceEntityOnSide(this.blockID, var1, var2, var3, true, 1, (Entity)null, null) && !BlockSand.canFallBelow(this.worldObj, var1, var2 - 1, var3) && this.worldObj.setBlock(var1, var2, var3, this.blockID, this.metadata,3))
                         {
                             if (Block.blocksList[this.blockID] instanceof BlockSand)
                             {
@@ -472,7 +474,7 @@ public class EntityBlock extends EntityFallingSand
 
         if (canPlace(lx,ly,lz))
         {
-            worldObj.setBlockAndMetadataWithNotify(lx, ly, lz, blockID, metadata,3);
+            worldObj.setBlock(lx, ly, lz, blockID, metadata,3);
 
             if (lingerWhenArrived)
             {

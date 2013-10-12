@@ -8,8 +8,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -82,7 +83,7 @@ public class DELillyBridge extends DustEvent
                 if (world.getBlockMaterial(x, y + i - 1, z) == Material.water &&
                         world.getBlockId(x, y + i, z) == 0)
                 {
-                    world.setBlockAndMetadataWithNotify(x, y + i, z, Block.waterlily.blockID,0,3);
+                    world.setBlock(x, y + i, z, Block.waterlily.blockID,0,3);
                 }
             }
 

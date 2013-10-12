@@ -7,10 +7,6 @@ package com.runicdust.item;
 import java.util.Random;
 import java.util.logging.Level;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -24,6 +20,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import com.runicdust.DustMod;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -83,8 +84,8 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 		Vec3 result = pos.addVector(look.xCoord * distance, look.yCoord
 				* distance, look.zCoord * distance);
 
-		MovingObjectPosition click = player.worldObj
-				.rayTraceBlocks(pos, result);
+		//TODO-right fix?
+		MovingObjectPosition click = player.worldObj.clip(pos, result);
 
 		if (click == null) {
 			return;
@@ -146,7 +147,7 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 										block.onBlockDestroyedByPlayer(world, x
 												+ i, y + j, z + k, meta);
 									}
-									world.setBlockAndMetadataWithNotify(i + x, j + y, k
+									world.setBlock(i + x, j + y, k
 											+ z, 0,0,3); // update world
 									block.onBlockDestroyedByPlayer(world,
 											i + x, j + y, k + z, world
@@ -161,7 +162,7 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 							}
 						} catch (Exception e) {
 							DustMod.log(Level.WARNING, "Error breaking block "
-									+ block.func_94330_A(), e.getMessage());
+									+ block.getUnlocalizedName(), e.getMessage());
 							e.printStackTrace();
 						}// fracking mods
 					}
@@ -173,8 +174,8 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
-		this.iconIndex = par1IconRegister.func_94245_a(DustMod.spritePath + this.getUnlocalizedName().replace("item.", ""));
+	public void registerIcons(IconRegister par1IconRegister) {
+		this.itemIcon = par1IconRegister.registerIcon(DustMod.spritePath + this.getUnlocalizedName().replace("item.", ""));
 	}
 
 }

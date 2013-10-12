@@ -68,7 +68,7 @@ public class ItemChisel extends DustModItem
 
 //        if (!world.isRemote)
 //        {
-            world.setBlockAndMetadataWithNotify(i, j, k, DustMod.rutBlock.blockID, meta,3);
+            world.setBlock(i, j, k, DustMod.rutBlock.blockID, meta,3);
             TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(i, j, k);
             ter.maskBlock = blockId;
             ter.maskMeta = meta;

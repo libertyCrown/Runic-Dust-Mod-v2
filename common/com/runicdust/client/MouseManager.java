@@ -5,8 +5,9 @@ import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.input.Mouse;
 
+import com.runicdust.PacketHandler;
+
 import cpw.mods.fml.client.FMLClientHandler;
-import dustmod.PacketHandler;
 
 public class MouseManager {
 	

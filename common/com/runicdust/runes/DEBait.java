@@ -16,9 +16,10 @@ import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.EntityAIDustFollowBaitRune;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
+
+import com.runicdust.PoweredEvent;
+import com.runicdust.entity.EntityAIDustFollowBaitRune;
+import com.runicdust.entity.EntityDust;
 
 /**
  *

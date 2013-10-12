@@ -12,7 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
 
 /**
  *

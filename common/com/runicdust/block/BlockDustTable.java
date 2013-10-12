@@ -1,7 +1,5 @@
 package com.runicdust.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -14,6 +12,13 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import com.runicdust.DustManager;
+import com.runicdust.DustMod;
+import com.runicdust.tileentity.TileEntityDustTable;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDustTable extends BlockContainer 
 {

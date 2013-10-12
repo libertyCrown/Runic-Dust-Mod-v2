@@ -10,9 +10,10 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
-import dustmod.VoidStorageManager;
+
+import com.runicdust.VoidStorageManager;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *

@@ -8,9 +8,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -146,22 +147,22 @@ public class DEFlatten extends DustEvent
 
                             if (id == Block.waterMoving.blockID || id == Block.waterStill.blockID)
                             {
-                                world.setBlockAndMetadataWithNotify(ix + x, iy + y, iz + z, Block.cobblestone.blockID,0,3);
+                                world.setBlock(ix + x, iy + y, iz + z, Block.cobblestone.blockID,0,3);
                                 id = 0;
                                 meta = 0;
                             }
 
                             if (bidu == Block.waterMoving.blockID || bidu == Block.waterStill.blockID)
                             {
-                                world.setBlockAndMetadataWithNotify(ix + x, iy + y + 1, iz + z, Block.cobblestone.blockID,0,3);
+                                world.setBlock(ix + x, iy + y + 1, iz + z, Block.cobblestone.blockID,0,3);
                             }
 
                             if (bidd == 0)
                             {
-                                world.setBlockAndMetadataWithNotify(ix + x, iy + y - 1, iz + z, id, meta,3);
+                                world.setBlock(ix + x, iy + y - 1, iz + z, id, meta,3);
                             }
 
-                            world.setBlockAndMetadataWithNotify(ix + x, iy + y, iz + z, 0,0,3);
+                            world.setBlock(ix + x, iy + y, iz + z, 0,0,3);
                             break next;
                         }
                     }

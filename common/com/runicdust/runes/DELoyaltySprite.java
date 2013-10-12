@@ -16,16 +16,20 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.MathHelper;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
+
+import com.runicdust.PoweredEvent;
+import com.runicdust.entity.EntityDust;
+
+
 
 /**
  *
  * @author billythegoat101
  */
 public class DELoyaltySprite extends PoweredEvent
-{
+{	
     public DELoyaltySprite()
     {
         super();
@@ -53,7 +57,11 @@ public class DELoyaltySprite extends PoweredEvent
         
         e.reanimate = true;
         EntityPlayerMP mp = (EntityPlayerMP)e.worldObj.getPlayerEntityByName(e.summonerUN);
-        if(mp != null) mp.sendChatToPlayer("The loyalty sprite rune is currently out of order.");
+        if(mp != null)
+        	{
+        		//TODO-fix error message output
+        		//mp.sendChatToPlayer("The loyalty sprite rune is currently out of order.");
+        	}
     }
 
     public void onTick(EntityDust e)

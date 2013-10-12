@@ -11,6 +11,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 
+import com.runicdust.DustMod;
+import com.runicdust.PacketHandler;
+
 /**
  *
  * @author billythegoat101
@@ -76,7 +79,7 @@ public class TileEntityRut extends TileEntity
         if (isEmpty() || (Block.blocksList[maskBlock] instanceof BlockSand && BlockSand.canFallBelow(worldObj, xCoord, yCoord - 1, zCoord)))
         {
             isDead = true;
-            worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
+            worldObj.setBlock(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
             this.invalidate();
             return;
         }
@@ -344,7 +347,7 @@ public class TileEntityRut extends TileEntity
     public void resetBlock()
     {
         isDead = true;
-        worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
+        worldObj.setBlock(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
     }
 
     public boolean fluidIsFluid()

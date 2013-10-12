@@ -11,11 +11,11 @@ import net.minecraft.block.BlockFluid;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
-import dustmod.TileEntityDust;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.tileentity.TileEntityDust;
 
 /**
  *
@@ -66,8 +66,8 @@ public class DEHideout extends DustEvent
             doCheck(e);
 //            if (b != null && !(b instanceof BlockFluid))
 //            {
-                world.setBlockAndMetadataWithNotify(x, y - h - thick - 1, z, Block.cobblestone.blockID,0,0);
-                world.setBlockAndMetadataWithNotify(x, y - h - thick, z, Block.torchWood.blockID,0,0);
+                world.setBlock(x, y - h - thick - 1, z, Block.cobblestone.blockID,0,0);
+                world.setBlock(x, y - h - thick, z, Block.torchWood.blockID,0,0);
 //            }
             return;
         }
@@ -102,7 +102,7 @@ public class DEHideout extends DustEvent
 
                         if (above != null && above instanceof BlockSand)
                         {
-                            world.setBlockAndMetadataWithNotify(x + i, y + j, z + k, Block.sandStone.blockID,0,3);
+                            world.setBlock(x + i, y + j, z + k, Block.sandStone.blockID,0,3);
                         }
 
 //                            world.setBlockWithNotify(x+i, y+j, z+k, Block.brick.blockID);
@@ -111,7 +111,7 @@ public class DEHideout extends DustEvent
                     }
                     else if(canBreakBlock(e, x + i, y + j, z + k))
                     {
-                        world.setBlockAndMetadataWithNotify(x + i, y + j, z + k, 0,0,3);
+                        world.setBlock(x + i, y + j, z + k, 0,0,3);
                     }
                 }
             }
@@ -123,8 +123,8 @@ public class DEHideout extends DustEvent
 //
         if (b != null && !(b instanceof BlockFluid))
         {
-            world.setBlockAndMetadataWithNotify(x, y - h - thick - 1, z, Block.cobblestone.blockID,0,0);
-            world.setBlockAndMetadataWithNotify(x, y - h - thick, z, Block.torchWood.blockID,0,0);
+            world.setBlock(x, y - h - thick - 1, z, Block.cobblestone.blockID,0,0);
+            world.setBlock(x, y - h - thick, z, Block.torchWood.blockID,0,0);
         }
 
         doCheck(e);

@@ -4,19 +4,25 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+
+import com.runicdust.DustMod;
+import com.runicdust.DustShape;
+import com.runicdust.client.gui.GuiTome;
+import com.runicdust.client.render.DustBlockRenderers;
+import com.runicdust.client.render.RenderDustTable;
+import com.runicdust.client.render.RenderEntityBlock;
+import com.runicdust.client.render.RenderEntityDust;
+import com.runicdust.client.render.RenderLastHandler;
+import com.runicdust.core.CommonProxy;
+import com.runicdust.entity.EntityBlock;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.InscriptionEvent;
+import com.runicdust.tileentity.TileEntityDustTable;
+
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.TextureFXManager;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import dustmod.CommonProxy;
-import dustmod.DustMod;
-import dustmod.DustShape;
-import dustmod.EntityBlock;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
-import dustmod.TileEntityDustTable;
 
 public class ClientProxy extends CommonProxy {
 	

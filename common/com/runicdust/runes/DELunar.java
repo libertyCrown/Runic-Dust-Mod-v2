@@ -6,8 +6,9 @@ package com.runicdust.runes;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -74,7 +75,7 @@ public class DELunar extends DustEvent
     }
 
     @Override
-    protected void onUnload(EntityDust e)
+	public void onUnload(EntityDust e)
     {
         super.onUnload(e);
 

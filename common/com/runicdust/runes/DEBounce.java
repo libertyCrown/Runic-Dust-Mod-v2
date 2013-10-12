@@ -10,8 +10,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -61,7 +62,7 @@ public class DEBounce extends DustEvent
                 double yVel = i.motionY + cons;
                 double diff = e.posY - el.prevPosY;
 //                System.out.println("i.motion " + mod_DustMod.getMoveForward(el) + " " + mod_DustMod.getMoveSpeed(el));
-                if (!el.onGround && !el.isJumping && yVel < 0.7D)
+                if (el.isAirBorne && yVel < 0.7D)
                 {
                     el.getJumpHelper().setJumping();
                     el.getJumpHelper().doJump();

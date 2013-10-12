@@ -8,6 +8,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+
+import com.runicdust.DustItemManager;
+import com.runicdust.DustMod;
+import com.runicdust.DustModItem;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -126,13 +131,14 @@ public class ItemInk extends DustModItem {
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_94581_a(IconRegister iconRegister) {
-    	this.bottle = iconRegister.func_94245_a(DustMod.spritePath + "inkBottle");
+    public void registerIcons(IconRegister iconRegister) 
+    {
+    	this.bottle = iconRegister.registerIcon(DustMod.spritePath + "inkBottle");
     	main = new Icon[8];
     	sub = new Icon[8];
     	for(int i = 0; i < main.length; i++){
-    		main[i] = iconRegister.func_94245_a(DustMod.spritePath + "ink_main_" + i);
-    		sub[i] = iconRegister.func_94245_a(DustMod.spritePath + "ink_sub_" + i); 
+    		main[i] = iconRegister.registerIcon(DustMod.spritePath + "ink_main_" + i);
+    		sub[i] = iconRegister.registerIcon(DustMod.spritePath + "ink_sub_" + i); 
     	}
     }
 

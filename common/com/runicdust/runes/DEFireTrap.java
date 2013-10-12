@@ -10,7 +10,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.EntityDust;
+
+import com.runicdust.entity.EntityDust;
 
 /**
  *
@@ -83,7 +84,7 @@ public class DEFireTrap extends DETrap
                 {
                     if (e.worldObj.getBlockId(ex + x, ey + y - 1, ez + z) != 0 && e.worldObj.getBlockId(ex + x, ey + y, ez + z) == 0 && Math.random() < firerand)
                     {
-                        e.worldObj.setBlockAndMetadataWithNotify(ex + x, ey + y, ez + z, Block.fire.blockID,0,3);
+                        e.worldObj.setBlock(ex + x, ey + y, ez + z, Block.fire.blockID,0,3);
                     }
                 }
             }

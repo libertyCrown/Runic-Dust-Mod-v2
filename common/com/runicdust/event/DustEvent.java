@@ -6,7 +6,6 @@ package com.runicdust.event;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +19,12 @@ import net.minecraft.server.management.ServerConfigurationManager;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+
+import com.runicdust.DustMod;
+import com.runicdust.Sacrifice;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.tileentity.TileEntityDust;
+import com.runicdust.tileentity.TileEntityRut;
 
 /**
  * 
@@ -75,7 +80,7 @@ public abstract class DustEvent {
 		onInit(e);
 	}
 
-	protected void initGraphics(EntityDust e) {
+	public void initGraphics(EntityDust e) {
 
 	}
 
@@ -121,7 +126,7 @@ public abstract class DustEvent {
 		onUnload(e);
 	}
 
-	protected void onUnload(EntityDust e) {
+	public void onUnload(EntityDust e) {
 		if (e.rutPoints != null) {
 			for (Integer[] i : e.rutPoints) {
 				// world.setBlockWithNotify(i[0], i[1], i[2],
@@ -558,8 +563,10 @@ public abstract class DustEvent {
 		return req;
 	}
 
-	public void handle(EntityDust e, Sacrifice[] sac) {
-		for (Sacrifice s : sac) {
+	public void handle(EntityDust e, Sacrifice[] sac) 
+	{
+		for (Sacrifice s : sac) 
+		{
 			s.handleObject(e, s.entity);
 		}
 	}

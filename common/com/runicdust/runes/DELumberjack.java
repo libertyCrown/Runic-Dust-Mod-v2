@@ -11,9 +11,10 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *
@@ -194,7 +195,7 @@ public class DELumberjack extends DustEvent
         }
 
         Block.wood.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 1);
-        world.setBlockAndMetadataWithNotify(x, y, z, 0,0,3);
+        world.setBlock(x, y, z, 0,0,3);
 
         for (int i = -2; i <= 2; i++)
         {
@@ -265,7 +266,7 @@ public class DELumberjack extends DustEvent
         }
 
 //        Block.wood.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 1);
-        world.setBlockAndMetadataWithNotify(x, y, z, 0,0,3);
+        world.setBlock(x, y, z, 0,0,3);
 
         for (int i = -2; i <= 2; i++)
         {

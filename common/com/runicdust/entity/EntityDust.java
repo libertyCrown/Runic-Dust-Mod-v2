@@ -15,6 +15,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import com.runicdust.DustManager;
+import com.runicdust.DustMod;
+import com.runicdust.block.BlockDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.tileentity.TileEntityDust;
+import com.runicdust.tileentity.TileEntityRut;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -91,8 +99,10 @@ public class EntityDust extends Entity
     public int[] data;
     public String summonerUN;
     public static final double yOffset = 0;//-1.5D;
-    protected int runeWidth,runeLength;
+    public int runeWidth;
 //    public int lifetime = -1;
+
+	public int runeLength;
 
     public EntityDust(World world)
     {

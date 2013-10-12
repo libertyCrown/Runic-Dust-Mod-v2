@@ -6,9 +6,6 @@ package com.runicdust.item;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -19,6 +16,11 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
+
+import com.runicdust.DustMod;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  *
@@ -76,7 +78,7 @@ public class ItemSpiritSword extends ItemSword
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
-		this.iconIndex = par1IconRegister.func_94245_a(DustMod.spritePath + this.getUnlocalizedName().replace("item.", ""));
+	public void registerIcons(IconRegister par1IconRegister) {
+		this.itemIcon = par1IconRegister.registerIcon(DustMod.spritePath + this.getUnlocalizedName().replace("item.", ""));
 	}
 }

@@ -10,10 +10,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.EntityBlock;
-import dustmod.EntityDust;
-import dustmod.VoidTeleManager;
+
+import com.runicdust.VoidTeleManager;
+import com.runicdust.entity.EntityBlock;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
 
 /**
  *

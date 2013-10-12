@@ -7,6 +7,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 
+import com.runicdust.PacketHandler;
+
 public class TileEntityDustTable extends TileEntity
 {
     public int ticks;

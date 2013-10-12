@@ -4,7 +4,6 @@
  */
 package com.runicdust;
 
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +12,13 @@ import java.util.logging.Level;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Configuration;
+
+import com.runicdust.block.BlockDust;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.entity.EntityDustManager;
+import com.runicdust.event.DustEvent;
+import com.runicdust.tileentity.TileEntityDust;
+
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 /**
@@ -69,7 +75,8 @@ public class DustManager
 //        result.posY = y-0.8;//EntityDust.yOffset;
 //        result.posZ = z;
 //        result.dustPoints = points;
-        for(int i = 0; i < rot; i++){
+        for(int i = 0; i < rot; i++)
+        {
         	map = DustShape.rotateMatrix(map);
         }
         result.dusts = map;
@@ -228,7 +235,7 @@ public class DustManager
         config.save();
         
         LanguageRegistry.instance().addStringLocalization("tile.scroll" + shape.name + ".name", "en_US", shape.getRuneName() + " Placing Scroll");
-        DustItemManager.reloadLanguage();
+        //DustItemManager.reloadLanguage();
     }
     
 
@@ -247,7 +254,7 @@ public class DustManager
 		DustMod.log(Level.FINER, "Registering remote rune: " + shape.name);
 //        System.out.println("[DustMod] Registering remote rune " + shape.name);
         LanguageRegistry.instance().addStringLocalization("tile.scroll" + shape.name + ".name", "en_US", shape.getRuneName() + " Placing Scroll");
-        DustItemManager.reloadLanguage();
+        //DustItemManager.reloadLanguage();
     }
 
 	/**

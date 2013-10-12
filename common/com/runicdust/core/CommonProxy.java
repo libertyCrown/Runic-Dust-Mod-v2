@@ -5,6 +5,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+
+import com.runicdust.DustShape;
+import com.runicdust.GenericHandler;
+import com.runicdust.TickHandler;
+import com.runicdust.event.InscriptionEvent;
+
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;

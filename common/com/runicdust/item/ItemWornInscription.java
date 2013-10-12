@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
@@ -16,13 +17,17 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IArmorTextureProvider;
 import net.minecraftforge.common.ISpecialArmor;
+
+import com.runicdust.DustMod;
+import com.runicdust.event.InscriptionEvent;
+import com.runicdust.event.InscriptionManager;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemWornInscription extends ItemArmor implements
-		IArmorTextureProvider, ISpecialArmor {
+public class ItemWornInscription extends ItemArmor implements ISpecialArmor 
+{
 
 	public static final int max = 1001;
 	
@@ -33,8 +38,7 @@ public class ItemWornInscription extends ItemArmor implements
 	}
 
 	@Override
-	public ArmorProperties getProperties(EntityLiving player, ItemStack armor,
-			DamageSource source, double damage, int slot) {
+	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
 		int prevented = (int) damage
 				- DustMod.inscriptionManager.getPreventedDamage(player, armor,
 						source, (int) damage);
@@ -51,16 +55,9 @@ public class ItemWornInscription extends ItemArmor implements
 	}
 
 	@Override
-	public void damageArmor(EntityLiving entity, ItemStack stack,
+	public void damageArmor(EntityLivingBase entity, ItemStack stack,
 			DamageSource source, int damage, int slot) {
 		DustMod.inscriptionManager.onDamage(entity, stack, source, damage);
-	}
-
-	// public
-
-	@Override
-	public String getArmorTextureFile(ItemStack itemstack) {
-		return DustMod.path + "/wornInscription.png";
 	}
 
 	@Override
@@ -155,13 +152,15 @@ public class ItemWornInscription extends ItemArmor implements
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIconFromDamageForRenderPass(int par1, int par2) {
-		return this.iconIndex;
+	public Icon getIconFromDamageForRenderPass(int par1, int par2) 
+	{
+		return this.itemIcon;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void func_94581_a(IconRegister par1IconRegister) {
-		this.iconIndex = par1IconRegister.func_94245_a(DustMod.spritePath + "wornInscription");
+	public void registerIcons(IconRegister par1IconRegister) 
+	{
+		this.itemIcon = par1IconRegister.registerIcon(DustMod.spritePath + "wornInscription");
 	}
 }

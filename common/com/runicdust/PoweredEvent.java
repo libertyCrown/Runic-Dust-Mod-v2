@@ -11,7 +11,11 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
-import dustmod.runes.DEPowerRelay;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.runes.DEPowerRelay;
+import com.runicdust.tileentity.TileEntityDust;
 
 /**
  *

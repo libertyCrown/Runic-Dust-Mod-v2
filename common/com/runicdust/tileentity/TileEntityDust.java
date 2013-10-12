@@ -19,6 +19,12 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
+import com.runicdust.DustItemManager;
+import com.runicdust.DustMod;
+import com.runicdust.PacketHandler;
+import com.runicdust.block.BlockDust;
+import com.runicdust.entity.EntityDust;
+
 /**
  *
  * @author billythegoat101
@@ -153,7 +159,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 //        if(worldObj.isRemote) return;
         if (ticksExisted > 2 && isEmpty() && worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 10)
         {
-            worldObj.setBlockAndMetadataWithNotify(xCoord, yCoord, zCoord, 0,0,3);
+            worldObj.setBlock(xCoord, yCoord, zCoord, 0, 0, 3);
 //            DustMod.log("Killing, empty");
             this.invalidate();
             return;
@@ -437,7 +443,7 @@ public class TileEntityDust extends TileEntity implements IInventory
         int tx = ted.xCoord;
         int ty = ted.yCoord;
         int tz = ted.zCoord;
-        ted.worldObj.setBlockAndMetadataWithNotify(tx, ty, tz, worldObj.getBlockMetadata(xCoord, yCoord, zCoord),0,3);
+        ted.worldObj.setBlock(tx, ty, tz, worldObj.getBlockMetadata(xCoord, yCoord, zCoord),0,3);
     }
 
     @Override
@@ -559,15 +565,16 @@ public class TileEntityDust extends TileEntity implements IInventory
         return PacketHandler.getTEDPacket(this);
     }
 
+
 	@Override
-	public boolean func_94042_c() {
-		// TODO Auto-generated method stub
+	public boolean isInvNameLocalized() 
+	{
 		return false;
 	}
 
 	@Override
-	public boolean func_94041_b(int i, ItemStack itemstack) {
-		// TODO Auto-generated method stub
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) 
+	{
 		return false;
 	}
 }

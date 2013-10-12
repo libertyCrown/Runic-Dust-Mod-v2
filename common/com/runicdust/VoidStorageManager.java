@@ -10,6 +10,9 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import net.minecraft.item.ItemStack;
+
+import com.runicdust.entity.EntityDust;
+
 import cpw.mods.fml.common.FMLLog;
 
 public class VoidStorageManager {

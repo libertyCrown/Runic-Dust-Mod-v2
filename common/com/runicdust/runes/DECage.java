@@ -13,8 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.EntityDust;
-import dustmod.TileEntityDust;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.tileentity.TileEntityDust;
 
 /**
  *
@@ -104,8 +105,8 @@ public class DECage extends DETrap
                                 continue;
                             }
 
-                            world.setBlockAndMetadataWithNotify(x + ix, y + iy, z + iz, 0,0,3);
-                            world.setBlockAndMetadataWithNotify(x + ix, y + iy, z + iz, Block.fenceIron.blockID,0,3);
+                            world.setBlock(x + ix, y + iy, z + iz, 0,0,3);
+                            world.setBlock(x + ix, y + iy, z + iz, Block.fenceIron.blockID,0,3);
                         }
 
                 if (world.getBlockId(x, y - 1, z) == 0)
@@ -117,8 +118,8 @@ public class DECage extends DETrap
                         if (ted.getDusts()[3])
                         {
                             int id = world.getBlockId(p[0], p[1] - 1, p[2]);
-                            world.setBlockAndMetadataWithNotify(p[0], p[1] - 1, p[2], 0,0,3);
-                            world.setBlockAndMetadataWithNotify(x, y - 1, z, id,0,3);
+                            world.setBlock(p[0], p[1] - 1, p[2], 0,0,3);
+                            world.setBlock(x, y - 1, z, id,0,3);
                         }
                     }
                 }

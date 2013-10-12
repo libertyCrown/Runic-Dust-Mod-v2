@@ -12,8 +12,9 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
+
+import com.runicdust.PoweredEvent;
+import com.runicdust.entity.EntityDust;
 
 /**
  *
@@ -106,7 +107,7 @@ public class DEFireSprite extends PoweredEvent
                     {
                         if (e.worldObj.getBlockId(ex + x, ey + y - 1, ez + z) != 0 && e.worldObj.getBlockId(ex + x, ey + y, ez + z) == 0 && Math.random() < 0.05D)
                         {
-                            e.worldObj.setBlockAndMetadataWithNotify(ex + x, ey + y, ez + z, Block.fire.blockID,0,3);
+                            e.worldObj.setBlock(ex + x, ey + y, ez + z, Block.fire.blockID,0,3);
                             ignited = true;
                         }
                     }

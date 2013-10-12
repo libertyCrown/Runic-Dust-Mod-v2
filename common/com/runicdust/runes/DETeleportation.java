@@ -15,12 +15,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import dustmod.DustMod;
-import dustmod.EntityBlock;
-import dustmod.EntityDust;
-import dustmod.PoweredEvent;
-import dustmod.TileEntityDust;
-import dustmod.VoidTeleManager;
+
+import com.runicdust.DustMod;
+import com.runicdust.PoweredEvent;
+import com.runicdust.VoidTeleManager;
+import com.runicdust.entity.EntityBlock;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.tileentity.TileEntityDust;
 
 /**
  *
