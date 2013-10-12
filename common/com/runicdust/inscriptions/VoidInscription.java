@@ -1,14 +1,15 @@
 package com.runicdust.inscriptions;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.DustEvent;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
-import dustmod.VoidStorageManager;
+
+import com.runicdust.VoidStorageManager;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.event.InscriptionEvent;
 
 public class VoidInscription extends InscriptionEvent {
 
@@ -33,8 +34,7 @@ public class VoidInscription extends InscriptionEvent {
 	}
 
 	@Override
-	public ItemStack onItemPickup(EntityLiving wearer, ItemStack insc,
-			ItemStack pickedup) {
+	public ItemStack onItemPickup(EntityPlayer wearer, ItemStack insc, ItemStack pickedup) {
 		VoidStorageManager.addItemToVoidInventory(
 				((EntityPlayer) wearer).username, pickedup);
 		ItemStack rtn = pickedup.copy();

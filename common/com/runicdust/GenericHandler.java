@@ -8,6 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
+
+import com.runicdust.event.InscriptionManager;
+import com.runicdust.item.ItemPouch;
+
 import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.network.Player;
 

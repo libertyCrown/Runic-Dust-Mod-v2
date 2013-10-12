@@ -3,8 +3,12 @@ package com.runicdust.block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import com.runicdust.DustMod;
+import com.runicdust.InscriptionGuiContainer;
+import com.runicdust.client.gui.GuiInscription;
+
 import cpw.mods.fml.common.network.IGuiHandler;
-import dustmod.client.GuiInscription;
 
 public class GuiHandler implements IGuiHandler {
 

@@ -142,10 +142,10 @@ public class BlinkerInscription extends InscriptionEvent {
 		}
 	}
 	
-	private void onTele(ItemStack item, EntityLiving wearer){
+	private void onTele(ItemStack item, EntityLivingBase wearer){
 		item.getTagCompound().setInteger("lastTele", wearer.ticksExisted);
 	}
-	private boolean canTele(ItemStack item, EntityLiving wearer){
+	private boolean canTele(ItemStack item, EntityLivingBase wearer){
 		int last = 0;
 		if(item.getTagCompound().hasKey("mouse"))
 			last = item.getTagCompound().getInteger("lastTele");

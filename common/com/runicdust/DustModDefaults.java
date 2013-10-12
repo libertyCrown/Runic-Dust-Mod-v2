@@ -1,60 +1,63 @@
 package com.runicdust;
 
+import com.runicdust.event.InscriptionEvent;
+import com.runicdust.event.InscriptionManager;
+import com.runicdust.inscriptions.BlinkerInscription;
+import com.runicdust.inscriptions.BounceInscription;
+import com.runicdust.inscriptions.EnderInscription;
+import com.runicdust.inscriptions.ForesightInscription;
+import com.runicdust.inscriptions.RespawnInscription;
+import com.runicdust.inscriptions.RocketLaunch;
+import com.runicdust.inscriptions.VoidInscription;
+import com.runicdust.runes.DEBomb;
+import com.runicdust.runes.DEBounce;
+import com.runicdust.runes.DECage;
+import com.runicdust.runes.DECampFire;
+import com.runicdust.runes.DEChargeInscription;
+import com.runicdust.runes.DECompression;
+import com.runicdust.runes.DEDawn;
+import com.runicdust.runes.DEEarthSprite;
+import com.runicdust.runes.DEEggifier;
+import com.runicdust.runes.DEFarm;
+import com.runicdust.runes.DEFireBowEnch;
+import com.runicdust.runes.DEFireRain;
+import com.runicdust.runes.DEFireSprite;
+import com.runicdust.runes.DEFireTrap;
+import com.runicdust.runes.DEFlatten;
+import com.runicdust.runes.DEForcefield;
+import com.runicdust.runes.DEFortuneEnch;
+import com.runicdust.runes.DEHeal;
+import com.runicdust.runes.DEHideout;
+import com.runicdust.runes.DELiftTerrain;
+import com.runicdust.runes.DELightning;
+import com.runicdust.runes.DELillyBridge;
+import com.runicdust.runes.DELumberjack;
+import com.runicdust.runes.DELunar;
+import com.runicdust.runes.DEMiniTele;
+import com.runicdust.runes.DEObelisk;
+import com.runicdust.runes.DEPit;
+import com.runicdust.runes.DEPoisonTrap;
+import com.runicdust.runes.DEPowerRelay;
+import com.runicdust.runes.DEResurrection;
+import com.runicdust.runes.DESilkTouchEnch;
+import com.runicdust.runes.DESpawnRecord;
+import com.runicdust.runes.DESpawnTorch;
+import com.runicdust.runes.DESpawnerCollector;
+import com.runicdust.runes.DESpawnerReprog;
+import com.runicdust.runes.DESpeed;
+import com.runicdust.runes.DESpiritTool;
+import com.runicdust.runes.DETeleportation;
+import com.runicdust.runes.DETimeLock;
+import com.runicdust.runes.DEVoid;
+import com.runicdust.runes.DEWall;
+import com.runicdust.runes.DEXP;
+import com.runicdust.runes.DEXPStore;
+
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import dustmod.inscriptions.BlinkerInscription;
-import dustmod.inscriptions.BounceInscription;
-import dustmod.inscriptions.EnderInscription;
-import dustmod.inscriptions.ForesightInscription;
-import dustmod.inscriptions.RespawnInscription;
-import dustmod.inscriptions.RocketLaunch;
-import dustmod.inscriptions.VoidInscription;
-import dustmod.runes.DEBomb;
-import dustmod.runes.DEBounce;
-import dustmod.runes.DECage;
-import dustmod.runes.DECampFire;
-import dustmod.runes.DEChargeInscription;
-import dustmod.runes.DECompression;
-import dustmod.runes.DEDawn;
-import dustmod.runes.DEEarthSprite;
-import dustmod.runes.DEEggifier;
-import dustmod.runes.DEFarm;
-import dustmod.runes.DEFireBowEnch;
-import dustmod.runes.DEFireRain;
-import dustmod.runes.DEFireSprite;
-import dustmod.runes.DEFireTrap;
-import dustmod.runes.DEFlatten;
-import dustmod.runes.DEForcefield;
-import dustmod.runes.DEFortuneEnch;
-import dustmod.runes.DEHeal;
-import dustmod.runes.DEHideout;
-import dustmod.runes.DELiftTerrain;
-import dustmod.runes.DELightning;
-import dustmod.runes.DELillyBridge;
-import dustmod.runes.DELumberjack;
-import dustmod.runes.DELunar;
-import dustmod.runes.DEMiniTele;
-import dustmod.runes.DEObelisk;
-import dustmod.runes.DEPit;
-import dustmod.runes.DEPoisonTrap;
-import dustmod.runes.DEPowerRelay;
-import dustmod.runes.DEResurrection;
-import dustmod.runes.DESilkTouchEnch;
-import dustmod.runes.DESpawnRecord;
-import dustmod.runes.DESpawnTorch;
-import dustmod.runes.DESpawnerCollector;
-import dustmod.runes.DESpawnerReprog;
-import dustmod.runes.DESpeed;
-import dustmod.runes.DESpiritTool;
-import dustmod.runes.DETeleportation;
-import dustmod.runes.DETimeLock;
-import dustmod.runes.DEVoid;
-import dustmod.runes.DEWall;
-import dustmod.runes.DEXP;
-import dustmod.runes.DEXPStore;
 
 /**
  * This pack is meant for testing runes & inscriptions as a separate download to
@@ -70,7 +73,7 @@ public class DustModDefaults {
 	@Instance("DustModDefaults")
 	public static DustModDefaults instance;
 
-	@PostInit
+	@EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
 		registerDusts();
 		registerRunes();

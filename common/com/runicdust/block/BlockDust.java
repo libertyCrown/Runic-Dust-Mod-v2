@@ -13,7 +13,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,7 +56,8 @@ public class BlockDust extends BlockContainer {
 	}
 
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int i, int j) {
+	public Icon getIcon(int i, int j) 
+	{
 		
 		return (i==1 ? topTexture:sideTexture);
 	}
@@ -123,7 +124,7 @@ public class BlockDust extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k,
-			EntityLiving entityliving, ItemStack item) {
+			EntityLivingBase entityliving, ItemStack item) {
 		super.onBlockPlacedBy(world, i, j, k, entityliving, item);
 //		this.onBlockActivated(world, i, j, k, (EntityPlayer) entityliving, 0,
 //				0, 0, 0);
@@ -204,7 +205,7 @@ public class BlockDust extends BlockContainer {
 			// if (world.getBlockMetadata(i, j, k) == 0) {
 			// onBlockRemoval(world, i, j, k);
 			// }
-			world.setBlockAndMetadataWithNotify(i, j, k, 0, 0, 3);
+			world.setBlock(i, j, k, 0, 0, 3);
 		} else if (world.isBlockIndirectlyGettingPowered(i, j, k) && i1 == 0) {
 			updatePattern(world, i, j, k, null);
 			world.notifyBlockChange(i, j, k, 0);
@@ -227,7 +228,7 @@ public class BlockDust extends BlockContainer {
 //		}
 
 		if (world.getBlockMetadata(i, j, k) > 0) {
-			world.setBlockAndMetadataWithNotify(i, j, k, 0,0,3);
+			world.setBlock(i, j, k, 0,0,3);
 			// for(int x = -1; x <= 1; x++)
 			// for(int z = -1; z <= 1; z++){
 			// if(world.getBlockId(i+x, j, k+z) == blockID &&
@@ -500,7 +501,7 @@ public class BlockDust extends BlockContainer {
 					// System.out.println("drop click");
 					if (ted.isEmpty() && world.getBlockMetadata(i, j, k) != 10) {
 						// System.out.println("Destroying");
-						world.setBlockAndMetadataWithNotify(i, j, k, 0,0,3);
+						world.setBlock(i, j, k, 0,0,3);
 						this.onBlockDestroyedByPlayer(world, i, j, k, 0);
 					}
 				}
@@ -664,10 +665,10 @@ public class BlockDust extends BlockContainer {
     }
 
     @SideOnly(Side.CLIENT)
-    public void func_94332_a(IconRegister par1IconRegister)
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        this.topTexture = par1IconRegister.func_94245_a(DustMod.spritePath + "dust_top");
-        this.sideTexture = par1IconRegister.func_94245_a(DustMod.spritePath + "dust_side");
+        this.topTexture = par1IconRegister.registerIcon(DustMod.spritePath + "dust_top");
+        this.sideTexture = par1IconRegister.registerIcon(DustMod.spritePath + "dust_side");
     }
     
 }

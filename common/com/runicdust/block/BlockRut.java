@@ -20,6 +20,10 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import com.runicdust.DustMod;
+import com.runicdust.tileentity.TileEntityRut;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -358,6 +362,7 @@ public class BlockRut extends BlockContainer
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_94332_a(IconRegister par1IconRegister) {
+    public void registerIcons(IconRegister par1IconRegister) 
+    {
     }
 }

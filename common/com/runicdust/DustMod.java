@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -53,10 +53,10 @@ import com.runicdust.tileentity.TileEntityRut;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -93,8 +93,8 @@ public class DustMod {
 	public static int lapisDID = 3;
 	public static int blazeDID = 4;
 
-	public static String path = "/mods/dustmod";
-	public static String spritePath = "dustmod:";
+	public static String path = "/assets/runicdust/";
+	public static String spritePath = "assets:";
 	public static File suggestedConfig;
 	public static int[] tex;
 	public static int groundTex;
@@ -153,27 +153,25 @@ public class DustMod {
 
 	public static int numSec = 0; // number of secret runes
 
-	@SidedProxy(clientSide = "dustmod.client.ClientProxy", serverSide = "dustmod.CommonProxy")
+	@SidedProxy(clientSide = "com.runicdust.client.ClientProxy", serverSide = "com.runicdust.core.CommonProxy")
 	public static CommonProxy proxy;
 	public static CommonMouseHandler keyHandler = new CommonMouseHandler();
 	public static InscriptionManager inscriptionManager = new InscriptionManager();
 
 	private static boolean hasLoaded = false;
 
-	@PreInit
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
 		if (hasLoaded)
 			return;
 		hasLoaded = true;
-		suggestedConfig = new File(evt.getSuggestedConfigurationFile()
-				.getParent() + File.separator + "DustModConfigv2.cfg");
-		// suggestedConfig.renameTo(new File("DustModConfigv2.cfg"));
+		suggestedConfig = new File(evt.getSuggestedConfigurationFile().getParent() + File.separator + "DustModConfigv2.cfg");
 
 		creativeTab = new DustModTab();
 
-		// System.out.println("CONFIG " + suggestedConfig.getParent());
 		Configuration config = new Configuration(suggestedConfig);
-		try {
+		try 
+		{
 			// File f = new File(configPath);
 			// f.mkdirs();
 			config.load();
@@ -420,7 +418,7 @@ public class DustMod {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	@PostInit
+	@EventHandler
 	public void modsLoaded(FMLPostInitializationEvent evt) {
 		// if(FMLCommonHandler.instance().getSide() == Side.CLIENT){
 		// try{//Debugging
@@ -554,15 +552,15 @@ public class DustMod {
 			}
 	}
 
-	public static void sendEntMotionTraits(EntityLiving e) {
+	public static void sendEntMotionTraits(EntityLivingBase wearer) {
 		PacketDispatcher.sendPacketToAllInDimension(PacketHandler
-				.getSetVelocityPacket(e), e.worldObj.getWorldInfo()
+				.getSetVelocityPacket(wearer), wearer.worldObj.getWorldInfo()
 				.getVanillaDimension());
 	}
 	
-	public static void sendRenderBreakItem(EntityPlayer ent, ItemStack tool){
+	public static void sendRenderBreakItem(EntityLivingBase wearer, ItemStack tool){
 		PacketDispatcher.sendPacketToAllInDimension(PacketHandler
-				.getRenderBrokenToolPacket(ent, tool), ent.worldObj.getWorldInfo()
+				.getRenderBrokenToolPacket(wearer, tool), wearer.worldObj.getWorldInfo()
 				.getVanillaDimension());
 	}
 

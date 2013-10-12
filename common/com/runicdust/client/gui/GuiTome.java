@@ -8,7 +8,9 @@ import java.util.Random;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.texture.TextureObject;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -26,6 +28,10 @@ import com.runicdust.event.InscriptionManager;
  */
 public class GuiTome extends GuiScreen
 {
+	private ResourceLocation texture = new ResourceLocation(DustMod.path + "/tomeGui.png");
+	private ResourceLocation norunes = new ResourceLocation(DustMod.path + "/pages" + "/no_runes.png");
+	private ResourceLocation noinscription = new ResourceLocation(DustMod.path + "/pages" + "/no_inscriptions.png");
+	private ResourceLocation info = new ResourceLocation(DustMod.path + "/pages/info.png");
 	
     public static int runePage = 0;
     public static int insPage = 0;
@@ -305,10 +311,10 @@ public class GuiTome extends GuiScreen
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
 //    	System.out.println("RAWR " + DustManager.isEmpty() + " " + InscriptionManager.isEmpty());
-        int i = mc.renderEngine.getTexture(DustMod.path + "/tomeGui.png");
+        TextureObject i = mc.renderEngine.getTexture(texture);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.renderEngine.func_98187_b(DustMod.path + "/tomeGui.png");
-//        mc.renderEngine.bindTexture(mc.renderEngine.getTexture(RenderDustTable.getPagePath(page)));
+        mc.renderEngine.bindTexture(texture);
+//      mc.renderEngine.bindTexture(mc.renderEngine.getTexture(RenderDustTable.getPagePath(page)));
         int j = (width - xSize) / 2 - offX;
         int k = (height - ySize) / 2;
         xStart = j;
@@ -329,18 +335,18 @@ public class GuiTome extends GuiScreen
         if(isRunes()){
 	        if(getRunePage() == 0){
 	        	if(DustManager.isEmpty()){
-	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages" + "/no_runes.png");
+	        		mc.renderEngine.bindTexture(norunes);
 	        	}else {
-	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages/info.png");
+	        		mc.renderEngine.bindTexture(info);
 	        	}
 	        }
 	        else PageHelper.bindPage(RenderDustTable.getRunePageName(getRunePage()));
         }else {
 	        if(getInsPage() == 0){
 	        	if(InscriptionManager.isEmpty()){
-	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages" + "/no_inscriptions.png");
+	        		mc.renderEngine.bindTexture(noinscription);
 	        	}else {
-	        		mc.renderEngine.func_98187_b(DustMod.path + "/pages" + "/info.png");
+	        		mc.renderEngine.bindTexture(info);
 	        	}
 	        }
 	        else PageHelper.bindPage(InscriptionManager.getEventInOrder(getInsPage() -1).getIDName());
@@ -350,10 +356,10 @@ public class GuiTome extends GuiScreen
         GL11.glPopMatrix();
         
         if(isRunes()){
-        	mc.renderEngine.func_98187_b(DustMod.path + "/tomeGui.png");
+        	mc.renderEngine.bindTexture(texture);
         	drawTexturedModalRect(j-6,k,12,0,12,ySize);
         }else {
-        	mc.renderEngine.func_98187_b(DustMod.path + "/tomeGui.png");
+        	mc.renderEngine.bindTexture(texture);
         	drawTexturedModalRect(j-6,k,0,0,12,ySize);
         }
     }

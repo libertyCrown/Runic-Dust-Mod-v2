@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -73,7 +73,7 @@ public class BlockDustTable extends BlockContainer
 //    }
 
     @Override
-    public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving, ItemStack item)
+    public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack item)
     {
     	int l = MathHelper.floor_double((double)(entityliving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
@@ -99,7 +99,7 @@ public class BlockDustTable extends BlockContainer
 
         if (item.hasDisplayName())
         {
-            ((TileEntityFurnace)world.getBlockTileEntity(i, j, k)).func_94129_a(item.getDisplayName());
+            ((TileEntityFurnace)world.getBlockTileEntity(i, j, k)).setGuiDisplayName(item.getDisplayName());
         }
     }
 
@@ -202,10 +202,10 @@ public class BlockDustTable extends BlockContainer
 	}
 
     @SideOnly(Side.CLIENT)
-    public void func_94332_a(IconRegister par1IconRegister)
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        this.topTex = par1IconRegister.func_94245_a(DustMod.spritePath + "table_top");
-        this.sideTex = par1IconRegister.func_94245_a(DustMod.spritePath + "table_side");
-        this.botTex = par1IconRegister.func_94245_a(DustMod.spritePath + "table_bottom");
+        this.topTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_top");
+        this.sideTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_side");
+        this.botTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_bottom");
     }
 }

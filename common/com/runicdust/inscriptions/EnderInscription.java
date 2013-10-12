@@ -3,17 +3,18 @@ package com.runicdust.inscriptions;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
-import dustmod.InscriptionManager;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.event.InscriptionEvent;
 
 public class EnderInscription extends InscriptionEvent {
 	public EnderInscription(int[][] design, String idName, String properName,
@@ -30,7 +31,7 @@ public class EnderInscription extends InscriptionEvent {
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
 		ItemStack[] req = new ItemStack[0];
 		int xp = 10;
-		req = new ItemStack[]{new ItemStack(Item.enderPearl,8), new ItemStack(Block.field_94339_ct,1), new ItemStack(Item.blazeRod, 2)};
+		req = new ItemStack[]{new ItemStack(Item.enderPearl,8), new ItemStack(Block.blockNetherQuartz, 1), new ItemStack(Item.blazeRod, 2)};
 		
 		req = rune.sacrifice(e, req);
 		if(!rune.checkSacrifice(req)) return false;
@@ -40,7 +41,7 @@ public class EnderInscription extends InscriptionEvent {
 	}
 	
 	@Override
-	public void onUpdate(EntityLiving wearer, ItemStack item, boolean[] buttons) {
+	public void onUpdate(EntityLivingBase wearer, ItemStack item, boolean[] buttons) {
 		super.onUpdate(wearer, item, buttons);
 //		System.out.println("huh " + wasFalling(item) +  " " + wearer.posY + " " + wearer.isCollidedVertically + " " + wearer.onGround);
 
@@ -134,10 +135,10 @@ public class EnderInscription extends InscriptionEvent {
 		}
 	}
 	
-	private void onTele(ItemStack item, EntityLiving wearer){
+	private void onTele(ItemStack item, EntityLivingBase wearer){
 		item.getTagCompound().setInteger("lastTele", wearer.ticksExisted);
 	}
-	private boolean canTele(ItemStack item, EntityLiving wearer){
+	private boolean canTele(ItemStack item, EntityLivingBase wearer){
 		int last = 0;
 		if(item.getTagCompound().hasKey("mouse"))
 			last = item.getTagCompound().getInteger("lastTele");

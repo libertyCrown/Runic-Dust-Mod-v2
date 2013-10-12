@@ -65,7 +65,8 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override
-	public void registerRenderInformation() {
+	public void registerRenderInformation() 
+	{
 		PageHelper.instance = new PageHelper();
 		
 //        MinecraftForgeClient.preloadTexture(DustMod.path + "/dustItems.png");

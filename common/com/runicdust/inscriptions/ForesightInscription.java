@@ -2,15 +2,16 @@ package com.runicdust.inscriptions;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.event.InscriptionEvent;
 
 public class ForesightInscription extends InscriptionEvent {
 
@@ -35,7 +36,7 @@ public class ForesightInscription extends InscriptionEvent {
 	}
 	
 	@Override
-	public void onUpdate(EntityLiving wearer, ItemStack item, boolean[] buttons) {
+	public void onUpdate(EntityLivingBase wearer, ItemStack item, boolean[] buttons) {
 		super.onUpdate(wearer, item, buttons);
 		
 		EntityPlayer player = (EntityPlayer)wearer;

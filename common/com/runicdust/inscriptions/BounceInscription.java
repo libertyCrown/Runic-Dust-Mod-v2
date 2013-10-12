@@ -1,13 +1,14 @@
 package com.runicdust.inscriptions;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.event.InscriptionEvent;
 
 public class BounceInscription extends InscriptionEvent {
 
@@ -32,7 +33,7 @@ public class BounceInscription extends InscriptionEvent {
 	}
 	
 	@Override
-	public void onUpdate(EntityLiving wearer, ItemStack item, boolean[] buttons) {
+	public void onUpdate(EntityLivingBase wearer, ItemStack item, boolean[] buttons) {
 		super.onUpdate(wearer, item, buttons);
 		if(!wearer.onGround){
 			if(getLastYVel(item) > wearer.motionY)

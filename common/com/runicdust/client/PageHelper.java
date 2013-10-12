@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.src.ModLoader;
 
 import org.lwjgl.opengl.GL11;
@@ -36,8 +37,8 @@ public class PageHelper
 {
 
 //	public static String folder = "\\dust_pages\\";
-//    public static String runeFolder = "\\dust_pages\\runes\\";
-//    public static String insFolder = "\\dust_pages\\inscriptions\\";
+//  public static String runeFolder = "\\dust_pages\\runes\\";
+//  public static String insFolder = "\\dust_pages\\inscriptions\\";
     public static BufferedImage background;
     public static BufferedImage backgroundIns;
     public static BufferedImage shade;
@@ -85,7 +86,8 @@ public class PageHelper
 //            new File(runeFolder).mkdirs();
 //            new File(insFolder).mkdirs();
 
-        } catch (IOException ex)
+        } 
+        catch (IOException ex)
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -538,31 +540,33 @@ public class PageHelper
 
         BufferedImage rtn = null;
         Minecraft mc = ModLoader.getMinecraftInstance();
-        ITexturePack tp = mc.renderEngine.texturePack.getSelectedTexturePack();
-        InputStream stream = tp.getResourceAsStream(file);
-        if(stream == null){
-        	throw new IllegalArgumentException("[DustMod] Image file not found! " + file + ". Perhaps you installed it wrong?");
-        }
-    	rtn = ImageIO.read(stream);
+        //TODO-when in doubt, comment it out. Fix issues that come from this
+        //ITexturePack tp = mc.renderEngine.texturePack.getSelectedTexturePack();
+        //InputStream stream = tp.getResourceAsStream(file);
+        //if(stream == null){
+        	//throw new IllegalArgumentException("[DustMod] Image file not found! " + file + ". Perhaps you installed it wrong?");
+        //}
+    	//rtn = ImageIO.read(stream);
         images.put(file, rtn);
         return rtn;
     }
     
-    public static void bindPage(String name){
+    public static void bindPage(String name)
+    {
         Minecraft mc = ModLoader.getMinecraftInstance();
-        RenderEngine re = mc.renderEngine;
+        TextureManager re = mc.renderEngine;
 
-        int tex = GLAllocation.generateTextureNames();
+        //int tex = GLAllocation.generateTextureNames();
         
         try
         {
             BufferedImage image = getImage(name);
-            re.setupTexture(image, tex);
+            //re.loadTexture(image, tex);
         } catch (IOException ex)
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
 //        re.bindTexture(tex);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
+       // GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
     }
 }

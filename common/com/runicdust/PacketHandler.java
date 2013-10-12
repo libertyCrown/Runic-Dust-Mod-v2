@@ -13,6 +13,7 @@ import java.util.Random;
 import java.util.logging.Level;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -426,17 +427,17 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
         return pkt;
     }
     
-    public static Packet getSetVelocityPacket(EntityLiving ent){
+    public static Packet getSetVelocityPacket(EntityLivingBase wearer){
     	ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
         DataOutputStream dos = new DataOutputStream(bos);
 
         try
         {
-        	dos.writeInt(ent.entityId);
-        	dos.writeFloat((float)ent.motionX);
-        	dos.writeFloat((float)ent.motionY);
-        	dos.writeFloat((float)ent.motionZ);
-        	dos.writeFloat((float)ent.jumpMovementFactor);
+        	dos.writeInt(wearer.entityId);
+        	dos.writeFloat((float)wearer.motionX);
+        	dos.writeFloat((float)wearer.motionY);
+        	dos.writeFloat((float)wearer.motionZ);
+        	dos.writeFloat((float)wearer.jumpMovementFactor);
         }
         catch (IOException e)
         {
@@ -451,13 +452,13 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
         return pkt;
     }
 
-    public static Packet getRenderBrokenToolPacket(EntityPlayer ent, ItemStack tool){
+    public static Packet getRenderBrokenToolPacket(EntityLivingBase wearer, ItemStack tool){
     	ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
         DataOutputStream dos = new DataOutputStream(bos);
 
         try
         {
-        	dos.writeInt(ent.entityId);
+        	dos.writeInt(wearer.entityId);
         	dos.writeInt(tool.itemID);
         	dos.writeInt(tool.getItemDamage());
         }

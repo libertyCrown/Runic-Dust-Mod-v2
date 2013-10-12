@@ -2,16 +2,17 @@ package com.runicdust.inscriptions;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MathHelper;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
+
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.event.InscriptionEvent;
 
 public class RespawnInscription extends InscriptionEvent {
 
@@ -29,7 +30,7 @@ public class RespawnInscription extends InscriptionEvent {
 	
 	@Override
 	public boolean callSacrifice(DustEvent rune, EntityDust e, ItemStack item) {
-		ItemStack[] req = new ItemStack[]{new ItemStack(Block.field_94339_ct,1), new ItemStack(Item.enderPearl, 2)};
+		ItemStack[] req = new ItemStack[]{new ItemStack(Block.blockNetherQuartz, 1), new ItemStack(Item.enderPearl, 2)};
 		req = rune.sacrifice(e, req);
 		if(!rune.checkSacrifice(req)) return false;
 		item.setItemDamage(0);
@@ -54,7 +55,7 @@ public class RespawnInscription extends InscriptionEvent {
             
 			wearer.setPositionAndUpdate(x+0.5, y, z+0.5);
 			wearer.fallDistance = 0;
-			this.damage((EntityPlayer)wearer, item, 20);
+			this.damage((EntityLivingBase)wearer, item, 20);
 			
             wearer.worldObj.playSoundEffect(wearer.posX, wearer.posY, wearer.posZ, "mob.endermen.portal", 1.0F, 1.0F);
             wearer.playSound("mob.endermen.portal", 1.0F, 1.0F);
@@ -85,7 +86,8 @@ public class RespawnInscription extends InscriptionEvent {
 		
 		item.getTagCompound().setString("description", "Set to [" + x + "x, " + y + "y, " + z + "z]");
 		if(dist > 1)
-			wearer.sendChatToPlayer("Set return point to [" + x + "x, " + y + "y, " + z + "z]");
+			//TODO-fix chat message
+			//wearer.sendChatToPlayer("Set return point to [" + x + "x, " + y + "y, " + z + "z]");
 		bullshit = wearer.worldObj.getTotalWorldTime();
 		return item;
 	}
@@ -98,7 +100,7 @@ public class RespawnInscription extends InscriptionEvent {
 	public void respawn(EntityLiving wearer, ItemStack item){
 		NBTTagCompound tag = item.getTagCompound();
 		double x = 0,y = 128,z = 0;
-		if(wearer instanceof EntityPlayer){
+		if(wearer instanceof EntityLivingBase){
 			ChunkCoordinates chunk = wearer.worldObj.getSpawnPoint();
 			if(chunk != null){
 				x = (double)chunk.posX + 0.5;

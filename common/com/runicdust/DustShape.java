@@ -15,6 +15,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.runicdust.block.BlockDust;
+import com.runicdust.item.ItemPouch;
+import com.runicdust.tileentity.TileEntityDust;
+
 /**
  * 
  * @author billythegoat101
@@ -645,7 +649,7 @@ public class DustShape {
 				}
 
 				if (blockID != DustMod.dust.blockID) {
-					w.setBlockAndMetadataWithNotify(si + x, j, sk + z,
+					w.setBlock(si + x, j, sk + z,
 							DustMod.dust.blockID, 0, 2);
 				}
 				TileEntityDust ted;
@@ -687,7 +691,7 @@ public class DustShape {
 							si + x, j, sk + z);
 
 					if (ted.isEmpty()) {
-						w.setBlockAndMetadataWithNotify(si + x, j, sk + z, 0,
+						w.setBlock(si + x, j, sk + z, 0,
 								0, 3);
 					} else {
 						w.markBlockForUpdate(si + x, j, sk + z);
@@ -851,12 +855,12 @@ public class DustShape {
 			}
 
 			if (blockID != DustMod.dust.blockID) {
-				w.setBlockAndMetadataWithNotify(si + x, j, sk + z,
+				w.setBlock(si + x, j, sk + z,
 						DustMod.dust.blockID, 0, 2);
 			}else if(meta == BlockDust.DEAD_DUST){
-				w.setBlockAndMetadataWithNotify(si + x, j, sk + z,
+				w.setBlock(si + x, j, sk + z,
 						0, 0, 2);
-				w.setBlockAndMetadataWithNotify(si + x, j, sk + z,
+				w.setBlock(si + x, j, sk + z,
 						DustMod.dust.blockID, 0, 2);
 			}else if(meta != BlockDust.UNUSED_DUST){
 				continue;
@@ -908,7 +912,7 @@ public class DustShape {
 							si + x, j, sk + z);
 
 					if (ted.isEmpty()) {
-						w.setBlockAndMetadataWithNotify(si + x, j, sk + z, 0,
+						w.setBlock(si + x, j, sk + z, 0,
 								0, 3);
 					} else {
 						w.markBlockForUpdate(si + x, j, sk + z);

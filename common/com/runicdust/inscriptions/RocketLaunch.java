@@ -1,15 +1,17 @@
 package com.runicdust.inscriptions;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
-import dustmod.DustEvent;
-import dustmod.DustMod;
-import dustmod.EntityDust;
-import dustmod.InscriptionEvent;
-import dustmod.InscriptionManager;
+
+import com.runicdust.DustMod;
+import com.runicdust.entity.EntityDust;
+import com.runicdust.event.DustEvent;
+import com.runicdust.event.InscriptionEvent;
+import com.runicdust.event.InscriptionManager;
 
 public class RocketLaunch extends InscriptionEvent {
 public double power;
@@ -65,7 +67,7 @@ public int level;
 	}
 	
 	@Override
-	public void onUpdate(EntityLiving wearer, ItemStack item, boolean[] buttons) {
+	public void onUpdate(EntityLivingBase wearer, ItemStack item, boolean[] buttons) {
 		super.onUpdate(wearer, item, buttons);
 
 		if(wasFalling(item) && wearer.ticksExisted - item.getTagCompound().getInteger("lastTele") > 20){
@@ -119,7 +121,7 @@ public int level;
 		}
 	}
 	
-	private void onLaunch(ItemStack item, EntityLiving wearer){
+	private void onLaunch(ItemStack item, EntityLivingBase wearer){
 		item.getTagCompound().setInteger("lastTele", wearer.ticksExisted);
 	}
 	

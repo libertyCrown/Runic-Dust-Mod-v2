@@ -105,7 +105,7 @@ public class InscriptionEvent {
 		return false;
 	}
 	
-	public void onUpdate(EntityPlayer wearer, ItemStack item, boolean[] buttons)
+	public void onUpdate(EntityLivingBase wearer, ItemStack item, boolean[] buttons)
 	{
 	}
 	
@@ -144,14 +144,14 @@ public class InscriptionEvent {
 	 */
 	public ItemStack onItemPickup(EntityPlayer player, ItemStack insc, ItemStack pickedup){return pickedup;}
 	
-	public void damage(EntityPlayer ent, ItemStack item, int amt){
+	public void damage(EntityLivingBase wearer, ItemStack item, int amt){
 		int curDamage = item.getItemDamage();
 		if(curDamage + amt > item.getMaxDamage()-1){
 			amt = (item.getMaxDamage()-curDamage) -1;
 		}
-		item.damageItem(amt, ent);
+		item.damageItem(amt, wearer);
 		if(item.getItemDamage() >= ItemWornInscription.max-1){
-			DustMod.sendRenderBreakItem(ent, item);
+			DustMod.sendRenderBreakItem(wearer, item);
 		}
 		if(item.stackSize <= 0){
 			item.stackSize = 1;
