@@ -93,7 +93,7 @@ public class DustMod {
 	public static int lapisDID = 3;
 	public static int blazeDID = 4;
 
-	public static String path = "/assets/runicdust/";
+	public static String path = "assets/runicdust/textures/";
 	public static String spritePath = "assets:";
 	public static File suggestedConfig;
 	public static int[] tex;

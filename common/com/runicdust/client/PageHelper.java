@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.runicdust.client;
 
 import java.awt.Color;
@@ -18,11 +14,12 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.renderer.texture.TextureObject;
+import net.minecraft.client.resources.ResourceManager;
+import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.src.ModLoader;
-
-import org.lwjgl.opengl.GL11;
+import net.minecraft.util.ResourceLocation;
 
 import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
@@ -55,10 +52,6 @@ public class PageHelper
     	File file = new File(minecraftPath);
     	minecraftPath = file.getParent();
     	
-//    	folder = minecraftPath + folder;
-//    	runeFolder = minecraftPath + runeFolder;
-//    	insFolder = minecraftPath + insFolder;
-    	
         missingExternalTextureImage = new BufferedImage(64, 64, 2);
         Graphics var3 = missingExternalTextureImage.getGraphics();
         var3.setColor(Color.WHITE);
@@ -69,23 +62,12 @@ public class PageHelper
         images = new HashMap<String, BufferedImage>();
         try
         {
-            background = getImage(DustMod.path + "/pages" + "/background.png");
-            backgroundIns = getImage(DustMod.path + "/pages" + "/backgroundIns.png");
-            shade = getImage(DustMod.path + "/pages" + "/shade.png");
-            colors = getImage(DustMod.path + "/pages" + "/colors.png");
-
+            background = getImage("assets/runicdust/textures/pages/background.png");
+            backgroundIns = getImage("assets/runicdust/textures/pages/backgroundIns.png");
+            shade = getImage("assets/runicdust/textures/pages/shade.png");
+            colors = getImage("assets/runicdust/textures/pages/colors.png");
             bgw = background.getWidth();
             bgh = background.getHeight();
-
-//            boolean success = new File(folder).mkdir();
-//            if (success)
-//            {
-//            	DustMod.log(Level.INFO,"Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
-//                System.out.println("[DustMod] Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
-//            }
-//            new File(runeFolder).mkdirs();
-//            new File(insFolder).mkdirs();
-
         } 
         catch (IOException ex)
         {
@@ -93,7 +75,8 @@ public class PageHelper
         }
     }
     
-    public static void checkInscriptionImage(InscriptionEvent event){
+    public static void checkInscriptionImage(InscriptionEvent event)
+    {
     	BufferedImage dust = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
         BufferedImage result = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
 
@@ -541,12 +524,14 @@ public class PageHelper
         BufferedImage rtn = null;
         Minecraft mc = ModLoader.getMinecraftInstance();
         //TODO-when in doubt, comment it out. Fix issues that come from this
-        //ITexturePack tp = mc.renderEngine.texturePack.getSelectedTexturePack();
-        //InputStream stream = tp.getResourceAsStream(file);
-        //if(stream == null){
-        	//throw new IllegalArgumentException("[DustMod] Image file not found! " + file + ". Perhaps you installed it wrong?");
-        //}
-    	//rtn = ImageIO.read(stream);
+        ResourceLocation location = new ResourceLocation(file);
+        ResourceManager rp = mc.getMinecraft().getResourceManager();
+        InputStream stream = (InputStream) rp.getAllResources(location);
+        if(stream == null)
+        {
+        	throw new IllegalArgumentException("[DustMod] Image file not found! " + file + ". Perhaps you installed it wrong?");
+        }
+    	rtn = ImageIO.read(stream);
         images.put(file, rtn);
         return rtn;
     }

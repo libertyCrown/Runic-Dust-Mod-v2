@@ -68,12 +68,9 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenderInformation() 
 	{
 		PageHelper.instance = new PageHelper();
-		
-//        MinecraftForgeClient.preloadTexture(DustMod.path + "/dustItems.png");
-//        MinecraftForgeClient.preloadTexture(DustMod.path + "/dustBlocks.png");
         
-//        TextureFXManager.instance().addAnimation(new TextureDustFX(0));
-//        TextureFXManager.instance().addAnimation(new TextureGlowFX(2*16));
+//      TextureFXManager.instance().addAnimation(new TextureDustFX(0));
+//      TextureFXManager.instance().addAnimation(new TextureGlowFX(2*16));
         
         DustBlockRenderers.dustModelID = RenderingRegistry.getNextAvailableRenderId();
         DustBlockRenderers.rutModelID = RenderingRegistry.getNextAvailableRenderId();
@@ -89,7 +86,8 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override
-	public void registerTileEntityRenderers() {
+	public void registerTileEntityRenderers() 
+	{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDustTable.class, new RenderDustTable());
 	}
 
