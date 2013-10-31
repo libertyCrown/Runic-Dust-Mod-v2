@@ -62,10 +62,10 @@ public class PageHelper
         images = new HashMap<String, BufferedImage>();
         try
         {
-            background = getImage("assets/runicdust/textures/pages/background.png");
-            backgroundIns = getImage("assets/runicdust/textures/pages/backgroundIns.png");
-            shade = getImage("assets/runicdust/textures/pages/shade.png");
-            colors = getImage("assets/runicdust/textures/pages/colors.png");
+            background = getImage("textures/pages/background.png");
+            backgroundIns = getImage("textures/pages/backgroundIns.png");
+            shade = getImage("textures/pages/shade.png");
+            colors = getImage("textures/pages/colors.png");
             bgw = background.getWidth();
             bgh = background.getHeight();
         } 
@@ -524,9 +524,9 @@ public class PageHelper
         BufferedImage rtn = null;
         Minecraft mc = ModLoader.getMinecraftInstance();
         //TODO-when in doubt, comment it out. Fix issues that come from this
-        ResourceLocation location = new ResourceLocation(file);
+        ResourceLocation location = new ResourceLocation("runicdust", file);
         ResourceManager rp = mc.getMinecraft().getResourceManager();
-        InputStream stream = (InputStream) rp.getAllResources(location);
+        InputStream stream = rp.getResource(location).getInputStream();
         if(stream == null)
         {
         	throw new IllegalArgumentException("[DustMod] Image file not found! " + file + ". Perhaps you installed it wrong?");
