@@ -288,13 +288,6 @@ public class TileEntityRut extends TileEntity
         }
     }
 
-//    public void onNeighborChange(){
-//
-//    }
-//    public boolean isValidNeighbor(Block b){
-//        return b == null || (!b.isOpaqueCube() && b != mod_DustMod.rutBlock);
-//    }
-
     public void setRut(EntityPlayer p, int i, int j, int k, int l)
     {
     	if(p != null && !worldObj.canMineBlock(p, this.xCoord, this.yCoord, this.zCoord)) return;

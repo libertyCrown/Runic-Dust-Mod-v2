@@ -32,7 +32,7 @@ public class DEObelisk extends DustEvent
         e.setColorBeam(114, 114, 62);
         e.setRenderBeam(true);
         e.setBeamType(1);
-//        e.setRenderStar(true);
+//      e.setRenderStar(true);
 		
     }
 

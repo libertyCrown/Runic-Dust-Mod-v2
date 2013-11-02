@@ -26,7 +26,6 @@ public class TileEntityDustTable extends TileEntity
     public int page = 0;
 
     public int dir = -1;
-//    private int page = 0;
 
     public TileEntityDustTable()
     {
@@ -47,13 +46,7 @@ public class TileEntityDustTable extends TileEntity
 
     public void updateEntity()
     {
-//        if(dir == -1){
         dir = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-//        }
-//        if(ticks%100 == 0) {
-//            System.out.println("PAGE++");
-//            page++;
-//        }
         floatd = (float)page / 2F;
         super.updateEntity();
         prevFloating = floating;

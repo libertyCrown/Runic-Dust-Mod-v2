@@ -99,14 +99,6 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler{
         int[] col;
         float r, g, b;
         
-//        if(ted.hasFlame()){
-//        	RenderManager.instance.renderEngine.bindTexture(RenderManager.instance.renderEngine.getTexture("./terrain.png"));
-//        	System.out.println("waaat");
-//        	block.setBlockBounds(0,0,0,1,0.5f,1);
-//        	
-//            renderblocks.setRenderBoundsFromBlock(block);
-//        	renderblocks.renderBlockFire(block, i, j, k);
-//        }
         
         float highlightHeight = 0.125f;
 

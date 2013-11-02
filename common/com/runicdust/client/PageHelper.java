@@ -33,9 +33,9 @@ import com.runicdust.event.InscriptionEvent;
 public class PageHelper
 {
 
-//	public static String folder = "\\dust_pages\\";
-//  public static String runeFolder = "\\dust_pages\\runes\\";
-//  public static String insFolder = "\\dust_pages\\inscriptions\\";
+	public static String folder = "\\dust_pages\\";
+    public static String runeFolder = "\\dust_pages\\runes\\";
+    public static String insFolder = "\\dust_pages\\inscriptions\\";
     public static BufferedImage background;
     public static BufferedImage backgroundIns;
     public static BufferedImage shade;
@@ -95,8 +95,6 @@ public class PageHelper
         int[][]values = event.referenceDesign;
         int width = values[0].length;
         int height = values.length;
-//        System.out.println("Checking " + name + " " + width + " " + height);
-
 
         int pxwMax = bgw - 6;
         int pxhMax = bgh- 6;
@@ -206,11 +204,8 @@ public class PageHelper
 
     public static void checkRuneImage(DustShape shape)
     {
-
         BufferedImage dust = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
         BufferedImage result = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
-
-
         String name = "" + shape.name;
 //        while (Character.isDigit(name.charAt(name.length() - 1)))
 //        {
@@ -523,7 +518,6 @@ public class PageHelper
 
         BufferedImage rtn = null;
         Minecraft mc = ModLoader.getMinecraftInstance();
-        //TODO-when in doubt, comment it out. Fix issues that come from this
         ResourceLocation location = new ResourceLocation("runicdust", file);
         ResourceManager rp = mc.getMinecraft().getResourceManager();
         InputStream stream = rp.getResource(location).getInputStream();

@@ -22,10 +22,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockDustTable extends BlockContainer 
 {
-
+	/*@SideOnly(Side.CLIENT)
+	private Icon sideTex;*/
+	@SideOnly(Side.CLIENT)
 	private Icon topTex;
-	private Icon sideTex;
+	@SideOnly(Side.CLIENT)
 	private Icon botTex;
+	
     public BlockDustTable(int i)
     {
         super(i, Material.wood);
@@ -40,37 +43,6 @@ public class BlockDustTable extends BlockContainer
     {
         return false;
     }
-
-//    public void randomDisplayTick(World world, int i, int j, int k, Random random)
-//    {
-//        super.randomDisplayTick(world, i, j, k, random);
-//        for (int l = i - 2; l <= i + 2; l++)
-//        {
-//            for (int i1 = k - 2; i1 <= k + 2; i1++)
-//            {
-//                if (l > i - 2 && l < i + 2 && i1 == k - 1)
-//                {
-//                    i1 = k + 2;
-//                }
-//                if (random.nextInt(16) != 0)
-//                {
-//                    continue;
-//                }
-//                for (int j1 = j; j1 <= j + 1; j1++)
-//                {
-//                    if (world.getBlockId(l, j1, i1) != Block.bookShelf.blockID)
-//                    {
-//                        continue;
-//                    }
-//                    if (!world.isAirBlock((l - i) / 2 + i, j1, (i1 - k) / 2 + k))
-//                    {
-//                        break;
-//                    }
-//                    world.spawnParticle("enchantmenttable", (double)i + 0.5D, (double)j + 2D, (double)k + 0.5D, (double)((float)(l - i) + random.nextFloat()) - 0.5D, (float)(j1 - j) - random.nextFloat() - 1.0F, (double)((float)(i1 - k) + random.nextFloat()) - 0.5D);
-//                }
-//            }
-//        }
-//    }
 
     @Override
     public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack item)
@@ -110,17 +82,17 @@ public class BlockDustTable extends BlockContainer
 
     public Icon getBlockTextureFromSideAndMetadata(int i, int meta)
     {
-        if (i == 1)
+        if (i == 0)
         {
             return topTex;
         }
 
-        if (i == 0)
+        if (i == 1)
         {
             return botTex;
         }
 
-        return sideTex;
+        return blockIcon;
     }
 
     @Override
@@ -204,8 +176,8 @@ public class BlockDustTable extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
+        this.blockIcon = par1IconRegister.registerIcon(DustMod.spritePath + "table_side");
         this.topTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_top");
-        this.sideTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_side");
         this.botTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_bottom");
     }
 }

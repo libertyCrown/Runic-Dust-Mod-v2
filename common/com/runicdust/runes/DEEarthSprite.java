@@ -113,8 +113,8 @@ public class DEEarthSprite  extends PoweredEvent
                 if(p.isSneaking() && !wasSneaking) p.setPositionAndUpdate((double)px + 0.5D, (double)py + p.yOffset, (double)pz + 0.5D);
                 {
                		//TODO-de-break rune effect
-                	//p.setMovement(0);
-//               	p.setVelocity(0,0,0);
+                	//p.setSpeed(0);
+                	p.setVelocity(0,0,0);
                 }
             }
             if(!protect && wasProtect){

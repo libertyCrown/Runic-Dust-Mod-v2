@@ -29,8 +29,8 @@ import com.runicdust.event.InscriptionManager;
 public class GuiTome extends GuiScreen
 {
 	private ResourceLocation texture = new ResourceLocation(DustMod.path + "/tomeGui.png");
-	private ResourceLocation norunes = new ResourceLocation(DustMod.path + "/pages" + "/no_runes.png");
-	private ResourceLocation noinscription = new ResourceLocation(DustMod.path + "/pages" + "/no_inscriptions.png");
+	private ResourceLocation norunes = new ResourceLocation(DustMod.path + "/pages/no_runes.png");
+	private ResourceLocation noinscription = new ResourceLocation(DustMod.path + "/pages/no_inscriptions.png");
 	private ResourceLocation info = new ResourceLocation(DustMod.path + "/pages/info.png");
 	
     public static int runePage = 0;

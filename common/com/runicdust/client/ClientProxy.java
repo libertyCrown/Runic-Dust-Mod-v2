@@ -69,13 +69,8 @@ public class ClientProxy extends CommonProxy {
 	{
 		PageHelper.instance = new PageHelper();
         
-//      TextureFXManager.instance().addAnimation(new TextureDustFX(0));
-//      TextureFXManager.instance().addAnimation(new TextureGlowFX(2*16));
-        
         DustBlockRenderers.dustModelID = RenderingRegistry.getNextAvailableRenderId();
         DustBlockRenderers.rutModelID = RenderingRegistry.getNextAvailableRenderId();
-//        DustBlockRenderers.dustModelID = RenderingRegistry.getNextAvailableRenderId();
-//        DustBlockRenderers.rutModelID = RenderingRegistry.getNextAvailableRenderId();
         
         RenderingRegistry.registerBlockHandler(new DustBlockRenderers(DustBlockRenderers.dustModelID));
         RenderingRegistry.registerBlockHandler(new DustBlockRenderers(DustBlockRenderers.rutModelID));

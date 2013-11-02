@@ -69,7 +69,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "DustMod", name = "Runic Dust Mod", version = "1.4")
+@Mod(modid = "DustMod", name = "RunicDustMod", version = "1.4")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class, channels = {
 		PacketHandler.CHANNEL_DMRune, PacketHandler.CHANNEL_TEDust,
 		PacketHandler.CHANNEL_TELexicon, PacketHandler.CHANNEL_TERut,
@@ -93,8 +93,8 @@ public class DustMod {
 	public static int lapisDID = 3;
 	public static int blazeDID = 4;
 
-	public static String path = "assets/runicdust/textures/";
-	public static String spritePath = "assets:";
+	public static String path = "runicdust:textures";
+	public static String spritePath = "runicdust:";
 	public static File suggestedConfig;
 	public static int[] tex;
 	public static int groundTex;

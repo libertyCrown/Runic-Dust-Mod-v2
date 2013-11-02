@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.runicdust.entity;
 
 import java.util.ArrayList;
@@ -26,10 +22,6 @@ import com.runicdust.tileentity.TileEntityRut;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author billythegoat101
@@ -342,7 +334,8 @@ public class EntityDust extends Entity
         {
             entityDustID = tag.getLong("entityDustID");
             EntityDustManager.registerEntityDust(this, entityDustID);
-        } else
+        } 
+        else
         {
             entityDustID = -1L;
         }
@@ -424,7 +417,6 @@ public class EntityDust extends Entity
             inPos[2] = tag.getInteger(i + "z");
             dustPoints.add(inPos);
         }
-//        System.out.println("READ " + dustPoints.size());
 
         if (tag.hasKey("rutsize"))
         {
@@ -700,11 +692,6 @@ public class EntityDust extends Entity
                 {
                     EntityPlayer player = worldObj.getPlayerEntityByName(summonerUN);
 
-//                    if (true/*!worldObj.multiplayerWorld*/)
-//                    {
-//                        player = ModLoader.getMinecraftInstance().thePlayer;
-//                    }
-
                     if (player == null)
                     {
                         return;
@@ -892,8 +879,6 @@ public class EntityDust extends Entity
                 DustMod.spawnParticles(worldObj, s, locations, d, d1, d2, 1, 0.01,0.01,0.01);
             }
         }
-//        System.out.println("You bitch " + i + " " + locations.length);
-        
     }
     
     
