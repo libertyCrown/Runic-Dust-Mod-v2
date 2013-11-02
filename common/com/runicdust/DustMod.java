@@ -54,9 +54,7 @@ import com.runicdust.tileentity.TileEntityRut;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -150,8 +148,8 @@ public class DustMod {
 	public static HashMap<String, ArrayList<ItemStack>> voidInventory;
 	public static ArrayList<int[]> voidNetwork;
 	public static int skipWarpTick = 0;
-
-	public static int numSec = 0; // number of secret runes
+	// number of secret runes
+	public static int numSec = 0;
 
 	@SidedProxy(clientSide = "com.runicdust.client.ClientProxy", serverSide = "com.runicdust.core.CommonProxy")
 	public static CommonProxy proxy;
@@ -161,9 +159,12 @@ public class DustMod {
 	private static boolean hasLoaded = false;
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent evt) {
+	public void preInit(FMLPreInitializationEvent evt)
+	{
 		if (hasLoaded)
+		{
 			return;
+		}
 		hasLoaded = true;
 		suggestedConfig = new File(evt.getSuggestedConfigurationFile().getParent() + File.separator + "DustModConfigv2.cfg");
 
@@ -218,7 +219,8 @@ public class DustMod {
 					Enable_Decorative_Ruts).getBoolean(Enable_Decorative_Ruts);
 			verbose = config.get("config", "verbose", verbose).getBoolean(
 					verbose);
-		} catch (Exception e) 
+		} 
+		catch (Exception e) 
 		{
 			FMLLog.log(Level.SEVERE, e, "[DustMod] : Error loading config.");
 		} 
@@ -258,7 +260,7 @@ public class DustMod {
 
 	}
 
-	@Init
+	@EventHandler
 	public void load(FMLInitializationEvent evt) {
 
 		NetworkRegistry.instance().registerConnectionHandler(
@@ -299,8 +301,6 @@ public class DustMod {
 				"Hammer&Chisel");
 		lang.addStringLocalization("pouchblank.name", "en_US",
 				"ERROR Runic Pouch");
-		// lang.addStringLocalization(inscription.getItemName() + ".name",
-		// "en_US", "Blank Runic Inscription");
 		lang.addStringLocalization("emptyinsc.name", "en_US",
 				"Blank Runic Inscription");
 		lang.addStringLocalization("driedinsc.name", "en_US", "Dried Drawing");
@@ -496,7 +496,7 @@ public class DustMod {
 	 * @return true if is dust.
 	 */
 	public static boolean isDust(int id) {
-		return id == dust.blockID;// || id == brightDust.blockID;
+		return id == dust.blockID;
 	}
 
 	/**
@@ -590,11 +590,7 @@ public class DustMod {
 	 *         entityID
 	 */
 	public static int getEntityIDFromDrop(ItemStack is, int mul) {
-		// System.out.println("CHECK " + is.itemID + " " + is.stackSize + " " +
-		// is.getItemDamage());
 		for (ItemStack i : entdrops.keySet()) {
-			// System.out.println("grr " + i.itemID + " " + i.stackSize + " " +
-			// i.getItemDamage());
 			if (i.itemID == is.itemID
 					&& (is.stackSize >= i.itemID * mul || is.stackSize == -1)
 					&& (i.getItemDamage() == is.getItemDamage() || i

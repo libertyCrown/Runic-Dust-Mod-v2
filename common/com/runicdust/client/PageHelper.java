@@ -14,12 +14,16 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureObject;
 import net.minecraft.client.resources.ResourceManager;
-import net.minecraft.client.resources.ResourcePackRepository;
 import net.minecraft.src.ModLoader;
 import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.opengl.GL13;
 
 import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
@@ -32,10 +36,9 @@ import com.runicdust.event.InscriptionEvent;
  */
 public class PageHelper
 {
-
-	public static String folder = "\\dust_pages\\";
-    public static String runeFolder = "\\dust_pages\\runes\\";
-    public static String insFolder = "\\dust_pages\\inscriptions\\";
+    public static String folder = Minecraft.getMinecraft().mcDataDir + "/dust_pages/";
+    public static String runeFolder = Minecraft.getMinecraft().mcDataDir + "/dust_pages/runes/";
+    public static String insFolder = Minecraft.getMinecraft().mcDataDir + "/dust_pages/inscriptions/";
     public static BufferedImage background;
     public static BufferedImage backgroundIns;
     public static BufferedImage shade;
@@ -68,6 +71,15 @@ public class PageHelper
             colors = getImage("textures/pages/colors.png");
             bgw = background.getWidth();
             bgh = background.getHeight();
+            
+         boolean success = new File(folder).mkdir();
+         if (success)
+         {
+                  DustMod.log(Level.INFO,"Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
+                  System.out.println("[DustMod] Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
+          }
+          new File(runeFolder).mkdirs();
+          new File(insFolder).mkdirs();
         } 
         catch (IOException ex)
         {
@@ -82,15 +94,15 @@ public class PageHelper
 
 
         String name = "" + event.idName;
-//        while (Character.isDigit(name.charAt(name.length() - 1)))
-//        {
-//            name = name.substring(0, name.length() - 1);
-//        }
+        while (Character.isDigit(name.charAt(name.length() - 1)))
+        {
+            name = name.substring(0, name.length() - 1);
+        }
         
-//        File file = new File(insFolder + name + ".png");
-//        if(file.exists()) return;
-//        DustMod.log(Level.INFO, "Lexicon Inscription entry for " + name + " not found! Generating... [" + file.getAbsolutePath() + "]");
-//        System.out.println("[DustMod] Lexicon Inscription entry for " + name + " not found! Generating...");
+        File file = new File(insFolder + name + ".png");
+        if(file.exists()) return;
+        DustMod.log(Level.INFO, "Lexicon Inscription entry for " + name + " not found! Generating... [" + file.getAbsolutePath() + "]");
+        System.out.println("[DustMod] Lexicon Inscription entry for " + name + " not found! Generating...");
         
         int[][]values = event.referenceDesign;
         int width = values[0].length;
@@ -505,8 +517,6 @@ public class PageHelper
       
       return new Color(r, g, b);
     }
-    
-//    private static HashMap<String, Boolean> textures;
 
     public static BufferedImage getImage(String file) throws IOException
     {
@@ -532,20 +542,20 @@ public class PageHelper
     
     public static void bindPage(String name)
     {
-        Minecraft mc = ModLoader.getMinecraftInstance();
+    	Minecraft mc = ModLoader.getMinecraftInstance();
         TextureManager re = mc.renderEngine;
 
-        //int tex = GLAllocation.generateTextureNames();
+        int tex = GL11.glGenTextures();
         
         try
         {
             BufferedImage image = getImage(name);
-            //re.loadTexture(image, tex);
-        } catch (IOException ex)
+        } 
+        catch (IOException ex)
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        re.bindTexture(tex);
-       // GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
+
+       GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
     }
 }

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.runicdust.client.gui;
 
 import java.util.Random;
@@ -147,7 +144,9 @@ public class GuiTome extends GuiScreen
 	            }
 	            Random rand = new Random();
 	            randAuthor = (int)(rand.nextInt(derp.length));
-        	}else{
+        	}
+        	else
+        	{
         		InscriptionEvent event = InscriptionManager.getEventInOrder(getInsPage() - 1);
 	            name = event.getInscriptionName();
 	            notes = showSacrifices ? event.getNotes() : event.getDescription();
@@ -176,23 +175,23 @@ public class GuiTome extends GuiScreen
         super.updateScreen();
     }
     
-    public void setRunePage(int p){
+    public void setRunePage(int p)
+    {
     	runePage = p;
-//    	itemstack.setItemDamage(p);
     }
 
-    public int getRunePage(){
+    public int getRunePage()
+    {
     	return runePage;
-//    	return itemstack.getItemDamage();
     }
-    public void setInsPage(int p){
+    public void setInsPage(int p)
+    {
     	insPage = p;
-//    	itemstack.setItemDamage(p);
     }
     
-    public int getInsPage(){
+    public int getInsPage()
+    {
     	return insPage;
-//    	return itemstack.getItemDamage();
     }
     
     @Override
@@ -214,24 +213,6 @@ public class GuiTome extends GuiScreen
         {
             advancePage();
         }
-
-//        if (DustMod.debug && key == mc.gameSettings.keyBindChat.keyCode)
-//        {
-//            EntityPlayer player = ModLoader.getMinecraftInstance().thePlayer;
-//            int scroll = 0;
-//
-//            if (getRunePage() != 0)
-//            {
-//                scroll = DustManager.getShape(getRunePage() - 1).id;
-//                ItemStack to = new ItemStack(DustMod.dustScroll, 1, scroll);
-//                player.inventory.addItemStackToInventory(to);
-//            }
-//            else
-//            {
-//                ItemStack to = new ItemStack(DustMod.negateSacrifice, 64);
-//                player.inventory.addItemStackToInventory(to);
-//            }
-//        }
     }
     /**
      * Called when the mouse is clicked.
@@ -290,17 +271,14 @@ public class GuiTome extends GuiScreen
 	        if (getRunePage() < 0)
 	        {
 	        	setRunePage(DustManager.getShapes().size() - DustMod.numSec);
-	//        	itemstack.setItemDamage(DustManager.getShapes().size() - DustMod.numSec);
-	//            page = DustManager.getShapes().size() - DustMod.numSec;
 	        }
-    	} else {
+    	} 
+    	else {
 	        setInsPage(getInsPage()-1);
 	
 	        if (getInsPage() < 0)
 	        {
 	        	setInsPage(InscriptionManager.getEvents().size());
-	//        	itemstack.setItemDamage(DustManager.getShapes().size() - DustMod.numSec);
-	//            page = DustManager.getShapes().size() - DustMod.numSec;
 	        }
     	}
     }
@@ -310,11 +288,9 @@ public class GuiTome extends GuiScreen
      */
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
-//    	System.out.println("RAWR " + DustManager.isEmpty() + " " + InscriptionManager.isEmpty());
-        TextureObject i = mc.renderEngine.getTexture(texture);
+        TextureObject i = mc.renderEngine.getTexture(norunes);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine.bindTexture(texture);
-//      mc.renderEngine.bindTexture(mc.renderEngine.getTexture(RenderDustTable.getPagePath(page)));
         int j = (width - xSize) / 2 - offX;
         int k = (height - ySize) / 2;
         xStart = j;
@@ -331,21 +307,31 @@ public class GuiTome extends GuiScreen
         GL11.glScalef(1 / res, res, 1);
         GL11.glTranslatef(j + ox, k + oy, 0);
         GL11.glScalef(scalex, scaley, 1f);
-//        System.out.println("Scale " + scalex + " " + scaley);
-        if(isRunes()){
-	        if(getRunePage() == 0){
-	        	if(DustManager.isEmpty()){
+        
+        if(isRunes())
+        {
+	        if(getRunePage() == 0)
+	        {
+	        	if(DustManager.isEmpty())
+	        	{
 	        		mc.renderEngine.bindTexture(norunes);
-	        	}else {
+	        	}
+	        	else 
+	        	{
 	        		mc.renderEngine.bindTexture(info);
 	        	}
 	        }
 	        else PageHelper.bindPage(RenderDustTable.getRunePageName(getRunePage()));
-        }else {
+        }
+        else 
+        {
 	        if(getInsPage() == 0){
-	        	if(InscriptionManager.isEmpty()){
+	        	if(InscriptionManager.isEmpty())
+	        	{
 	        		mc.renderEngine.bindTexture(noinscription);
-	        	}else {
+	        	}
+	        	else 
+	        	{
 	        		mc.renderEngine.bindTexture(info);
 	        	}
 	        }
@@ -355,10 +341,12 @@ public class GuiTome extends GuiScreen
         
         GL11.glPopMatrix();
         
-        if(isRunes()){
+        if(isRunes())
+        {
         	mc.renderEngine.bindTexture(texture);
         	drawTexturedModalRect(j-6,k,12,0,12,ySize);
-        }else {
+        }
+        else {
         	mc.renderEngine.bindTexture(texture);
         	drawTexturedModalRect(j-6,k,0,0,12,ySize);
         }

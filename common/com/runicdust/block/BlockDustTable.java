@@ -80,14 +80,14 @@ public class BlockDustTable extends BlockContainer
         return false;
     }
 
-    public Icon getBlockTextureFromSideAndMetadata(int i, int meta)
+    public Icon getIcon(int i, int meta)
     {
-        if (i == 0)
+        if (i == 1)
         {
             return topTex;
         }
 
-        if (i == 1)
+        if (i == 0)
         {
             return botTex;
         }
@@ -125,8 +125,6 @@ public class BlockDustTable extends BlockContainer
                 player.inventory.addItemStackToInventory(to);
                 cur.stackSize--;
             }
-
-//            cur.itemID =
             return true;
         }
         else
