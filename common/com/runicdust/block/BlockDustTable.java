@@ -34,7 +34,6 @@ public class BlockDustTable extends BlockContainer
         super(i, Material.wood);
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
         setLightOpacity(0);
-        this.setHardness(3F);
         this.setHardness(2.5F);
         this.setStepSound(Block.soundWoodFootstep);
     }

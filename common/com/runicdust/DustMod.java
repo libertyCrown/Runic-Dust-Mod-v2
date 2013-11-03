@@ -67,7 +67,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
-@Mod(modid = "DustMod", name = "RunicDustMod", version = "1.4")
+@Mod(modid = "DustMod", name = "RunicDustMod", version = "1.4pre1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class, channels = {
 		PacketHandler.CHANNEL_DMRune, PacketHandler.CHANNEL_TEDust,
 		PacketHandler.CHANNEL_TELexicon, PacketHandler.CHANNEL_TERut,
@@ -93,6 +93,7 @@ public class DustMod {
 
 	public static String path = "runicdust:textures";
 	public static String spritePath = "runicdust:";
+	public static String localization = "assets/runicdust/lang";
 	public static File suggestedConfig;
 	public static int[] tex;
 	public static int groundTex;
@@ -166,7 +167,7 @@ public class DustMod {
 			return;
 		}
 		hasLoaded = true;
-		suggestedConfig = new File(evt.getSuggestedConfigurationFile().getParent() + File.separator + "DustModConfigv2.cfg");
+		suggestedConfig = new File(evt.getSuggestedConfigurationFile().getParent() + File.separator + "DustModConfig.cfg");
 
 		creativeTab = new DustModTab();
 
@@ -419,18 +420,8 @@ public class DustMod {
 	}
 
 	@EventHandler
-	public void modsLoaded(FMLPostInitializationEvent evt) {
-		// if(FMLCommonHandler.instance().getSide() == Side.CLIENT){
-		// try{//Debugging
-		// Class c = Class.forName("net.minecraft.src.World");
-		// Minecraft.getMinecraft().session.username = "BILLYTG101";
-		// System.err.println("[DustMod] WARNING: This is being run in a debug environment!");
-		// }catch(Exception e){
-		// //not debugging
-		// }
-		//
-		// }
-	}
+	public void modsLoaded(FMLPostInitializationEvent evt)
+	{  }
 
 	@ForgeSubscribe
 	public void onWorldEvent(WorldEvent.Load evt) {

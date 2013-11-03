@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureObject;
 import net.minecraft.client.resources.ResourceManager;
@@ -36,9 +37,9 @@ import com.runicdust.event.InscriptionEvent;
  */
 public class PageHelper
 {
-    public static String folder = Minecraft.getMinecraft().mcDataDir + "/dust_pages/";
-    public static String runeFolder = Minecraft.getMinecraft().mcDataDir + "/dust_pages/runes/";
-    public static String insFolder = Minecraft.getMinecraft().mcDataDir + "/dust_pages/inscriptions/";
+    public static String folder = "/dust_pages/";
+    public static String runeFolder = "/dust_pages/runes/";
+    public static String insFolder = "/dust_pages/inscriptions/";
     public static BufferedImage background;
     public static BufferedImage backgroundIns;
     public static BufferedImage shade;
@@ -54,6 +55,10 @@ public class PageHelper
     	String minecraftPath = DustMod.suggestedConfig.getParent();
     	File file = new File(minecraftPath);
     	minecraftPath = file.getParent();
+    	
+        folder = minecraftPath + folder;
+        runeFolder = minecraftPath + runeFolder;
+        insFolder = minecraftPath + insFolder;
     	
         missingExternalTextureImage = new BufferedImage(64, 64, 2);
         Graphics var3 = missingExternalTextureImage.getGraphics();
@@ -75,8 +80,8 @@ public class PageHelper
          boolean success = new File(folder).mkdir();
          if (success)
          {
-                  DustMod.log(Level.INFO,"Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
-                  System.out.println("[DustMod] Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
+              DustMod.log(Level.INFO,"Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
+              System.out.println("[DustMod] Lexicon Folder " + new File(folder).getAbsolutePath() + " created.");
           }
           new File(runeFolder).mkdirs();
           new File(insFolder).mkdirs();
@@ -91,7 +96,6 @@ public class PageHelper
     {
     	BufferedImage dust = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
         BufferedImage result = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
-
 
         String name = "" + event.idName;
         while (Character.isDigit(name.charAt(name.length() - 1)))
@@ -196,20 +200,21 @@ public class PageHelper
 
                 c = new Color(r, g, b);
                 int resultColor = c.getRGB();
-//                    if(resultColor < 0) resultColor = 0;
-                result.setRGB(x, y, resultColor);
+                    if(resultColor < 0) resultColor = 0;
+                    	result.setRGB(x, y, resultColor);
             }
         }
-//            result.getGraphics().drawImage(shade, 0, 0, null);
+            result.getGraphics().drawImage(shade, 0, 0, null);
 
-//        try
-//        {
-//            new File(insFolder).mkdirs();
-//            ImageIO.write(result, "PNG", new File(insFolder + name + ".png"));
-//        } catch (IOException ex)
-//        {
-//            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try
+        {
+            new File(insFolder).mkdirs();
+            ImageIO.write(result, "PNG", new File(insFolder + name + ".png"));
+        } 
+        catch (IOException ex)
+        {
+            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         images.put(name, result);
     }
@@ -219,20 +224,20 @@ public class PageHelper
         BufferedImage dust = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
         BufferedImage result = new BufferedImage(bgw, bgh, BufferedImage.TYPE_INT_ARGB);
         String name = "" + shape.name;
-//        while (Character.isDigit(name.charAt(name.length() - 1)))
-//        {
-//            name = name.substring(0, name.length() - 1);
-//        }
+        while (Character.isDigit(name.charAt(name.length() - 1)))
+        {
+            name = name.substring(0, name.length() - 1);
+        }
         
-//        File file = new File(runeFolder + name + ".png");
-//        if(file.exists()) return;
-//        DustMod.log(Level.FINEST, "Lexicon Rune entry for " + name + " not found! Generating...");
-//        System.out.println("[DustMod] Lexicon Rune entry for " + name + " not found! Generating...");
+        File file = new File(runeFolder + name + ".png");
+        if(file.exists()) return;
+        DustMod.log(Level.FINEST, "Lexicon Rune entry for " + name + " not found! Generating...");
+        System.out.println("[DustMod] Lexicon Rune entry for " + name + " not found! Generating...");
         
         int[][][] values = shape.data;
         int width = shape.data[0][0].length;
         int height = shape.data[0].length;
-//        System.out.println("Checking " + name + " " + width + " " + height);
+//      System.out.println("Checking " + name + " " + width + " " + height);
 
 
         int pxwMax = bgw - 6;
@@ -296,13 +301,13 @@ public class PageHelper
             {
                 if (x != 0 || y != 0 || true)
                 {
-//                        System.out.println("corner [" + (bgw / 2 - tx) + "," + (bgw / 2 - ty) + "]");
+                        //System.out.println("corner [" + (bgw / 2 - tx) + "," + (bgw / 2 - ty) + "]");
                     dust.setRGB(bgw / 2 - tx + x - 1, bgh / 2 - ty + y - 1, getColor(colors, 0));
-//                    System.out.println("corner [" + (bgw / 2 + tx + 1) + "," + (bgw / 2 - ty - 1) + "]");
+                        //System.out.println("corner [" + (bgw / 2 + tx + 1) + "," + (bgw / 2 - ty - 1) + "]");
                     dust.setRGB(bgw / 2 + tx + x - 1, bgh / 2 - ty + y - 1, getColor(colors, 0));
-//                        System.out.println("corner [" + (bgw / 2 + tx) + "," + (bgw / 2 + ty) + "]");
+                        //System.out.println("corner [" + (bgw / 2 + tx) + "," + (bgw / 2 + ty) + "]");
                     dust.setRGB(bgw / 2 + tx + x - 1, bgh / 2 + ty + y - 1, getColor(colors, 0));
-//                        System.out.println("corner [" + (bgw / 2 - tx) + "," + (bgw / 2 + ty) + "]");
+                        //System.out.println("corner [" + (bgw / 2 - tx) + "," + (bgw / 2 + ty) + "]");
                     dust.setRGB(bgw / 2 - tx + x - 1, bgh / 2 + ty + y - 1, getColor(colors, 0));
                 }
             }
@@ -384,20 +389,20 @@ public class PageHelper
 
                 c = new Color(r, g, b);
                 int resultColor = c.getRGB();
-//                    if(resultColor < 0) resultColor = 0;
-                result.setRGB(x, y, resultColor);
+                    if(resultColor < 0) resultColor = 0;
+                    	result.setRGB(x, y, resultColor);
             }
         }
-//            result.getGraphics().drawImage(shade, 0, 0, null);
+            result.getGraphics().drawImage(shade, 0, 0, null);
 
-//        try
-//        {
-//            new File(runeFolder).mkdirs();
-//            ImageIO.write(result, "PNG", new File(runeFolder + name + ".png"));
-//        } catch (IOException ex)
-//        {
-//            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try
+        {
+            new File(runeFolder).mkdirs();
+            ImageIO.write(result, "PNG", new File(runeFolder + name + ".png"));
+        } catch (IOException ex)
+        {
+            Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         images.put(name, result);
     }
@@ -460,17 +465,17 @@ public class PageHelper
     	int r = (color&0xFF0000) >> 16;
         int g = (color&0xFF00) >> 8;
         int b = (color&0xFF);
-//        color = (color & 0xfefefe) >> 1;
+        color = (color & 0xfefefe) >> 1;
         Color temp = new Color(DustItemManager.getFloorColorRGB(dust)[0],DustItemManager.getFloorColorRGB(dust)[0],DustItemManager.getFloorColorRGB(dust)[2]);
         Color c = primary? temp: temp;
         
         if(primary) {
-//        	for(int i = 0; i < 1; i++) c = c.darker();
+        	for(int i = 0; i < 1; i++) c = c.darker();
         	r+=10;
         	g+=10;
         	b+=10;
         }else{
-//        	for(int i = 0; i < 1; i++) c = c.brighter();
+        	for(int i = 0; i < 1; i++) c = c.brighter();
         	r-=10;
         	g-=10;
         	b-=10;
@@ -480,16 +485,16 @@ public class PageHelper
         Random rand = new Random();
         int random = rand.nextInt(tol);
         
-//        for(int i = 0; i < random; i++) c=c.darker(); 
+        for(int i = 0; i < random; i++) c=c.darker(); 
         c = stain(c,(float)rand.nextGaussian()*0.05f + (primary ? 0.02F:0));
         if(primary) random *= -1;
         
         r = r + random;
         g = g + random;
         b = b + random;
-//        r = linearColorBurn(0x010101,r);
-//        g = linearColorBurn(0x010101,g);
-//        b = linearColorBurn(0,b);
+        r = linearColorBurn(0x010101,r);
+        g = linearColorBurn(0x010101,g);
+        b = linearColorBurn(0,b);
         
         if(r < 0) r = 0; 
         if(r > 255) r = 255;
@@ -520,12 +525,10 @@ public class PageHelper
 
     public static BufferedImage getImage(String file) throws IOException
     {
-
         if (images.containsKey(file))
         {
             return images.get(file);
         }
-
         BufferedImage rtn = null;
         Minecraft mc = ModLoader.getMinecraftInstance();
         ResourceLocation location = new ResourceLocation("runicdust", file);
@@ -544,18 +547,17 @@ public class PageHelper
     {
     	Minecraft mc = ModLoader.getMinecraftInstance();
         TextureManager re = mc.renderEngine;
-
-        int tex = GL11.glGenTextures();
-        
-        try
-        {
+        //int tex = GL11.glGenTextures();
+        try{
             BufferedImage image = getImage(name);
+            DynamicTexture testing = new DynamicTexture(image);
+            re.getDynamicTextureLocation(name, testing);
+            
         } 
         catch (IOException ex)
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-       GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
+       //GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
     }
 }

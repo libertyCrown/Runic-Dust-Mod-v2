@@ -288,7 +288,7 @@ public class GuiTome extends GuiScreen
      */
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
-        TextureObject i = mc.renderEngine.getTexture(norunes);
+        TextureObject i = mc.renderEngine.getTexture(texture);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.renderEngine.bindTexture(texture);
         int j = (width - xSize) / 2 - offX;

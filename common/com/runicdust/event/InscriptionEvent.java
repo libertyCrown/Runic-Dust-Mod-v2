@@ -28,7 +28,7 @@ public class InscriptionEvent {
 	public boolean secret = false;
 	public String permission = "ALL";
 	
-	 //Set by the coder, unalterable by user configs. 
+	//Set by the coder, unalterable by user configs. 
 	//Setting it to false disallows all use, but if true it will not affect anything
 	//This is for the case where something breaks, it gives the coder time to fix it later 
 	public boolean permaAllowed = true;
@@ -44,11 +44,8 @@ public class InscriptionEvent {
 		this.properName = properName;
 	}
 	
-	public boolean canPlayerKnowInscription(EntityPlayer player){
-//		if(player != null && player.username.toLowerCase().equals("billytg101")){
-//			return true;
-//		}else if(true) return false;
-		
+	public boolean canPlayerKnowInscription(EntityPlayer player)
+	{
 		boolean isOP = true;
 		try{
 			isOP = MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(player.username);
