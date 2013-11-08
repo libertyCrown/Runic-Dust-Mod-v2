@@ -1,7 +1,9 @@
 package com.runicdust.client;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,17 +16,11 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureObject;
 import net.minecraft.client.resources.ResourceManager;
 import net.minecraft.src.ModLoader;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL13;
 
 import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
@@ -374,26 +370,25 @@ public class PageHelper
                 {
                     result.setRGB(x, y, dust.getRGB(x, y));
                 }
-                int color = result.getRGB(x, y);
-                Color c = new Color(color);
-                int r, g, b;
-                r = c.getRed();
-                g = c.getGreen();
-                b = c.getBlue();
-
-                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
-
-                r = linearColorBurn(shadeColor, r);
-                g = linearColorBurn(shadeColor, g);
-                b = linearColorBurn(shadeColor, b);
-
-                c = new Color(r, g, b);
-                int resultColor = c.getRGB();
-                    if(resultColor < 0) resultColor = 0;
-                    	result.setRGB(x, y, resultColor);
+//                int color = result.getRGB(x, y);
+//                Color c = new Color(color);
+//                int r, g, b;
+//                r = c.getRed();
+//                g = c.getGreen();
+//                b = c.getBlue();
+//
+//                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
+//
+//                r = linearColorBurn(shadeColor, r);
+//                g = linearColorBurn(shadeColor, g);
+//                b = linearColorBurn(shadeColor, b);
+//
+//                c = new Color(r, g, b);
+//                int resultColor = c.getRGB();
+//                    if(resultColor < 0) resultColor = 0;
+//                    	result.setRGB(x, y, resultColor);
             }
         }
-            result.getGraphics().drawImage(shade, 0, 0, null);
 
         try
         {
