@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -181,7 +183,7 @@ public class PageHelper
                 {
                     result.setRGB(x, y, dust.getRGB(x, y));
                 }
-                int color = result.getRGB(x, y);
+                /*int color = result.getRGB(x, y);
                 Color c = new Color(color);
                 int r, g, b;
                 r = c.getRed();
@@ -200,8 +202,9 @@ public class PageHelper
                     	result.setRGB(x, y, resultColor);
             }
         }
-            result.getGraphics().drawImage(shade, 0, 0, null);
-
+            result.getGraphics().drawImage(shade, 0, 0, null);*/
+            }
+        }
         try
         {
             new File(insFolder).mkdirs();
@@ -282,7 +285,7 @@ public class PageHelper
             {
                 if (x == -tx || y == -ty || x == tx - 1 || y == ty - 1)
                 {
-//                        System.out.println("Go [" + (bgw/2 + x) + "," + (bgh/2 + y) + "]");
+//                  System.out.println("Go [" + (bgw/2 + x) + "," + (bgh/2 + y) + "]");
                     dust.setRGB(bgw / 2 + x, bgh / 2 + y, getColor(colors, 0));
                 } else
                 {
@@ -370,23 +373,21 @@ public class PageHelper
                 {
                     result.setRGB(x, y, dust.getRGB(x, y));
                 }
-//                int color = result.getRGB(x, y);
-//                Color c = new Color(color);
-//                int r, g, b;
-//                r = c.getRed();
-//                g = c.getGreen();
-//                b = c.getBlue();
-//
-//                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
-//
-//                r = linearColorBurn(shadeColor, r);
-//                g = linearColorBurn(shadeColor, g);
-//                b = linearColorBurn(shadeColor, b);
-//
-//                c = new Color(r, g, b);
-//                int resultColor = c.getRGB();
-//                    if(resultColor < 0) resultColor = 0;
-//                    	result.setRGB(x, y, resultColor);
+               /* int color = result.getRGB(x, y);
+                Color c = new Color(color);
+                int r, g, b;
+                r = c.getRed();
+                g = c.getGreen();
+                b = c.getBlue();
+                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
+                r = linearColorBurn(shadeColor, r);
+                g = linearColorBurn(shadeColor, g);
+                b = linearColorBurn(shadeColor, b);
+
+                c = new Color(r, g, b);
+                int resultColor = c.getRGB();
+                   if(resultColor < 0) resultColor = 0;
+                    	result.setRGB(x, y, resultColor);*/
             }
         }
 
@@ -501,6 +502,7 @@ public class PageHelper
         color = (r<<16) | (g<<8) | (b);
     	return color;
     }
+    
     public static Color stain(Color color, float amount)
     {
       int r = (int) ((color.getRed() * (1 - amount) / 255) * 255);
@@ -542,17 +544,17 @@ public class PageHelper
     {
     	Minecraft mc = ModLoader.getMinecraftInstance();
         TextureManager re = mc.renderEngine;
-        //int tex = GL11.glGenTextures();
-        try{
+        int tex = GL11.glGenTextures();
+        try
+        {
             BufferedImage image = getImage(name);
             DynamicTexture testing = new DynamicTexture(image);
-            re.getDynamicTextureLocation(name, testing);
-            
+            re.getDynamicTextureLocation("runicdust", testing);
         } 
         catch (IOException ex)
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-       //GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
+       GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
     }
 }
