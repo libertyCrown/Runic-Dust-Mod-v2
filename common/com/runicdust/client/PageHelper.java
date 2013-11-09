@@ -35,9 +35,9 @@ import com.runicdust.event.InscriptionEvent;
  */
 public class PageHelper
 {
-    public static String folder = "/dust_pages/";
-    public static String runeFolder = "/dust_pages/runes/";
-    public static String insFolder = "/dust_pages/inscriptions/";
+    public static String folder = "/assets/runicdust/dustpages/";
+    public static String runeFolder = "/assets/runicdust/dustpages/runes/";
+    public static String insFolder = "/assets/runicdust/dustpages/inscriptions/";
     public static BufferedImage background;
     public static BufferedImage backgroundIns;
     public static BufferedImage shade;
@@ -102,9 +102,9 @@ public class PageHelper
         }
         
         File file = new File(insFolder + name + ".png");
-        if(file.exists()) return;
-        DustMod.log(Level.INFO, "Lexicon Inscription entry for " + name + " not found! Generating... [" + file.getAbsolutePath() + "]");
-        System.out.println("[DustMod] Lexicon Inscription entry for " + name + " not found! Generating...");
+        //if(file.exists()) return;
+        //DustMod.log(Level.INFO, "Lexicon Inscription entry for " + name + " not found! Generating... [" + file.getAbsolutePath() + "]");
+        //System.out.println("[DustMod] Lexicon Inscription entry for " + name + " not found! Generating...");
         
         int[][]values = event.referenceDesign;
         int width = values[0].length;
@@ -183,28 +183,26 @@ public class PageHelper
                 {
                     result.setRGB(x, y, dust.getRGB(x, y));
                 }
-                /*int color = result.getRGB(x, y);
-                Color c = new Color(color);
-                int r, g, b;
-                r = c.getRed();
-                g = c.getGreen();
-                b = c.getBlue();
-
-                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
-
-                r = linearColorBurn(shadeColor, r);
-                g = linearColorBurn(shadeColor, g);
-                b = linearColorBurn(shadeColor, b);
-
-                c = new Color(r, g, b);
-                int resultColor = c.getRGB();
-                    if(resultColor < 0) resultColor = 0;
-                    	result.setRGB(x, y, resultColor);
+//                int color = result.getRGB(x, y);
+//                Color c = new Color(color);
+//                int r, g, b;
+//                r = c.getRed();
+//                g = c.getGreen();
+//                b = c.getBlue();
+//
+//                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
+//
+//                r = linearColorBurn(shadeColor, r);
+//                g = linearColorBurn(shadeColor, g);
+//                b = linearColorBurn(shadeColor, b);
+//
+//                c = new Color(r, g, b);
+//                int resultColor = c.getRGB();
+//                    if(resultColor < 0) resultColor = 0;
+//                    	result.setRGB(x, y, resultColor);
             }
         }
-            result.getGraphics().drawImage(shade, 0, 0, null);*/
-            }
-        }
+            //result.getGraphics().drawImage(shade, 0, 0, null);
         try
         {
             new File(insFolder).mkdirs();
@@ -229,9 +227,9 @@ public class PageHelper
         }
         
         File file = new File(runeFolder + name + ".png");
-        if(file.exists()) return;
-        DustMod.log(Level.FINEST, "Lexicon Rune entry for " + name + " not found! Generating...");
-        System.out.println("[DustMod] Lexicon Rune entry for " + name + " not found! Generating...");
+        //if(file.exists()) return;
+        //DustMod.log(Level.FINEST, "Lexicon Rune entry for " + name + " not found! Generating...");
+        //System.out.println("[DustMod] Lexicon Rune entry for " + name + " not found! Generating...");
         
         int[][][] values = shape.data;
         int width = shape.data[0][0].length;
@@ -373,7 +371,7 @@ public class PageHelper
                 {
                     result.setRGB(x, y, dust.getRGB(x, y));
                 }
-               /* int color = result.getRGB(x, y);
+/*                int color = result.getRGB(x, y);
                 Color c = new Color(color);
                 int r, g, b;
                 r = c.getRed();
@@ -549,12 +547,13 @@ public class PageHelper
         {
             BufferedImage image = getImage(name);
             DynamicTexture testing = new DynamicTexture(image);
-            re.getDynamicTextureLocation("runicdust", testing);
+            tex = testing.getGlTextureId();
+            //re.getDynamicTextureLocation("runicdust", testing);
         } 
         catch (IOException ex)
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-       GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, tex);
     }
 }
