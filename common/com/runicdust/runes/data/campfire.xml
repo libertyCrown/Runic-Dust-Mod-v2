@@ -1,6 +1,6 @@
 <rune>
 	<id value="40"/>
-	<name display="Rune of Fire" id="campfire6"/>
+	<name display="Rune of Fire" id="campfire"/>
 	<author>billythegoat101</author>
 	<solid value="true"/>
 	<sacrifices>

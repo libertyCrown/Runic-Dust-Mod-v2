@@ -183,26 +183,24 @@ public class PageHelper
                 {
                     result.setRGB(x, y, dust.getRGB(x, y));
                 }
-//                int color = result.getRGB(x, y);
-//                Color c = new Color(color);
-//                int r, g, b;
-//                r = c.getRed();
-//                g = c.getGreen();
-//                b = c.getBlue();
-//
-//                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
-//
-//                r = linearColorBurn(shadeColor, r);
-//                g = linearColorBurn(shadeColor, g);
-//                b = linearColorBurn(shadeColor, b);
-//
-//                c = new Color(r, g, b);
-//                int resultColor = c.getRGB();
-//                    if(resultColor < 0) resultColor = 0;
-//                    	result.setRGB(x, y, resultColor);
+                int color = result.getRGB(x, y);
+                Color c = new Color(color);
+                int r, g, b;
+                r = c.getRed();
+                g = c.getGreen();
+                b = c.getBlue();
+
+                //int shadeColor = shade.getRGB(x, y) & 0x0000FF;
+
+                //r = linearColorBurn(shadeColor, r);
+                //g = linearColorBurn(shadeColor, g);
+                //b = linearColorBurn(shadeColor, b);
+
+                c = new Color(r, g, b);
+                int resultColor = c.getRGB();
+                result.setRGB(x, y, resultColor);
             }
         }
-            //result.getGraphics().drawImage(shade, 0, 0, null);
         try
         {
             new File(insFolder).mkdirs();
@@ -371,29 +369,28 @@ public class PageHelper
                 {
                     result.setRGB(x, y, dust.getRGB(x, y));
                 }
-/*                int color = result.getRGB(x, y);
+                int color = result.getRGB(x, y);
                 Color c = new Color(color);
                 int r, g, b;
                 r = c.getRed();
                 g = c.getGreen();
                 b = c.getBlue();
-                int shadeColor = shade.getRGB(x, y) & 0x0000FF;
-                r = linearColorBurn(shadeColor, r);
-                g = linearColorBurn(shadeColor, g);
-                b = linearColorBurn(shadeColor, b);
+                //int shadeColor = shade.getRGB(x, y) & 0x0000FF;
+                //r = linearColorBurn(shadeColor, r);
+               // g = linearColorBurn(shadeColor, g);
+                //b = linearColorBurn(shadeColor, b);
 
                 c = new Color(r, g, b);
                 int resultColor = c.getRGB();
-                   if(resultColor < 0) resultColor = 0;
-                    	result.setRGB(x, y, resultColor);*/
+                result.setRGB(x, y, resultColor);
             }
         }
-
         try
         {
             new File(runeFolder).mkdirs();
             ImageIO.write(result, "PNG", new File(runeFolder + name + ".png"));
-        } catch (IOException ex)
+        } 
+        catch (IOException ex)
         {
             Logger.getLogger(PageHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -452,24 +449,25 @@ public class PageHelper
     public static int getRandomDustColor(int dust, boolean primary)
     {
     	int color = DustItemManager.getPrimaryColor(dust);
-    	if(!primary){
+    	if(!primary)
+    	{
     		color = new Color(color).brighter().getRGB();
     	}
     	
     	int r = (color&0xFF0000) >> 16;
         int g = (color&0xFF00) >> 8;
         int b = (color&0xFF);
-        color = (color & 0xfefefe) >> 1;
+//        color = (color & 0xfefefe) >> 1;
         Color temp = new Color(DustItemManager.getFloorColorRGB(dust)[0],DustItemManager.getFloorColorRGB(dust)[0],DustItemManager.getFloorColorRGB(dust)[2]);
         Color c = primary? temp: temp;
         
         if(primary) {
-        	for(int i = 0; i < 1; i++) c = c.darker();
+//       	for(int i = 0; i < 1; i++) c = c.darker();
         	r+=10;
         	g+=10;
         	b+=10;
         }else{
-        	for(int i = 0; i < 1; i++) c = c.brighter();
+//        	for(int i = 0; i < 1; i++) c = c.brighter();
         	r-=10;
         	g-=10;
         	b-=10;
@@ -479,16 +477,16 @@ public class PageHelper
         Random rand = new Random();
         int random = rand.nextInt(tol);
         
-        for(int i = 0; i < random; i++) c=c.darker(); 
+//        for(int i = 0; i < random; i++) c=c.darker(); 
         c = stain(c,(float)rand.nextGaussian()*0.05f + (primary ? 0.02F:0));
         if(primary) random *= -1;
         
         r = r + random;
         g = g + random;
         b = b + random;
-        r = linearColorBurn(0x010101,r);
-        g = linearColorBurn(0x010101,g);
-        b = linearColorBurn(0,b);
+//        r = linearColorBurn(0x010101,r);
+//        g = linearColorBurn(0x010101,g);
+//        b = linearColorBurn(0,b);
         
         if(r < 0) r = 0; 
         if(r > 255) r = 255;
@@ -548,7 +546,6 @@ public class PageHelper
             BufferedImage image = getImage(name);
             DynamicTexture testing = new DynamicTexture(image);
             tex = testing.getGlTextureId();
-            //re.getDynamicTextureLocation("runicdust", testing);
         } 
         catch (IOException ex)
         {

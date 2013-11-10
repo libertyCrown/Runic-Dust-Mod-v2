@@ -161,7 +161,6 @@ public class DustShape {
 		int bwidth = test[0] + 2; // (int)Math.ceil((((double)w+Math.abs(oy))/4.0));
 		int bheight = test[1] + 2; // (int)Math.ceil(((double)(l+Math.abs(ox))/4.0));
 
-		// System.out.println("fuckitalllll " + bwidth + " " + bheight);
 		for (int i = 0; i < bwidth; i++) {
 			blocks.add(new ArrayList());
 
@@ -171,8 +170,6 @@ public class DustShape {
 		}
 		this.pageNumber = page;
 
-		// System.out.println("Derpsize " + bwidth + " " + bheight + " " +
-		// blocks.size() + " " + blocks.get(0).size() + " " + name);
 		updateData();
 	}
 
@@ -218,8 +215,8 @@ public class DustShape {
 	 *            Raw string to display
 	 * @return This DustShape
 	 */
-	public DustShape setRotationMatrix(int[] derp) {
-		this.rotationMatrix = derp;
+	public DustShape setRotationMatrix(int[] display) {
+		this.rotationMatrix = display;
 		return this;
 	}
 

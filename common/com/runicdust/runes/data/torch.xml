@@ -1,6 +1,6 @@
 <rune>
 	<id value="0" />
-	<name display="Torch Rune" id="torch2"/>
+	<name display="Torch Rune" id="torch"/>
 	<author>billythegoat101</author>
 	<solid value="true" />
 	<sacrifices>

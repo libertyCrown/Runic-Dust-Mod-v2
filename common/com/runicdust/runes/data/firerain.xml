@@ -1,6 +1,6 @@
 <rune>
 	<id value="25"/>
-	<name display="Rune of the Hellstorm" id="firerain6"/>
+	<name display="Rune of the Hellstorm" id="firerain"/>
 	<author>billythegoat101</author>
 	<solid value="false"/>
 	<sacrifices>
@@ -12,7 +12,7 @@
 	</sacrifices>
 	<description>
 		Description:
-		Summons a storm of ignited arrows for a duration of time. WARNING:Large chance of lag if left running. Break rune to stop.
+		Summons a storm of ignited arrows for a duration of time. WARNING: Large chance of lag if left running. Break rune to stop.
 	</description>
 	<design width="6" height="7" ox="3" oy="3" cx="1" cy="1">
 		400,	200,	200,	200,	200,	400

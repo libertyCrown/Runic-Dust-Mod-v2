@@ -60,7 +60,7 @@ public class DEPit extends DustEvent
         }
 
         boolean advanced = (dustID > 2);
-        ItemStack[] sac;//
+        ItemStack[] sac;
         if(!advanced) sac = new ItemStack[] {new ItemStack(Block.wood.blockID, 2, -1)};
         else sac = new ItemStack[] {new ItemStack(Item.coal.itemID, 2, -1)};
         sac = this.sacrifice(e, sac);
@@ -76,7 +76,7 @@ public class DEPit extends DustEvent
         int z = e.getZ();
         World world = e.worldObj;
 
-//            world.setBlock(x, y-1, z, Block.brick.blockID);
+//      world.setBlock(x, y-1, z, Block.brick.blockID);
         if (world.getBlockId(x, y, z) != 0)
         {
             e.fizzle();
@@ -88,7 +88,7 @@ public class DEPit extends DustEvent
             int bid = world.getBlockId(x, y - dy, z);
             Block block = Block.blocksList[bid];
 
-//            System.out.println("DERPBLOCK " + bid +" [" + (i+dy) + "," + (i+dj) + "," + (k+dk) + "] ");
+//          System.out.println("DERPBLOCK " + bid +" [" + (i+dy) + "," + (i+dj) + "," + (k+dk) + "] ");
             if (block != null && bid != Block.bedrock.blockID)
             {
                 block.onBlockDestroyedByPlayer(world, x, y - dy, z, world.getBlockMetadata(x, y - dy, z));
