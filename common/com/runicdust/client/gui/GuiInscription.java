@@ -15,13 +15,15 @@ import com.runicdust.DustMod;
 import com.runicdust.InscriptionGuiContainer;
 import com.runicdust.InventoryInscription;
 import com.runicdust.PacketHandler;
+import com.runicdust.config.DustContent;
 import com.runicdust.item.ItemInk;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
 public class GuiInscription extends GuiContainer {
 
-	private ResourceLocation texture = new ResourceLocation(DustMod.path + "/inscription.png");
+	private ResourceLocation texture = new ResourceLocation(References.path + "/inscription.png");
 	public InventoryInscription insc;
 	public InventoryPlayer playerInv;
 	public EntityPlayer player;
@@ -49,7 +51,7 @@ public class GuiInscription extends GuiContainer {
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
         ItemStack inscription = player.getCurrentEquippedItem();
-        if(inscription == null || inscription.itemID != DustMod.inscription.itemID){
+        if(inscription == null || inscription.itemID != DustContent.inscription.itemID){
             this.mc.thePlayer.closeScreen();
         }
 	}
@@ -138,9 +140,9 @@ public class GuiInscription extends GuiContainer {
 	protected void mouseClicked(int x, int y, int b) {
 
         Slot slot = this.getSlotAtPosition(x, y);
-        if(slot != null && slot.getHasStack() && slot.getStack().itemID == DustMod.ink.itemID){
+        if(slot != null && slot.getHasStack() && slot.getStack().itemID == DustContent.ink.itemID){
         	int id = ItemInk.getDustID(slot.getStack());
-        	insc.setInventorySlotContents(0, new ItemStack(DustMod.ink.itemID, id, slot.slotNumber-1));
+        	insc.setInventorySlotContents(0, new ItemStack(DustContent.ink.itemID, id, slot.slotNumber-1));
         }
         if(isOnMap(x,y)){
 //        	System.out.println("rawr");
@@ -188,7 +190,7 @@ public class GuiInscription extends GuiContainer {
 //					this.inventorySlots.putStackInSlot(slot, stack);
 					this.playerInv.setInventorySlotContents(slot, stack);
 					this.inventorySlots.putStackInSlot(slot+1, stack);
-					if(stack.itemID != DustMod.ink.itemID){
+					if(stack.itemID != DustContent.ink.itemID){
 //						this.inventorySlots.putStackInSlot(0, new ItemStack(DustMod.ink.itemID, 0, -1));
 						 //Loop through player's hotbar for inks
 //						 for(int i = 1; i < 10; i++){
@@ -296,7 +298,7 @@ public class GuiInscription extends GuiContainer {
 	public void setDust(int x, int y, int dust){
 		changed = true;
 		
-		this.insc.setInventorySlotContents(x*16 + y + 10, new ItemStack(DustMod.inscription.itemID, 1, dust));
+		this.insc.setInventorySlotContents(x*16 + y + 10, new ItemStack(DustContent.inscription.itemID, 1, dust));
 		
 
 		if(newInscription){

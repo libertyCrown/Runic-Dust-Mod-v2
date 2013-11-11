@@ -1,15 +1,14 @@
 package com.runicdust.inscriptions;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.VoidStorageManager;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.event.DustEvent;
 import com.runicdust.event.InscriptionEvent;
+import com.runicdust.util.VoidStorageManager;
 
 public class VoidInscription extends InscriptionEvent {
 

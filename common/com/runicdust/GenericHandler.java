@@ -9,6 +9,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
+import com.runicdust.config.DustContent;
 import com.runicdust.event.InscriptionManager;
 import com.runicdust.item.ItemPouch;
 
@@ -26,15 +27,15 @@ public class GenericHandler implements ICraftingHandler{
 		boolean hasPouch = false;
 		for(int i = 0; i < craftMatrix.getSizeInventory(); i++){
 			ItemStack inv = craftMatrix.getStackInSlot(i);
-			if(inv != null && inv.itemID == DustMod.pouch.itemID){
+			if(inv != null && inv.itemID == DustContent.pouch.itemID){
 				pouch = inv;
 				hasPouch = true;
 			}
 		}
 		
-		if(hasPouch && (item.itemID == DustMod.idust.itemID || item.itemID == DustMod.ink.itemID)){
+		if(hasPouch && (item.itemID == DustContent.idust.itemID || item.itemID == DustContent.ink.itemID)){
 			ItemPouch.subtractDust(pouch, 1);
-			DustMod.pouch.setContainerItemstack(pouch);
+			DustContent.pouch.setContainerItemstack(pouch);
 		}
 		
 //		else if(hasPouch && item.itemID == DustMod.pouch.itemID){
@@ -64,13 +65,13 @@ public class GenericHandler implements ICraftingHandler{
 		ItemStack item = evt.item.getEntityItem();
 		
 		int dust = item.getItemDamage();
-		if(item.itemID == DustMod.idust.itemID && 
-				(player.inventory.hasItemStack(new ItemStack(DustMod.pouch.itemID, 1, dust * 2)) 
-				|| player.inventory.hasItemStack(new ItemStack(DustMod.pouch.itemID, 1, dust * 2 +1)))){
+		if(item.itemID == DustContent.idust.itemID && 
+				(player.inventory.hasItemStack(new ItemStack(DustContent.pouch.itemID, 1, dust * 2)) 
+				|| player.inventory.hasItemStack(new ItemStack(DustContent.pouch.itemID, 1, dust * 2 +1)))){
 			InventoryPlayer inv = player.inventory;
 			for(int i = 0; i < inv.getSizeInventory(); i++){
 				ItemStack check = inv.getStackInSlot(i);
-				if(check != null && check.itemID == DustMod.pouch.itemID && (check.getItemDamage() == dust*2 || check.getItemDamage() == dust*2+1)){
+				if(check != null && check.itemID == DustContent.pouch.itemID && (check.getItemDamage() == dust*2 || check.getItemDamage() == dust*2+1)){
 					int left = ItemPouch.addDust(check, item.stackSize);
 					item.stackSize = left;
 				}
@@ -89,7 +90,7 @@ public class GenericHandler implements ICraftingHandler{
     		EntityPlayer p = (EntityPlayer) ent;
     		ItemStack item = p.inventory.getStackInSlot(38);
 
-    		if(item != null && item.itemID == DustMod.wornInscription.itemID){	
+    		if(item != null && item.itemID == DustContent.wornInscription.itemID){	
     			boolean[] buttons = DustMod.keyHandler.getButtons(p.username); 
     			InscriptionManager.tickInscription((Player)p, buttons, p.inventory.getStackInSlot(38));
     		}

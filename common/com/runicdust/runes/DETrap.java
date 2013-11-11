@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import com.runicdust.DustMod;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.event.DustEvent;
+import com.runicdust.util.References;
 
 /**
  *
@@ -35,7 +36,7 @@ public abstract class DETrap extends DustEvent
 
     public void onInit(EntityDust e)
     {
-        int compare = DustMod.compareDust(DustMod.gunDID, e.dustID);
+        int compare = DustMod.compareDust(References.gunDID, e.dustID);
 
         if (compare < 0)
         {

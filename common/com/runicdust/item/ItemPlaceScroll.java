@@ -23,6 +23,8 @@ import com.runicdust.DustManager;
 import com.runicdust.DustMod;
 import com.runicdust.DustModItem;
 import com.runicdust.DustShape;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
@@ -39,7 +41,7 @@ public class ItemPlaceScroll extends DustModItem
     public ItemPlaceScroll(int i)
     {
         super(i);
-        blockID = DustMod.dust.blockID;
+        blockID = DustContent.dust.blockID;
         setMaxDamage(0);
         setHasSubtypes(true);
         this.setMaxStackSize(4);
@@ -226,6 +228,6 @@ public class ItemPlaceScroll extends DustModItem
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) 
     {
-    	this.itemIcon = iconRegister.registerIcon(DustMod.spritePath + "dustScroll");
+    	this.itemIcon = iconRegister.registerIcon(References.spritePath + "dustScroll");
     }
 }

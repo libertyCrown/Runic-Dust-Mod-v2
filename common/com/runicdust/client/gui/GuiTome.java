@@ -18,6 +18,7 @@ import com.runicdust.client.PageHelper;
 import com.runicdust.client.render.RenderDustTable;
 import com.runicdust.event.InscriptionEvent;
 import com.runicdust.event.InscriptionManager;
+import com.runicdust.util.References;
 
 /**
  *
@@ -25,10 +26,10 @@ import com.runicdust.event.InscriptionManager;
  */
 public class GuiTome extends GuiScreen
 {
-	private ResourceLocation texture = new ResourceLocation(DustMod.path + "/tomeGui.png");
-	private ResourceLocation norunes = new ResourceLocation(DustMod.path + "/pages/no_runes.png");
-	private ResourceLocation noinscription = new ResourceLocation(DustMod.path + "/pages/no_inscriptions.png");
-	private ResourceLocation info = new ResourceLocation(DustMod.path + "/pages/info.png");
+	private ResourceLocation texture = new ResourceLocation(References.path + "/tomeGui.png");
+	private ResourceLocation norunes = new ResourceLocation(References.path + "/pages/no_runes.png");
+	private ResourceLocation noinscription = new ResourceLocation(References.path + "/pages/no_inscriptions.png");
+	private ResourceLocation info = new ResourceLocation(References.path + "/pages/info.png");
 	
     public static int runePage = 0;
     public static int insPage = 0;

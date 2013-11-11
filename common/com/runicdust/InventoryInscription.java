@@ -1,5 +1,7 @@
 package com.runicdust;
 
+import com.runicdust.config.DustContent;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -50,7 +52,7 @@ public class InventoryInscription implements IInventory {
 	@Override
 	public ItemStack getStackInSlot(int loc) {
 		if(loc < 10) return items[loc];
-		return new ItemStack(DustMod.inscription, 1, inv[loc-10]);
+		return new ItemStack(DustContent.inscription, 1, inv[loc-10]);
 	}
 
 	@Override

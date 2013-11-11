@@ -15,7 +15,9 @@ import net.minecraft.world.World;
 
 import com.runicdust.DustManager;
 import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
 import com.runicdust.tileentity.TileEntityDustTable;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -101,7 +103,7 @@ public class BlockDustTable extends BlockContainer
         {
             return true;
         }
-        else if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == DustMod.runicPaper.itemID)
+        else if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == DustContent.runicPaper.itemID)
         {
             int page = (((TileEntityDustTable)world.getBlockTileEntity(i, j, k)).page - 1);
 
@@ -111,12 +113,12 @@ public class BlockDustTable extends BlockContainer
             }
 
             page = DustManager.getShape(page).id;
-            ItemStack to = new ItemStack(DustMod.dustScroll, 1, page);
+            ItemStack to = new ItemStack(DustContent.dustScroll, 1, page);
             ItemStack cur = player.getCurrentEquippedItem() ;
 
             if (cur.stackSize == 1)
             {
-                cur.itemID = DustMod.dustScroll.itemID;
+                cur.itemID = DustContent.dustScroll.itemID;
                 cur.setItemDamage(to.getItemDamage());
             }
             else
@@ -173,8 +175,8 @@ public class BlockDustTable extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(DustMod.spritePath + "table_side");
-        this.topTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_top");
-        this.botTex = par1IconRegister.registerIcon(DustMod.spritePath + "table_bottom");
+        this.blockIcon = par1IconRegister.registerIcon(References.spritePath + "table_side");
+        this.topTex = par1IconRegister.registerIcon(References.spritePath + "table_top");
+        this.botTex = par1IconRegister.registerIcon(References.spritePath + "table_bottom");
     }
 }

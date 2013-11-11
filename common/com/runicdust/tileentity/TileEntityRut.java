@@ -11,8 +11,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 
-import com.runicdust.DustMod;
 import com.runicdust.PacketHandler;
+import com.runicdust.config.DustConfig;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
 
 /**
  *
@@ -111,7 +113,7 @@ public class TileEntityRut extends TileEntity
                             continue;
                         }
 
-                        if (worldObj.getBlockId(i + ix, j + iy, k + iz) == DustMod.rutBlock.blockID)
+                        if (worldObj.getBlockId(i + ix, j + iy, k + iz) == DustContent.rutBlock.blockID)
                         {
                             TileEntityRut ter = (TileEntityRut)worldObj.getBlockTileEntity(i + ix, j + iy, k + iz);
 
@@ -186,7 +188,7 @@ public class TileEntityRut extends TileEntity
                 {
                 	boolean prev = neighborSolid[i + 1][j + 1][k + 1]; 
                     int bid = worldObj.getBlockId(xCoord + i, yCoord + j, zCoord + k);
-                    boolean next = (bid != 0 && (Block.blocksList[bid].isOpaqueCube() || Block.blocksList[bid] == DustMod.rutBlock));
+                    boolean next = (bid != 0 && (Block.blocksList[bid].isOpaqueCube() || Block.blocksList[bid] == DustContent.rutBlock));
                     if(prev != next) rtn = true;
                     neighborSolid[i + 1][j + 1][k + 1] = next;
                 }
@@ -362,7 +364,7 @@ public class TileEntityRut extends TileEntity
     public boolean canEdit()
     {
         Block f = Block.blocksList[fluid];
-        return (fluidIsFluid() || f.getBlockHardness(worldObj,xCoord,yCoord,zCoord) <= hardnessStandard || DustMod.Enable_Decorative_Ruts) && !isBeingUsed;
+        return (fluidIsFluid() || f.getBlockHardness(worldObj,xCoord,yCoord,zCoord) <= hardnessStandard || References.Enable_Decorative_Ruts) && !isBeingUsed;
     }
 
     public boolean isEmpty()

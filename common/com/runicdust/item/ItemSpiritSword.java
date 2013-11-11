@@ -17,7 +17,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 
-import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -68,7 +69,7 @@ public class ItemSpiritSword extends ItemSword
     	if(r < tol){
     		int amt = 1;
     		if(rand.nextDouble() < 0.5D) amt = 2;
-    		EntityItem ei = player.dropPlayerItem(new ItemStack(DustMod.idust,amt,200));
+    		EntityItem ei = player.dropPlayerItem(new ItemStack(DustContent.idust,amt,200));
     		ei.setPosition(entity.posX, entity.posY, entity.posZ);
     		ei.delayBeforeCanPickup = 0;
     	}
@@ -79,6 +80,6 @@ public class ItemSpiritSword extends ItemSword
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon(DustMod.spritePath + this.getUnlocalizedName().replace("item.", ""));
+		this.itemIcon = par1IconRegister.registerIcon(References.spritePath + this.getUnlocalizedName().replace("item.", ""));
 	}
 }

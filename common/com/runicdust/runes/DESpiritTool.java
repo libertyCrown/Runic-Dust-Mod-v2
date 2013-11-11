@@ -11,7 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.event.DustEvent;
 
@@ -154,11 +154,11 @@ public class DESpiritTool extends DustEvent
 
             if (e.data[0] == 1)
             {
-                itemID = DustMod.spiritPickaxe.itemID;
+                itemID = DustContent.spiritPickaxe.itemID;
             }
             else if (e.data[0] == 2)
             {
-                itemID = DustMod.spiritSword.itemID;
+                itemID = DustContent.spiritSword.itemID;
             }
 
             ItemStack create =  new ItemStack(itemID, 1, 0);

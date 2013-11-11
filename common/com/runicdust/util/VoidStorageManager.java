@@ -1,4 +1,4 @@
-package com.runicdust;
+package com.runicdust.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,7 @@ import java.util.logging.Level;
 
 import net.minecraft.item.ItemStack;
 
+import com.runicdust.DustMod;
 import com.runicdust.entity.EntityDust;
 
 import cpw.mods.fml.common.FMLLog;

@@ -11,7 +11,10 @@ import net.minecraft.world.World;
 
 import com.runicdust.DustMod;
 import com.runicdust.DustModItem;
+import com.runicdust.config.DustConfig;
+import com.runicdust.config.DustContent;
 import com.runicdust.tileentity.TileEntityRut;
+import com.runicdust.util.References;
 
 /**
  *
@@ -38,14 +41,14 @@ public class ItemChisel extends DustModItem
         int blockId = world.getBlockId(i, j, k);
         int meta = world.getBlockMetadata(i, j, k);
         Block b = Block.blocksList[blockId];
-        if(b == DustMod.dust){
+        if(b == DustContent.dust){
         	j--;
             blockId = world.getBlockId(i, j, k);
             meta = world.getBlockMetadata(i, j, k);
             b = Block.blocksList[blockId];
         }
         
-        if (b == DustMod.rutBlock)
+        if (b == DustContent.rutBlock)
         {
             itemstack.damageItem(1, p);
         }
@@ -55,7 +58,7 @@ public class ItemChisel extends DustModItem
             return false;
         }
 
-        if ((b.getBlockHardness(world,i,j,k) > Block.wood.getBlockHardness(world,i,j,k) && !DustMod.Enable_Decorative_Ruts) || b == Block.bedrock)
+        if ((b.getBlockHardness(world,i,j,k) > Block.wood.getBlockHardness(world,i,j,k) && !References.Enable_Decorative_Ruts) || b == Block.bedrock)
         {
             return false;
         }
@@ -68,11 +71,11 @@ public class ItemChisel extends DustModItem
 
 //        if (!world.isRemote)
 //        {
-            world.setBlock(i, j, k, DustMod.rutBlock.blockID, meta,3);
+            world.setBlock(i, j, k, DustContent.rutBlock.blockID, meta,3);
             TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(i, j, k);
             ter.maskBlock = blockId;
             ter.maskMeta = meta;
-            DustMod.rutBlock.onBlockActivated(world, i, j, k, p,face,x,y,z);
+            DustContent.rutBlock.onBlockActivated(world, i, j, k, p,face,x,y,z);
 //            System.out.println("Set");
 //        }
 

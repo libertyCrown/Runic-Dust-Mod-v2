@@ -18,10 +18,10 @@ import net.minecraft.world.World;
 
 import com.runicdust.DustMod;
 import com.runicdust.PoweredEvent;
-import com.runicdust.VoidTeleManager;
 import com.runicdust.entity.EntityBlock;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.tileentity.TileEntityDust;
+import com.runicdust.util.VoidTeleManager;
 
 /**
  *

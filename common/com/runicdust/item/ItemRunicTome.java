@@ -4,21 +4,23 @@
  */
 package com.runicdust.item;
 
-import com.runicdust.DustManager;
-import com.runicdust.DustMod;
-import com.runicdust.DustModItem;
-import com.runicdust.DustShape;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import com.runicdust.DustManager;
+import com.runicdust.DustMod;
+import com.runicdust.DustModItem;
+import com.runicdust.DustShape;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
+
 /**
  *
  * @author billythegoat101
  */
-public class ItemRunicTome  extends DustModItem
+public class ItemRunicTome extends DustModItem
 {
     private int blockID;
     private int tex;
@@ -26,7 +28,7 @@ public class ItemRunicTome  extends DustModItem
     public ItemRunicTome(int i)
     {
         super(i);
-        blockID = DustMod.dust.blockID;
+        blockID = DustContent.dust.blockID;
         this.setMaxStackSize(1);
     }
 
@@ -58,7 +60,7 @@ public class ItemRunicTome  extends DustModItem
 
         if (DustMod.isDust(world.getBlockId(i, j, k)))
         {
-            if (world.getBlockMetadata(i, j, k) == DustMod.DustMetaUsed)
+            if (world.getBlockMetadata(i, j, k) == References.DustMetaUsed)
             {
                 world.setBlock(i, j, k, 0,0,3);
                 j--;

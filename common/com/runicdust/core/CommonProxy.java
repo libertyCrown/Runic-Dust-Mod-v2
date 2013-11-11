@@ -8,8 +8,8 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.runicdust.DustShape;
 import com.runicdust.GenericHandler;
-import com.runicdust.TickHandler;
 import com.runicdust.event.InscriptionEvent;
+import com.runicdust.util.TickHandler;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;

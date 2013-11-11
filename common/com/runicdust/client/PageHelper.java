@@ -1,9 +1,7 @@
 package com.runicdust.client;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +13,6 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -24,10 +20,13 @@ import net.minecraft.client.resources.ResourceManager;
 import net.minecraft.src.ModLoader;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.opengl.GL11;
+
 import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
 import com.runicdust.DustShape;
 import com.runicdust.event.InscriptionEvent;
+import com.runicdust.util.References;
 
 /**
  *
@@ -102,9 +101,6 @@ public class PageHelper
         }
         
         File file = new File(insFolder + name + ".png");
-        //if(file.exists()) return;
-        //DustMod.log(Level.INFO, "Lexicon Inscription entry for " + name + " not found! Generating... [" + file.getAbsolutePath() + "]");
-        //System.out.println("[DustMod] Lexicon Inscription entry for " + name + " not found! Generating...");
         
         int[][]values = event.referenceDesign;
         int width = values[0].length;
@@ -119,8 +115,8 @@ public class PageHelper
         int dW = 1; //dotWidth
         int sW = 1; //spaceWidth
 
-        pxWidth = 34;//width * dW + (width - 1) * sW;
-        pxHeight = 34;//height * dW + (height - 1) * sW;
+        pxWidth = 34;
+        pxHeight = 34;
 
         //Dust
         for (int x = 0; x < width; x++)
@@ -190,12 +186,6 @@ public class PageHelper
                 g = c.getGreen();
                 b = c.getBlue();
 
-                //int shadeColor = shade.getRGB(x, y) & 0x0000FF;
-
-                //r = linearColorBurn(shadeColor, r);
-                //g = linearColorBurn(shadeColor, g);
-                //b = linearColorBurn(shadeColor, b);
-
                 c = new Color(r, g, b);
                 int resultColor = c.getRGB();
                 result.setRGB(x, y, resultColor);
@@ -225,15 +215,10 @@ public class PageHelper
         }
         
         File file = new File(runeFolder + name + ".png");
-        //if(file.exists()) return;
-        //DustMod.log(Level.FINEST, "Lexicon Rune entry for " + name + " not found! Generating...");
-        //System.out.println("[DustMod] Lexicon Rune entry for " + name + " not found! Generating...");
         
         int[][][] values = shape.data;
         int width = shape.data[0][0].length;
         int height = shape.data[0].length;
-//      System.out.println("Checking " + name + " " + width + " " + height);
-
 
         int pxwMax = bgw - 6;
         int pxhMax = bgh- 6;
@@ -270,8 +255,6 @@ public class PageHelper
             }
         }
 
-//        System.out.println("[" + pxWidth + "," + pxHeight + "] [" + bgw + "," + bgh + "]");
-
         //gold
         int tx = pxWidth / 2 + 2;
         int ty = pxHeight / 2 + 2;
@@ -281,7 +264,6 @@ public class PageHelper
             {
                 if (x == -tx || y == -ty || x == tx - 1 || y == ty - 1)
                 {
-//                  System.out.println("Go [" + (bgw/2 + x) + "," + (bgh/2 + y) + "]");
                     dust.setRGB(bgw / 2 + x, bgh / 2 + y, getColor(colors, 0));
                 } else
                 {
@@ -289,6 +271,7 @@ public class PageHelper
                 }
             }
         }
+        
         //corners
         for (int x = 0; x <= 1; x++)
         {
@@ -296,13 +279,9 @@ public class PageHelper
             {
                 if (x != 0 || y != 0 || true)
                 {
-                        //System.out.println("corner [" + (bgw / 2 - tx) + "," + (bgw / 2 - ty) + "]");
                     dust.setRGB(bgw / 2 - tx + x - 1, bgh / 2 - ty + y - 1, getColor(colors, 0));
-                        //System.out.println("corner [" + (bgw / 2 + tx + 1) + "," + (bgw / 2 - ty - 1) + "]");
                     dust.setRGB(bgw / 2 + tx + x - 1, bgh / 2 - ty + y - 1, getColor(colors, 0));
-                        //System.out.println("corner [" + (bgw / 2 + tx) + "," + (bgw / 2 + ty) + "]");
                     dust.setRGB(bgw / 2 + tx + x - 1, bgh / 2 + ty + y - 1, getColor(colors, 0));
-                        //System.out.println("corner [" + (bgw / 2 - tx) + "," + (bgw / 2 + ty) + "]");
                     dust.setRGB(bgw / 2 - tx + x - 1, bgh / 2 + ty + y - 1, getColor(colors, 0));
                 }
             }
@@ -375,11 +354,6 @@ public class PageHelper
                 r = c.getRed();
                 g = c.getGreen();
                 b = c.getBlue();
-                //int shadeColor = shade.getRGB(x, y) & 0x0000FF;
-                //r = linearColorBurn(shadeColor, r);
-               // g = linearColorBurn(shadeColor, g);
-                //b = linearColorBurn(shadeColor, b);
-
                 c = new Color(r, g, b);
                 int resultColor = c.getRGB();
                 result.setRGB(x, y, resultColor);
@@ -457,17 +431,14 @@ public class PageHelper
     	int r = (color&0xFF0000) >> 16;
         int g = (color&0xFF00) >> 8;
         int b = (color&0xFF);
-//        color = (color & 0xfefefe) >> 1;
         Color temp = new Color(DustItemManager.getFloorColorRGB(dust)[0],DustItemManager.getFloorColorRGB(dust)[0],DustItemManager.getFloorColorRGB(dust)[2]);
         Color c = primary? temp: temp;
         
         if(primary) {
-//       	for(int i = 0; i < 1; i++) c = c.darker();
         	r+=10;
         	g+=10;
         	b+=10;
         }else{
-//        	for(int i = 0; i < 1; i++) c = c.brighter();
         	r-=10;
         	g-=10;
         	b-=10;
@@ -477,16 +448,12 @@ public class PageHelper
         Random rand = new Random();
         int random = rand.nextInt(tol);
         
-//        for(int i = 0; i < random; i++) c=c.darker(); 
         c = stain(c,(float)rand.nextGaussian()*0.05f + (primary ? 0.02F:0));
         if(primary) random *= -1;
         
         r = r + random;
         g = g + random;
         b = b + random;
-//        r = linearColorBurn(0x010101,r);
-//        g = linearColorBurn(0x010101,g);
-//        b = linearColorBurn(0,b);
         
         if(r < 0) r = 0; 
         if(r > 255) r = 255;

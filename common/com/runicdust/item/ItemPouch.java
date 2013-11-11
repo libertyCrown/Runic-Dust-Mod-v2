@@ -16,6 +16,8 @@ import net.minecraft.world.World;
 import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
 import com.runicdust.DustModItem;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -103,7 +105,7 @@ public class ItemPouch extends DustModItem {
                         Block.blocksList[this.blockID].onBlockPlacedBy(world, i, j, k, p, item);
                         Block.blocksList[this.blockID].onPostBlockPlaced(world, i, j, k, var13);
                     }
-                    DustMod.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
+                    DustContent.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
 
                     world.playSoundEffect((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), var12.stepSound.getStepSound(), (var12.stepSound.getVolume() + 1.0F) / 6.0F, var12.stepSound.getPitch() * 0.99F);
 //                    if(!p.capabilities.isCreativeMode)subtractDust(item,1);
@@ -188,7 +190,7 @@ public class ItemPouch extends DustModItem {
     
     @Override
     public Item getContainerItem() {
-    	return DustMod.pouch;
+    	return DustContent.pouch;
     }
     @Override
     public boolean hasContainerItem() {
@@ -222,10 +224,10 @@ public class ItemPouch extends DustModItem {
     
     
     public static int getDustAmount(ItemStack pouch){
-    	if(pouch.itemID == DustMod.idust.itemID){
+    	if(pouch.itemID == DustContent.idust.itemID){
     		return pouch.stackSize;
     	}
-    	if(pouch.itemID != DustMod.pouch.itemID) return -1;
+    	if(pouch.itemID != DustContent.pouch.itemID) return -1;
     	
     	if(pouch.getItemDamage() %2 == 0) return 0;
     	
@@ -237,14 +239,14 @@ public class ItemPouch extends DustModItem {
     }
     
     public static boolean subtractDust(ItemStack pouch, int sub){
-    	if(pouch.itemID == DustMod.idust.itemID){
+    	if(pouch.itemID == DustContent.idust.itemID){
     		if(pouch.stackSize >= sub){
     			pouch.stackSize -= sub;
     			return true;
     		} else
     			return false;
     	}
-    	if(pouch.itemID != DustMod.pouch.itemID) return false;
+    	if(pouch.itemID != DustContent.pouch.itemID) return false;
     	
     	if(!pouch.hasTagCompound()){
     		pouch.setTagCompound(new NBTTagCompound());
@@ -269,11 +271,11 @@ public class ItemPouch extends DustModItem {
      * @return amount remaining if attempting to add more than pouch can contain
      */
     public static int addDust(ItemStack pouch, int add){
-    	if(pouch.itemID == DustMod.idust.itemID){
+    	if(pouch.itemID == DustContent.idust.itemID){
 			pouch.stackSize += add;
 			return 0;
     	}
-    	if(pouch.itemID != DustMod.pouch.itemID) return -1;
+    	if(pouch.itemID != DustContent.pouch.itemID) return -1;
     	
     	int rtn = 0;
     	
@@ -298,10 +300,10 @@ public class ItemPouch extends DustModItem {
     }
     
     public static void setAmount(ItemStack pouch, int amt){
-    	if(pouch.itemID == DustMod.idust.itemID){
+    	if(pouch.itemID == DustContent.idust.itemID){
 			pouch.stackSize -= amt;
     	}
-    	if(pouch.itemID != DustMod.pouch.itemID) return;
+    	if(pouch.itemID != DustContent.pouch.itemID) return;
     	
     	if(!pouch.hasTagCompound()){
     		pouch.setTagCompound(new NBTTagCompound());
@@ -324,8 +326,8 @@ public class ItemPouch extends DustModItem {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-    	this.bagIcon = iconRegister.registerIcon(DustMod.spritePath + "dustPouch_back");
-    	this.mainIcon = iconRegister.registerIcon(DustMod.spritePath + "dustPouch_main");
-    	this.subIcon = iconRegister.registerIcon(DustMod.spritePath + "dustPouch_sub");
+    	this.bagIcon = iconRegister.registerIcon(References.spritePath + "dustPouch_back");
+    	this.mainIcon = iconRegister.registerIcon(References.spritePath + "dustPouch_main");
+    	this.subIcon = iconRegister.registerIcon(References.spritePath + "dustPouch_sub");
     }
 }

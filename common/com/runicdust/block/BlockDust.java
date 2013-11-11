@@ -28,8 +28,10 @@ import net.minecraftforge.common.ForgeDirection;
 
 import com.runicdust.DustManager;
 import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
 import com.runicdust.item.ItemPouch;
 import com.runicdust.tileentity.TileEntityDust;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -131,7 +133,7 @@ public class BlockDust extends BlockContainer {
 
 		ItemStack equipped = ((EntityPlayer) entityliving).getCurrentEquippedItem();
 		if (equipped != null) {
-			if(equipped.itemID != DustMod.pouch.itemID)
+			if(equipped.itemID != DustContent.pouch.itemID)
 				equipped.stackSize++;
 		}
 	}
@@ -143,7 +145,7 @@ public class BlockDust extends BlockContainer {
 		if (block == null) {
 			return false;
 		} else {
-			return world.isBlockSolidOnSide(i, j - 1, k, ForgeDirection.UP) || block == Block.glass || block == DustMod.rutBlock;
+			return world.isBlockSolidOnSide(i, j - 1, k, ForgeDirection.UP) || block == Block.glass || block == DustContent.rutBlock;
 			// return block.renderAsNormalBlock() || block == Block.glass ||
 			// world.isBlockSolidOnSide(i,j,k,0);
 		}
@@ -264,7 +266,7 @@ public class BlockDust extends BlockContainer {
 						// {
 						if(!player.capabilities.isCreativeMode)
 							this.dropBlockAsItem_do(world, i, j, k, new ItemStack(
-								DustMod.idust.itemID, 1, dust));
+								DustContent.idust.itemID, 1, dust));
 					}
 					// }
 				}
@@ -287,10 +289,10 @@ public class BlockDust extends BlockContainer {
 		
 		ItemStack item = p.getCurrentEquippedItem();
 		
-		if(item != null && item.itemID == DustMod.chisel.itemID){
+		if(item != null && item.itemID == DustContent.chisel.itemID){
 			int bid = world.getBlockId(i, j-1, k);
-			if(bid == DustMod.rutBlock.blockID){
-				return DustMod.rutBlock.onBlockActivated(world, i, j-1, k, p, face, x, y, z);
+			if(bid == DustContent.rutBlock.blockID){
+				return DustContent.rutBlock.onBlockActivated(world, i, j-1, k, p, face, x, y, z);
 			}
 		}
 
@@ -304,7 +306,7 @@ public class BlockDust extends BlockContainer {
 		}
 
 		if (p.isSneaking()) {
-			if(item == null || item.getItem() != DustMod.tome){
+			if(item == null || item.getItem() != DustContent.tome){
 				onBlockClicked(world, i, j, k, p);
 			}
 
@@ -313,22 +315,22 @@ public class BlockDust extends BlockContainer {
 
 		if (!world.isRemote
 				&& item != null
-				&& item.itemID == DustMod.tome.itemID) {
+				&& item.itemID == DustContent.tome.itemID) {
 			updatePattern(world, i, j, k, p);
 			world.notifyBlockChange(i, j, k, 0);
 			return true;
 		}
 
 		if (item == null
-				|| (item.itemID != DustMod.idust.itemID 
-				&& item.itemID != DustMod.pouch.itemID)) {
+				|| (item.itemID != DustContent.idust.itemID 
+				&& item.itemID != DustContent.pouch.itemID)) {
 			return false;
 		}
 
 		
 
-		boolean isPouch = (item.itemID == DustMod.pouch.itemID);
-		int dust = item.getItemDamage();// mod_DustMod.dustValue(p.getCurrentEquippedItem().itemID);
+		boolean isPouch = (item.itemID == DustContent.pouch.itemID);
+		int dust = item.getItemDamage();
 		if(isPouch) dust = ItemPouch.getValue(item);
 		if(dust < 5) dust *= 100;
 		
@@ -381,12 +383,12 @@ public class BlockDust extends BlockContainer {
 			for (int sind = 0; sind < p.inventory.mainInventory.length; sind++) {
 				ItemStack is = p.inventory.mainInventory[sind];
 
-				if (is != null && ((is.itemID == DustMod.idust.itemID
+				if (is != null && ((is.itemID == DustContent.idust.itemID
 						&& is.getItemDamage() == dust) ||
-						(is.itemID == DustMod.pouch.itemID && ItemPouch.getValue(is) == dust && ItemPouch.getDustAmount(is) > 0))) {
+						(is.itemID == DustContent.pouch.itemID && ItemPouch.getValue(is) == dust && ItemPouch.getDustAmount(is) > 0))) {
 					ItemPouch.subtractDust(is, 1);
 
-					if (ItemPouch.getDustAmount(is) == 0 && is.itemID != DustMod.pouch.itemID) {
+					if (ItemPouch.getDustAmount(is) == 0 && is.itemID != DustContent.pouch.itemID) {
 						p.inventory.mainInventory[sind] = null;
 					}
 
@@ -487,7 +489,7 @@ public class BlockDust extends BlockContainer {
 					if (ted.getDust(rx, rz) > 0
 							&& !p.capabilities.isCreativeMode) {
 						this.dropBlockAsItem_do(world, i, j, k,
-								new ItemStack(DustMod.idust.itemID, 1,
+								new ItemStack(DustContent.idust.itemID, 1,
 										ted.getDust(rx, rz)));
 					}
 
@@ -667,8 +669,8 @@ public class BlockDust extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.topTexture = par1IconRegister.registerIcon(DustMod.spritePath + "dust_top");
-        this.sideTexture = par1IconRegister.registerIcon(DustMod.spritePath + "dust_side");
+        this.topTexture = par1IconRegister.registerIcon(References.spritePath + "dust_top");
+        this.sideTexture = par1IconRegister.registerIcon(References.spritePath + "dust_side");
     }
     
 }

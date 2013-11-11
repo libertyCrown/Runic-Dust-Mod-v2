@@ -22,7 +22,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
 import com.runicdust.tileentity.TileEntityRut;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -162,7 +164,7 @@ public class BlockRut extends BlockContainer
             {
                 Block b = Block.blocksList[bid];
 
-                if (b.renderAsNormalBlock() && b.isOpaqueCube() && (b.getBlockHardness(world, i,j,k) <= TileEntityRut.hardnessStandard || DustMod.Enable_Decorative_Ruts))
+                if (b.renderAsNormalBlock() && b.isOpaqueCube() && (b.getBlockHardness(world, i,j,k) <= TileEntityRut.hardnessStandard || References.Enable_Decorative_Ruts))
                 {
                     if (!p.capabilities.isCreativeMode)
                     {
@@ -175,7 +177,7 @@ public class BlockRut extends BlockContainer
             }
         }
 
-        if (!isNull && ter.fluid != 0 && !ter.fluidIsFluid() && (Block.blocksList[ter.fluid].getBlockHardness(world, i,j,k) <= TileEntityRut.hardnessStandard || DustMod.Enable_Decorative_Ruts))
+        if (!isNull && ter.fluid != 0 && !ter.fluidIsFluid() && (Block.blocksList[ter.fluid].getBlockHardness(world, i,j,k) <= TileEntityRut.hardnessStandard || References.Enable_Decorative_Ruts))
         {
             if (Item.itemsList[pItem.itemID] instanceof ItemSpade)
             {
@@ -185,7 +187,7 @@ public class BlockRut extends BlockContainer
             }
         }
 
-        if (isNull || pItem.itemID != DustMod.chisel.itemID)
+        if (isNull || pItem.itemID != DustContent.chisel.itemID)
         {
             return false;
         }

@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import com.runicdust.DustManager;
 import com.runicdust.DustMod;
 import com.runicdust.block.BlockDust;
+import com.runicdust.config.DustContent;
 import com.runicdust.event.DustEvent;
 import com.runicdust.tileentity.TileEntityDust;
 import com.runicdust.tileentity.TileEntityRut;
@@ -619,7 +620,7 @@ public class EntityDust extends Entity
             	this.updateDataWatcher();
             	ticksExisted = 0;
             	for(Integer[] loc:dustPoints){
-            		if(worldObj.getBlockId(loc[0],loc[1], loc[2]) == DustMod.dust.blockID)
+            		if(worldObj.getBlockId(loc[0],loc[1], loc[2]) == DustContent.dust.blockID)
             			worldObj.setBlockMetadataWithNotify(loc[0], loc[1], loc[2], BlockDust.ACTIVE_DUST,3);
             	}
             }
@@ -743,14 +744,14 @@ public class EntityDust extends Entity
 				int blockID = worldObj.getBlockId(x+i, y, z+k);
 				int meta = worldObj.getBlockMetadata(x+i, y, z+k);
 				
-				if(blockID == DustMod.dust.blockID && (meta == BlockDust.ACTIVE_DUST || meta == BlockDust.ACTIVATING_DUST)){
+				if(blockID == DustContent.dust.blockID && (meta == BlockDust.ACTIVE_DUST || meta == BlockDust.ACTIVATING_DUST)){
 					TileEntityDust ted = (TileEntityDust)worldObj.getBlockTileEntity(x+i, y, z+k);
 					
 					if(ted.dustEntID == this.entityId){
 						dustPoints.add(new Integer[]{x+i,y,z+k});
 						checkConnections(x+i,y,z+k);
 					}
-				} else if(blockID == DustMod.rutBlock.blockID){
+				} else if(blockID == DustContent.rutBlock.blockID){
 					TileEntityRut ter = (TileEntityRut)worldObj.getBlockTileEntity(x+i, y, z+k);
 					if(ter.dustEntID == this.entityId){
 						rutPoints.add(new Integer[]{x+i,y,z+k});

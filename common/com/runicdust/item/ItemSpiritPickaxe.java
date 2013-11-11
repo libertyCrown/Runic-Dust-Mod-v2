@@ -22,6 +22,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -135,7 +137,7 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 									if (rand.nextDouble() < tol) {
 										EntityItem ei = player
 												.dropPlayerItem(new ItemStack(
-														DustMod.idust, 1, 300));
+														DustContent.idust, 1, 300));
 										ei.setPosition(x + 0.5 + i,
 												y + 0.5 + j, z + 0.5 + k);
 										ei.motionX = ei.motionY = ei.motionZ;
@@ -164,7 +166,7 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 							DustMod.log(Level.WARNING, "Error breaking block "
 									+ block.getUnlocalizedName(), e.getMessage());
 							e.printStackTrace();
-						}// fracking mods
+						}
 					}
 				}
 			}
@@ -175,7 +177,7 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon(DustMod.spritePath + this.getUnlocalizedName().replace("item.", ""));
+		this.itemIcon = par1IconRegister.registerIcon(References.spritePath + this.getUnlocalizedName().replace("item.", ""));
 	}
 
 }

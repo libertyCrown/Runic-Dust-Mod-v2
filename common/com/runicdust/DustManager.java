@@ -14,10 +14,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.Configuration;
 
 import com.runicdust.block.BlockDust;
+import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.entity.EntityDustManager;
 import com.runicdust.event.DustEvent;
 import com.runicdust.tileentity.TileEntityDust;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -344,7 +346,7 @@ public class DustManager
 					for (Integer[] p : points) {
 						int id = world.getBlockId(p[0], p[1], p[2]);
 
-						if (id == DustMod.dust.blockID) {
+						if (id == DustContent.dust.blockID) {
 							world.setBlockMetadataWithNotify(p[0], p[1], p[2],
 									BlockDust.DEAD_DUST,3);
 						}
@@ -379,7 +381,7 @@ public class DustManager
 			for (Integer[] p : points) {
 				int id = world.getBlockId(p[0], p[1], p[2]);
 
-				if (id == DustMod.dust.blockID) {
+				if (id == DustContent.dust.blockID) {
 					world.setBlockMetadataWithNotify(p[0], p[1], p[2], BlockDust.DEAD_DUST,3);
 				}
 			}

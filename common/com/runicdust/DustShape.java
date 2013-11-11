@@ -16,6 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.runicdust.block.BlockDust;
+import com.runicdust.config.DustContent;
 import com.runicdust.item.ItemPouch;
 import com.runicdust.tileentity.TileEntityDust;
 
@@ -601,9 +602,9 @@ public class DustShape {
 
 		for (ItemStack is : p.inventory.mainInventory) {
 			if (is != null) {
-				if (is.itemID == DustMod.idust.itemID) {
+				if (is.itemID == DustContent.idust.itemID) {
 					pDustAmount[is.getItemDamage()] += is.stackSize;
-				} else if (is.itemID == DustMod.pouch.itemID) {
+				} else if (is.itemID == DustContent.pouch.itemID) {
 					int dustID = ItemPouch.getValue(is);
 					int amt = ItemPouch.getDustAmount(is);
 					pDustAmount[dustID] += amt;
@@ -641,13 +642,13 @@ public class DustShape {
 					continue;
 				}
 
-				if (!DustMod.dust.canPlaceBlockAt(w, si + x, j, sk + z)) {
+				if (!DustContent.dust.canPlaceBlockAt(w, si + x, j, sk + z)) {
 					continue;
 				}
 
-				if (blockID != DustMod.dust.blockID) {
+				if (blockID != DustContent.dust.blockID) {
 					w.setBlock(si + x, j, sk + z,
-							DustMod.dust.blockID, 0, 2);
+							DustContent.dust.blockID, 0, 2);
 				}
 				TileEntityDust ted;
 				TileEntity te = w.getBlockTileEntity(si + x, j, sk + z);
@@ -703,7 +704,7 @@ public class DustShape {
 					ItemStack is = p.inventory.mainInventory[sind];
 
 					if (is != null && reduceDustAmount[id] > 0) {
-						if (is.itemID == DustMod.idust.itemID
+						if (is.itemID == DustContent.idust.itemID
 								&& is.getItemDamage() == id) {
 							while (reduceDustAmount[id] > 0 && is.stackSize > 0) {
 								is.stackSize--;
@@ -714,7 +715,7 @@ public class DustShape {
 
 								reduceDustAmount[id]--;
 							}
-						} else if (is.itemID == DustMod.pouch.itemID) {
+						} else if (is.itemID == DustContent.pouch.itemID) {
 							int did = ItemPouch.getValue(is);
 							if (did == id) {
 								while (reduceDustAmount[id] > 0
@@ -804,9 +805,9 @@ public class DustShape {
 
 		for (ItemStack is : p.inventory.mainInventory) {
 			if (is != null) {
-				if (is.itemID == DustMod.idust.itemID) {
+				if (is.itemID == DustContent.idust.itemID) {
 					pDustAmount[is.getItemDamage()] += is.stackSize;
-				} else if (is.itemID == DustMod.pouch.itemID) {
+				} else if (is.itemID == DustContent.pouch.itemID) {
 					int dustID = ItemPouch.getValue(is);
 					int amt = ItemPouch.getDustAmount(is);
 					pDustAmount[dustID] += amt;
@@ -847,18 +848,18 @@ public class DustShape {
 				continue;
 			}
 
-			if (!DustMod.dust.canPlaceBlockAt(w, si + x, j, sk + z)) {
+			if (!DustContent.dust.canPlaceBlockAt(w, si + x, j, sk + z)) {
 				continue;
 			}
 
-			if (blockID != DustMod.dust.blockID) {
+			if (blockID != DustContent.dust.blockID) {
 				w.setBlock(si + x, j, sk + z,
-						DustMod.dust.blockID, 0, 2);
+						DustContent.dust.blockID, 0, 2);
 			}else if(meta == BlockDust.DEAD_DUST){
 				w.setBlock(si + x, j, sk + z,
 						0, 0, 2);
 				w.setBlock(si + x, j, sk + z,
-						DustMod.dust.blockID, 0, 2);
+						DustContent.dust.blockID, 0, 2);
 			}else if(meta != BlockDust.UNUSED_DUST){
 				continue;
 			}
@@ -924,7 +925,7 @@ public class DustShape {
 					ItemStack is = p.inventory.mainInventory[sind];
 
 					if (is != null && reduceDustAmount[id] > 0) {
-						if (is.itemID == DustMod.idust.itemID
+						if (is.itemID == DustContent.idust.itemID
 								&& is.getItemDamage() == id) {
 							while (reduceDustAmount[id] > 0 && is.stackSize > 0) {
 								is.stackSize--;
@@ -935,7 +936,7 @@ public class DustShape {
 
 								reduceDustAmount[id]--;
 							}
-						} else if (is.itemID == DustMod.pouch.itemID) {
+						} else if (is.itemID == DustContent.pouch.itemID) {
 							int did = ItemPouch.getValue(is);
 							if (did == id) {
 								while (reduceDustAmount[id] > 0

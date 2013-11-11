@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.runicdust.runes;
 
 import net.minecraft.block.Block;
@@ -9,7 +5,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.event.DustEvent;
 
@@ -72,12 +68,12 @@ public class DEWall extends DustEvent
                     Block B = Block.blocksList[b];
                     Block nB = Block.blocksList[nb];
 
-                    if (B == DustMod.dust)
+                    if (B == DustContent.dust)
                     {
                         b = 0;
                         B = null;
                     }
-                    else if (nB == DustMod.dust)
+                    else if (nB == DustContent.dust)
                     {
                         nb = 0;
                         nB = null;

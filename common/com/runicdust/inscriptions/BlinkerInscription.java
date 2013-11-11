@@ -1,7 +1,6 @@
 package com.runicdust.inscriptions;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,6 +10,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
 import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.event.DustEvent;
 import com.runicdust.event.InscriptionEvent;
@@ -35,7 +35,7 @@ public class BlinkerInscription extends InscriptionEvent {
 		ItemStack[] req = new ItemStack[0];
 		int xp = 10;
 		
-		ItemStack blinkI = new ItemStack(DustMod.wornInscription.itemID, 1, 0);
+		ItemStack blinkI = new ItemStack(DustContent.wornInscription.itemID, 1, 0);
 		InscriptionManager.setEvent(blinkI, "leapI");
 		req = new ItemStack[]{blinkI, new ItemStack(Item.enderPearl, 8)};
 		

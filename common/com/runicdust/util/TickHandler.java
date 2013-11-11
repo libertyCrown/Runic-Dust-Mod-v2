@@ -1,6 +1,8 @@
-package com.runicdust;
+package com.runicdust.util;
 
 import java.util.EnumSet;
+
+import com.runicdust.DustMod;
 
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;

@@ -11,10 +11,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
-import com.runicdust.VoidTeleManager;
 import com.runicdust.entity.EntityBlock;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.event.DustEvent;
+import com.runicdust.util.VoidTeleManager;
 
 /**
  *

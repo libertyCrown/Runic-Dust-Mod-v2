@@ -1,5 +1,4 @@
 package com.runicdust.client.render;
-import java.io.File;
 import java.nio.FloatBuffer;
 import java.util.List;
 
@@ -17,11 +16,12 @@ import com.runicdust.DustMod;
 import com.runicdust.client.PageHelper;
 import com.runicdust.client.model.ModelDustBook;
 import com.runicdust.tileentity.TileEntityDustTable;
+import com.runicdust.util.References;
 
 public class RenderDustTable extends TileEntitySpecialRenderer
 {
-	private ResourceLocation texture = new ResourceLocation(DustMod.path + "/pages/info.png");
-	private ResourceLocation texture1 = new ResourceLocation(DustMod.path + "/book.png");
+	private ResourceLocation texture = new ResourceLocation(References.path + "/pages/info.png");
+	private ResourceLocation texture1 = new ResourceLocation(References.path + "/book.png");
 	
     private ModelDustBook book;
 

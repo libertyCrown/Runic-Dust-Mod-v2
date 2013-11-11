@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
@@ -22,6 +21,7 @@ import net.minecraftforge.common.ISpecialArmor;
 import com.runicdust.DustMod;
 import com.runicdust.event.InscriptionEvent;
 import com.runicdust.event.InscriptionManager;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -43,7 +43,6 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 				- DustMod.inscriptionManager.getPreventedDamage(player, armor,
 						source, (int) damage);
 		ArmorProperties rtn = new ArmorProperties(0, 1d, prevented);
-		// rtn.AbsorbRatio = 0.5D;
 		rtn.Slot = 1;
 		return rtn;
 	}
@@ -161,6 +160,6 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister) 
 	{
-		this.itemIcon = par1IconRegister.registerIcon(DustMod.spritePath + "wornInscription");
+		this.itemIcon = par1IconRegister.registerIcon(References.spritePath + "wornInscription");
 	}
 }

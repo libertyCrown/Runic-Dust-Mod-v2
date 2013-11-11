@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 
 import com.runicdust.DustMod;
 import com.runicdust.Sacrifice;
+import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.tileentity.TileEntityDust;
 import com.runicdust.tileentity.TileEntityRut;
@@ -398,7 +399,7 @@ public abstract class DustEvent {
 		for (EntityItem i : sacrifice) {
 			for (ItemStack item : items) {
 				ItemStack is = i.getEntityItem();
-				if (is.itemID == DustMod.negateSacrifice.itemID) {
+				if (is.itemID == DustContent.negateSacrifice.itemID) {
 					return true;
 				}
 
@@ -436,7 +437,7 @@ public abstract class DustEvent {
 		for (EntityItem i : sacrifice) {
 			ItemStack is = i.getEntityItem();
 
-			if (is.itemID == DustMod.negateSacrifice.itemID) {
+			if (is.itemID == DustContent.negateSacrifice.itemID) {
 				negate = true;
 				break;
 			}
@@ -525,7 +526,7 @@ public abstract class DustEvent {
 			}
 
 			if (ei != null
-					&& ei.getEntityItem().itemID == DustMod.negateSacrifice.itemID) {
+					&& ei.getEntityItem().itemID == DustContent.negateSacrifice.itemID) {
 				negate = true;
 				break;
 			}
@@ -1269,7 +1270,7 @@ public abstract class DustEvent {
 
 					int bid = w.getBlockId(x + i, y + j, z + k);
 
-					if (bid == DustMod.rutBlock.blockID) {
+					if (bid == DustContent.rutBlock.blockID) {
 						TileEntityRut ter = (TileEntityRut) w
 								.getBlockTileEntity(x + i, y + j, z + k);
 
@@ -1301,7 +1302,7 @@ public abstract class DustEvent {
 
 					int bid = w.getBlockId(x + i, y + j, z + k);
 
-					if (bid == DustMod.rutBlock.blockID) {
+					if (bid == DustContent.rutBlock.blockID) {
 						TileEntityRut ter = (TileEntityRut) w
 								.getBlockTileEntity(x + i, y + j, z + k);
 
@@ -1333,7 +1334,7 @@ public abstract class DustEvent {
 
 					int bid = w.getBlockId(x + i, y + j, z + k);
 
-					if (bid == DustMod.rutBlock.blockID) {
+					if (bid == DustContent.rutBlock.blockID) {
 						TileEntityRut ter = (TileEntityRut) w
 								.getBlockTileEntity(x + i, y + j, z + k);
 

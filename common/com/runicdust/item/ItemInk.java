@@ -10,8 +10,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
 import com.runicdust.DustItemManager;
-import com.runicdust.DustMod;
 import com.runicdust.DustModItem;
+import com.runicdust.DustModTab;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,16 +30,8 @@ public class ItemInk extends DustModItem {
     {
         super(i);
         setHasSubtypes(true);
-        
-        //[non-forge]
-//        plantTex = ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/plantdust.png");
-//        gunTex = ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/gundust.png");
-//        lapisTex = ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/lapisdust.png");
-//        blazeTex = ModLoader.addOverride("/gui/items.png", mod_DustMod.path + "/blazedust.png");
-        
-        //[forge]
         this.setMaxStackSize(1);
-        this.setCreativeTab(DustMod.creativeTab);
+        this.setCreativeTab(DustModTab.dustTab);
     }
 	
 
@@ -50,7 +44,7 @@ public class ItemInk extends DustModItem {
      */
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-        for (int i = 5; i < 1000; ++i) //i > 4 for migration from old system
+        for (int i = 5; i < 1000; ++i)
         {
         	if(DustItemManager.getColors()[i] != null){
                 par3List.add(getInk(i));
@@ -65,7 +59,6 @@ public class ItemInk extends DustModItem {
     	int dustID = getDustID(itemstack);
     	String id = DustItemManager.getIDS()[dustID];
     	if(id != null) return "tile.ink." + DustItemManager.idsRemote[dustID];
-
         return "tile.ink";
     }
 
@@ -105,7 +98,7 @@ public class ItemInk extends DustModItem {
     }
     
     public static ItemStack getInk(int dustID){
-    	return new ItemStack(DustMod.ink.itemID, 1, dustID*maxAmount + maxAmount-1);
+    	return new ItemStack(DustContent.ink.itemID, 1, dustID*maxAmount + maxAmount-1);
     }
     
     public static int getDustID(ItemStack item){
@@ -133,12 +126,12 @@ public class ItemInk extends DustModItem {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) 
     {
-    	this.bottle = iconRegister.registerIcon(DustMod.spritePath + "inkBottle");
+    	this.bottle = iconRegister.registerIcon(References.spritePath + "inkBottle");
     	main = new Icon[8];
     	sub = new Icon[8];
     	for(int i = 0; i < main.length; i++){
-    		main[i] = iconRegister.registerIcon(DustMod.spritePath + "ink_main_" + i);
-    		sub[i] = iconRegister.registerIcon(DustMod.spritePath + "ink_sub_" + i); 
+    		main[i] = iconRegister.registerIcon(References.spritePath + "ink_main_" + i);
+    		sub[i] = iconRegister.registerIcon(References.spritePath + "ink_sub_" + i); 
     	}
     }
 

@@ -21,7 +21,9 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 
 import com.runicdust.DustMod;
+import com.runicdust.config.DustConfig;
 import com.runicdust.entity.EntityDust;
+import com.runicdust.util.References;
 
 /**
  *
@@ -29,7 +31,7 @@ import com.runicdust.entity.EntityDust;
  */
 public class RenderEntityDust extends Render implements IRenderLast
 {
-	private ResourceLocation beam = new ResourceLocation(DustMod.path + "/beam.png");
+	private ResourceLocation beam = new ResourceLocation(References.path + "/beam.png");
 	
     public RenderEntityDust()
     {
@@ -291,11 +293,11 @@ public class RenderEntityDust extends Render implements IRenderLast
     
     public void renderFlames(EntityDust e, float par2)
     {
-    	System.out.println("BASIFM wat" + DustMod.Enable_Render_Flames_On_Dust + " " + e.renderFlamesDust + " " + (e.dustPoints == null));
+    	System.out.println("BASIFM wat" + References.Enable_Render_Flames_On_Dust + " " + e.renderFlamesDust + " " + (e.dustPoints == null));
     	
 //        GL11.glPushAttrib(GL11.GL_LIGHTING_BIT | GL11.GL_ENABLE_BIT | GL11.GL_COLOR_BUFFER_BIT);
-        boolean renderFlamesDust = (DustMod.Enable_Render_Flames_On_Dust && e.renderFlamesDust && e.dustPoints != null);
-        boolean renderFlamesRut  = (DustMod.Enable_Render_Flames_On_Ruts && e.renderFlamesRut && e.rutPoints != null);
+        boolean renderFlamesDust = (References.Enable_Render_Flames_On_Dust && e.renderFlamesDust && e.dustPoints != null);
+        boolean renderFlamesRut  = (References.Enable_Render_Flames_On_Ruts && e.renderFlamesRut && e.rutPoints != null);
 
         if (renderFlamesDust && e.flameRenderHelperDust == null)
         {

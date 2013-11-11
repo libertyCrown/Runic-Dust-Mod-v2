@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
 import com.runicdust.DustModItem;
+import com.runicdust.config.DustContent;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -49,8 +51,8 @@ public class ItemDust extends DustModItem
 		
         int var11 = world.getBlockId(i, j, k);
 
-        if(var11 == DustMod.dust.blockID && world.getBlockTileEntity(i, j, k) != null){
-            DustMod.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
+        if(var11 == DustContent.dust.blockID && world.getBlockTileEntity(i, j, k) != null){
+            DustContent.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
             return false;
         }
         
@@ -115,7 +117,7 @@ public class ItemDust extends DustModItem
                         Block.blocksList[this.blockID].onPostBlockPlaced(world, i, j, k, var13);
                         
                     }
-                    DustMod.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
+                    DustContent.dust.onBlockActivated(world, i, j, k, p, face, x, y, z);
 
                     world.playSoundEffect((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), var12.stepSound.getStepSound(), (var12.stepSound.getVolume() + 1.0F) / 6.0F, var12.stepSound.getPitch() * 0.99F);
                     --item.stackSize;
@@ -181,7 +183,7 @@ public class ItemDust extends DustModItem
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) 
     {
-    	this.mainIcon = iconRegister.registerIcon(DustMod.spritePath + "dustItem_main");
-    	this.subIcon = iconRegister.registerIcon(DustMod.spritePath + "dustItem_sub");
+    	this.mainIcon = iconRegister.registerIcon(References.spritePath + "dustItem_main");
+    	this.subIcon = iconRegister.registerIcon(References.spritePath + "dustItem_sub");
     }
 }

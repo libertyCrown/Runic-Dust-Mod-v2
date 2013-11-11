@@ -13,6 +13,7 @@ import com.runicdust.DustModItem;
 import com.runicdust.InventoryInscription;
 import com.runicdust.event.InscriptionEvent;
 import com.runicdust.event.InscriptionManager;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -129,7 +130,7 @@ public class ItemInscription extends DustModItem {
 		        {
 		            amt = 6;
 		        }
-				if(!DustMod.debug) item.setItemDamage(meta+amt);
+				if(!References.debug) item.setItemDamage(meta+amt);
 			}
 		}
 		if(meta >= max){
@@ -198,8 +199,8 @@ public class ItemInscription extends DustModItem {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-    	this.blankIcon = iconRegister.registerIcon(DustMod.spritePath + "blankInscription");
-    	this.dryingIcon = iconRegister.registerIcon(DustMod.spritePath + "dryingInscription");
-    	this.driedIcon = iconRegister.registerIcon(DustMod.spritePath + "driedInscription");
+    	this.blankIcon = iconRegister.registerIcon(References.spritePath + "blankInscription");
+    	this.dryingIcon = iconRegister.registerIcon(References.spritePath + "dryingInscription");
+    	this.driedIcon = iconRegister.registerIcon(References.spritePath + "driedInscription");
     }
 }

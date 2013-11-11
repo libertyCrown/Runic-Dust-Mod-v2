@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.runicdust.DustMod;
 import com.runicdust.DustShape;
 import com.runicdust.client.gui.GuiTome;
 import com.runicdust.client.render.DustBlockRenderers;
@@ -14,6 +13,7 @@ import com.runicdust.client.render.RenderDustTable;
 import com.runicdust.client.render.RenderEntityBlock;
 import com.runicdust.client.render.RenderEntityDust;
 import com.runicdust.client.render.RenderLastHandler;
+import com.runicdust.config.DustContent;
 import com.runicdust.core.CommonProxy;
 import com.runicdust.entity.EntityBlock;
 import com.runicdust.entity.EntityDust;
@@ -33,8 +33,8 @@ public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public int getBlockModel(Block b) {
-		if(b == DustMod.dust) return DustBlockRenderers.dustModelID;
-		if(b == DustMod.rutBlock) return DustBlockRenderers.rutModelID;
+		if(b == DustContent.dust) return DustBlockRenderers.dustModelID;
+		if(b == DustContent.rutBlock) return DustBlockRenderers.rutModelID;
 		return -1;
 	}
 	

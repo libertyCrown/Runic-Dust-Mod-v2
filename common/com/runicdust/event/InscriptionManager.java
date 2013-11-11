@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,16 +13,12 @@ import net.minecraftforge.common.Configuration;
 
 import com.runicdust.DustMod;
 import com.runicdust.item.ItemInscription;
+import com.runicdust.util.References;
 
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class InscriptionManager {
-	//
-	// public void regsterInscriptionEvent(InscriptionShape shape,
-	// InscriptionEvent event){
-	//
-	// }
 
 	public static ArrayList<InscriptionEvent> events = new ArrayList<InscriptionEvent>();
 	public static ArrayList<InscriptionEvent> eventsRemote = new ArrayList<InscriptionEvent>();

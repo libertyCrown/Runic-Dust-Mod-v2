@@ -3,17 +3,17 @@ package com.runicdust;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Level;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StringTranslate;
-import cpw.mods.fml.common.FMLCommonHandler;
+
+import com.runicdust.config.DustContent;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 public class DustItemManager {
 	
@@ -49,16 +49,18 @@ public class DustItemManager {
 		//reloadLanguage();
 		
 
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.pouch, 1, value*2+1), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustContent.idust, 1, value), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustContent.pouch, 1, value*2+1), Item.ghastTear});
     	
-		ItemStack craft = new ItemStack(DustMod.pouch, 1, value*2);
-		GameRegistry.addRecipe(craft, new Object[] {" s ", "ldl", " l ", 's', new ItemStack(Item.silk, 1), 'd', new ItemStack(DustMod.idust, 1, value), 'l', new ItemStack(Item.leather, 1)});
+		ItemStack craft = new ItemStack(DustContent.pouch, 1, value*2);
+		GameRegistry.addRecipe(craft, new Object[] {" s ", "ldl", " l ", 's', new ItemStack(Item.silk, 1), 'd', new ItemStack(DustContent.idust, 1, value), 'l', new ItemStack(Item.leather, 1)});
 //		GameRegistry.addShapelessRecipe(craft, new Object[]{craft, new ItemStack(DustMod.idust,1,value)});
-		GameRegistry.addShapelessRecipe(new ItemStack(DustMod.idust,1,value),new ItemStack(DustMod.pouch, 1, value*2+1));
+		GameRegistry.addShapelessRecipe(new ItemStack(DustContent.idust,1,value),new ItemStack(DustContent.pouch, 1, value*2+1));
 	}
-	protected static void registerRemoteDust(int value, String name, String idName,  int primaryColor, int secondaryColor, int floorColor){
-		if(colorsRemote[value] != null){
+	protected static void registerRemoteDust(int value, String name, String idName,  int primaryColor, int secondaryColor, int floorColor)
+	{
+		if(colorsRemote[value] != null)
+		{
 			throw new IllegalArgumentException("[DustMod] Remote error! Dust value already taken! " + value);
 		}
 		
@@ -68,41 +70,43 @@ public class DustItemManager {
 		namesRemote[value] = name;
 		idsRemote[value] = idName;
 		
-		LanguageRegistry.instance().addStringLocalization("tile.dust." + idName + ".name", "en_US", name + " Runic Dust");
-		LanguageRegistry.instance().addStringLocalization("tile.ink." + idName + ".name", "en_US", name + " Runic Ink");
-		LanguageRegistry.instance().addStringLocalization("pouch." + idName + ".name", "en_US", name + " Dust Pouch");
+		LanguageRegistry.instance().addStringLocalization("tile.dust." + idName + ".name", name + " Runic Dust");
+		LanguageRegistry.instance().addStringLocalization("tile.ink." + idName + ".name", name + " Runic Ink");
+		LanguageRegistry.instance().addStringLocalization("pouch." + idName + ".name", name + " Dust Pouch");
 
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.idust, 1, value), Item.ghastTear});
-    	GameRegistry.addShapelessRecipe(DustMod.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustMod.pouch, 1, value*2+1), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustContent.idust, 1, value), Item.ghastTear});
+    	GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),new Object[] {new ItemStack(Item.potion.itemID, 1, 0), new ItemStack(DustContent.pouch, 1, value*2+1), Item.ghastTear});
     	
-		ItemStack craft = new ItemStack(DustMod.pouch, 1, value*2);
-		GameRegistry.addRecipe(craft, new Object[] {" s ", "ldl", " l ", 's', new ItemStack(Item.silk, 1), 'd', new ItemStack(DustMod.idust, 1, value), 'l', new ItemStack(Item.leather, 1)});
+		ItemStack craft = new ItemStack(DustContent.pouch, 1, value*2);
+		GameRegistry.addRecipe(craft, new Object[] {" s ", "ldl", " l ", 's', new ItemStack(Item.silk, 1), 'd', new ItemStack(DustContent.idust, 1, value), 'l', new ItemStack(Item.leather, 1)});
 //		GameRegistry.addShapelessRecipe(craft, new Object[]{craft, new ItemStack(DustMod.idust,1,value)});
-		GameRegistry.addShapelessRecipe(new ItemStack(DustMod.idust,1,value),new ItemStack(DustMod.pouch, 1, value*2+1));
+		GameRegistry.addShapelessRecipe(new ItemStack(DustContent.idust,1,value),new ItemStack(DustContent.pouch, 1, value*2+1));
 		//reloadLanguage();
 	}
 	
-	/*public static void reloadLanguage(){
+	/*
+	public static void reloadLanguage()
+	{
 		if(FMLCommonHandler.instance().getSide() != Side.CLIENT) return;
 		try{
-			StringTranslate st = new StringTranslate();
-			//String curLan = st.currentLanguage;
+			//StringTranslate st = new StringTranslate();
+			String curLan = Minecraft.getMinecraft().gameSettings.language;
 			
 			Properties var2 = new Properties();
 
             try
             {
-                loadLanguage(st,var2, "en_US");
+                loadLanguage(st, var2, "en_US");
             }
             catch (IOException var8)
             {
                 ;
             }
 
-//            st.isUnicode = false;
+            st.isUnicode = false;
 
-//            if (!"en_US".equals(par1Str))
-//            {
+            if (!"en_US".equals(par1Str))
+            {
                 try
                 {
                     loadLanguage(st,var2, curLan);
@@ -121,7 +125,7 @@ public class DustItemManager {
                             {
                                 if (var6.charAt(var7) >= 256)
                                 {
-//                                    st.isUnicode = true;
+                                    st.isUnicode = true;
                                     break;
                                 }
                             }
@@ -133,11 +137,12 @@ public class DustItemManager {
                     var9.printStackTrace();
                     return;
                 }
-//            }
+            }
 
-//            st.currentLanguage = par1Str;
+            st.currentLanguage = par1Str;
             st.translateTable = var2;
-		}catch(Exception e){
+		}
+	catch(Exception e){
 			
 		}
 	}*/
@@ -209,7 +214,6 @@ public class DustItemManager {
 	
 	public static void reset(){
 		DustMod.log(Level.FINE, "Reseting remote dusts.");
-//    	System.out.println("[DustMod] Reseting remote dusts.");
 		colorsRemote = new DustColor[1000];
 		namesRemote = new String[1000];
 		idsRemote = new String[1000];
@@ -217,16 +221,16 @@ public class DustItemManager {
 	
 	public static void registerDefaultDusts(){
 		registerDust(1,"(old, place or craft to update)", "plantdustold", 0x629B26, 0x8AD041, 0xC2E300);
-		registerDust(100,"Plant", "plantdust", 0x629B26, 0x8AD041, 0xC2E300); //Migrating to space out
+		registerDust(100,"Plant", "plantdust", 0x629B26, 0x8AD041, 0xC2E300);
 		
 		registerDust(2,"(old, place or craft to update)", "gundustold",0x696969, 0x979797, 0x666464);
-		registerDust(200,"Gunpowder", "gundust",0x696969, 0x979797, 0x666464); //Migrating to space out
+		registerDust(200,"Gunpowder", "gundust",0x696969, 0x979797, 0x666464);
 		
 		registerDust(3,"(old, place or craft to update)", "lapisdustold",0x345EC3, 0x5A82E2, 0x0087FF);
-		registerDust(300,"Lapis", "lapisdust",0x345EC3, 0x5A82E2, 0x0087FF); //Migrating to space out
+		registerDust(300,"Lapis", "lapisdust",0x345EC3, 0x5A82E2, 0x0087FF);
 		
 		registerDust(4,"(old, place or craft to update)", "blazedustold",0xEA8A00, 0xFFFE31, 0xFF6E1E);
-		registerDust(400,"Blaze", "blazedust",0xEA8A00, 0xFFFE31, 0xFF6E1E); //Migrating to space out
+		registerDust(400,"Blaze", "blazedust",0xEA8A00, 0xFFFE31, 0xFF6E1E);
 	}
 
 	public static class DustColor{

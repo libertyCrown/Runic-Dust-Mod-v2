@@ -7,6 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import com.runicdust.config.DustContent;
 import com.runicdust.item.ItemInk;
 
 public class InscriptionGuiContainer extends Container {
@@ -25,9 +26,9 @@ public class InscriptionGuiContainer extends Container {
 		 //Loop through player's hotbar for inks
 		 for(int i = 1; i < 10; i++){
 			 ItemStack stack = inventoryPlayer.getStackInSlot(i-1);
-			 if(stack != null && stack.itemID == DustMod.ink.itemID){
+			 if(stack != null && stack.itemID == DustContent.ink.itemID){
 		        	int id = ItemInk.getDustID(stack);
-		        	this.putStackInSlot(0, new ItemStack(DustMod.ink.itemID, id, i-1));
+		        	this.putStackInSlot(0, new ItemStack(DustContent.ink.itemID, id, i-1));
 				 break;
 			 }
 		 }
@@ -49,9 +50,8 @@ public class InscriptionGuiContainer extends Container {
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer p) {
-		// TODO Auto-generated method stub
 		if(p.getCurrentEquippedItem() == null) return false;
-		return p.getCurrentEquippedItem().itemID == DustMod.inscription.itemID;
+		return p.getCurrentEquippedItem().itemID == DustContent.inscription.itemID;
 	}
 	
 	@Override

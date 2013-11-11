@@ -1,6 +1,5 @@
 package com.runicdust.inscriptions;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -8,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 
 import com.runicdust.DustMod;
+import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.event.DustEvent;
 import com.runicdust.event.InscriptionEvent;
@@ -54,7 +54,7 @@ public int level;
 			req = new ItemStack[]{new ItemStack(Item.feather,4), new ItemStack(Item.firework.itemID, 1, -1)};
 			xp = 5;
 		}else if(level == 2){
-			ItemStack leapI = new ItemStack(DustMod.wornInscription.itemID, 1, 0);
+			ItemStack leapI = new ItemStack(DustContent.wornInscription.itemID, 1, 0);
 			InscriptionManager.setEvent(leapI, "leapI");
 			req = new ItemStack[]{leapI, new ItemStack(Item.monsterPlacer.itemID, 1, 55)};
 			xp = 7;

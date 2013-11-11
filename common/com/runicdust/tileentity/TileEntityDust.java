@@ -23,6 +23,7 @@ import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
 import com.runicdust.PacketHandler;
 import com.runicdust.block.BlockDust;
+import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 
 /**
@@ -471,7 +472,7 @@ public class TileEntityDust extends TileEntity implements IInventory
         }
         else
         {
-            return new ItemStack(DustMod.idust.itemID, 1, pattern[x][y]);
+            return new ItemStack(DustContent.idust.itemID, 1, pattern[x][y]);
         }
     }
 
@@ -510,7 +511,7 @@ public class TileEntityDust extends TileEntity implements IInventory
         int meta = item.getItemDamage();
         int id = item.itemID;
 
-        if (id == DustMod.idust.itemID && size > 0)
+        if (id == DustContent.idust.itemID && size > 0)
         {
             pattern[x][y] = meta;
         }
