@@ -80,97 +80,98 @@ public class DustModDefaults {
 		registerInscriptions();
 	}
 
-	public void registerDusts() {
+	public void registerDusts() 
+	{
 		// Default dusts come with the actual mod to start
 	}
 
 	public void registerRunes() {
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/torch.xml", new DESpawnTorch());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/torch.xml", new DESpawnTorch());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/rabbit.xml", new DEHideout());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/rabbit.xml", new DEHideout());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/healing.xml", new DEHeal());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/healing.xml", new DEHeal());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/lumber.xml", new DELumberjack());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/lumber.xml", new DELumberjack());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/campfire.xml", new DECampFire());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/campfire.xml", new DECampFire());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/depths.xml", new DEPit());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/depths.xml", new DEPit());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/heights.xml", new DEObelisk());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/heights.xml", new DEObelisk());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/farm.xml", new DEFarm());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/farm.xml", new DEFarm());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/leapfrog.xml", new DELillyBridge());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/leapfrog.xml", new DELillyBridge());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/dawn.xml", new DEDawn());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/dawn.xml", new DEDawn());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/dusk.xml", new DELunar());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/dusk.xml", new DELunar());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/trap.fire.xml", new DEFireTrap());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/trap.fire.xml", new DEFireTrap());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/trap.lightning.xml", new DELightning());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/trap.lightning.xml", new DELightning());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/trap.poison.xml", new DEPoisonTrap());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/trap.poison.xml", new DEPoisonTrap());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/trap.detonation.xml", new DEBomb());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/trap.detonation.xml", new DEBomb());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/trap.entrap.xml", new DECage());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/trap.entrap.xml", new DECage());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/timelock.xml", new DETimeLock());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/timelock.xml", new DETimeLock());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/void.xml", new DEVoid());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/void.xml", new DEVoid());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/wall.xml", new DEWall());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/wall.xml", new DEWall());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/wisdom.xml", new DEXPStore());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/wisdom.xml", new DEXPStore());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/speed.xml", new DESpeed());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/speed.xml", new DESpeed());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/compression.xml", new DECompression());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/compression.xml", new DECompression());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/firerain.xml", new DEFireRain());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/firerain.xml", new DEFireRain());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/eggifier.xml", new DEEggifier());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/eggifier.xml", new DEEggifier());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/resurrection.xml", new DEResurrection());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/resurrection.xml", new DEResurrection());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/power_relay.xml", new DEPowerRelay());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/power_relay.xml", new DEPowerRelay());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/charge_inscriptions.xml", new DEChargeInscription());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/charge_inscriptions.xml", new DEChargeInscription());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/spawner_collection.xml", new DESpawnerCollector());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/spawner_collection.xml", new DESpawnerCollector());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/spawner_reassignment.xml", new DESpawnerReprog());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/spawner_reassignment.xml", new DESpawnerReprog());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/teleport.xml", new DETeleportation());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/teleport.xml", new DETeleportation());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/minitele.xml", new DEMiniTele());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/minitele.xml", new DEMiniTele());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/sprite.fire.xml", new DEFireSprite());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/sprite.fire.xml", new DEFireSprite());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/sprite.earth.xml", new DEEarthSprite());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/sprite.earth.xml", new DEEarthSprite());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/bounce.xml", new DEBounce());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/bounce.xml", new DEBounce());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/spawn_record.xml", new DESpawnRecord());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/spawn_record.xml", new DESpawnRecord());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/spirit_tools.xml", new DESpiritTool());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/spirit_tools.xml", new DESpiritTool());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/ench.firebow.xml", new DEFireBowEnch());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/ench.firebow.xml", new DEFireBowEnch());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/ench.silktouch.xml", new DESilkTouchEnch());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/ench.silktouch.xml", new DESilkTouchEnch());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/ench.fortune.xml", new DEFortuneEnch());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/ench.fortune.xml", new DEFortuneEnch());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/protection.xml", new DEForcefield());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/protection.xml", new DEForcefield());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/level_earth.xml", new DEFlatten());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/level_earth.xml", new DEFlatten());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/lift_terrain.xml", new DELiftTerrain());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/lift_terrain.xml", new DELiftTerrain());
 		
-		XMLDustShapeReader.readAndRegiterShape("/com/runicdust/runes/data/sarlacc.xml", new DEXP());
+		XMLDustShapeReader.readAndRegiterShape("/assets/runicdust/runedata/sarlacc.xml", new DEXP());
 
 		// last id used: 46
 		// notes for reanimation:

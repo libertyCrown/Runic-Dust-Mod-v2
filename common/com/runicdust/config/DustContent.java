@@ -28,6 +28,7 @@ import com.runicdust.tileentity.TileEntityRut;
 import com.runicdust.util.References;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class DustContent 
 {
@@ -74,6 +75,20 @@ public class DustContent
 		GameRegistry.registerTileEntity(TileEntityDust.class, "dusttileentity");
 		GameRegistry.registerTileEntity(TileEntityDustTable.class, "dusttabletileentity");
 		GameRegistry.registerTileEntity(TileEntityRut.class, "dustruttileentity");
+		
+		//naming time!!!
+		LanguageRegistry.addName(dustTable, "Runic Lexicon");
+		LanguageRegistry.addName(tome, "Runic Tome");
+		LanguageRegistry.addName(negateSacrifice, "Negate Sacrifice");
+		LanguageRegistry.addName(spiritPickaxe, "Spirit Pickaxe");
+		LanguageRegistry.addName(spiritSword, "Spirit Sword");
+		LanguageRegistry.addName(tome, "Runic Tome");
+		LanguageRegistry.addName(chisel, "Hammer & Chisel");
+		LanguageRegistry.addName(runicPaper, "Scroll Paper");
+		LanguageRegistry.addName(pouch, "ERROR Runic Pouch");
+		LanguageRegistry.addName(inscription, "Blank Inscription");
+		LanguageRegistry.addName(wornInscription, "Dried Drawing");
+		//LanguageRegistry.addName("dryinginsc.name", "Drying Inscription");
 	}
 	
 	public static void initCrafting()
@@ -188,12 +203,25 @@ public class DustContent
 			new ItemStack(Item.dyePowder, 2, 4) 
 		});
 		GameRegistry.addShapelessRecipe(new ItemStack(idust, 12, 400), new Object[] { 
-			Item.blazePowder, new ItemStack(idust, 1, 300),
+			Item.blazePowder, 
+			new ItemStack(idust, 1, 300),
 			new ItemStack(idust, 1, 300),
 			new ItemStack(idust, 1, 300)
 		});
 		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0), new Object[] { 
-			new ItemStack(idust, 1, -1), 
+			new ItemStack(idust, 1, 100), 
+			Item.book 
+		});
+		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0), new Object[] { 
+			new ItemStack(idust, 1, 200), 
+			Item.book 
+		});
+		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0), new Object[] { 
+			new ItemStack(idust, 1, 300), 
+			Item.book 
+		});
+		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0), new Object[] { 
+			new ItemStack(idust, 1, 400), 
 			Item.book 
 		});
 		GameRegistry.addShapelessRecipe(new ItemStack(runicPaper, 1), new Object[] { 
