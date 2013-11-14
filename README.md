@@ -10,6 +10,8 @@ will unless it is something stupid (such as throwing a ton of spam into the mine
 
 Forum Thread: http://www.minecraftforum.net/topic/1991128-wip-forge-runic-dust-mod-v2/
 
+Download Page (WIP): https://googledrive.com/host/0B8EtxI3CunJJa0NEZHBDdWJUcGs/
+
 
 Localizations
 =============
