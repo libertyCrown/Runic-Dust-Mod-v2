@@ -9,3 +9,11 @@ will unless it is something stupid (such as throwing a ton of spam into the mine
 
 
 Forum Thread: http://www.minecraftforum.net/topic/1991128-wip-forge-runic-dust-mod-v2/
+
+
+Localizations
+=============
+
+If you want to help translate the mod into a certain language, just look into the en_US.lang file (which is found in the
+assets/runicdust/lang directory) for the item, block, and tile namings.  Then, just make a pull request and I will add it 
+to the repo ASAP.
