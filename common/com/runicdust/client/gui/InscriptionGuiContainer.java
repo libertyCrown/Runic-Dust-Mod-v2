@@ -1,4 +1,4 @@
-package com.runicdust;
+package com.runicdust.client.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -59,9 +59,4 @@ public class InscriptionGuiContainer extends Container {
 			int par3, boolean par4) {
 		return false;
 	}
-	
-	
-
-
-
 }

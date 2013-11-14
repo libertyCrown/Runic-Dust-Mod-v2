@@ -9,7 +9,6 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import com.runicdust.DustMod;
-import com.runicdust.DustModItem;
 import com.runicdust.InventoryInscription;
 import com.runicdust.event.InscriptionEvent;
 import com.runicdust.event.InscriptionManager;
@@ -60,9 +59,9 @@ public class ItemInscription extends DustModItem {
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack item, World world,
-			EntityPlayer player) {
-		// TODO Auto-generated method stub
-		player.openGui(DustMod.instance, 0, world, 0,0,0);
+			EntityPlayer player) 
+	{
+		player.openGui(DustMod.instance, 0, world, (int)player.posX, (int)player.posY, (int)player.posZ);
 
 		return item;
 	}

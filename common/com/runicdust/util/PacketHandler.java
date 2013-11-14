@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.runicdust;
+package com.runicdust.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,7 +27,11 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 
-import com.runicdust.DustItemManager.DustColor;
+import com.runicdust.DustMod;
+import com.runicdust.DustShape;
+import com.runicdust.api.DustItemManager;
+import com.runicdust.api.DustItemManager.DustColor;
+import com.runicdust.api.DustManager;
 import com.runicdust.event.DustEvent;
 import com.runicdust.event.InscriptionEvent;
 import com.runicdust.event.InscriptionManager;
@@ -910,10 +913,10 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
         	mz = (double)dis.readFloat();
         	jumpMotion = dis.readFloat();
         	
-        	EntityLiving ent = (EntityLiving)((EntityPlayer)player).worldObj.getEntityByID(entID);
+        	EntityLivingBase ent =  (EntityLivingBase) ((EntityPlayer)player).worldObj.getEntityByID(entID);
         	
-        	if(ent != null){
-//        		ent.setVelocity(mx, my, mz);
+        	if(ent != null){        		
+        		ent.setVelocity(mx, my, mz);
         		ent.addVelocity(-ent.motionX + mx, -ent.motionY + my, -ent.motionZ + mz);
         		ent.jumpMovementFactor = jumpMotion;
         	}
@@ -990,7 +993,6 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 	public void playerLoggedIn(Player player, NetHandler netHandler,
 			INetworkManager manager) {
 		
-//		System.out.println("Player logged in " + DustMod.proxy.isClient() );
 		DustMod.keyHandler.checkPlayer(player);
 		for(int i = 0; i < DustItemManager.ids.length; i++){
 			if(DustItemManager.ids[i] != null){

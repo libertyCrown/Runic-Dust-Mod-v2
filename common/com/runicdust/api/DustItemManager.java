@@ -1,4 +1,4 @@
-package com.runicdust;
+package com.runicdust.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StringTranslate;
 
+import com.runicdust.DustMod;
 import com.runicdust.config.DustContent;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -57,7 +58,7 @@ public class DustItemManager {
 //		GameRegistry.addShapelessRecipe(craft, new Object[]{craft, new ItemStack(DustMod.idust,1,value)});
 		GameRegistry.addShapelessRecipe(new ItemStack(DustContent.idust,1,value),new ItemStack(DustContent.pouch, 1, value*2+1));
 	}
-	protected static void registerRemoteDust(int value, String name, String idName,  int primaryColor, int secondaryColor, int floorColor)
+	public static void registerRemoteDust(int value, String name, String idName,  int primaryColor, int secondaryColor, int floorColor)
 	{
 		if(colorsRemote[value] != null)
 		{

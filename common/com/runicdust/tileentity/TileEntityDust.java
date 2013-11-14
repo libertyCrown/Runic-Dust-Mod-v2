@@ -19,12 +19,12 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
-import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
-import com.runicdust.PacketHandler;
+import com.runicdust.api.DustItemManager;
 import com.runicdust.block.BlockDust;
 import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
+import com.runicdust.util.PacketHandler;
 
 /**
  *

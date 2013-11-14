@@ -1,33 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.runicdust.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.runicdust.DustMod;
-import com.runicdust.DustModItem;
-import com.runicdust.config.DustConfig;
 import com.runicdust.config.DustContent;
 import com.runicdust.tileentity.TileEntityRut;
 import com.runicdust.util.References;
 
-/**
- *
- * @author billythegoat101
- */
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemChisel extends DustModItem
 {
-    private int tex;
-
     public ItemChisel(int i)
     {
         super(i);
-        
         setMaxStackSize(1);
         setMaxDamage(238);
     }
@@ -69,21 +59,21 @@ public class ItemChisel extends DustModItem
 
         itemstack.damageItem(1, p);
 
-//        if (!world.isRemote)
-//        {
-            world.setBlock(i, j, k, DustContent.rutBlock.blockID, meta,3);
-            TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(i, j, k);
-            ter.maskBlock = blockId;
-            ter.maskMeta = meta;
-            DustContent.rutBlock.onBlockActivated(world, i, j, k, p,face,x,y,z);
-//            System.out.println("Set");
-//        }
 
-//        System.out.println("Setting to " + blockID + " " + meta);
+        world.setBlock(i, j, k, DustContent.rutBlock.blockID, meta,3);
+        TileEntityRut ter = (TileEntityRut)world.getBlockTileEntity(i, j, k);
+        ter.maskBlock = blockId;
+        ter.maskMeta = meta;
+        DustContent.rutBlock.onBlockActivated(world, i, j, k, p,face,x,y,z);
+
         return true;
     }
-//    @Override
-//    public String getItemName() {
-//        return "dustchisel";
-//    }
+    
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconregister)
+    {
+    	this.itemIcon = iconregister.registerIcon(References.spritePath + "itemdustchisel");
+    }
+    
+
 }

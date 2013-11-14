@@ -19,10 +19,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import com.runicdust.DustManager;
 import com.runicdust.DustMod;
-import com.runicdust.DustModItem;
 import com.runicdust.DustShape;
+import com.runicdust.api.DustManager;
 import com.runicdust.config.DustContent;
 import com.runicdust.util.References;
 

@@ -1,4 +1,3 @@
-
 package com.runicdust.client.gui;
 
 import java.util.Random;
@@ -11,9 +10,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.runicdust.DustManager;
 import com.runicdust.DustMod;
 import com.runicdust.DustShape;
+import com.runicdust.api.DustManager;
 import com.runicdust.client.PageHelper;
 import com.runicdust.client.render.RenderDustTable;
 import com.runicdust.event.InscriptionEvent;

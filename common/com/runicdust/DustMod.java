@@ -24,7 +24,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
 
-import com.runicdust.block.GuiHandler;
+import com.runicdust.api.DustItemManager;
+import com.runicdust.api.DustManager;
 import com.runicdust.config.DustConfig;
 import com.runicdust.config.DustContent;
 import com.runicdust.core.CommonMouseHandler;
@@ -32,6 +33,8 @@ import com.runicdust.core.CommonProxy;
 import com.runicdust.entity.EntityDustManager;
 import com.runicdust.event.InscriptionManager;
 import com.runicdust.item.ItemWornInscription;
+import com.runicdust.util.GuiHandler;
+import com.runicdust.util.PacketHandler;
 import com.runicdust.util.VoidStorageManager;
 import com.runicdust.util.VoidTeleManager;
 
@@ -107,7 +110,7 @@ public class DustMod
 		DustItemManager.registerDefaultDusts();
 		DustManager.registerDefaultShapes();
 		InscriptionManager.registerDefaultInscriptions();
-		//lang.addStringLocalization("inscblank.name", "Doodle");
+	    //lang.addStringLocalization("inscblank.name", "Doodle");
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

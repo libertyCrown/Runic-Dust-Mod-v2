@@ -11,9 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 
-import com.runicdust.PacketHandler;
-import com.runicdust.config.DustConfig;
 import com.runicdust.config.DustContent;
+import com.runicdust.util.PacketHandler;
 import com.runicdust.util.References;
 
 /**

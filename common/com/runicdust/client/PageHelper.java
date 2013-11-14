@@ -22,11 +22,10 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.runicdust.DustItemManager;
 import com.runicdust.DustMod;
 import com.runicdust.DustShape;
+import com.runicdust.api.DustItemManager;
 import com.runicdust.event.InscriptionEvent;
-import com.runicdust.util.References;
 
 /**
  *

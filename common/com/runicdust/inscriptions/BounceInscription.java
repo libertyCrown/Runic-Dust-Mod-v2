@@ -35,14 +35,17 @@ public class BounceInscription extends InscriptionEvent {
 	@Override
 	public void onUpdate(EntityLivingBase wearer, ItemStack item, boolean[] buttons) {
 		super.onUpdate(wearer, item, buttons);
-		if(!wearer.onGround){
+		if(!wearer.onGround)
+		{
 			if(getLastYVel(item) > wearer.motionY)
 				setFalling(item,true, getFallDist(item) + wearer.fallDistance, (float)wearer.motionX, (float)wearer.motionY, (float)wearer.motionZ);
 			wearer.fallDistance = 0;
-		}else if(wearer.isSneaking()){
+		}
+		else if(wearer.isSneaking()){
 			wearer.fallDistance = getFallDist(item);
 			setFalling(item,false,0,0,0,0);
-		}else if(wasFalling(item) && getLastYVel(item) < -0.75f){
+		}
+		else if(wasFalling(item) && getLastYVel(item) < -0.75f){
 			wearer.fallDistance = getFallDist(item)/2f;
 			wearer.motionX = -getLastXVel(item)*0.76D;
 			wearer.motionY = -getLastYVel(item)*0.76D;

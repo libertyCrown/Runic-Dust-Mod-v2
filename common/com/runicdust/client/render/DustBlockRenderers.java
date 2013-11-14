@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 
-import com.runicdust.DustItemManager;
+import com.runicdust.api.DustItemManager;
 import com.runicdust.block.BlockDust;
 import com.runicdust.tileentity.TileEntityDust;
 import com.runicdust.tileentity.TileEntityRut;

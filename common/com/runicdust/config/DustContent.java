@@ -6,12 +6,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.DustMod;
-import com.runicdust.DustModItem;
 import com.runicdust.DustModTab;
 import com.runicdust.block.BlockDust;
 import com.runicdust.block.BlockDustTable;
 import com.runicdust.block.BlockRut;
+import com.runicdust.item.DustModItem;
 import com.runicdust.item.ItemChisel;
 import com.runicdust.item.ItemDust;
 import com.runicdust.item.ItemInk;
@@ -50,34 +49,46 @@ public class DustContent
 	
 	public static void initContent()
 	{
+		//Block registries
 		dust = new BlockDust(References.BLOCK_DustID);
+		GameRegistry.registerBlock(dust, ItemBlock.class, dust.getUnlocalizedName());
+		GameRegistry.registerTileEntity(TileEntityDust.class, "RunicDust");
+		dustTable = ((Block) new BlockDustTable(References.BLOCK_DustTableID)).setUnlocalizedName("runicdust.dusttable").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerBlock(dustTable, ItemBlock.class, "RunicLexicon");
+		GameRegistry.registerTileEntity(TileEntityDustTable.class, "RunicLexicon");
+		rutBlock = new BlockRut(References.BLOCK_RutID).setUnlocalizedName("runicdust.rutblock").setHardness(3.0F).setResistance(5.0F);
+		GameRegistry.registerBlock(rutBlock, ItemBlock.class, "RutBlock");
+		GameRegistry.registerTileEntity(TileEntityRut.class, "RutBlock");
+		
+		
+		//Item registries
 		idust = (DustModItem)(new ItemDust(References.ITEM_DustID, dust)).setUnlocalizedName("idust").setCreativeTab(DustModTab.dustTab);
-		dustTable = ((Block) new BlockDustTable(References.BLOCK_DustTableID)).setUnlocalizedName("dustTable").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(idust, idust.getUnlocalizedName());
 		tome = (DustModItem)(new ItemRunicTome(References.ITEM_RunicTomeID)).setUnlocalizedName("dustlibrary").setCreativeTab(DustModTab.dustTab);
-		negateSacrifice = (DustModItem)new DustModItem(References.ITEM_SacrificeNegationID).setUnlocalizedName("negateSacrifice").setCreativeTab(DustModTab.dustTab);
-		runicPaper = (DustModItem)(new DustModItem(References.ITEM_RunicPaperID)).setUnlocalizedName("runicPaper").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(tome, "DustLibrary");
+		negateSacrifice = (DustModItem)new DustModItem(References.ITEM_SacrificeNegationID).setUnlocalizedName("negatesacrifice").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(negateSacrifice, "NegateSacrifice");
+		runicPaper = (DustModItem)(new DustModItem(References.ITEM_RunicPaperID)).setUnlocalizedName("runicpaper").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(runicPaper, "RunicPaper");
 		dustScroll = (DustModItem)(new ItemPlaceScroll(References.ITEM_DustScrollID)).setUnlocalizedName("dustscroll").setCreativeTab(DustModTab.dustTab);
-		rutBlock = new BlockRut(References.BLOCK_RutID).setUnlocalizedName("dustrutblock").setHardness(3.0F).setResistance(5.0F);
-		chisel = (DustModItem)new ItemChisel(References.ITEM_ChiselID).setUnlocalizedName("itemdustchisel").setCreativeTab(DustModTab.dustTab);
-		spiritPickaxe = (new ItemSpiritPickaxe(References.ITEM_SpiritPickID, EnumToolMaterial.EMERALD)).setUnlocalizedName("spiritPickaxe").setCreativeTab(DustModTab.dustTab);
-		spiritSword = (new ItemSpiritSword(References.ITEM_SpiritSwordID)).setUnlocalizedName("spiritSword").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(dustScroll, "DustScroll");
+		chisel = (DustModItem)new ItemChisel(References.ITEM_ChiselID).setUnlocalizedName("dustchisel").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(chisel, "DustChisel");
+		spiritPickaxe = (new ItemSpiritPickaxe(References.ITEM_SpiritPickID, EnumToolMaterial.EMERALD)).setUnlocalizedName("spiritpickaxe").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(spiritPickaxe, "SpiritPickaxe");
+		spiritSword = (new ItemSpiritSword(References.ITEM_SpiritSwordID)).setUnlocalizedName("spiritsword").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(spiritSword, "SpiritSword");
 		inscription = (ItemInscription) (new ItemInscription(References.ITEM_InscriptionID)).setUnlocalizedName("runicinscription").setCreativeTab(DustModTab.dustTab);
+		GameRegistry.registerItem(inscription, "DustInscription");
 		ink = new ItemInk(References.ITEM_InkID);
+		GameRegistry.registerItem(ink, ink.getUnlocalizedName());
 		wornInscription = new ItemWornInscription(References.ITEM_WornInscriptionID);
 		wornInscription.setCreativeTab(DustModTab.dustTab);
 		pouch = new ItemPouch(References.ITEM_PouchID, dust);
 		pouch.setCreativeTab(DustModTab.dustTab);
-		
-		GameRegistry.registerBlock(dust, ItemBlock.class, dust.getUnlocalizedName());
-		GameRegistry.registerBlock(dustTable, ItemBlock.class, dustTable.getUnlocalizedName());
-		GameRegistry.registerBlock(rutBlock, ItemBlock.class, rutBlock.getUnlocalizedName());
 
-		GameRegistry.registerTileEntity(TileEntityDust.class, "dusttileentity");
-		GameRegistry.registerTileEntity(TileEntityDustTable.class, "dusttabletileentity");
-		GameRegistry.registerTileEntity(TileEntityRut.class, "dustruttileentity");
-		
 		//naming time!!!
-		LanguageRegistry.addName(dustTable, "Runic Lexicon");
+		/*LanguageRegistry.addName(dustTable, "Runic Lexicon");
 		LanguageRegistry.addName(tome, "Runic Tome");
 		LanguageRegistry.addName(negateSacrifice, "Negate Sacrifice");
 		LanguageRegistry.addName(spiritPickaxe, "Spirit Pickaxe");
@@ -87,8 +98,12 @@ public class DustContent
 		LanguageRegistry.addName(runicPaper, "Scroll Paper");
 		LanguageRegistry.addName(pouch, "ERROR Runic Pouch");
 		LanguageRegistry.addName(inscription, "Blank Inscription");
-		LanguageRegistry.addName(wornInscription, "Dried Drawing");
-		//LanguageRegistry.addName("dryinginsc.name", "Drying Inscription");
+		LanguageRegistry.instance().addStringLocalization("emptyinsc.name", "Blank Runic Inscription");
+		LanguageRegistry.instance().addStringLocalization("driedinsc.name", "Dried Drawing");
+		LanguageRegistry.instance().addStringLocalization("dryinginsc.name", "Drying Inscription");
+		
+//		LanguageRegistry.addName(wornInscription, "Dried Drawing");
+//		LanguageRegistry.addName("dryinginsc.name", "Drying Inscription");*/
 	}
 	
 	public static void initCrafting()

@@ -15,9 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
-import com.runicdust.DustItemManager;
-import com.runicdust.DustMod;
-import com.runicdust.DustModItem;
+import com.runicdust.api.DustItemManager;
 import com.runicdust.config.DustContent;
 import com.runicdust.util.References;
 

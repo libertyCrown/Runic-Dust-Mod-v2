@@ -1,4 +1,5 @@
 package com.runicdust.client.render;
+
 import java.nio.FloatBuffer;
 import java.util.List;
 
@@ -11,8 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.runicdust.DustManager;
-import com.runicdust.DustMod;
+import com.runicdust.api.DustManager;
 import com.runicdust.client.PageHelper;
 import com.runicdust.client.model.ModelDustBook;
 import com.runicdust.tileentity.TileEntityDustTable;

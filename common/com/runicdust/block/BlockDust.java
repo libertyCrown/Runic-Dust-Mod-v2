@@ -26,8 +26,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-import com.runicdust.DustManager;
 import com.runicdust.DustMod;
+import com.runicdust.api.DustManager;
 import com.runicdust.config.DustContent;
 import com.runicdust.item.ItemPouch;
 import com.runicdust.tileentity.TileEntityDust;

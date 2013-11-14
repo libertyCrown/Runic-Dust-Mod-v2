@@ -62,9 +62,7 @@ public class InscriptionManager {
 		eventsRemote.add(evt);
 		DustMod.log(Level.FINER, "Registering remote inscription " + evt.idName);
 //		System.out.println("[DustMod] Registering remote inscription " + evt.idName);
-		LanguageRegistry.instance().addStringLocalization(
-				"insc." + evt.idName + ".name", "en_US",
-				evt.properName);
+		LanguageRegistry.instance().addStringLocalization("insc." + evt.idName + ".name", "en_US", evt.properName);
 		//DustItemManager.reloadLanguage();
 		DustMod.proxy.checkInscriptionPage(evt);
 		evt.isRemote = true;
@@ -292,7 +290,8 @@ public class InscriptionManager {
 	}
 	
 
-	public static void registerDefaultInscriptions() {
+	public static void registerDefaultInscriptions() 
+	{
 		// None yet! See the test pack.
 
 	}

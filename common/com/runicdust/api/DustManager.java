@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.runicdust;
+package com.runicdust.api;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,13 +13,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Configuration;
 
+import com.runicdust.DustMod;
+import com.runicdust.DustShape;
+import com.runicdust.PoweredEvent;
 import com.runicdust.block.BlockDust;
 import com.runicdust.config.DustContent;
 import com.runicdust.entity.EntityDust;
 import com.runicdust.entity.EntityDustManager;
 import com.runicdust.event.DustEvent;
 import com.runicdust.tileentity.TileEntityDust;
-import com.runicdust.util.References;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 

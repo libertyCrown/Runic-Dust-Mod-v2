@@ -10,13 +10,11 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.runicdust.DustItemManager;
-import com.runicdust.DustMod;
-import com.runicdust.InscriptionGuiContainer;
 import com.runicdust.InventoryInscription;
-import com.runicdust.PacketHandler;
+import com.runicdust.api.DustItemManager;
 import com.runicdust.config.DustContent;
 import com.runicdust.item.ItemInk;
+import com.runicdust.util.PacketHandler;
 import com.runicdust.util.References;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -69,7 +67,6 @@ public class GuiInscription extends GuiContainer {
 			ItemStack stack = info.getStack();
 			int slot = stack.getItemDamage();// slot = 259;
 			int id = stack.getItemDamage();
-//			System.out.println("AKSNFASNF " + slot);
 			Slot highlightSlot = this.inventorySlots.getSlot(slot+1);
 			this.drawTexturedModalRect(highlightSlot.xDisplayPosition-2, highlightSlot.yDisplayPosition-2, 0, ySize+6, 20, 20);
 		}
@@ -150,7 +147,7 @@ public class GuiInscription extends GuiContainer {
 			button = b;
 			buttonUpDelay = 3;
         }
-//		super.mouseClicked(x, y, b);
+		super.mouseClicked(x, y, b);
 	}
 	
 	public int button = -1;
@@ -210,11 +207,12 @@ public class GuiInscription extends GuiContainer {
 	}
 	
 	@Override
-	public void updateScreen() {
+	public void updateScreen() 
+	{
 		super.updateScreen();
-      int x = Mouse.getEventX() * this.width / this.mc.displayWidth;
-      int y = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
-      int b = Mouse.getEventButton();
+		int x = Mouse.getEventX() * this.width / this.mc.displayWidth;
+		int y = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+		int b = Mouse.getEventButton();
 //		System.out.println(Mouse.getEventButton());
 //		if(Mouse.getEventButton() == -1) isDown = false;
 		mouseMovedOrUp(x,y,b);
@@ -297,10 +295,7 @@ public class GuiInscription extends GuiContainer {
 	
 	public void setDust(int x, int y, int dust){
 		changed = true;
-		
 		this.insc.setInventorySlotContents(x*16 + y + 10, new ItemStack(DustContent.inscription.itemID, 1, dust));
-		
-
 		if(newInscription){
 			this.sendData();
 			newInscription = false;

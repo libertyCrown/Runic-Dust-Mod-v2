@@ -15,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.runicdust.api.DustItemManager;
+import com.runicdust.api.DustManager;
 import com.runicdust.block.BlockDust;
 import com.runicdust.config.DustContent;
 import com.runicdust.item.ItemPouch;
@@ -39,7 +41,7 @@ public class DustShape {
 	private String author = "";
 	protected String desc = "";
 	public int[][][] data;
-	protected boolean isRemote = false;
+	public boolean isRemote = false;
 
 	public int[] rotationMatrix = new int[8];
 	private int[] setPos = new int[] { 0, 0, 0 };

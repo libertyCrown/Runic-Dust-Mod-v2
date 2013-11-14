@@ -11,6 +11,7 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import com.runicdust.api.DustManager;
 import com.runicdust.event.DustEvent;
 
 public class XMLDustShapeReader extends DefaultHandler {

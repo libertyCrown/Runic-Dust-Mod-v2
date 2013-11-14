@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.runicdust.DustShape;
-import com.runicdust.GenericHandler;
 import com.runicdust.event.InscriptionEvent;
+import com.runicdust.util.GenericHandler;
 import com.runicdust.util.TickHandler;
 
 import cpw.mods.fml.common.network.IGuiHandler;

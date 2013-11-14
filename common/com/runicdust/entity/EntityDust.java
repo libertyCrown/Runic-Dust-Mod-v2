@@ -12,8 +12,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.runicdust.DustManager;
 import com.runicdust.DustMod;
+import com.runicdust.api.DustManager;
 import com.runicdust.block.BlockDust;
 import com.runicdust.config.DustContent;
 import com.runicdust.event.DustEvent;

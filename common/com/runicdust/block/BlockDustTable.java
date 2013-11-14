@@ -13,8 +13,8 @@ import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.runicdust.DustManager;
 import com.runicdust.DustMod;
+import com.runicdust.api.DustManager;
 import com.runicdust.config.DustContent;
 import com.runicdust.tileentity.TileEntityDustTable;
 import com.runicdust.util.References;

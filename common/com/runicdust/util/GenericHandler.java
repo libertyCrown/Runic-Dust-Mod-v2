@@ -1,4 +1,4 @@
-package com.runicdust;
+package com.runicdust.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +9,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
+import com.runicdust.DustMod;
 import com.runicdust.config.DustContent;
 import com.runicdust.event.InscriptionManager;
 import com.runicdust.item.ItemPouch;
