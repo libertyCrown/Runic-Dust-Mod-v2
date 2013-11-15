@@ -165,10 +165,9 @@ public class TileEntityDust extends TileEntity implements IInventory
         }
 
         ticksExisted++;
-
+//
 //        if (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) != 10) {
 //            this.invalidate();
-//            System.out.println("dicks ted");
 //            return;
 //        }
 //        System.out.println("upd " + ticksExisted);

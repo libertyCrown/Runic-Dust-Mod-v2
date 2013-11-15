@@ -983,13 +983,6 @@ public class EntityDust extends Entity
     {
         return fueledExternally;
     }
-//    @Override
-//    public boolean isEntityInsideOpaqueBlock() {
-//        return false;
-//    }
-//
-    
-
 
     @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(float par1)

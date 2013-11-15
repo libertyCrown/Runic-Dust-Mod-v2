@@ -52,7 +52,6 @@ public class BlockDust extends BlockContainer {
 	@Override
 	public Icon getIcon(int i, int j) 
 	{
-		
 		return (i==1 ? topTexture:sideTexture);
 	}
 
@@ -83,7 +82,6 @@ public class BlockDust extends BlockContainer {
 	public void onEntityCollidedWithBlock(World world, int i, int j, int k,
 			Entity entity) {
 		int meta = world.getBlockMetadata(i,j,k);
-		// if(world.isRemote) return;
 		if (entity instanceof EntityItem && meta != DEAD_DUST) {
 			EntityItem ei = (EntityItem) entity;
 			ei.age = 0;
@@ -172,42 +170,28 @@ public class BlockDust extends BlockContainer {
 			return 0xEFEFEF;
 
 		default:
-//			System.out.println("derp? "
-//					+ iblockaccess.getBlockMetadata(i, j, k));
 			return 0;
 		}
 	}
 
 	@Override
 	public void onNeighborBlockChange(World world, int i, int j, int k, int l) {
-		if (world.isRemote) {
+		if (world.isRemote) 
+		{
 			return;
 		}
-
-		// if (world.multiplayerWorld) {
-		// return;
-		// }
 		int i1 = world.getBlockMetadata(i, j, k);
-
-		// boolean flag = world.getBlockId(i, j, k) ==
-		// 0;//world.canBlockBePlacedAt(blockID, i, j, k, true, i1);
 		if (world.getBlockId(i, j - 1, k) == 0
-				|| !Block.blocksList[world.getBlockId(i, j - 1, k)].blockMaterial
-						.isSolid()) {
-			// System.out.println("aww " + i + " " + (j-1) + " " + k + " " + i1
-			// + " " + world.getBlockId(i, j-1, k));
-			// if (world.getBlockMetadata(i, j, k) == 0) {
-			// onBlockRemoval(world, i, j, k);
-			// }
-			world.setBlock(i, j, k, 0, 0, 3);
+				|| !Block.blocksList[world.getBlockId(i, j - 1, k)].blockMaterial.isSolid()) {
+			world.setBlock(i, j, k, 0, 0, 2);
 		} else if (world.isBlockIndirectlyGettingPowered(i, j, k) && i1 == 0) {
 			updatePattern(world, i, j, k, null);
 			world.notifyBlockChange(i, j, k, 0);
 		} 
-		
 		TileEntityDust ted = (TileEntityDust)world.getBlockTileEntity(i, j, k);
-		ted.onNeighborBlockChange();
-
+		//TODO- did I fix this wrong?
+		//ted.onNeighborBlockChange();
+		
 		super.onNeighborBlockChange(world, i, j, k, l);
 	}
 
@@ -253,14 +237,10 @@ public class BlockDust extends BlockContainer {
 					int dust = ted.getDust(x, z);
 
 					if (dust > 0) {
-						// if
-						// (!ModLoader.getMinecraftInstance().thePlayer.capabilities.isCreativeMode)
-						// {
 						if(!player.capabilities.isCreativeMode)
 							this.dropBlockAsItem_do(world, i, j, k, new ItemStack(
 								DustContent.idust.itemID, 1, dust));
 					}
-					// }
 				}
 			}
 		}

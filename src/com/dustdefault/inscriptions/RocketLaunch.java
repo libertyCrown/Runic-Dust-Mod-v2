@@ -1,4 +1,4 @@
-package com.dustcore.inscriptions;
+package com.dustdefault.inscriptions;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

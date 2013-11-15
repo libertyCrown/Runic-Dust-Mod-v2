@@ -59,10 +59,12 @@ public class DEPit extends DustEvent
                 break;
         }
 
-        boolean advanced = (dustID > 2);
+        boolean advanced = (dustID > 201);
         ItemStack[] sac;
-        if(!advanced) sac = new ItemStack[] {new ItemStack(Block.wood.blockID, 2, -1)};
-        else sac = new ItemStack[] {new ItemStack(Item.coal.itemID, 2, -1)};
+        if(!advanced) 
+        	sac = new ItemStack[] {new ItemStack(Block.wood.blockID, 2, 0)};
+        else 
+        	sac = new ItemStack[] {new ItemStack(Item.coal.itemID, 2, 0)};
         sac = this.sacrifice(e, sac);
 
         if (!this.checkSacrifice(sac))
@@ -93,7 +95,7 @@ public class DEPit extends DustEvent
             {
                 block.onBlockDestroyedByPlayer(world, x, y - dy, z, world.getBlockMetadata(x, y - dy, z));
                 block.dropBlockAsItem(world, x, y - dy, z, world.getBlockMetadata(x, y - dy, z), 0);
-                world.setBlock(x, y - dy, z, 0,0,3);
+                world.setBlock(x, y - dy, z, 0,0,2);
             }
         }
 

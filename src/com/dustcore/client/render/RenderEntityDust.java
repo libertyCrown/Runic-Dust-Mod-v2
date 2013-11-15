@@ -160,8 +160,8 @@ public class RenderEntityDust extends Render implements IRenderLast
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glEnable(GL11.GL_LIGHTING);
         RenderHelper.enableStandardItemLighting();
-//            OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapDisabled);
-//                GL11.glEnable(GL11.GL_TEXTURE_2D);
+            //OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapDisabled);
+                GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glPopMatrix();
         GL11.glPopAttrib();
     }
