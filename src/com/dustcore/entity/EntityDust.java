@@ -52,7 +52,7 @@ public class EntityDust extends Entity
     public boolean doFizzle = false;
     
     public boolean reanimate = false;
-    public  boolean renderBeam = false;
+    public boolean renderBeam = false;
     public int beamType = 0;
     public boolean renderStar = false;
     public boolean ignoreRune = false;
@@ -123,7 +123,7 @@ public class EntityDust extends Entity
     @Override
     protected void entityInit()
     {
-//    	System.out.println("Inint datawatcher");
+    	System.out.println("Inint datawatcher");
         dataWatcher.addObject(DW_ri, new Integer(ri));
         dataWatcher.addObject(DW_gi, new Integer(gi));
         dataWatcher.addObject(DW_bi, new Integer(bi));
@@ -206,7 +206,7 @@ public class EntityDust extends Entity
         {
             eventName = "";
         }
-//    	System.out.println("Update from data " + renderStar);
+        System.out.println("Update from data " + renderStar);
     }
 
     public void setStarScale(float scale){
@@ -791,8 +791,6 @@ public class EntityDust extends Entity
         Random random = new Random();
         float f1 = 0.7F;
         float f2 = 0;
-
-        
         
         for (int j = 1; j <= 2; j++)
         {

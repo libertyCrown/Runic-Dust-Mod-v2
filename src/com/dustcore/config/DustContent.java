@@ -6,10 +6,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
+import com.dustcore.DustMod;
 import com.dustcore.DustModTab;
 import com.dustcore.block.BlockDust;
 import com.dustcore.block.BlockDustTable;
 import com.dustcore.block.BlockRut;
+import com.dustcore.entity.EntityBlock;
+import com.dustcore.entity.EntityDust;
 import com.dustcore.item.DustModItem;
 import com.dustcore.item.ItemChisel;
 import com.dustcore.item.ItemDust;
@@ -26,6 +29,7 @@ import com.dustcore.tileentity.TileEntityDustTable;
 import com.dustcore.tileentity.TileEntityRut;
 import com.dustcore.util.References;
 
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class DustContent 
@@ -236,5 +240,10 @@ public class DustContent
 					new ItemStack(idust, 1, i)
 			);
 		}
+	}
+	
+	public static void registerEntites()
+	{
+		//something will go here... eventually
 	}
 }

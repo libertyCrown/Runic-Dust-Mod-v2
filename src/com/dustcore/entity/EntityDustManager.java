@@ -24,7 +24,6 @@ public class EntityDustManager {
 		nextDustEntID++;
 		if (propGeneral == null) {
 			DustMod.log(Level.WARNING, "General property file is null!");
-//			System.out.println("[DustMod] General property file is null!");
 		}
 		propGeneral.setProperty("entDustNID", "" + nextDustEntID);
 

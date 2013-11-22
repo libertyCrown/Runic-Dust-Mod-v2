@@ -23,6 +23,7 @@ import net.minecraft.world.storage.ISaveHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.event.world.WorldEvent.Load;
 
 import com.dustcore.api.DustItemManager;
 import com.dustcore.api.DustManager;
@@ -30,11 +31,14 @@ import com.dustcore.config.DustConfig;
 import com.dustcore.config.DustContent;
 import com.dustcore.core.CommonMouseHandler;
 import com.dustcore.core.CommonProxy;
+import com.dustcore.entity.EntityBlock;
+import com.dustcore.entity.EntityDust;
 import com.dustcore.entity.EntityDustManager;
 import com.dustcore.event.InscriptionManager;
 import com.dustcore.item.ItemWornInscription;
 import com.dustcore.util.GuiHandler;
 import com.dustcore.util.PacketHandler;
+import com.dustcore.util.References;
 import com.dustcore.util.VoidStorageManager;
 import com.dustcore.util.VoidTeleManager;
 
@@ -50,8 +54,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid = "DustMod", name = "RunicDustMod", version = "1.4pre2")
+@Mod(modid = "DustModCore", name = "RunicDustMod-Core", version = "1.4pre2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class, channels = {
 		PacketHandler.CHANNEL_DMRune, PacketHandler.CHANNEL_TEDust,
 		PacketHandler.CHANNEL_TELexicon, PacketHandler.CHANNEL_TERut,
@@ -67,7 +72,6 @@ public class DustMod
 
 	@Instance("DustMod")
 	public static DustMod instance;
-	
 	public static int prevVoidSize;
 	public static HashMap<String, ArrayList<ItemStack>> voidInventory;
 	public static ArrayList<int[]> voidNetwork;
@@ -100,7 +104,7 @@ public class DustMod
 	{
 		DustContent.initContent();
 		DustContent.initCrafting();
-		
+		DustContent.registerEntites();
 		NetworkRegistry.instance().registerConnectionHandler(new PacketHandler());
 		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 		proxy.registerEventHandlers();
@@ -111,7 +115,10 @@ public class DustMod
 		DustManager.registerDefaultShapes();
 		InscriptionManager.registerDefaultInscriptions();
 	    //lang.addStringLocalization("inscblank.name", "Doodle");
-
+        EntityRegistry.registerModEntity(EntityDust.class, "dustentity",
+                References.ENTITY_FireSpriteID, this, 192, 2, false);
+        EntityRegistry.registerModEntity(EntityBlock.class, "dustblockentity",
+                References.ENTITY_BlockEntityID, this, 64, 1, false);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -122,7 +129,7 @@ public class DustMod
 	}
 
 	@ForgeSubscribe
-	public void onWorldEvent(WorldEvent.Load evt) {
+	public void onWorldEvent(Load evt) {
 
 		if (evt.world.isRemote)
 			return;

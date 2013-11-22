@@ -57,7 +57,6 @@ public class RenderEntityDust extends Render implements IRenderLast
 //        	System.out.println(offset + " " + perc);
         	yOffset = (float)perc*(float)offsetPerc-(float)offset;
         }        
-
         Random random = new Random(432L);
         GL11.glPushAttrib(GL11.GL_LIGHTING_BIT | GL11.GL_ENABLE_BIT | GL11.GL_COLOR_BUFFER_BIT);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -83,10 +82,8 @@ public class RenderEntityDust extends Render implements IRenderLast
             tessellator.startDrawing(6);
             float f3 = random.nextFloat() * 20F + 5F + f2 * 10F;
             float f4 = random.nextFloat() * 2.0F + 1.0F + f2 * 2.0F;
-            //tessellator.setColorRGBA_I(0xffffFF, (int)(255F * (1.0F - f2)));
             tessellator.setColorRGBA_F(ri, gi, bi, (int)(255F * (1.0F - f2)));
             tessellator.addVertex(0.0D, 0.0D, 0.0D);
-//            tessellator.setColorRGBA_I(0x0000FF, 0);
             tessellator.setColorRGBA_F(ro, go, bo, 0);
             tessellator.addVertex(-0.86599999999999999D * (double)f4, f3, -0.5F * f4);
             tessellator.addVertex(0.86599999999999999D * (double)f4, f3, -0.5F * f4);
@@ -94,7 +91,6 @@ public class RenderEntityDust extends Render implements IRenderLast
             tessellator.addVertex(-0.86599999999999999D * (double)f4, f3, -0.5F * f4);
             tessellator.draw();
         }
-
         GL11.glPopMatrix();
         GL11.glDepthMask(true);
         GL11.glDisable(GL11.GL_CULL_FACE);
@@ -161,7 +157,7 @@ public class RenderEntityDust extends Render implements IRenderLast
         GL11.glEnable(GL11.GL_LIGHTING);
         RenderHelper.enableStandardItemLighting();
             //OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapDisabled);
-                GL11.glEnable(GL11.GL_TEXTURE_2D);
+            //GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glPopMatrix();
         GL11.glPopAttrib();
     }

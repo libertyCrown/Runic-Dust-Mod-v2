@@ -18,16 +18,16 @@ public class TickHandler implements ITickHandler {
 
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
-		 if(MinecraftServer.getServer() != null &&
-		 MinecraftServer.getServer().worldServers.length > 0){
-		 World world = MinecraftServer.getServer().worldServers[0];
-		 if(world != null) {
-			 if(lastTick == world.getWorldTime()){
-				 return;
-			 }
-			 lastTick = world.getWorldTime();
-		 	}
-		 }
+//		 if(MinecraftServer.getServer() != null &&
+//		 MinecraftServer.getServer().worldServers.length > 0){
+//		 World world = MinecraftServer.getServer().worldServers[0];
+//		 if(world != null) {
+//			 if(lastTick == world.getWorldTime()){
+//				 return;
+//			 }
+//			 lastTick = world.getWorldTime();
+//		 	}
+		 //}
 		DustMod.proxy.tickMouseManager();
 		DustMod.keyHandler.tick();
 	}
