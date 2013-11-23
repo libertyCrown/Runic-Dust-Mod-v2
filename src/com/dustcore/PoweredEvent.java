@@ -183,7 +183,6 @@ public abstract class PoweredEvent extends DustEvent
         int rtn = 0;
         int stable = this.getStableFuelAmount(e);
 
-//        System.out.println("DICKS " + stable + " " + cur + " " + (stable-cur) + " " + this);
         if (stable > cur)
         {
             rtn = stable - cur;

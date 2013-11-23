@@ -123,7 +123,6 @@ public class EntityDust extends Entity
     @Override
     protected void entityInit()
     {
-    	System.out.println("Inint datawatcher");
         dataWatcher.addObject(DW_ri, new Integer(ri));
         dataWatcher.addObject(DW_gi, new Integer(gi));
         dataWatcher.addObject(DW_bi, new Integer(bi));
@@ -206,7 +205,6 @@ public class EntityDust extends Entity
         {
             eventName = "";
         }
-        System.out.println("Update from data " + renderStar);
     }
 
     public void setStarScale(float scale){

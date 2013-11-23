@@ -8,6 +8,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -83,9 +84,9 @@ public class DESpeed extends DustEvent
 
         for (Entity i: ents)
         {
-            if (i instanceof EntityLiving)
+            if (i instanceof EntityLivingBase)
             {
-                ((EntityLiving)i).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, d, p));
+                ((EntityLivingBase)i).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, d, p));
             }
         }
 

@@ -4,11 +4,14 @@
  */
 package com.dustdefault.runes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,7 +32,7 @@ import com.dustcore.util.VoidTeleManager;
  */
 public class DETeleportation extends PoweredEvent
 {
-//    public static ArrayList<EntityDust> warps = new ArrayList<EntityDust>();
+    public static ArrayList<EntityDust> warps = new ArrayList<EntityDust>();
     public DETeleportation()
     {
         super();
@@ -68,7 +71,6 @@ public class DETeleportation extends PoweredEvent
                 int gamt = 10;
                 int bamt = 4;
 
-                System.out.println("CHECKING");
                 for (int x = 0; x < 4; x++)
                 {
                     for (int y = 0; y < 4; y++)
@@ -216,7 +218,6 @@ public class DETeleportation extends PoweredEvent
 
         List<Entity> ents = this.getEntities(e, 10D);
 
-//        System.out.println("DURR " + e.worldObj.worldProvider.worldType + " " + ents.size());
         if (e.ram > 1 && VoidTeleManager.skipWarpTick > 0)
         {
         	VoidTeleManager.skipWarpTick --;
@@ -224,10 +225,6 @@ public class DETeleportation extends PoweredEvent
 
         if (e.ram == 1)
         {
-//            if (ents.size() > 1) {
-////                System.out.println("potato " + ents.size());
-//                mod_DustMod.skipWarpTick--;
-//            }
             for (Object o : ents.toArray())
             {
                 Entity i = (Entity) o;
@@ -279,7 +276,7 @@ public class DETeleportation extends PoweredEvent
 
                         int[] iwarp = VoidTeleManager.voidNetwork.get(temp);
 
-//                        System.out.println("Found warp: " + warp[3] + ":" + warp[4] + " " + iwarp[3] + ":" + iwarp[4] + " dim:" + iwarp[6] + " ver:" + iwarp[7]);
+                        System.out.println("Found warp: " + warp[3] + ":" + warp[4] + " " + iwarp[3] + ":" + iwarp[4] + " dim:" + iwarp[6] + " ver:" + iwarp[7]);
                         if ((Math.abs(warp[0] - iwarp[0]) < 0.5D && Math.abs(warp[1] - iwarp[1]) < 0.5D && Math.abs(warp[2] - iwarp[2]) < 0.5D) || iwarp[6] != i.worldObj.provider.dimensionId || iwarp[7] != warp[7])
                         {
 //                            System.out.println("Skipping dead:" + ed.isDead);
@@ -289,21 +286,19 @@ public class DETeleportation extends PoweredEvent
                         //if(ed != null && ed.data == e.data[0] && !ed.equals(e) && ed != e && ed.ram == 1){
                         if (warp[3] == iwarp[3] && warp[4] == iwarp[4])
                         {
-//                            System.out.println("Found warp location " + Arrays.toString(iwarp) + " " + Arrays.toString(warp));
+                            System.out.println("Found warp location " + Arrays.toString(iwarp) + " " + Arrays.toString(warp));
                             if (VoidTeleManager.skipWarpTick > 0)
                             {
-//                                mod_DustMod.skipWarpTick -- ;
                                 e.ram = 100;
-//                                System.out.println("Skipping due to recent tele " + mod_DustMod.skipWarpTick);
                                 break stopWarp;
                             }
 
-                            if (i instanceof EntityLiving)
+                            if (i instanceof EntityLivingBase)
                             {
                                 addFuel(e, -1600);
-                                ((EntityLiving) i).setPositionAndRotation(iwarp[0] + 0.5D, iwarp[1] + 0.6D, iwarp[2]  + 0.5D, e.rotationYaw, i.rotationPitch);
-                                ((EntityLiving) i).setPositionAndUpdate(iwarp[0] + 0.5D, iwarp[1] + 0.6D, iwarp[2]  + 0.5D);
-                                ((EntityLiving) i).attackEntityFrom(DamageSource.magic, 6);
+                                ((EntityLivingBase) i).setPositionAndRotation(iwarp[0] + 0.5D, iwarp[1] + 0.6D, iwarp[2]  + 0.5D, e.rotationYaw, i.rotationPitch);
+                                ((EntityLivingBase) i).setPositionAndUpdate(iwarp[0] + 0.5D, iwarp[1] + 0.6D, iwarp[2]  + 0.5D);
+                                ((EntityLivingBase) i).attackEntityFrom(DamageSource.magic, 6);
                             }
                             else
                             {
@@ -316,19 +311,12 @@ public class DETeleportation extends PoweredEvent
                             i.posZ = iwarp[2] + 0.5D;
                             i.rotationYaw = iwarp[5];
                             i.setPositionAndRotation(iwarp[0] + 0.5D, iwarp[1] + 0.6D, iwarp[2]+0.5D, iwarp[5], i.rotationPitch);
-//                            System.out.println("Sending to dimension " + i.worldObj.worldProvider.worldType);
-//                            System.out.println("new loc " + i.posX + " " + i.posY + " " + i.posZ);
-//                            System.out.println("DELTA " + dx + " " + dy + " " + dz);
                             e.ram = 100;
                             EntityDust enWarp = VoidTeleManager.getWarpEntity(iwarp, e.worldObj);
 
                             if (enWarp != null)
                             {
                                 enWarp.ram = 100;
-                            }
-                            else
-                            {
-//                                System.out.println("Bad ram");
                             }
 
                             if (i instanceof EntityPlayer)
@@ -341,10 +329,6 @@ public class DETeleportation extends PoweredEvent
                         }
                     }
                 }
-                else
-                {
-//                    System.out.println("Derp? " + (!(i instanceof EntityDust)) + " " + e.getDistanceToEntity(i) + " " + dx + " " + dz + " " + dy);
-                }
             }
         }
     }
@@ -356,7 +340,6 @@ public class DETeleportation extends PoweredEvent
     }
     public void onUnload(EntityDust e)
     {
-//        System.out.println("KILL");
     	VoidTeleManager.removeWarp(VoidTeleManager.toWarp(e));
     }
 

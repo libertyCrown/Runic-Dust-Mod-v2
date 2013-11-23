@@ -18,6 +18,9 @@ import com.dustcore.config.DustContent;
 import com.dustcore.item.ItemPouch;
 import com.dustcore.tileentity.TileEntityDust;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class DustShape {
 	public static final int n = -1;
 
@@ -735,6 +738,7 @@ public class DustShape {
 		return true;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public boolean drawOnWorldPart(World w, int i, int j, int k,
 			EntityPlayer p, int r, int itemUse) {
 		if (w.isRemote)

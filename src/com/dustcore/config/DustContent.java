@@ -5,6 +5,7 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.dustcore.DustMod;
 import com.dustcore.DustModTab;
@@ -240,10 +241,5 @@ public class DustContent
 					new ItemStack(idust, 1, i)
 			);
 		}
-	}
-	
-	public static void registerEntites()
-	{
-		//something will go here... eventually
 	}
 }

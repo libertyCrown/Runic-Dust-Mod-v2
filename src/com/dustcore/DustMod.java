@@ -104,9 +104,7 @@ public class DustMod
 	{
 		DustContent.initContent();
 		DustContent.initCrafting();
-		DustContent.registerEntites();
 		NetworkRegistry.instance().registerConnectionHandler(new PacketHandler());
-		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 		proxy.registerEventHandlers();
 		proxy.registerTileEntityRenderers();
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
@@ -115,11 +113,14 @@ public class DustMod
 		DustManager.registerDefaultShapes();
 		InscriptionManager.registerDefaultInscriptions();
 	    //lang.addStringLocalization("inscblank.name", "Doodle");
-        EntityRegistry.registerModEntity(EntityDust.class, "dustentity",
+		MinecraftForge.EVENT_BUS.register(this);
+		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
+        
+		//Entity registry
+		EntityRegistry.registerModEntity(EntityDust.class, "dustentity",
                 References.ENTITY_FireSpriteID, this, 192, 2, false);
         EntityRegistry.registerModEntity(EntityBlock.class, "dustblockentity",
                 References.ENTITY_BlockEntityID, this, 64, 1, false);
-		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@EventHandler

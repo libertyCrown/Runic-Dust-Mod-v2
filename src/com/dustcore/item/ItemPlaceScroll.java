@@ -43,23 +43,11 @@ public class ItemPlaceScroll extends DustModItem
     }
 
     @Override
-    
-    	public boolean onItemUse(ItemStack item, EntityPlayer wielder, World world, int i, int j, int k, int l, float x, float y, float z){
-//    public void onUpdate(ItemStack item, World world,
-//    		Entity wielder, int meta, boolean isHeld) {
-//    	super.onUpdate(item, world, wielder, meta, isHeld);
-
+    public boolean onItemUse(ItemStack item, EntityPlayer wielder, World world, int i, int j, int k, int l, float x, float y, float z){
 		if(!world.canMineBlock(wielder, i, j, k)) return false;
 		
-//    	System.out.println("ITEMUSE " + meta + " " + ((EntityPlayer)wielder).getItemInUseCount() + " " + ((EntityPlayer)wielder).getItemInUse());
     	if(!(wielder instanceof EntityPlayer)) return false;
     	boolean inUse =  ((EntityPlayer)wielder).getCurrentEquippedItem() == item;
-//    	if(inUse && world.getWorldTime()%5 == 0){
-//    		int i,j,k;
-    		
-//    		int[] block = this.getClickedBlock(wielder, item);
-//    		if(block == null) return;
-//    		i = block[0];j = block[1];k = block[2];
     		
     		DustShape ds = DustManager.getShapeFromID(item.getItemDamage());
             int r = (int)MathHelper.floor_double((double)((wielder.rotationYaw * 4F) / 360F) + 0.5D) & 3;
@@ -73,14 +61,13 @@ public class ItemPlaceScroll extends DustModItem
              if(wielder.capabilities.isCreativeMode) {
             	 ds.drawOnWorldWhole(world, i, j, k, (EntityPlayer)wielder, r);
              }else{
-            	 ds.drawOnWorldPart(world, i, j, k, (EntityPlayer)wielder, r, ((EntityPlayer)wielder).getItemInUseCount());
+
+            		 ds.drawOnWorldPart(world, i, j, k, (EntityPlayer)wielder, r, ((EntityPlayer)wielder).getItemInUseCount());
              }
             } catch(Exception e){
-            	FMLLog.log(Level.SEVERE, "THE FUUUUCK " + e.getMessage(), e.getStackTrace());
             	e.printStackTrace();
             }
             ((EntityPlayer)wielder).inventory.onInventoryChanged();
-//    	}
     	return true;
     }
     
@@ -130,7 +117,6 @@ public class ItemPlaceScroll extends DustModItem
     		if(!i.isEmpty()){
     			if(i.charAt(0) != '-') break;
     			if(i.length() > 25){
-//    				System.out.println("TOO LONG " + i);
     				String temp = i;
     				while(temp.length() > 25){
     					int index = temp.indexOf(' ', 25);
@@ -139,11 +125,6 @@ public class ItemPlaceScroll extends DustModItem
     					String add = temp.substring(0, index); 
         				if(!add.isEmpty()) list.add(add);
         				temp = temp.substring(index);
-//    					list.add(temp);
-//        				index = temp.indexOf(' ', 25)+1;
-//            			if(index == -1) index = temp.length();
-//    					temp = "  "+temp.substring(index);
-//    					System.out.println("Splitting " + temp);
     				}
     				list.add(temp);
     			}else{
@@ -160,7 +141,6 @@ public class ItemPlaceScroll extends DustModItem
     	for(DustShape i:DustManager.getShapes()){
     		list.add(new ItemStack(itemID, 1, i.id));
     	}
-//    	super.getSubItems(par1, par2CreativeTabs, list);
     }
 
     /**
@@ -189,10 +169,8 @@ public class ItemPlaceScroll extends DustModItem
     
     public MovingObjectPosition getMovingObjectPositionFromPlayer(World world, EntityPlayer par2EntityPlayer, boolean par3)
     {
-//    	System.out.println("MOP Check " + world.getWorldTime() + " " + lastCheck);
     	if(lastCheck > world.getWorldTime()) lastCheck = world.getWorldTime();
     	if(lastMOP != null && world.getWorldTime()-lastCheck < 0){
-//    		System.out.println("MOP Cache");
     		return lastMOP;
     	}
         lastCheck = world.getWorldTime();
@@ -210,10 +188,6 @@ public class ItemPlaceScroll extends DustModItem
         float var18 = var15 * var16;
         float var20 = var14 * var16;
         double var21 = 65.0D;
-//        if (par2EntityPlayer instanceof EntityPlayerMP)
-//        {
-//            var21 = ((EntityPlayerMP)par2EntityPlayer).theItemInWorldManager.getBlockReachDistance();
-//        }
         Vec3 var23 = var13.addVector((double)var18 * var21, (double)var17 * var21, (double)var20 * var21);
         lastMOP = world.rayTraceBlocks_do_do(var13, var23, par3, !par3);
         return lastMOP;

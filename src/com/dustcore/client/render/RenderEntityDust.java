@@ -105,15 +105,10 @@ public class RenderEntityDust extends Render implements IRenderLast
 
     public void renderBeam1(EntityDust e, double x, double y, double z, double i, double j, double k, float f)
     {
-//        float f2 = (float)entitydragon.field_41013_bH.field_41032_a + f1;
-//        float f3 = MathHelper.sin(f2 * 0.2F) / 2.0F + 0.5F;
-//        f3 = (f3 * f3 + f3) * 0.2F;
-//            OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapEnabled);
-//            GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glPushAttrib(GL11.GL_LIGHTING_BIT | GL11.GL_ENABLE_BIT | GL11.GL_COLOR_BUFFER_BIT);
         int ticks = e.ticksExisted;
         float f4 = (float)(i - x);
-        float f5 = (float)((/*(double)f3 + */j) - 1.0D - y);
+        float f5 = (float)((j) - 1.0D - y);
         float f6 = (float)(k - z);
         float f7 = MathHelper.sqrt_float(f4 * f4 + f6 * f6);
         float f8 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6);
@@ -135,7 +130,6 @@ public class RenderEntityDust extends Render implements IRenderLast
         float f9 = 0.0F - ((float)(ticks)) * 0.01F;
         float f10 = MathHelper.sqrt_float(f4 * f4 + f5 * f5 + f6 * f6) / 32F - ((float)(ticks)) * 0.01F;
         tessellator.startDrawing(5);
-        //tessellator.setBrightness(15);
         int it = 8;
         GL11.glColor4f(e.rb, e.gb, e.bb, 1F);
 
@@ -144,10 +138,8 @@ public class RenderEntityDust extends Render implements IRenderLast
             float f11 = MathHelper.sin(((float)(jt % it) * (float)Math.PI * 2.0F) / (float)it) * 0.75F;
             float f12 = MathHelper.cos(((float)(jt % it) * (float)Math.PI * 2.0F) / (float)it) * 0.75F;
             float f13 = ((float)(jt % it) * 1.0F) / (float)it;
-            //tessellator.setColorOpaque_I(0xFFFFFF);
             tessellator.setColorRGBA(e.rb, e.gb, e.bb, 128);
             tessellator.addVertexWithUV(f11 * 0.2F, f12 * 0.2F, 0.0D, f13, f10);
-            //tessellator.setColorOpaque_I(0x000000);
             tessellator.addVertexWithUV(f11, f12, f8, f13, f9);
         }
 
@@ -156,8 +148,6 @@ public class RenderEntityDust extends Render implements IRenderLast
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glEnable(GL11.GL_LIGHTING);
         RenderHelper.enableStandardItemLighting();
-            //OpenGlHelper.setActiveTexture(OpenGlHelper.lightmapDisabled);
-            //GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glPopMatrix();
         GL11.glPopAttrib();
     }
@@ -172,7 +162,6 @@ public class RenderEntityDust extends Render implements IRenderLast
         if (var9 > 0.0F)
         {
         	GL11.glPushMatrix();
-//            GL11.glTranslatef(0, -1.0F, 0);
             Tessellator var10 = Tessellator.instance;
             RenderHelper.disableStandardItemLighting();
             var10.setBrightness(Integer.MAX_VALUE);
@@ -203,7 +192,6 @@ public class RenderEntityDust extends Render implements IRenderLast
             GL11.glDepthMask(false);
             RenderHelper.disableStandardItemLighting();
             var10.setColorRGBA(191 + e.rb/4, 191 + e.gb/4, 191 + e.bb/4, 128);
-//          var10.setColorRGBA(255, 255, 255, 32);
             double var16 = (double)var13 * 0.2D;
             double var18 = 0.5D + Math.cos(var14 + 2.356194490192345D) * var16;
             double var20 = 0.5D + Math.sin(var14 + 2.356194490192345D) * var16;

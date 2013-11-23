@@ -93,13 +93,6 @@ public class BlockDust extends BlockContainer {
 			}
 
 			double dist = p.getDistanceToEntity(ei);
-
-//			if (dist < 0.2 && ei.delayBeforeCanPickup > 5) {
-//				System.out.println("Drop " + dist);
-//				ei.delayBeforeCanPickup = 5;
-//			} else {
-////				System.out.println("Grab " + dist);
-//			}
 		}
 
 		if (entity instanceof EntityXPOrb && meta != DEAD_DUST) {
@@ -189,7 +182,6 @@ public class BlockDust extends BlockContainer {
 			world.notifyBlockChange(i, j, k, 0);
 		} 
 		TileEntityDust ted = (TileEntityDust)world.getBlockTileEntity(i, j, k);
-		//TODO- did I fix this wrong?
 		//ted.onNeighborBlockChange();
 		
 		super.onNeighborBlockChange(world, i, j, k, l);
@@ -201,36 +193,18 @@ public class BlockDust extends BlockContainer {
 	 */
 	@Override
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int i, int j, int k) {
-//		if (world.isRemote) {
-//			return;
-//		}
 
 		if (world.getBlockMetadata(i, j, k) > 0) {
 			world.setBlock(i, j, k, 0,0,3);
-			// for(int x = -1; x <= 1; x++)
-			// for(int z = -1; z <= 1; z++){
-			// if(world.getBlockId(i+x, j, k+z) == blockID &&
-			// world.getBlockMetadata(i+x, j, k+z) == 1){
-			// world.setBlockWithNotify(i+x,j,k+z,0);
-			// }
-			// }
+
 		} else {
 			TileEntityDust ted = (TileEntityDust) world.getBlockTileEntity(i,
 					j, k);
 
-//			if (world.isRemote) {
-//				super.breakBlock(world, i, j, k, b, m);
-//				return;
-//			}
 
 			if (ted == null || ted.isEmpty()) {
-				// System.out.println("TED Was empty!!");
 				return true;
 			}
-
-			// int amt = ted.getAmount()-1;
-			// System.out.println("REMOVE " + amt+1);
-			// int meta = world.getBlockMetadata(i, j, k);
 
 			for (int x = 0; x < ted.size; x++) {
 				for (int z = 0; z < ted.size; z++) {

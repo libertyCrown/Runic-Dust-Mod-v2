@@ -52,7 +52,7 @@ public class DEEarthSprite  extends PoweredEvent
         };
         req = this.sacrifice(e, req);
 
-        if (req[0].stackSize != 0 || req[1].stackSize != 0 || req[2].stackSize != 0 || !takeXP(e, 20))
+        if (req[0].stackSize != 0 || req[1].stackSize != 0 || !takeXP(e, 20))
         {
             e.fizzle();
             return;
@@ -65,7 +65,6 @@ public class DEEarthSprite  extends PoweredEvent
             registerFollower(e, eb);
             eb.updateDataWatcher();
             e.worldObj.spawnEntityInWorld(eb);
-//            eb.save = false;
         }
     }
 
@@ -78,7 +77,6 @@ public class DEEarthSprite  extends PoweredEvent
         World worldObj = e.worldObj;
         EntityPlayer p = e.worldObj.getPlayerEntityByName(e.summonerUN);
 
-//        if(/*!e.worldObj.multiplayerWorld*/true) p = ModLoader.getMinecraftInstance().thePlayer;
         if (p == null)
         {
             return;
@@ -92,15 +90,12 @@ public class DEEarthSprite  extends PoweredEvent
         if (e.genericList.size() > 0)
         {
             int ind = 0;
-//            Vec3D v = Vec3D.createVector(p.motionX, p.motionY, p.motionZ);
-//            double vel = v.lengthVector();
-            float vel = p.getAIMoveSpeed();//DustModBouncer.getMoveForward(p);
+            float vel = p.capabilities.getWalkSpeed();
             boolean wasSneaking = e.data[2] == 1;
             boolean wasProtect = e.data[3] == 1;
             boolean protect = (vel == 0) && p.isSneaking() && Math.abs(p.motionY) < 0.08D && p.onGround;
             e.data[2] = (p.isSneaking() ? 1:0);
             e.data[3] = protect ? 1:0;
-//            System.out.println("derp " + p.motionY);
             int px = MathHelper.floor_double(p.posX);
             int py = MathHelper.floor_double(p.posY);
             int pz = MathHelper.floor_double(p.posZ);
@@ -112,16 +107,14 @@ public class DEEarthSprite  extends PoweredEvent
 //                p.posZ = pz+0.5D;
                 if(p.isSneaking() && !wasSneaking) p.setPositionAndUpdate((double)px + 0.5D, (double)py + p.yOffset, (double)pz + 0.5D);
                 {
-               		//TODO-de-break rune effect
-                	//p.setSpeed(0);
-                	p.setVelocity(0,0,0);
+                	p.capabilities.setPlayerWalkSpeed(0);
+                	//p.setVelocity(0,0,0);
                 }
             }
             if(!protect && wasProtect){
             	p.setPositionAndUpdate((double)px + 0.5D, (double)py + p.yOffset, (double)pz + 0.5D);
             }
 
-//            System.out.println("what the dick " + p.yOffset + " " + p.posX + " " + p.posY + " " + p.posZ);
             for (Object o: e.genericList)
             {
                 EntityBlock eb = (EntityBlock)o;

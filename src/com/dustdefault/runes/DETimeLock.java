@@ -35,7 +35,7 @@ public class DETimeLock extends PoweredEvent
     public void onInit(EntityDust e)
     {
         super.onInit(e);
-        ItemStack[] req = new ItemStack[] {new ItemStack(Block.obsidian, 8), new ItemStack(Item.slimeBall, 4), new ItemStack(Item.dyePowder, 1, 4)};
+        ItemStack[] req = new ItemStack[] {new ItemStack(Block.obsidian, 4), new ItemStack(Item.slimeBall, 4), new ItemStack(Item.dyePowder, 1, 4)};
         req = this.sacrifice(e, req);
 
         if (!checkSacrifice(req))
@@ -100,12 +100,10 @@ public class DETimeLock extends PoweredEvent
             }
         }
 
-//        System.out.println("Delta : " + (e.worldObj.getWorldTime()-e.ram));
         e.worldObj.setWorldTime(e.ram);
         e.ticksExisted = 100;
         e.data[0]--;
 
-//        System.out.println("DATA: " + e.data[0]);
         if (e.data[0] <= 0)
         {
             e.fade();

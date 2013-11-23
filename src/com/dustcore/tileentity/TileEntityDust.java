@@ -241,8 +241,9 @@ public class TileEntityDust extends TileEntity implements IInventory
     }
 
 	public void onNeighborBlockChange() {
-    	this.isPowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+    	this.isPowered = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);  		
 	}
+	
 	public boolean isPowered(){
 		return this.isPowered;
 	}
@@ -300,8 +301,7 @@ public class TileEntityDust extends TileEntity implements IInventory
                 n[i + 1][size + 1] = ted.getDust(i,0);
             }
         }
-
-//        System.out.println("DERP " + Arrays.deepToString(n));
+        
         //horiz
         for (int x = 0; x < size; x++)
         {
@@ -472,19 +472,8 @@ public class TileEntityDust extends TileEntity implements IInventory
     {
         int y = loc % size;
         int x = (loc - size) / size;
-//        if(amt > 0){
         pattern[x][y] = 0;
         return null;
-//        }else if(amt < 0){
-//            pattern[x][y] = 1;
-//            return new ItemStack(mod_DustMod.idust.itemID,1,pattern[x][y]);
-//        }else{
-//            if(pattern[x][y] == 0){
-//                return null;
-//            }else{
-//                return new ItemStack(mod_DustMod.idust.itemID,1,pattern[x][y]);
-//            }
-//        }
     }
 
     @Override
