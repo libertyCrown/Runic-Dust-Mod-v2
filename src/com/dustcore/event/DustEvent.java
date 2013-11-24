@@ -23,14 +23,15 @@ import com.dustcore.entity.EntityDust;
 import com.dustcore.tileentity.TileEntityDust;
 import com.dustcore.tileentity.TileEntityRut;
 
-public abstract class DustEvent {
+public abstract class DustEvent
+{
 
 	protected ArrayList<ArrayList<Sacrifice>> waitingSacrifices;
 	private int sacID = 0;
 	public String name;
 	public boolean secret = false;
 	public String permission = "ALL";
-	
+
 	// Set by the coder, unalterable by user configs.
 	// Setting it to false disallows all use, but if true it will not affect
 	// anything
@@ -38,12 +39,15 @@ public abstract class DustEvent {
 	// fix it later
 	public boolean permaAllowed = true;
 
-	public DustEvent() {
+	public DustEvent()
+	{
 		waitingSacrifices = new ArrayList<ArrayList<Sacrifice>>();
 	}
 
-	public DustEvent addSacr(Sacrifice s) {
-		if (sacID >= waitingSacrifices.size()) {
+	public DustEvent addSacr(Sacrifice s)
+	{
+		if (sacID >= waitingSacrifices.size())
+		{
 			waitingSacrifices.add(new ArrayList<Sacrifice>());
 		}
 
@@ -51,10 +55,12 @@ public abstract class DustEvent {
 		return this;
 	}
 
-	public DustEvent addSacrificeList(Sacrifice... s) {
+	public DustEvent addSacrificeList(Sacrifice... s)
+	{
 		List<Sacrifice> sac = Arrays.asList(s);
 
-		if (sacID >= waitingSacrifices.size()) {
+		if (sacID >= waitingSacrifices.size())
+		{
 			waitingSacrifices.add(new ArrayList<Sacrifice>());
 		}
 
@@ -64,70 +70,89 @@ public abstract class DustEvent {
 		return this;
 	}
 
-	public DustEvent shiftSacr() {
+	public DustEvent shiftSacr()
+	{
 		sacID++;
 		return this;
 	}
 
-	public final void init(EntityDust e) {
+	public final void init(EntityDust e)
+	{
 		onInit(e);
 	}
 
-	public void initGraphics(EntityDust e) {
+	public void initGraphics(EntityDust e)
+	{
 
 	}
 
-	protected void onInit(EntityDust e) {
+	protected void onInit(EntityDust e)
+	{
 	}
 
-	public final void tick(EntityDust e) {
-		if (e.sacrificeWaiting > 0) {
+	public final void tick(EntityDust e)
+	{
+		if (e.sacrificeWaiting > 0)
+		{
 			e.sacrificeWaiting--;
 
-			for (ArrayList<Sacrifice> arr : waitingSacrifices) {
+			for (ArrayList<Sacrifice> arr : waitingSacrifices)
+			{
 				Sacrifice[] sacr = sacrifice(e, arr);
 				boolean cont = true;
 
-				for (Sacrifice s : sacr) {
-					if (!s.isComplete) {
+				for (Sacrifice s : sacr)
+				{
+					if (!s.isComplete)
+					{
 						cont = false;
 						break;
 					}
 				}
 
-				if (cont) {
+				if (cont)
+				{
 					handle(e, sacr);
 					e.sacrificeWaiting = -1;
 				}
 			}
-		} else if (e.sacrificeWaiting == 0) {
-//			System.out.println("Waiting sacrifice = 0 death");
+		} else if (e.sacrificeWaiting == 0)
+		{
+			// System.out.println("Waiting sacrifice = 0 death");
 			e.fizzle();
 			return;
-		} else {
+		} else
+		{
 			onTick(e);
 		}
 	}
 
-	protected void onTick(EntityDust e) {
+	protected void onTick(EntityDust e)
+	{
 	}
 
-	public void onRightClick(EntityDust e, TileEntityDust ted, EntityPlayer p) {
+	public void onRightClick(EntityDust e, TileEntityDust ted, EntityPlayer p)
+	{
 	}
 
-	public final void unload(EntityDust e) {
+	public final void unload(EntityDust e)
+	{
 		onUnload(e);
 	}
 
-	public void onUnload(EntityDust e) {
-		if (e.rutPoints != null) {
-			for (Integer[] i : e.rutPoints) {
+	public void onUnload(EntityDust e)
+	{
+		if (e.rutPoints != null)
+		{
+			for (Integer[] i : e.rutPoints)
+			{
 				// world.setBlockWithNotify(i[0], i[1], i[2],
 				// Block.melon.blockID);
 				TileEntityRut ter = (TileEntityRut) e.worldObj
 						.getBlockTileEntity(i[0], i[1], i[2]);
 
-				if (ter != null) {
+				if (ter != null)
+				{
 					ter.isBeingUsed = false;
 				}
 			}
@@ -141,15 +166,19 @@ public abstract class DustEvent {
 	 *            the player
 	 * @return true if can see, false otherwise
 	 */
-	public boolean canPlayerKnowRune(String player) {
+	public boolean canPlayerKnowRune(String player)
+	{
 		boolean isOP = false;
-		if(player != null && !player.isEmpty())
-			try {
+		if (player != null && !player.isEmpty())
+			try
+			{
 				MinecraftServer server = MinecraftServer.getServer();
-				ServerConfigurationManager manager = server.getConfigurationManager();
+				ServerConfigurationManager manager = server
+						.getConfigurationManager();
 				Set ops = manager.getOps();
 				isOP = (ops == null || ops.contains(player.toLowerCase()));
-			} catch (Exception e) {
+			} catch (Exception e)
+			{
 				e.printStackTrace();
 			}
 		return permaAllowed
@@ -167,15 +196,19 @@ public abstract class DustEvent {
 	 * @return True if levels can be (and have been) taken, false if player
 	 *         doesn't have enough
 	 */
-	public boolean takeXP(EntityDust e, int levels) {
+	public boolean takeXP(EntityDust e, int levels)
+	{
 		EntityPlayer player = e.worldObj.getClosestPlayerToEntity(e, 12D);
 
-		if (player != null && player.capabilities.isCreativeMode) {
+		if (player != null && player.capabilities.isCreativeMode)
+		{
 			return true;
 		}
 
-		if (player != null) {
-			if (player.experienceLevel >= levels) {
+		if (player != null)
+		{
+			if (player.experienceLevel >= levels)
+			{
 				player.addExperienceLevel(-levels);
 				return true;
 			}
@@ -194,15 +227,19 @@ public abstract class DustEvent {
 	 * @return True if bars can be (and have been) taken, false if player
 	 *         doesn't have enough
 	 */
-	public boolean takeHunger(EntityDust e, int halves) {
+	public boolean takeHunger(EntityDust e, int halves)
+	{
 		EntityPlayer player = e.worldObj.getClosestPlayerToEntity(e, 12D);
 
-		if (player != null && player.capabilities.isCreativeMode) {
+		if (player != null && player.capabilities.isCreativeMode)
+		{
 			return true;
 		}
 
-		if (player != null) {
-			if (player.getFoodStats().getFoodLevel() >= halves) {
+		if (player != null)
+		{
+			if (player.getFoodStats().getFoodLevel() >= halves)
+			{
 				player.getFoodStats().addStats(-halves, 0);
 				return true;
 			}
@@ -223,18 +260,23 @@ public abstract class DustEvent {
 	 * @return True if the closest player has enough hearts and they have been
 	 *         taken.
 	 */
-	public boolean takeLife(EntityDust e, int halves, boolean kill) {
+	public boolean takeLife(EntityDust e, int halves, boolean kill)
+	{
 		EntityPlayer player = e.worldObj.getClosestPlayerToEntity(e, 12D);
 
-		if (player.capabilities.isCreativeMode) {
+		if (player.capabilities.isCreativeMode)
+		{
 			return true;
 		}
 
-		if (player != null) {
-			if (player.getHealth() >= halves) {
+		if (player != null)
+		{
+			if (player.getHealth() >= halves)
+			{
 				player.attackEntityFrom(DamageSource.magic, halves);
 				return true;
-			} else if (kill) {
+			} else if (kill)
+			{
 				player.attackEntityFrom(DamageSource.magic, halves);
 			}
 		}
@@ -251,9 +293,12 @@ public abstract class DustEvent {
 	 * @return True if all items in the array have stackSizes <= 0, false if any
 	 *         are >0
 	 */
-	public boolean checkSacrifice(ItemStack[] req) {
-		for (ItemStack i : req) {
-			if (i.stackSize > 0) {
+	public boolean checkSacrifice(ItemStack[] req)
+	{
+		for (ItemStack i : req)
+		{
+			if (i.stackSize > 0)
+			{
 				return false;
 			}
 		}
@@ -261,7 +306,8 @@ public abstract class DustEvent {
 		return true;
 	}
 
-	public List getEntities(World world, double x, double y, double z) {
+	public List getEntities(World world, double x, double y, double z)
+	{
 		return getEntities(world, x, y, z, 1D);
 	}
 
@@ -273,7 +319,8 @@ public abstract class DustEvent {
 	 * @return A list of all entities within 1 block of the given entity's
 	 *         position (including the entity itself)
 	 */
-	public List getEntities(Entity e) {
+	public List getEntities(Entity e)
+	{
 		return getEntities(e.worldObj, e.posX, e.posY - e.yOffset, e.posZ, 1D);
 	}
 
@@ -287,7 +334,8 @@ public abstract class DustEvent {
 	 * @return A list containing all entities within the radius of the given
 	 *         Entity's position (including the entity itself)
 	 */
-	public List getEntities(Entity e, double r) {
+	public List getEntities(Entity e, double r)
+	{
 		return getEntities(e.worldObj, e.posX, e.posY - e.yOffset, e.posZ, r);
 	}
 
@@ -308,7 +356,8 @@ public abstract class DustEvent {
 	 *         coordinates
 	 */
 	public List getEntities(World world, double x, double y, double z,
-			double radius) {
+			double radius)
+	{
 		List l = world.getEntitiesWithinAABBExcludingEntity(
 				null,
 				AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D,
@@ -317,7 +366,8 @@ public abstract class DustEvent {
 	}
 
 	public List getEntities(World world, Class entType, double x, double y,
-			double z, double radius) {
+			double z, double radius)
+	{
 		List l = world.getEntitiesWithinAABB(
 				entType,
 				AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D,
@@ -329,7 +379,8 @@ public abstract class DustEvent {
 	}
 
 	public List getEntitiesExcluding(World world, Entity e, double x, double y,
-			double z, double radius) {
+			double z, double radius)
+	{
 		List l = world.getEntitiesWithinAABBExcludingEntity(
 				e,
 				AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D,
@@ -347,7 +398,8 @@ public abstract class DustEvent {
 	 *            The EntityDust instance
 	 * @return a List<EntityItem> of all nearby dropped items
 	 */
-	public final List<EntityItem> getItems(EntityDust e) {
+	public final List<EntityItem> getItems(EntityDust e)
+	{
 		return getItems(e, 1D);
 	}
 
@@ -360,13 +412,16 @@ public abstract class DustEvent {
 	 *            The radius in which to check for dropped items
 	 * @return A List<EntityItem> of all nearby dropped items.
 	 */
-	public final List<EntityItem> getItems(EntityDust e, double radius) {
+	public final List<EntityItem> getItems(EntityDust e, double radius)
+	{
 		ArrayList<EntityItem> itemstacks = new ArrayList<EntityItem>();
 		List l = getEntities(e.worldObj, e.posX, e.posY - e.yOffset, e.posZ,
 				radius);
 
-		for (Object o : l) {
-			if (o instanceof EntityItem) {
+		for (Object o : l)
+		{
+			if (o instanceof EntityItem)
+			{
 				EntityItem ei = (EntityItem) o;
 				itemstacks.add(ei);
 			}
@@ -385,24 +440,30 @@ public abstract class DustEvent {
 	 *            Itemst to look for
 	 * @return True if all items found and consumed
 	 */
-	public final boolean takeItems(EntityDust e, ItemStack... items) {
+	public final boolean takeItems(EntityDust e, ItemStack... items)
+	{
 		List<EntityItem> sacrifice = getItems(e);
 
-		for (EntityItem i : sacrifice) {
-			for (ItemStack item : items) {
+		for (EntityItem i : sacrifice)
+		{
+			for (ItemStack item : items)
+			{
 				ItemStack is = i.getEntityItem();
-				if (is.itemID == DustContent.negateSacrifice.itemID) {
+				if (is.itemID == DustContent.negateSacrifice.itemID)
+				{
 					return true;
 				}
 
 				if (is.itemID == item.itemID
 						&& (item.getItemDamage() == -1 || i.getEntityItem()
-								.getItemDamage() == item.getItemDamage())) {
-					if (is.stackSize <= item.stackSize
-							&& item.stackSize > 0) {
+								.getItemDamage() == item.getItemDamage()))
+				{
+					if (is.stackSize <= item.stackSize && item.stackSize > 0)
+					{
 						item.stackSize -= is.stackSize;
 						i.setDead();
-					} else {
+					} else
+					{
 						is.stackSize -= item.stackSize;
 						i.setEntityItemStack(is);
 						break;
@@ -412,61 +473,80 @@ public abstract class DustEvent {
 		}
 
 		for (ItemStack item : items)
-			if (item.stackSize > 0) {
+			if (item.stackSize > 0)
+			{
 				return false;
 			}
 
 		return true;
 	}
 
-	public void registerFollower(EntityDust e, Object o) {
+	public void registerFollower(EntityDust e, Object o)
+	{
 	}
 
-	public ItemStack[] sacrifice(EntityDust e, ItemStack[] req) {
+	public ItemStack[] sacrifice(EntityDust e, ItemStack[] req)
+	{
 		List<EntityItem> sacrifice = getItems(e);
 		boolean negate = false;
 
-		for (EntityItem i : sacrifice) {
+		for (EntityItem i : sacrifice)
+		{
 			ItemStack is = i.getEntityItem();
 
-			if (is.itemID == DustContent.negateSacrifice.itemID) {
+			if (is.itemID == DustContent.negateSacrifice.itemID)
+			{
 				negate = true;
 				break;
 			}
 
-			for (ItemStack c : req) {
+			for (ItemStack c : req)
+			{
 				if (c.itemID == is.itemID
 						&& (c.getItemDamage() == -1 || c.getItemDamage() == is
-								.getItemDamage())) {
+								.getItemDamage()))
+				{
 					DustMod.log("check1");
-					if(c.hasTagCompound() == is.hasTagCompound() || c.getItemDamage() == -1){
+					if (c.hasTagCompound() == is.hasTagCompound()
+							|| c.getItemDamage() == -1)
+					{
 						boolean match = false;
 						DustMod.log("check2");
-						if(c.hasTagCompound() && c.getItemDamage() != -1){
-							match = c.getTagCompound().equals(is.getTagCompound());
+						if (c.hasTagCompound() && c.getItemDamage() != -1)
+						{
+							match = c.getTagCompound().equals(
+									is.getTagCompound());
 							DustMod.log("check3");
-							match = c.getTagCompound().equals(is.getTagCompound());
+							match = c.getTagCompound().equals(
+									is.getTagCompound());
 							NBTTagCompound cTag = c.getTagCompound();
 							NBTTagCompound isTag = is.getTagCompound();
-							if(cTag.getTags().size() == isTag.getTags().size()){
+							if (cTag.getTags().size() == isTag.getTags().size())
+							{
 								DustMod.log("check4");
 								match = true;
 								Object[] cCol = cTag.getTags().toArray();
 								Object[] isCol = isTag.getTags().toArray();
-								for(int t = 0; t < cCol.length; t++){
-									if(!cCol[t].equals(isCol[t])){
+								for (int t = 0; t < cCol.length; t++)
+								{
+									if (!cCol[t].equals(isCol[t]))
+									{
 										match = false;
 										DustMod.log("swabby", cCol[t], isCol[t]);
 										break;
 									}
 								}
-							}else{
-								DustMod.log("wat",cTag.getTags().size(),isTag.getTags().size());
+							} else
+							{
+								DustMod.log("wat", cTag.getTags().size(), isTag
+										.getTags().size());
 							}
-						}else{
+						} else
+						{
 							match = true;
 						}
-						while (match && c.stackSize > 0 && is.stackSize > 0) {
+						while (match && c.stackSize > 0 && is.stackSize > 0)
+						{
 							is.stackSize--;
 							c.stackSize--;
 						}
@@ -474,9 +554,11 @@ public abstract class DustEvent {
 				}
 			}
 
-			if (is.stackSize <= 0) {
+			if (is.stackSize <= 0)
+			{
 				i.setDead();
-			} else {
+			} else
+			{
 				double rx, rz;
 				double r = 0.1;
 				double min = 0.065;
@@ -486,62 +568,74 @@ public abstract class DustEvent {
 				rz += (rz < 0) ? -min : min;
 				i.addVelocity(rx, Math.random() * 0.5, rz);
 			}
-	        i.setEntityItemStack(is);
+			i.setEntityItemStack(is);
 		}
 
-		if (negate) {
-			for (ItemStack c : req) {
+		if (negate)
+		{
+			for (ItemStack c : req)
+			{
 				c.stackSize = 0;
 			}
 		}
 
-
 		return req;
 	}
 
-	public Sacrifice[] sacrifice(EntityDust e, ArrayList<Sacrifice> reqA) {
+	public Sacrifice[] sacrifice(EntityDust e, ArrayList<Sacrifice> reqA)
+	{
 		List<Entity> sacrifice = this.getEntities(e, 3D);
 		Sacrifice[] req = new Sacrifice[reqA.size()];
 
-		for (int i = 0; i < reqA.size(); i++) {
+		for (int i = 0; i < reqA.size(); i++)
+		{
 			Sacrifice is = reqA.get(i);
 			req[i] = is.clone();
 		}
 
 		boolean negate = false;
 
-		for (Entity i : sacrifice) {
+		for (Entity i : sacrifice)
+		{
 			EntityItem ei = null;
 
-			if (i instanceof EntityItem) {
+			if (i instanceof EntityItem)
+			{
 				ei = (EntityItem) i;
 			}
 
 			if (ei != null
-					&& ei.getEntityItem().itemID == DustContent.negateSacrifice.itemID) {
+					&& ei.getEntityItem().itemID == DustContent.negateSacrifice.itemID)
+			{
 				negate = true;
 				break;
 			}
 
-			for (Sacrifice s : req) {
-				if (s.isComplete) {
+			for (Sacrifice s : req)
+			{
+				if (s.isComplete)
+				{
 					continue;
 				}
 
 				if (!(i instanceof EntityPlayer || i instanceof EntityDust)
-						&& s.matchObject(i)) {
-					if (ei != null) {
+						&& s.matchObject(i))
+				{
+					if (ei != null)
+					{
 						s.itemType.stackSize -= ei.getEntityItem().stackSize;
 
-						if (s.itemType.stackSize == 0) {
+						if (s.itemType.stackSize == 0)
+						{
 							s.isComplete = true;
 						}
-					} else {
+					} else
+					{
 						s.isComplete = true;
 					}
 
-//					System.out.println("Sacrifice matched to " + i + " "
-//							+ s.isComplete);
+					// System.out.println("Sacrifice matched to " + i + " "
+					// + s.isComplete);
 					s.entity = i;
 					break;
 				}
@@ -549,22 +643,24 @@ public abstract class DustEvent {
 		}
 
 		if (negate)
-			for (Sacrifice s : req) {
+			for (Sacrifice s : req)
+			{
 				s.isComplete = true;
 			}
 
 		return req;
 	}
 
-	public void handle(EntityDust e, Sacrifice[] sac) 
+	public void handle(EntityDust e, Sacrifice[] sac)
 	{
-		for (Sacrifice s : sac) 
+		for (Sacrifice s : sac)
 		{
 			s.handleObject(e, s.entity);
 		}
 	}
 
-	protected final void findRuts(EntityDust e) {
+	protected final void findRuts(EntityDust e)
+	{
 		World w = e.worldObj;
 		// int ix = e.getX();
 		// int iy = e.getY();
@@ -573,7 +669,8 @@ public abstract class DustEvent {
 		// iy = e.dustPoints.get(0)[1]-1;
 		ArrayList<Integer[]> ruts = new ArrayList<Integer[]>();
 
-		for (Integer[] i : e.dustPoints) {
+		for (Integer[] i : e.dustPoints)
+		{
 			ruts.add(new Integer[] { i[0], i[1] - 1, i[2] });
 			checkNeighbors(w, ruts, i[0], i[1] - 1, i[2]);
 		}
@@ -581,7 +678,8 @@ public abstract class DustEvent {
 		e.rutPoints = ruts;
 	}
 
-	protected final void findRutsWithDistance(EntityDust e, int distance) {
+	protected final void findRutsWithDistance(EntityDust e, int distance)
+	{
 		World w = e.worldObj;
 		// int ix = e.getX();
 		// int iy = e.getY();
@@ -590,7 +688,8 @@ public abstract class DustEvent {
 		// iy = e.dustPoints.get(0)[1]-1;
 		ArrayList<Integer[]> ruts = new ArrayList<Integer[]>();
 
-		for (Integer[] i : e.dustPoints) {
+		for (Integer[] i : e.dustPoints)
+		{
 			ruts.add(new Integer[] { i[0], i[1] - 1, i[2] });
 			checkNeighborsWithDistance(w, ruts, i[0], i[1] - 1, i[2],
 					distance - 1);
@@ -599,7 +698,8 @@ public abstract class DustEvent {
 		e.rutPoints = ruts;
 	}
 
-	protected final void findRuts(EntityDust e, int fluidID) {
+	protected final void findRuts(EntityDust e, int fluidID)
+	{
 		World w = e.worldObj;
 		// int ix = e.getX();
 		// int iy = e.getY();
@@ -608,7 +708,8 @@ public abstract class DustEvent {
 		// iy = e.dustPoints.get(0)[1]-1;
 		ArrayList<Integer[]> ruts = new ArrayList<Integer[]>();
 
-		for (Integer[] i : e.dustPoints) {
+		for (Integer[] i : e.dustPoints)
+		{
 			ruts.add(new Integer[] { i[0], i[1] - 1, i[2] });
 			checkNeighbors(w, ruts, i[0], i[1] - 1, i[2], fluidID);
 		}
@@ -616,7 +717,8 @@ public abstract class DustEvent {
 		e.rutPoints = ruts;
 	}
 
-	protected final boolean findRutArea(EntityDust e) {
+	protected final boolean findRutArea(EntityDust e)
+	{
 		World w = e.worldObj;
 		List<Integer[]> horiz = new ArrayList<Integer[]>();
 		List<Integer[]> length = new ArrayList<Integer[]>();
@@ -624,35 +726,42 @@ public abstract class DustEvent {
 		List<Integer[]> farea = new ArrayList<Integer[]>();
 		List<Integer[]> ruts = e.rutPoints;
 
-		if (ruts == null) {
+		if (ruts == null)
+		{
 			findRuts(e);
 			ruts = e.rutPoints;
 
-			if (ruts == null) {
+			if (ruts == null)
+			{
 				return false;
 			}
 		}
 
 		int rutSize = ruts.size();
 
-		for (int i = 0; i < rutSize; i++) {
+		for (int i = 0; i < rutSize; i++)
+		{
 			Integer[] p = ruts.get(i);
 			int ix = p[0];
 			int iy = p[1];
 			int iz = p[2];
 			next:
 
-			for (int j = 0; j < rutSize; j++) {
-				if (i != j) {
+			for (int j = 0; j < rutSize; j++)
+			{
+				if (i != j)
+				{
 					Integer[] t = ruts.get(j);
 					int jx = t[0];
 					int jy = t[1];
 					int jz = t[2];
 
-					if (iy == jy && ix == jx && jz > iz) {
+					if (iy == jy && ix == jx && jz > iz)
+					{
 						int dist = jz - iz;
 
-						for (int l = 1; l < dist; l++) {
+						for (int l = 1; l < dist; l++)
+						{
 							Integer[] a = new Integer[] { jx, jy, iz + l };
 							length.add(a);
 						}
@@ -660,10 +769,12 @@ public abstract class DustEvent {
 						// break next;
 					}
 
-					if (iy == jy && iz == jz && jx > ix) {
+					if (iy == jy && iz == jz && jx > ix)
+					{
 						int dist = jx - ix;
 
-						for (int h = 1; h < dist; h++) {
+						for (int h = 1; h < dist; h++)
+						{
 							Integer[] a = new Integer[] { ix + h, jy, jz };
 							horiz.add(a);
 						}
@@ -671,10 +782,12 @@ public abstract class DustEvent {
 						// break next;
 					}
 
-					if (ix == jx && iz == jz && jy > iy) {
+					if (ix == jx && iz == jz && jy > iy)
+					{
 						int dist = jy - iy;
 
-						for (int v = 1; v < dist; v++) {
+						for (int v = 1; v < dist; v++)
+						{
 							Integer[] a = new Integer[] { jx, iy + v, jz };
 							vert.add(a);
 						}
@@ -686,19 +799,22 @@ public abstract class DustEvent {
 		}
 
 		// check for confimration
-		for (Integer[] h : horiz) {
+		for (Integer[] h : horiz)
+		{
 			int hx = h[0];
 			int hy = h[1];
 			int hz = h[2];
 			boolean get = false;
 			next:
 
-			for (Integer[] v : vert) {
+			for (Integer[] v : vert)
+			{
 				int vx = v[0];
 				int vy = v[1];
 				int vz = v[2];
 
-				if (hx == vx && hy == vy && hz == vz) {
+				if (hx == vx && hy == vy && hz == vz)
+				{
 					farea.add(new Integer[] { vx, vy, vz });
 					get = true;
 					// break next;
@@ -706,12 +822,14 @@ public abstract class DustEvent {
 			}
 
 			if (!get)
-				next: for (Integer[] l : length) {
+				next: for (Integer[] l : length)
+				{
 					int lx = l[0];
 					int ly = l[1];
 					int lz = l[2];
 
-					if (hx == lx && hy == ly && hz == lz) {
+					if (hx == lx && hy == ly && hz == lz)
+					{
 						farea.add(new Integer[] { lx, ly, lz });
 						// farea.add(new Integer[]{lx,ly+3,lz});
 						// farea.add(new Integer[]{hx,hy+1,hz});
@@ -721,19 +839,22 @@ public abstract class DustEvent {
 				}
 		}
 
-		for (Integer[] v : vert) {
+		for (Integer[] v : vert)
+		{
 			int vx = v[0];
 			int vy = v[1];
 			int vz = v[2];
 			boolean get = false;
 			next:
 
-			for (Integer[] h : horiz) {
+			for (Integer[] h : horiz)
+			{
 				int hx = h[0];
 				int hy = h[1];
 				int hz = h[2];
 
-				if (vx == hx && vy == hy && vz == hz) {
+				if (vx == hx && vy == hy && vz == hz)
+				{
 					farea.add(new Integer[] { hx, hy, hz });
 					get = true;
 					// break next;
@@ -741,12 +862,14 @@ public abstract class DustEvent {
 			}
 
 			if (!get)
-				next: for (Integer[] l : length) {
+				next: for (Integer[] l : length)
+				{
 					int lx = l[0];
 					int ly = l[1];
 					int lz = l[2];
 
-					if (vx == lx && vy == ly && vz == lz) {
+					if (vx == lx && vy == ly && vz == lz)
+					{
 						farea.add(new Integer[] { lx, ly, lz });
 						get = true;
 						// break next;
@@ -754,19 +877,22 @@ public abstract class DustEvent {
 				}
 		}
 
-		for (Integer[] l : length) {
+		for (Integer[] l : length)
+		{
 			int lx = l[0];
 			int ly = l[1];
 			int lz = l[2];
 			boolean get = false;
 			next:
 
-			for (Integer[] v : vert) {
+			for (Integer[] v : vert)
+			{
 				int vx = v[0];
 				int vy = v[1];
 				int vz = v[2];
 
-				if (vx == lx && vy == ly && vz == lz) {
+				if (vx == lx && vy == ly && vz == lz)
+				{
 					farea.add(new Integer[] { vx, vy, vz });
 					get = true;
 					// break next;
@@ -774,12 +900,14 @@ public abstract class DustEvent {
 			}
 
 			if (!get)
-				next: for (Integer[] h : horiz) {
+				next: for (Integer[] h : horiz)
+				{
 					int hx = h[0];
 					int hy = h[1];
 					int hz = h[2];
 
-					if (lx == hx && ly == hy && lz == hz) {
+					if (lx == hx && ly == hy && lz == hz)
+					{
 						farea.add(new Integer[] { hx, hy, hz });
 						get = true;
 						// break next;
@@ -792,14 +920,17 @@ public abstract class DustEvent {
 		List<Integer> remove = new ArrayList<Integer>();
 		next:
 
-		for (int i = 0; i < farea.size(); i++) {
+		for (int i = 0; i < farea.size(); i++)
+		{
 			Integer[] ii = farea.get(i);
 			int ix = ii[0];
 			int iy = ii[1];
 			int iz = ii[2];
 
-			for (Integer r : remove) {
-				if (r == i) {
+			for (Integer r : remove)
+			{
+				if (r == i)
+				{
 					continue next;
 				}
 			}
@@ -807,14 +938,17 @@ public abstract class DustEvent {
 			boolean rem = false;
 			nextIn:
 
-			for (int j = 0; j < farea.size(); j++) {
-				if (i != j) {
+			for (int j = 0; j < farea.size(); j++)
+			{
+				if (i != j)
+				{
 					Integer[] ji = farea.get(j);
 					int jx = ji[0];
 					int jy = ji[1];
 					int jz = ji[2];
 
-					if (ix == jx && iy == jy && iz == jz) {
+					if (ix == jx && iy == jy && iz == jz)
+					{
 						// for(Integer r:remove){
 						// if(r == j){
 						// continue nextIn;
@@ -829,12 +963,14 @@ public abstract class DustEvent {
 			// if(!rem)
 			remRut:
 
-			for (Integer[] rut : ruts) {
+			for (Integer[] rut : ruts)
+			{
 				int rx = rut[0];
 				int ry = rut[1];
 				int rz = rut[2];
 
-				if (rx == ix && ry == iy && rz == iz) {
+				if (rx == ix && ry == iy && rz == iz)
+				{
 					remove.add(i);
 					break remRut;
 				}
@@ -844,9 +980,12 @@ public abstract class DustEvent {
 		List<Integer[]> temp = new ArrayList<Integer[]>();
 		next:
 
-		for (int i = 0; i < farea.size(); i++) {
-			for (Integer r : remove) {
-				if (r.equals(i)) {
+		for (int i = 0; i < farea.size(); i++)
+		{
+			for (Integer r : remove)
+			{
+				if (r.equals(i))
+				{
 					continue next;
 				}
 			}
@@ -854,15 +993,16 @@ public abstract class DustEvent {
 			temp.add(farea.get(i));
 		}
 
-//		System.out.println("Area : " + farea.size() + " " + temp.size() + " "
-//				+ remove.size());
+		// System.out.println("Area : " + farea.size() + " " + temp.size() + " "
+		// + remove.size());
 		farea = temp;
 		// if(farea.size() > 10000) return false;
 		e.rutAreaPoints = farea;
 		return true;
 	}
 
-	protected final boolean findRutArea(EntityDust e, int fluidID) {
+	protected final boolean findRutArea(EntityDust e, int fluidID)
+	{
 		World w = e.worldObj;
 		List<Integer[]> horiz = new ArrayList<Integer[]>();
 		List<Integer[]> length = new ArrayList<Integer[]>();
@@ -870,53 +1010,64 @@ public abstract class DustEvent {
 		List<Integer[]> farea = new ArrayList<Integer[]>();
 		List<Integer[]> ruts = e.rutPoints;
 
-		if (ruts == null) {
+		if (ruts == null)
+		{
 			findRuts(e, fluidID);
 			ruts = e.rutPoints;
 
-			if (ruts == null) {
+			if (ruts == null)
+			{
 				return false;
 			}
 		}
 
 		int rutSize = ruts.size();
 
-		for (int i = 0; i < rutSize; i++) {
+		for (int i = 0; i < rutSize; i++)
+		{
 			Integer[] p = ruts.get(i);
 			int ix = p[0];
 			int iy = p[1];
 			int iz = p[2];
 			next:
 
-			for (int j = 0; j < rutSize; j++) {
-				if (i != j) {
+			for (int j = 0; j < rutSize; j++)
+			{
+				if (i != j)
+				{
 					Integer[] t = ruts.get(j);
 					int jx = t[0];
 					int jy = t[1];
 					int jz = t[2];
 
-					if (iy == jy && ix == jx && jz > iz) {
+					if (iy == jy && ix == jx && jz > iz)
+					{
 						int dist = jz - iz;
 
-						for (int l = 1; l < dist; l++) {
+						for (int l = 1; l < dist; l++)
+						{
 							Integer[] a = new Integer[] { jx, jy, iz + l };
 							length.add(a);
 						}
 
 						// break next;
-					} else if (iy == jy && iz == jz && jx > ix) {
+					} else if (iy == jy && iz == jz && jx > ix)
+					{
 						int dist = jx - ix;
 
-						for (int h = 1; h < dist; h++) {
+						for (int h = 1; h < dist; h++)
+						{
 							Integer[] a = new Integer[] { ix + h, jy, jz };
 							horiz.add(a);
 						}
 
 						// break next;
-					} else if (ix == jx && iz == jz && jy > iy) {
+					} else if (ix == jx && iz == jz && jy > iy)
+					{
 						int dist = jy - iy;
 
-						for (int v = 1; v < dist; v++) {
+						for (int v = 1; v < dist; v++)
+						{
 							Integer[] a = new Integer[] { jx, iy + v, jz };
 							vert.add(a);
 						}
@@ -928,19 +1079,22 @@ public abstract class DustEvent {
 		}
 
 		// check for confimration
-		for (Integer[] h : horiz) {
+		for (Integer[] h : horiz)
+		{
 			int hx = h[0];
 			int hy = h[1];
 			int hz = h[2];
 			boolean get = false;
 			next:
 
-			for (Integer[] v : vert) {
+			for (Integer[] v : vert)
+			{
 				int vx = v[0];
 				int vy = v[1];
 				int vz = v[2];
 
-				if (hx == vx && hy == vy && hz == vz) {
+				if (hx == vx && hy == vy && hz == vz)
+				{
 					farea.add(v);
 					get = true;
 					// break next;
@@ -948,12 +1102,14 @@ public abstract class DustEvent {
 			}
 
 			if (!get)
-				next: for (Integer[] l : length) {
+				next: for (Integer[] l : length)
+				{
 					int lx = l[0];
 					int ly = l[1];
 					int lz = l[2];
 
-					if (hx == lx && hy == ly && hz == lz) {
+					if (hx == lx && hy == ly && hz == lz)
+					{
 						farea.add(l);
 						// farea.add(new Integer[]{lx,ly+3,lz});
 						// farea.add(new Integer[]{hx,hy+1,hz});
@@ -963,19 +1119,22 @@ public abstract class DustEvent {
 				}
 		}
 
-		for (Integer[] v : vert) {
+		for (Integer[] v : vert)
+		{
 			int vx = v[0];
 			int vy = v[1];
 			int vz = v[2];
 			boolean get = false;
 			next:
 
-			for (Integer[] h : horiz) {
+			for (Integer[] h : horiz)
+			{
 				int hx = h[0];
 				int hy = h[1];
 				int hz = h[2];
 
-				if (hx == hx && hy == hy && hz == hz) {
+				if (hx == hx && hy == hy && hz == hz)
+				{
 					farea.add(h);
 					get = true;
 					// break next;
@@ -983,12 +1142,14 @@ public abstract class DustEvent {
 			}
 
 			if (!get)
-				next: for (Integer[] l : length) {
+				next: for (Integer[] l : length)
+				{
 					int lx = l[0];
 					int ly = l[1];
 					int lz = l[2];
 
-					if (vx == lx && vy == ly && vz == lz) {
+					if (vx == lx && vy == ly && vz == lz)
+					{
 						farea.add(l);
 						get = true;
 						// break next;
@@ -996,19 +1157,22 @@ public abstract class DustEvent {
 				}
 		}
 
-		for (Integer[] l : length) {
+		for (Integer[] l : length)
+		{
 			int lx = l[0];
 			int ly = l[1];
 			int lz = l[2];
 			boolean get = false;
 			next:
 
-			for (Integer[] v : vert) {
+			for (Integer[] v : vert)
+			{
 				int vx = v[0];
 				int vy = v[1];
 				int vz = v[2];
 
-				if (vx == lx && vy == ly && vz == lz) {
+				if (vx == lx && vy == ly && vz == lz)
+				{
 					farea.add(v);
 					get = true;
 					// break next;
@@ -1016,12 +1180,14 @@ public abstract class DustEvent {
 			}
 
 			if (!get)
-				next: for (Integer[] h : horiz) {
+				next: for (Integer[] h : horiz)
+				{
 					int hx = h[0];
 					int hy = h[1];
 					int hz = h[2];
 
-					if (lx == hx && ly == hy && lz == hz) {
+					if (lx == hx && ly == hy && lz == hz)
+					{
 						farea.add(h);
 						get = true;
 						// break next;
@@ -1034,14 +1200,17 @@ public abstract class DustEvent {
 		List<Integer> remove = new ArrayList<Integer>();
 		next:
 
-		for (int i = 0; i < farea.size(); i++) {
+		for (int i = 0; i < farea.size(); i++)
+		{
 			Integer[] ii = farea.get(i);
 			int ix = ii[0];
 			int iy = ii[1];
 			int iz = ii[2];
 
-			for (Integer r : remove) {
-				if (r == i) {
+			for (Integer r : remove)
+			{
+				if (r == i)
+				{
 					continue next;
 				}
 			}
@@ -1049,14 +1218,17 @@ public abstract class DustEvent {
 			boolean rem = false;
 			nextIn:
 
-			for (int j = 0; j < farea.size(); j++) {
-				if (i != j) {
+			for (int j = 0; j < farea.size(); j++)
+			{
+				if (i != j)
+				{
 					Integer[] ji = farea.get(j);
 					int jx = ji[0];
 					int jy = ji[1];
 					int jz = ji[2];
 
-					if (ix == jx && iy == jy && iz == jz) {
+					if (ix == jx && iy == jy && iz == jz)
+					{
 						// for(Integer r:remove){
 						// if(r == j){
 						// continue nextIn;
@@ -1071,12 +1243,14 @@ public abstract class DustEvent {
 			// if(!rem)
 			remRut:
 
-			for (Integer[] rut : ruts) {
+			for (Integer[] rut : ruts)
+			{
 				int rx = rut[0];
 				int ry = rut[1];
 				int rz = rut[2];
 
-				if (rx == ix && ry == iy && rz == iz) {
+				if (rx == ix && ry == iy && rz == iz)
+				{
 					remove.add(i);
 					break remRut;
 				}
@@ -1086,9 +1260,12 @@ public abstract class DustEvent {
 		List<Integer[]> temp = new ArrayList<Integer[]>();
 		next:
 
-		for (int i = 0; i < farea.size(); i++) {
-			for (Integer r : remove) {
-				if (r.equals(i)) {
+		for (int i = 0; i < farea.size(); i++)
+		{
+			for (Integer r : remove)
+			{
+				if (r.equals(i))
+				{
 					continue next;
 				}
 			}
@@ -1096,15 +1273,16 @@ public abstract class DustEvent {
 			temp.add(farea.get(i));
 		}
 
-//		System.out.println("Area : " + farea.size() + " " + temp.size() + " "
-//				+ remove.size());
+		// System.out.println("Area : " + farea.size() + " " + temp.size() + " "
+		// + remove.size());
 		farea = temp;
 		// if(farea.size() > 10000) return false;
 		e.rutAreaPoints = farea;
 		return true;
 	}
 
-	protected final boolean findRutAreaFlat(EntityDust e, int fluidID) {
+	protected final boolean findRutAreaFlat(EntityDust e, int fluidID)
+	{
 		World w = e.worldObj;
 		List<Integer[]> horiz = new ArrayList<Integer[]>();
 		List<Integer[]> length = new ArrayList<Integer[]>();
@@ -1112,42 +1290,51 @@ public abstract class DustEvent {
 		List<Integer[]> farea = new ArrayList<Integer[]>();
 		List<Integer[]> ruts = e.rutPoints;
 
-		if (ruts == null) {
+		if (ruts == null)
+		{
 			findRuts(e, fluidID);
 			ruts = e.rutPoints;
 
-			if (ruts == null) {
+			if (ruts == null)
+			{
 				return false;
 			}
 		}
 
 		int rutSize = ruts.size();
 
-		for (int i = 0; i < rutSize; i++) {
+		for (int i = 0; i < rutSize; i++)
+		{
 			Integer[] p = ruts.get(i);
 			int ix = p[0];
 			int iz = p[2];
 			next:
 
-			for (int j = 0; j < rutSize; j++) {
-				if (i != j) {
+			for (int j = 0; j < rutSize; j++)
+			{
+				if (i != j)
+				{
 					Integer[] t = ruts.get(j);
 					int jx = t[0];
 					int jz = t[2];
 
-					if (ix == jx && jz > iz) {
+					if (ix == jx && jz > iz)
+					{
 						int dist = jz - iz;
 
-						for (int l = 1; l < dist; l++) {
+						for (int l = 1; l < dist; l++)
+						{
 							Integer[] a = new Integer[] { jx, iz + l };
 							length.add(a);
 						}
 
 						// break next;
-					} else if (iz == jz && jx > ix) {
+					} else if (iz == jz && jx > ix)
+					{
 						int dist = jx - ix;
 
-						for (int h = 1; h < dist; h++) {
+						for (int h = 1; h < dist; h++)
+						{
 							Integer[] a = new Integer[] { ix + h, jz };
 							horiz.add(a);
 						}
@@ -1159,17 +1346,20 @@ public abstract class DustEvent {
 		}
 
 		// check for confimration
-		for (Integer[] h : horiz) {
+		for (Integer[] h : horiz)
+		{
 			int hx = h[0];
 			int hz = h[1];
 			boolean get = false;
 			next:
 
-			for (Integer[] l : length) {
+			for (Integer[] l : length)
+			{
 				int lx = l[0];
 				int lz = l[1];
 
-				if (hx == lx && hz == lz) {
+				if (hx == lx && hz == lz)
+				{
 					farea.add(l);
 					// farea.add(new Integer[]{lx,ly+3,lz});
 					// farea.add(new Integer[]{hx,hy+1,hz});
@@ -1183,13 +1373,16 @@ public abstract class DustEvent {
 		List<Integer> remove = new ArrayList<Integer>();
 		next:
 
-		for (int i = 0; i < farea.size(); i++) {
+		for (int i = 0; i < farea.size(); i++)
+		{
 			Integer[] ii = farea.get(i);
 			int ix = ii[0];
 			int iz = ii[1];
 
-			for (Integer r : remove) {
-				if (r == i) {
+			for (Integer r : remove)
+			{
+				if (r == i)
+				{
 					continue next;
 				}
 			}
@@ -1197,13 +1390,16 @@ public abstract class DustEvent {
 			boolean rem = false;
 			nextIn:
 
-			for (int j = 0; j < farea.size(); j++) {
-				if (i != j) {
+			for (int j = 0; j < farea.size(); j++)
+			{
+				if (i != j)
+				{
 					Integer[] ji = farea.get(j);
 					int jx = ji[0];
 					int jz = ji[1];
 
-					if (ix == jx && iz == jz) {
+					if (ix == jx && iz == jz)
+					{
 						remove.add(j);
 						rem = true;
 					}
@@ -1213,11 +1409,13 @@ public abstract class DustEvent {
 			// if(!rem)
 			remRut:
 
-			for (Integer[] rut : ruts) {
+			for (Integer[] rut : ruts)
+			{
 				int rx = rut[0];
 				int rz = rut[2];
 
-				if (rx == ix && rz == iz) {
+				if (rx == ix && rz == iz)
+				{
 					remove.add(i);
 					break remRut;
 				}
@@ -1227,9 +1425,12 @@ public abstract class DustEvent {
 		List<Integer[]> temp = new ArrayList<Integer[]>();
 		next:
 
-		for (int i = 0; i < farea.size(); i++) {
-			for (Integer r : remove) {
-				if (r.equals(i)) {
+		for (int i = 0; i < farea.size(); i++)
+		{
+			for (Integer r : remove)
+			{
+				if (r.equals(i))
+				{
 					continue next;
 				}
 			}
@@ -1237,8 +1438,8 @@ public abstract class DustEvent {
 			temp.add(farea.get(i));
 		}
 
-//		System.out.println("Area : " + farea.size() + " " + temp.size() + " "
-//				+ remove.size());
+		// System.out.println("Area : " + farea.size() + " " + temp.size() + " "
+		// + remove.size());
 		farea = temp;
 		// if(farea.size() > 10000) return false;
 		e.rutAreaPoints = farea;
@@ -1246,27 +1447,35 @@ public abstract class DustEvent {
 	}
 
 	private final void checkNeighbors(World w, ArrayList<Integer[]> ruts,
-			int x, int y, int z) {
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				for (int k = -1; k <= 1; k++) {
+			int x, int y, int z)
+	{
+		for (int i = -1; i <= 1; i++)
+		{
+			for (int j = -1; j <= 1; j++)
+			{
+				for (int k = -1; k <= 1; k++)
+				{
 					if ((i == 0 || i == 2) && i == j && (k == 0 || k == 2)
-							&& j != 0) {
+							&& j != 0)
+					{
 						continue;
 					}
 
 					if ((i == 0 || i == 2) && (j == 0 || j == 2) && i != j
-							&& (k == 0 || k == 2) && j != 0) {
+							&& (k == 0 || k == 2) && j != 0)
+					{
 						continue;
 					}
 
 					int bid = w.getBlockId(x + i, y + j, z + k);
 
-					if (bid == DustContent.rutBlock.blockID) {
+					if (bid == DustContent.rutBlock.blockID)
+					{
 						TileEntityRut ter = (TileEntityRut) w
 								.getBlockTileEntity(x + i, y + j, z + k);
 
-						if (!ter.isBeingUsed) {
+						if (!ter.isBeingUsed)
+						{
 							ter.isBeingUsed = true;
 							ruts.add(new Integer[] { x + i, y + j, z + k });
 							checkNeighbors(w, ruts, x + i, y + j, z + k);
@@ -1278,27 +1487,35 @@ public abstract class DustEvent {
 	}
 
 	private final void checkNeighborsWithDistance(World w,
-			ArrayList<Integer[]> ruts, int x, int y, int z, int distance) {
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				for (int k = -1; k <= 1; k++) {
+			ArrayList<Integer[]> ruts, int x, int y, int z, int distance)
+	{
+		for (int i = -1; i <= 1; i++)
+		{
+			for (int j = -1; j <= 1; j++)
+			{
+				for (int k = -1; k <= 1; k++)
+				{
 					if ((i == 0 || i == 2) && i == j && (k == 0 || k == 2)
-							&& j != 0) {
+							&& j != 0)
+					{
 						continue;
 					}
 
 					if ((i == 0 || i == 2) && (j == 0 || j == 2) && i != j
-							&& (k == 0 || k == 2) && j != 0) {
+							&& (k == 0 || k == 2) && j != 0)
+					{
 						continue;
 					}
 
 					int bid = w.getBlockId(x + i, y + j, z + k);
 
-					if (bid == DustContent.rutBlock.blockID) {
+					if (bid == DustContent.rutBlock.blockID)
+					{
 						TileEntityRut ter = (TileEntityRut) w
 								.getBlockTileEntity(x + i, y + j, z + k);
 
-						if (!ter.isBeingUsed && distance > 0) {
+						if (!ter.isBeingUsed && distance > 0)
+						{
 							ter.isBeingUsed = true;
 							ruts.add(new Integer[] { x + i, y + j, z + k });
 							checkNeighborsWithDistance(w, ruts, x + i, y + j, z
@@ -1311,26 +1528,34 @@ public abstract class DustEvent {
 	}
 
 	private final void checkNeighbors(World w, ArrayList<Integer[]> ruts,
-			int x, int y, int z, int fluidID) {
-		for (int i = -1; i <= 1; i++) {
-			for (int j = -1; j <= 1; j++) {
-				for (int k = -1; k <= 1; k++) {
-					if ((i == 0 || i == 2) && i == j && (k == 0 || k == 2)) {
+			int x, int y, int z, int fluidID)
+	{
+		for (int i = -1; i <= 1; i++)
+		{
+			for (int j = -1; j <= 1; j++)
+			{
+				for (int k = -1; k <= 1; k++)
+				{
+					if ((i == 0 || i == 2) && i == j && (k == 0 || k == 2))
+					{
 						continue;
 					}
 
 					if ((i == 0 || i == 2) && (j == 0 || j == 2) && i != j
-							&& (k == 0 || k == 2)) {
+							&& (k == 0 || k == 2))
+					{
 						continue;
 					}
 
 					int bid = w.getBlockId(x + i, y + j, z + k);
 
-					if (bid == DustContent.rutBlock.blockID) {
+					if (bid == DustContent.rutBlock.blockID)
+					{
 						TileEntityRut ter = (TileEntityRut) w
 								.getBlockTileEntity(x + i, y + j, z + k);
 
-						if (!ter.isBeingUsed && ter.fluid == fluidID) {
+						if (!ter.isBeingUsed && ter.fluid == fluidID)
+						{
 							ter.isBeingUsed = true;
 							ruts.add(new Integer[] { x + i, y + j, z + k });
 							checkNeighbors(w, ruts, x + i, y + j, z + k);
@@ -1341,23 +1566,27 @@ public abstract class DustEvent {
 		}
 	}
 
-	public DustEvent setSecret(boolean secret) {
+	public DustEvent setSecret(boolean secret)
+	{
 		this.secret = secret;
 		return this;
 	}
 
-	public DustEvent setPermission(String allowed) {
+	public DustEvent setPermission(String allowed)
+	{
 		this.permission = allowed;
 		return this;
 	}
 
-	public DustEvent setPermaAllowed(boolean allowed) {
+	public DustEvent setPermaAllowed(boolean allowed)
+	{
 		this.permaAllowed = allowed;
 		return this;
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "DustEvent:" + this.name;
 	}
 }

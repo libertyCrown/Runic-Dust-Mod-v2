@@ -21,7 +21,8 @@ import com.dustcore.tileentity.TileEntityDust;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class DustShape {
+public class DustShape
+{
 	public static final int n = -1;
 
 	public int width;
@@ -83,7 +84,8 @@ public class DustShape {
 	 *            unique rune id
 	 */
 	public DustShape(int w, int l, String name, boolean solid, int ox, int oy,
-			int cx, int cy, int id) {
+			int cx, int cy, int id)
+	{
 		this(w, l, name, solid, ox, oy, cx, cy,
 				DustManager.getNextPageNumber(), id);
 	}
@@ -120,9 +122,11 @@ public class DustShape {
 	 *            unique rune id
 	 */
 	public DustShape(int w, int l, String name, boolean solid, int ox, int oy,
-			int cx, int cy, int page, int id) {
+			int cx, int cy, int page, int id)
+	{
 
-		if (w > 32 || l > 32) {
+		if (w > 32 || l > 32)
+		{
 			throw new IllegalArgumentException("Rune dimensions too big! "
 					+ name + " Max:22x32");
 		}
@@ -140,15 +144,19 @@ public class DustShape {
 		this.oy = oy;
 		this.ox = ox;
 
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				for (int z = 0; z < length; z++) {
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				for (int z = 0; z < length; z++)
+				{
 					data[y][x][z] = 0;
 				}
 			}
 		}
 
-		if (ox < 0 || oy < 0) {
+		if (ox < 0 || oy < 0)
+		{
 			throw new IllegalArgumentException(
 					"Dust offset cannot be negative.");
 		}
@@ -159,10 +167,12 @@ public class DustShape {
 		int bwidth = test[0] + 2; // (int)Math.ceil((((double)w+Math.abs(oy))/4.0));
 		int bheight = test[1] + 2; // (int)Math.ceil(((double)(l+Math.abs(ox))/4.0));
 
-		for (int i = 0; i < bwidth; i++) {
+		for (int i = 0; i < bwidth; i++)
+		{
 			blocks.add(new ArrayList());
 
-			for (int j = 0; j < bheight; j++) {
+			for (int j = 0; j < bheight; j++)
+			{
 				blocks.get(i).add(new int[4][4]);
 			}
 		}
@@ -178,7 +188,8 @@ public class DustShape {
 	 *            Raw string to display
 	 * @return This DustShape
 	 */
-	public DustShape setNotes(String n) {
+	public DustShape setNotes(String n)
+	{
 		this.notes = n;
 		return this;
 	}
@@ -190,11 +201,14 @@ public class DustShape {
 	 *            Raw string to display
 	 * @return This DustShape
 	 */
-	public DustShape setDesc(String d) {
+	public DustShape setDesc(String d)
+	{
 		this.desc = d;
-		if (!allowedVariable.isEmpty()) {
+		if (!allowedVariable.isEmpty())
+		{
 			desc += "\n----\nAllowed Variable Dusts:\n";
-			for (int i : allowedVariable) {
+			for (int i : allowedVariable)
+			{
 				desc += DustItemManager.getNames()[i] + "\n";
 			}
 		}
@@ -213,7 +227,8 @@ public class DustShape {
 	 *            Raw string to display
 	 * @return This DustShape
 	 */
-	public DustShape setRotationMatrix(int[] display) {
+	public DustShape setRotationMatrix(int[] display)
+	{
 		this.rotationMatrix = display;
 		return this;
 	}
@@ -227,11 +242,13 @@ public class DustShape {
 	 *            Value to allow
 	 * @return This DustShape for convenience
 	 */
-	public DustShape addAllowedVariable(int... dustValue) {
+	public DustShape addAllowedVariable(int... dustValue)
+	{
 		for (int i : dustValue)
 			allowedVariable.add(i);
 
-		if (desc.contains("\n----\nAllowed Variable Dusts:\n")) {
+		if (desc.contains("\n----\nAllowed Variable Dusts:\n"))
+		{
 			setDesc(desc.substring(0,
 					desc.indexOf("\n----\nAllowed Variable Dusts:\n")));
 		}
@@ -239,29 +256,35 @@ public class DustShape {
 		return this;
 	}
 
-	public DustShape addAllowedVariable(ArrayList<Integer> values) {
+	public DustShape addAllowedVariable(ArrayList<Integer> values)
+	{
 		allowedVariable.addAll(values);
-		if (desc.contains("\n----\nAllowed Variable Dusts:\n")) {
+		if (desc.contains("\n----\nAllowed Variable Dusts:\n"))
+		{
 			setDesc(desc.substring(0,
 					desc.indexOf("\n----\nAllowed Variable Dusts:\n")));
 		}
 		return this;
 	}
 
-	public boolean isDustAllowedAsVariable(int dustValue) {
+	public boolean isDustAllowedAsVariable(int dustValue)
+	{
 		return allowedVariable.contains(dustValue) || allowedVariable.isEmpty();
 	}
 
-	private void updateData() {
+	private void updateData()
+	{
 		blocks = updateData(data, oy, ox);
 	}
 
 	private ArrayList<ArrayList<int[][]>> updateData(int[][][] tdata, int tox,
-			int toy) {
+			int toy)
+	{
 		int w = tdata[0].length;
 		int l = tdata[0][0].length;
 
-		if (tdata == this.data) {
+		if (tdata == this.data)
+		{
 			width = w;
 			length = l;
 		}
@@ -272,10 +295,12 @@ public class DustShape {
 		int bheight = test[1] + 2; // (int)Math.ceil(((double)(l+Math.abs(ox))/4.0));
 
 		// System.out.println("fuckitalllll " + bwidth + " " + bheight);
-		for (int i = 0; i < bwidth; i++) {
+		for (int i = 0; i < bwidth; i++)
+		{
 			tblocks.add(new ArrayList());
 
-			for (int j = 0; j < bheight; j++) {
+			for (int j = 0; j < bheight; j++)
+			{
 				tblocks.get(i).add(new int[4][4]);
 			}
 		}
@@ -283,12 +308,15 @@ public class DustShape {
 		dustAmt = new int[1000];
 
 		for (int y = 0; y < tdata.length; y++)
-			for (int x = 0; x < tdata[0].length; x++) {
-				for (int z = 0; z < tdata[0][0].length; z++) {
+			for (int x = 0; x < tdata[0].length; x++)
+			{
+				for (int z = 0; z < tdata[0][0].length; z++)
+				{
 					int[] c = getBlockCoord(x, z, tox, toy);
 					int to = tdata[y][x][z];
 
-					if (to == -1) {
+					if (to == -1)
+					{
 						to = -2;
 					}
 
@@ -296,7 +324,8 @@ public class DustShape {
 					// Arrays.toString(c));
 					tblocks.get(c[0]).get(c[1])[c[2]][c[3]] = to;
 
-					if (to >= 0) {
+					if (to >= 0)
+					{
 						dustAmt[to]++;
 					}
 				}
@@ -307,11 +336,13 @@ public class DustShape {
 		// Arrays.toString(dustAmt));
 	}
 
-	public int[] getBlockCoord(int x, int z) {
+	public int[] getBlockCoord(int x, int z)
+	{
 		return getBlockCoord(x, z, oy, ox);
 	}
 
-	public int[] getBlockCoord(int x, int z, int tox, int toy) {
+	public int[] getBlockCoord(int x, int z, int tox, int toy)
+	{
 		int i = (int) Math.floor((x + tox) / 4);
 		int j = (int) Math.floor((z + toy) / 4);
 		int nx = x + tox - i * 4;
@@ -324,7 +355,8 @@ public class DustShape {
 		return new int[] { i, j, nx, nz };
 	}
 
-	public DustShape setDataAt(int x, int y, int z, int b) {
+	public DustShape setDataAt(int x, int y, int z, int b)
+	{
 		data[y][x][z] = b;
 		setPos[0] = x;
 		setPos[1] = y;
@@ -333,20 +365,24 @@ public class DustShape {
 		return this;
 	}
 
-	public int getDataAt(int x, int y, int z) {
+	public int getDataAt(int x, int y, int z)
+	{
 		return data[y][x][z];
 	}
 
-	public void setData(int[][][] data) {
+	public void setData(int[][][] data)
+	{
 		this.data = data;
 		updateData();
 	}
 
-	public int[][][] getData() {
+	public int[][][] getData()
+	{
 		return data;
 	}
 
-	public void translate(int x, int y, int z, int value) {
+	public void translate(int x, int y, int z, int value)
+	{
 		data[setPos[1]][setPos[0]][setPos[2]] = value;
 		setPos[0] += x;
 		setPos[y] += y;
@@ -359,7 +395,8 @@ public class DustShape {
 	 * @param m
 	 * @return -1: no match, 0: match but incomplete, 1:complete match
 	 */
-	public int compareData(int[][] d) {
+	public int compareData(int[][] d)
+	{
 		// int h = d.length;
 		int w = d.length;
 		int l = d[0].length;
@@ -372,7 +409,8 @@ public class DustShape {
 		int dw = width - w;
 		int dl = length - l;
 
-		if (dw < 0 || dl < 0) {
+		if (dw < 0 || dl < 0)
+		{
 			dw = width - l;
 			dl = length - w;
 		}
@@ -380,9 +418,12 @@ public class DustShape {
 		int rot = -1;
 
 		// System.out.println("potato " + dw + " " + dl);
-		for (int x = 0; x <= dw; x++) {
-			for (int z = 0; z <= dl; z++) {
-				if ((rot = compareChunk(d, x, 0, z)) == -1) {
+		for (int x = 0; x <= dw; x++)
+		{
+			for (int z = 0; z <= dl; z++)
+			{
+				if ((rot = compareChunk(d, x, 0, z)) == -1)
+				{
 					// System.out.println("dicks");
 					return -1;
 				}
@@ -392,17 +433,23 @@ public class DustShape {
 		w = d.length;
 		l = d[0].length;
 
-		if (solid) {
+		if (solid)
+		{
 			int compare = 0;
 
-			for (int x = 0; x < w; x++) {
-				for (int z = 0; z < l; z++) {
+			for (int x = 0; x < w; x++)
+			{
+				for (int z = 0; z < l; z++)
+				{
 					int iter = d[x][z];
 
-					if (compare == 0 && iter != 0) {
+					if (compare == 0 && iter != 0)
+					{
 						compare = iter;
-					} else if (compare != 0) {
-						if (compare != iter && iter != 0) {
+					} else if (compare != 0)
+					{
+						if (compare != iter && iter != 0)
+						{
 							// System.out.println("Rune mulicolored");
 							return -1;
 						}
@@ -411,14 +458,16 @@ public class DustShape {
 			}
 		}
 
-		if ((w == width && l == length) || (w == length && l == width)) {
+		if ((w == width && l == length) || (w == length && l == width))
+		{
 			return rot;
 		}
 
 		return -1;
 	}
 
-	protected int compareChunk(int[][] d, int ox, int oy, int oz) {
+	protected int compareChunk(int[][] d, int ox, int oy, int oz)
+	{
 		// int h = d.length;
 		// I shouldn't have to put this here, but it works
 		width = data[0].length;
@@ -426,37 +475,45 @@ public class DustShape {
 		boolean equal = true;
 
 		// for(int y = 0; y < h; y++){
-		for (int rot = 0; rot < 4; rot++) {
+		for (int rot = 0; rot < 4; rot++)
+		{
 			int w = d.length;
 			int l = d[0].length;
-			if (w != width || l != length) {
+			if (w != width || l != length)
+			{
 				// System.out.println("firsderp");
 				equal = false;
 			}
 
 			kill:
 
-			for (int x = 0; x < w && equal; x++) {
-				for (int z = 0; z < l && equal; z++) {
-					try {
+			for (int x = 0; x < w && equal; x++)
+			{
+				for (int z = 0; z < l && equal; z++)
+				{
+					try
+					{
 
 						if (x >= width
 								|| z >= length
 								|| (d[x][z] != data[oy][x + ox][z + oz] && (d[x][z] == 0 || data[oy][x
 										+ ox][z + oz] != -1))
 								|| (data[oy][x + ox][z + oz] == -1 && !this
-										.isDustAllowedAsVariable(d[x][z]))) {
+										.isDustAllowedAsVariable(d[x][z])))
+						{
 							equal = false;
 							break kill;
 						}
-					} catch (Exception e) {
+					} catch (Exception e)
+					{
 						equal = false;
 						break kill;
 					}
 				}
 			}
 
-			if (equal) {
+			if (equal)
+			{
 				return rot;
 			}
 
@@ -467,37 +524,45 @@ public class DustShape {
 		d = flipMatrix(d);
 		// System.out.println("FLIP");
 
-		for (int rot = 0; rot < 4; rot++) {
+		for (int rot = 0; rot < 4; rot++)
+		{
 			int w = d.length;
 			int l = d[0].length;
 
-			if (w != width || l != length) {
+			if (w != width || l != length)
+			{
 				// System.out.println("firsderp");
 				equal = false;
 			}
 
 			kill:
 
-			for (int x = 0; x < w && equal; x++) {
-				for (int z = 0; z < l && equal; z++) {
-					try {
+			for (int x = 0; x < w && equal; x++)
+			{
+				for (int z = 0; z < l && equal; z++)
+				{
+					try
+					{
 						if (x >= width
 								|| z >= length
 								|| (d[x][z] != data[oy][x + ox][z + oz] && !(d[x][z] != 0 && data[oy][x
 										+ ox][z + oz] == -1))
 								|| (data[oy][x + ox][z + oz] == -1 && !this
-										.isDustAllowedAsVariable(d[x][z]))) {
+										.isDustAllowedAsVariable(d[x][z])))
+						{
 							equal = false;
 							break kill;
 						}
-					} catch (Exception e) {
+					} catch (Exception e)
+					{
 						equal = false;
 						break kill;
 					}
 				}
 			}
 
-			if (equal) {
+			if (equal)
+			{
 				return rot;
 			}
 
@@ -507,13 +572,16 @@ public class DustShape {
 		return -1;
 	}
 
-	public static int[][] rotateMatrix(int[][] mat) {
+	public static int[][] rotateMatrix(int[][] mat)
+	{
 		int[][] rtn = new int[mat[0].length][mat.length];
 		int M = mat.length;
 		int N = mat[0].length;
 
-		for (int r = 0; r < M; r++) {
-			for (int c = 0; c < N; c++) {
+		for (int r = 0; r < M; r++)
+		{
+			for (int c = 0; c < N; c++)
+			{
 				rtn[c][M - 1 - r] = mat[r][c];
 			}
 		}
@@ -521,13 +589,16 @@ public class DustShape {
 		return rtn;
 	}
 
-	public static int[][] flipMatrix(int[][] mat) {
+	public static int[][] flipMatrix(int[][] mat)
+	{
 		int[][] rtn = new int[mat.length][mat[0].length];
 		int w = mat.length;
 		int l = mat[0].length;
 
-		for (int x = 0; x < w; x++) {
-			for (int y = 0; y < l; y++) {
+		for (int x = 0; x < w; x++)
+		{
+			for (int y = 0; y < l; y++)
+			{
 				rtn[w - x - 1][y] = mat[x][y];
 			}
 		}
@@ -535,7 +606,8 @@ public class DustShape {
 	}
 
 	public boolean drawOnWorldWhole(World w, int i, int j, int k,
-			EntityPlayer p, int r) {
+			EntityPlayer p, int r)
+	{
 
 		if (w.isRemote)
 			return false;
@@ -554,15 +626,19 @@ public class DustShape {
 
 		ArrayList<ArrayList<int[][]>> tblocks;
 
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				for (int z = 0; z < length; z++) {
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				for (int z = 0; z < length; z++)
+				{
 					tdata[y][x][z] = data[y][x][z];
 				}
 			}
 		}
 
-		for (int rot = 0; rot < r; rot++) {
+		for (int rot = 0; rot < r; rot++)
+		{
 			tdata[0] = rotateMatrix(tdata[0]);
 		}
 
@@ -571,24 +647,25 @@ public class DustShape {
 		int th = (int) Math.floor(data[0][0].length / 4);
 		th *= 4;
 
-		switch (r) {
-		case 0:
-			break;
+		switch (r)
+		{
+			case 0:
+				break;
 
-		case 1:
-			tox = ox;
-			toy = tw - ((data[0].length + oy) % 4);
-			break;
+			case 1:
+				tox = ox;
+				toy = tw - ((data[0].length + oy) % 4);
+				break;
 
-		case 2:
-			tox = tw - ((data[0].length + oy) % 4);
-			toy = th - ((data[0][0].length + ox) % 4);
-			break;
+			case 2:
+				tox = tw - ((data[0].length + oy) % 4);
+				toy = th - ((data[0][0].length + ox) % 4);
+				break;
 
-		case 3:
-			tox = th - ((data[0][0].length + ox) % 4);
-			toy = oy;
-			break;
+			case 3:
+				tox = th - ((data[0][0].length + ox) % 4);
+				toy = oy;
+				break;
 		}
 
 		tblocks = updateData(tdata, tox, toy);
@@ -597,11 +674,15 @@ public class DustShape {
 		sk -= temp[1];
 		int[] pDustAmount = new int[1000];
 
-		for (ItemStack is : p.inventory.mainInventory) {
-			if (is != null) {
-				if (is.itemID == DustContent.idust.itemID) {
+		for (ItemStack is : p.inventory.mainInventory)
+		{
+			if (is != null)
+			{
+				if (is.itemID == DustContent.idust.itemID)
+				{
 					pDustAmount[is.getItemDamage()] += is.stackSize;
-				} else if (is.itemID == DustContent.pouch.itemID) {
+				} else if (is.itemID == DustContent.pouch.itemID)
+				{
 					int dustID = ItemPouch.getValue(is);
 					int amt = ItemPouch.getDustAmount(is);
 					pDustAmount[dustID] += amt;
@@ -614,45 +695,55 @@ public class DustShape {
 		int hasDrawn = 1;
 
 		for (int x = 0; x < tblocks.size(); x++)
-			for (int z = 0; z < tblocks.get(0).size(); z++) {
+			for (int z = 0; z < tblocks.get(0).size(); z++)
+			{
 				int[][] block = tblocks.get(x).get(z);
 
 				boolean empty = true;
-				for (int iter = 0; iter < block.length && empty; iter++) {
-					for (int jter = 0; jter < block[0].length && empty; jter++) {
+				for (int iter = 0; iter < block.length && empty; iter++)
+				{
+					for (int jter = 0; jter < block[0].length && empty; jter++)
+					{
 						if (block[iter][jter] != 0)
 							empty = false;
 					}
 				}
-				if (empty) {
+				if (empty)
+				{
 					continue;
 				}
 
 				int blockID = w.getBlockId(si + x, j, sk + z);
 				int meta = w.getBlockMetadata(si + x, j, sk + z);
 				if (blockID != 0 && !(DustMod.isDust(blockID)/* && meta == 2 */)
-						&& blockID != Block.tallGrass.blockID) {
+						&& blockID != Block.tallGrass.blockID)
+				{
 					continue;
 				}
 
-				if (w.getBlockId(si + x, j - 1, sk + z) == 0) {
+				if (w.getBlockId(si + x, j - 1, sk + z) == 0)
+				{
 					continue;
 				}
 
-				if (!DustContent.dust.canPlaceBlockAt(w, si + x, j, sk + z)) {
+				if (!DustContent.dust.canPlaceBlockAt(w, si + x, j, sk + z))
+				{
 					continue;
 				}
 
-				if (blockID != DustContent.dust.blockID) {
-					w.setBlock(si + x, j, sk + z,
-							DustContent.dust.blockID, 0, 2);
+				if (blockID != DustContent.dust.blockID)
+				{
+					w.setBlock(si + x, j, sk + z, DustContent.dust.blockID, 0,
+							2);
 				}
 				TileEntityDust ted;
 				TileEntity te = w.getBlockTileEntity(si + x, j, sk + z);
 
-				if (te != null && te instanceof TileEntityDust) {
+				if (te != null && te instanceof TileEntityDust)
+				{
 					ted = (TileEntityDust) te;
-				} else {
+				} else
+				{
 					ted = new TileEntityDust();
 					w.setBlockTileEntity(si + i, j, sk + k, ted);
 				}
@@ -660,63 +751,83 @@ public class DustShape {
 				// ted.empty();
 
 				for (int ix = 0; ix < 4; ix++)
-					for (int iz = 0; iz < 4; iz++) {
+					for (int iz = 0; iz < 4; iz++)
+					{
 						int dust = block[ix][iz];
-						if (ted.getDust(ix, iz) == 0 && dust != 0) {
+						if (ted.getDust(ix, iz) == 0 && dust != 0)
+						{
 							boolean canDraw = true;
-							if (dust > 0 && !p.capabilities.isCreativeMode) {
-								if (pDustAmount[dust] > 0) {
+							if (dust > 0 && !p.capabilities.isCreativeMode)
+							{
+								if (pDustAmount[dust] > 0)
+								{
 									reduceDustAmount[dust]++;
 									pDustAmount[dust]--;
-								} else {
+								} else
+								{
 									canDraw = false;
 								}
 							}
-							if (canDraw) {
+							if (canDraw)
+							{
 								ted.setDust(p, ix, iz, dust);
 							}
 						}
 					}
 			}
 
-		for (int x = 0; x < tblocks.size(); x++) {
-			for (int z = 0; z < tblocks.get(0).size(); z++) {
-				if (DustMod.isDust(w.getBlockId(si + x, j, sk + z))) {
+		for (int x = 0; x < tblocks.size(); x++)
+		{
+			for (int z = 0; z < tblocks.get(0).size(); z++)
+			{
+				if (DustMod.isDust(w.getBlockId(si + x, j, sk + z)))
+				{
 					TileEntityDust ted = (TileEntityDust) w.getBlockTileEntity(
 							si + x, j, sk + z);
 
-					if (ted.isEmpty()) {
-						w.setBlock(si + x, j, sk + z, 0,
-								0, 3);
-					} else {
+					if (ted.isEmpty())
+					{
+						w.setBlock(si + x, j, sk + z, 0, 0, 3);
+					} else
+					{
 						w.markBlockForUpdate(si + x, j, sk + z);
 					}
 				}
 			}
 		}
 
-		if (!p.capabilities.isCreativeMode) {
-			for (int id = 1; id < 1000; id++) {
-				for (int sind = 0; sind < p.inventory.mainInventory.length; sind++) {
+		if (!p.capabilities.isCreativeMode)
+		{
+			for (int id = 1; id < 1000; id++)
+			{
+				for (int sind = 0; sind < p.inventory.mainInventory.length; sind++)
+				{
 					ItemStack is = p.inventory.mainInventory[sind];
 
-					if (is != null && reduceDustAmount[id] > 0) {
+					if (is != null && reduceDustAmount[id] > 0)
+					{
 						if (is.itemID == DustContent.idust.itemID
-								&& is.getItemDamage() == id) {
-							while (reduceDustAmount[id] > 0 && is.stackSize > 0) {
+								&& is.getItemDamage() == id)
+						{
+							while (reduceDustAmount[id] > 0 && is.stackSize > 0)
+							{
 								is.stackSize--;
 
-								if (is.stackSize == 0) {
+								if (is.stackSize == 0)
+								{
 									p.inventory.mainInventory[sind] = null;
 								}
 
 								reduceDustAmount[id]--;
 							}
-						} else if (is.itemID == DustContent.pouch.itemID) {
+						} else if (is.itemID == DustContent.pouch.itemID)
+						{
 							int did = ItemPouch.getValue(is);
-							if (did == id) {
+							if (did == id)
+							{
 								while (reduceDustAmount[id] > 0
-										&& ItemPouch.getDustAmount(is) > 0) {
+										&& ItemPouch.getDustAmount(is) > 0)
+								{
 									ItemPouch.subtractDust(is, 1);
 
 									reduceDustAmount[id]--;
@@ -729,7 +840,8 @@ public class DustShape {
 			}
 		}
 		InventoryPlayer inv = p.inventory;
-		for (int slot = 0; slot < inv.getSizeInventory(); slot++) {
+		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
+		{
 			inv.getStackInSlot(slot);
 		}
 		p.inventory.inventoryChanged = true;
@@ -740,7 +852,8 @@ public class DustShape {
 
 	@SideOnly(Side.CLIENT)
 	public boolean drawOnWorldPart(World w, int i, int j, int k,
-			EntityPlayer p, int r, int itemUse) {
+			EntityPlayer p, int r, int itemUse)
+	{
 		if (w.isRemote)
 			return false;
 
@@ -758,15 +871,19 @@ public class DustShape {
 
 		ArrayList<ArrayList<int[][]>> tblocks;
 
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				for (int z = 0; z < length; z++) {
+		for (int y = 0; y < height; y++)
+		{
+			for (int x = 0; x < width; x++)
+			{
+				for (int z = 0; z < length; z++)
+				{
 					tdata[y][x][z] = data[y][x][z];
 				}
 			}
 		}
 
-		for (int rot = 0; rot < r; rot++) {
+		for (int rot = 0; rot < r; rot++)
+		{
 			tdata[0] = rotateMatrix(tdata[0]);
 		}
 
@@ -775,24 +892,25 @@ public class DustShape {
 		int th = (int) Math.floor(data[0][0].length / 4);
 		th *= 4;
 
-		switch (r) {
-		case 0:
-			break;
+		switch (r)
+		{
+			case 0:
+				break;
 
-		case 1:
-			tox = ox;
-			toy = tw - ((data[0].length + oy) % 4);
-			break;
+			case 1:
+				tox = ox;
+				toy = tw - ((data[0].length + oy) % 4);
+				break;
 
-		case 2:
-			tox = tw - ((data[0].length + oy) % 4);
-			toy = th - ((data[0][0].length + ox) % 4);
-			break;
+			case 2:
+				tox = tw - ((data[0].length + oy) % 4);
+				toy = th - ((data[0][0].length + ox) % 4);
+				break;
 
-		case 3:
-			tox = th - ((data[0][0].length + ox) % 4);
-			toy = oy;
-			break;
+			case 3:
+				tox = th - ((data[0][0].length + ox) % 4);
+				toy = oy;
+				break;
 		}
 
 		tblocks = updateData(tdata, tox, toy);
@@ -801,11 +919,15 @@ public class DustShape {
 		sk -= temp[1];
 		int[] pDustAmount = new int[1000];
 
-		for (ItemStack is : p.inventory.mainInventory) {
-			if (is != null) {
-				if (is.itemID == DustContent.idust.itemID) {
+		for (ItemStack is : p.inventory.mainInventory)
+		{
+			if (is != null)
+			{
+				if (is.itemID == DustContent.idust.itemID)
+				{
 					pDustAmount[is.getItemDamage()] += is.stackSize;
-				} else if (is.itemID == DustContent.pouch.itemID) {
+				} else if (is.itemID == DustContent.pouch.itemID)
+				{
 					int dustID = ItemPouch.getValue(is);
 					int amt = ItemPouch.getDustAmount(is);
 					pDustAmount[dustID] += amt;
@@ -819,54 +941,63 @@ public class DustShape {
 
 		Random rand = new Random();
 		for (int check = 0; check < this.width * this.height * 2
-				&& hasDrawn > 0; check++) {
+				&& hasDrawn > 0; check++)
+		{
 			int x = rand.nextInt(tblocks.size());
 			int z = rand.nextInt(tblocks.get(0).size());
 			int[][] block = tblocks.get(x).get(z);
 
 			boolean empty = true;
-			for (int iter = 0; iter < block.length && empty; iter++) {
-				for (int jter = 0; jter < block[0].length && empty; jter++) {
+			for (int iter = 0; iter < block.length && empty; iter++)
+			{
+				for (int jter = 0; jter < block[0].length && empty; jter++)
+				{
 					if (block[iter][jter] != 0)
 						empty = false;
 				}
 			}
-			if (empty) {
+			if (empty)
+			{
 				continue;
 			}
 
 			int blockID = w.getBlockId(si + x, j, sk + z);
 			int meta = w.getBlockMetadata(si + x, j, sk + z);
 			if (blockID != 0 && !(DustMod.isDust(blockID)/* && meta == 2 */)
-					&& blockID != Block.tallGrass.blockID) {
+					&& blockID != Block.tallGrass.blockID)
+			{
 				continue;
 			}
 
-			if (w.getBlockId(si + x, j - 1, sk + z) == 0) {
+			if (w.getBlockId(si + x, j - 1, sk + z) == 0)
+			{
 				continue;
 			}
 
-			if (!DustContent.dust.canPlaceBlockAt(w, si + x, j, sk + z)) {
+			if (!DustContent.dust.canPlaceBlockAt(w, si + x, j, sk + z))
+			{
 				continue;
 			}
 
-			if (blockID != DustContent.dust.blockID) {
-				w.setBlock(si + x, j, sk + z,
-						DustContent.dust.blockID, 0, 2);
-			}else if(meta == BlockDust.DEAD_DUST){
-				w.setBlock(si + x, j, sk + z,
-						0, 0, 2);
-				w.setBlock(si + x, j, sk + z,
-						DustContent.dust.blockID, 0, 2);
-			}else if(meta != BlockDust.UNUSED_DUST){
+			if (blockID != DustContent.dust.blockID)
+			{
+				w.setBlock(si + x, j, sk + z, DustContent.dust.blockID, 0, 2);
+			} else if (meta == BlockDust.DEAD_DUST)
+			{
+				w.setBlock(si + x, j, sk + z, 0, 0, 2);
+				w.setBlock(si + x, j, sk + z, DustContent.dust.blockID, 0, 2);
+			} else if (meta != BlockDust.UNUSED_DUST)
+			{
 				continue;
 			}
 			TileEntityDust ted;
 			TileEntity te = w.getBlockTileEntity(si + x, j, sk + z);
 
-			if (te != null && te instanceof TileEntityDust) {
+			if (te != null && te instanceof TileEntityDust)
+			{
 				ted = (TileEntityDust) te;
-			} else {
+			} else
+			{
 				ted = new TileEntityDust();
 				w.setBlockTileEntity(si + i, j, sk + k, ted);
 			}
@@ -878,67 +1009,87 @@ public class DustShape {
 
 			int check2 = 16;
 			while ((ted.getDust(ix, iz) != 0 || block[ix][iz] == 0)
-					&& check2 > 0) {
+					&& check2 > 0)
+			{
 				ix = rand.nextInt(4);
 				iz = rand.nextInt(4);
 				check2--;
 				continue;
 			}
 			int dust = block[ix][iz];
-			if (ted.getDust(ix, iz) == 0 && dust != 0) {
+			if (ted.getDust(ix, iz) == 0 && dust != 0)
+			{
 				boolean canDraw = true;
-				if (dust > 0 && !p.capabilities.isCreativeMode) {
-					if (pDustAmount[dust] > 0) {
+				if (dust > 0 && !p.capabilities.isCreativeMode)
+				{
+					if (pDustAmount[dust] > 0)
+					{
 						reduceDustAmount[dust]++;
 						pDustAmount[dust]--;
-					} else {
+					} else
+					{
 						canDraw = false;
 					}
 				}
-				if (canDraw) {
+				if (canDraw)
+				{
 					ted.setDust(p, ix, iz, dust);
 				}
 			}
 		}
 
-		for (int x = 0; x < tblocks.size(); x++) {
-			for (int z = 0; z < tblocks.get(0).size(); z++) {
-				if (DustMod.isDust(w.getBlockId(si + x, j, sk + z))) {
+		for (int x = 0; x < tblocks.size(); x++)
+		{
+			for (int z = 0; z < tblocks.get(0).size(); z++)
+			{
+				if (DustMod.isDust(w.getBlockId(si + x, j, sk + z)))
+				{
 					TileEntityDust ted = (TileEntityDust) w.getBlockTileEntity(
 							si + x, j, sk + z);
 
-					if (ted.isEmpty()) {
-						w.setBlock(si + x, j, sk + z, 0,
-								0, 3);
-					} else {
+					if (ted.isEmpty())
+					{
+						w.setBlock(si + x, j, sk + z, 0, 0, 3);
+					} else
+					{
 						w.markBlockForUpdate(si + x, j, sk + z);
 					}
 				}
 			}
 		}
 
-		if (!p.capabilities.isCreativeMode) {
-			for (int id = 1; id < 1000; id++) {
-				for (int sind = 0; sind < p.inventory.mainInventory.length; sind++) {
+		if (!p.capabilities.isCreativeMode)
+		{
+			for (int id = 1; id < 1000; id++)
+			{
+				for (int sind = 0; sind < p.inventory.mainInventory.length; sind++)
+				{
 					ItemStack is = p.inventory.mainInventory[sind];
 
-					if (is != null && reduceDustAmount[id] > 0) {
+					if (is != null && reduceDustAmount[id] > 0)
+					{
 						if (is.itemID == DustContent.idust.itemID
-								&& is.getItemDamage() == id) {
-							while (reduceDustAmount[id] > 0 && is.stackSize > 0) {
+								&& is.getItemDamage() == id)
+						{
+							while (reduceDustAmount[id] > 0 && is.stackSize > 0)
+							{
 								is.stackSize--;
 
-								if (is.stackSize == 0) {
+								if (is.stackSize == 0)
+								{
 									p.inventory.mainInventory[sind] = null;
 								}
 
 								reduceDustAmount[id]--;
 							}
-						} else if (is.itemID == DustContent.pouch.itemID) {
+						} else if (is.itemID == DustContent.pouch.itemID)
+						{
 							int did = ItemPouch.getValue(is);
-							if (did == id) {
+							if (did == id)
+							{
 								while (reduceDustAmount[id] > 0
-										&& ItemPouch.getDustAmount(is) > 0) {
+										&& ItemPouch.getDustAmount(is) > 0)
+								{
 									ItemPouch.subtractDust(is, 1);
 
 									reduceDustAmount[id]--;
@@ -951,7 +1102,8 @@ public class DustShape {
 			}
 		}
 		InventoryPlayer inv = p.inventory;
-		for (int slot = 0; slot < inv.getSizeInventory(); slot++) {
+		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
+		{
 			inv.getStackInSlot(slot);
 		}
 		p.inventory.inventoryChanged = true;
@@ -960,10 +1112,14 @@ public class DustShape {
 		return true;
 	}
 
-	public boolean isEmpty(int[][] block) {
-		for (int[] i : block) {
-			for (int j : i) {
-				if (j != 0) {
+	public boolean isEmpty(int[][] block)
+	{
+		for (int[] i : block)
+		{
+			for (int j : i)
+			{
+				if (j != 0)
+				{
 					return true;
 				}
 			}
@@ -972,9 +1128,12 @@ public class DustShape {
 		return false;
 	}
 
-	public boolean hasEnough(int[] dust) {
-		for (int i = 1; i < 1000; i++) {
-			if (dust[i] < dustAmt[i]) {
+	public boolean hasEnough(int[] dust)
+	{
+		for (int i = 1; i < 1000; i++)
+		{
+			if (dust[i] < dustAmt[i])
+			{
 				DustMod.log(Level.FINER, "Not enough dust: " + i);
 				// System.out.println("[DustMod] Not enough dust:" + i);
 				return false;
@@ -991,7 +1150,8 @@ public class DustShape {
 	 *            The name
 	 * @return This DustShape
 	 */
-	public DustShape setRuneName(String n) {
+	public DustShape setRuneName(String n)
+	{
 		pName = n;
 		return this;
 	}
@@ -1003,34 +1163,43 @@ public class DustShape {
 	 *            Your screenname
 	 * @return this DustShape
 	 */
-	public DustShape setAuthor(String name) {
+	public DustShape setAuthor(String name)
+	{
 		this.author = name;
 		return this;
 	}
 
-	public String getRuneName() {
-		if (pName.isEmpty()) {
+	public String getRuneName()
+	{
+		if (pName.isEmpty())
+		{
 			return name + ".propername";
 		}
 		return pName;
 	}
 
-	public String getDescription() {
-		if (desc.isEmpty()) {
+	public String getDescription()
+	{
+		if (desc.isEmpty())
+		{
 			return name + ".desc";
 		}
 		return desc;
 	}
 
-	public String getAuthor() {
-		if (author.isEmpty()) {
+	public String getAuthor()
+	{
+		if (author.isEmpty())
+		{
 			return name + ".author";
 		}
 		return author;
 	}
 
-	public String getNotes() {
-		if (notes.isEmpty()) {
+	public String getNotes()
+	{
+		if (notes.isEmpty())
+		{
 			return name + ".notes";
 		}
 		return notes;

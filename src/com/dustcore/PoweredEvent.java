@@ -11,183 +11,195 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 import com.dustcore.tileentity.TileEntityDust;
-import com.dustdefault.runes.DEPowerRelay;
+import com.dustdefault.runes.RunePowerRelay;
 
 public abstract class PoweredEvent extends DustEvent
 {
-    public static final int dayLength = 24000;
-    public boolean consumeItems = true;
-    public PoweredEvent()
-    {
-        super();
-    }
-	
+	public static final int dayLength = 24000;
+	public boolean consumeItems = true;
+
+	public PoweredEvent()
+	{
+		super();
+	}
+
 	@Override
-    public void initGraphics(EntityDust e){
-    	super.initGraphics(e);
-    	
-    	e.setRenderStar(true);
-    	e.setStarScale(1.0F);
-    	e.setColorStar(255,255,255);
-		
-    }
+	public void initGraphics(EntityDust e)
+	{
+		super.initGraphics(e);
 
-    @Override
-    public void onInit(EntityDust e)
-    {
-        super.onInit(e);
+		e.setRenderStar(true);
+		e.setStarScale(1.0F);
+		e.setColorStar(255, 255, 255);
 
-        if (this.getClass() != DEPowerRelay.class)
-        {
-            List<EntityDust> ents = DEPowerRelay.findDustEntities(e);
+	}
 
-            for (EntityDust i: ents)
-            {
-            	if(i.event == null) continue;
-                if (i.event.getClass() == DEPowerRelay.class)
-                {
-                    ((DEPowerRelay)i.event).registerSelfTo(i, e);
-                }
-            }
-        }
+	@Override
+	public void onInit(EntityDust e)
+	{
+		super.onInit(e);
 
-        e.setFuel(this.getStartFuel());
-        e.requiresFuel = true;
-    	e.setRenderStar(true);
-    	e.setStarScale(1.0F);
-    	e.setColorStar(255,255,255);
-    }
+		if (this.getClass() != RunePowerRelay.class)
+		{
+			List<EntityDust> ents = RunePowerRelay.findDustEntities(e);
 
-    @Override
-    public void onTick(EntityDust e)
-    {
-        super.onTick(e);
+			for (EntityDust i : ents)
+			{
+				if (i.event == null)
+					continue;
+				if (i.event.getClass() == RunePowerRelay.class)
+				{
+					((RunePowerRelay) i.event).registerSelfTo(i, e);
+				}
+			}
+		}
 
-        if (e.getFuel() <= 0 && !this.isPaused(e))
-        {
-            e.fade();
-            return;
-        }
+		e.setFuel(this.getStartFuel());
+		e.requiresFuel = true;
+		e.setRenderStar(true);
+		e.setStarScale(1.0F);
+		e.setColorStar(255, 255, 255);
+	}
 
-        if (!this.isPaused(e))
-        {
-            subtractFuel(e);
-        }
+	@Override
+	public void onTick(EntityDust e)
+	{
+		super.onTick(e);
 
-        if (consumeItems)
-        {
-            List<Entity> ents = this.getEntities(e, 1.0D);
+		if (e.getFuel() <= 0 && !this.isPaused(e))
+		{
+			e.fade();
+			return;
+		}
 
-            for (Entity i: ents)
-            {
-                if (!i.isDead && i instanceof EntityItem)
-                {
-                    EntityItem ei = (EntityItem)i;
-                    ei.attackEntityFrom(null, -20);
-                    //                ei.delayBeforeCanPickup = 20;
-                    ItemStack is = ei.getEntityItem();
+		if (!this.isPaused(e))
+		{
+			subtractFuel(e);
+		}
 
-                    if (TileEntityFurnace.getItemBurnTime(is) != 0)
-                    {
-                        addFuel(e, TileEntityFurnace.getItemBurnTime(is) * is.stackSize);
-                        ei.setDead();
-                        continue;
-                    }
-                }
-            }
-        }
+		if (consumeItems)
+		{
+			List<Entity> ents = this.getEntities(e, 1.0D);
 
-        if (e.isFueledExternally())
-        {
-            e.setStarScale(1.04F);
-        }
-        else
-        {
-            e.setStarScale(1F);
-        }
+			for (Entity i : ents)
+			{
+				if (!i.isDead && i instanceof EntityItem)
+				{
+					EntityItem ei = (EntityItem) i;
+					ei.attackEntityFrom(null, -20);
+					// ei.delayBeforeCanPickup = 20;
+					ItemStack is = ei.getEntityItem();
 
-        if (!this.isPaused(e))
-        {
-            double powerPercent = (double)e.getFuel() / (double)this.getStableFuelAmount(e);
-            int c = (int)(255D * powerPercent);
+					if (TileEntityFurnace.getItemBurnTime(is) != 0)
+					{
+						addFuel(e, TileEntityFurnace.getItemBurnTime(is)
+								* is.stackSize);
+						ei.setDead();
+						continue;
+					}
+				}
+			}
+		}
 
-            if (c > 255)
-            {
-                c = 255;
-            }
+		if (e.isFueledExternally())
+		{
+			e.setStarScale(1.04F);
+		} else
+		{
+			e.setStarScale(1F);
+		}
 
-            e.setColorStar(255, c, c);
-        }
-        else
-        {
-            e.setColorStar(255, 255, 0);
-        }
+		if (!this.isPaused(e))
+		{
+			double powerPercent = (double) e.getFuel()
+					/ (double) this.getStableFuelAmount(e);
+			int c = (int) (255D * powerPercent);
 
-//        System.out.println("PowerPercent " + powerPercent + " Color " + c + " " + e.ri + ":" + e.gi + ":" + e.bi);
-    }
+			if (c > 255)
+			{
+				c = 255;
+			}
 
-    @Override
-    public void onRightClick(EntityDust e, TileEntityDust ted, EntityPlayer p)
-    {
-        super.onRightClick(e, ted, p);
-    }
+			e.setColorStar(255, c, c);
+		} else
+		{
+			e.setColorStar(255, 255, 0);
+		}
 
-    @Override
-    public void onUnload(EntityDust e)
-    {
-        super.onUnload(e);
+		// System.out.println("PowerPercent " + powerPercent + " Color " + c +
+		// " " + e.ri + ":" + e.gi + ":" + e.bi);
+	}
 
-        if (this.getClass() != DEPowerRelay.class)
-        {
-            List<EntityDust> ents = DEPowerRelay.findDustEntities(e);
+	@Override
+	public void onRightClick(EntityDust e, TileEntityDust ted, EntityPlayer p)
+	{
+		super.onRightClick(e, ted, p);
+	}
 
-            for (EntityDust i: ents)
-            {
-            	if(i.event == null) continue;
-                if (i.event.getClass() == DEPowerRelay.class)
-                {
-                    ((DEPowerRelay)i.event).removeSelfFrom(i, e);
-                }
-            }
-        }
-    }
+	@Override
+	public void onUnload(EntityDust e)
+	{
+		super.onUnload(e);
 
-    public void subtractFuel(EntityDust e)
-    {
-        e.setFuel(e.getFuel() - 1);
-    }
-    public void addFuel(EntityDust e, int amt)
-    {
-        if (e.getFuel() + amt > this.getMaxFuel())
-        {
-            return;
-        }
+		if (this.getClass() != RunePowerRelay.class)
+		{
+			List<EntityDust> ents = RunePowerRelay.findDustEntities(e);
 
-        e.setFuel(e.getFuel() + amt);
-    }
+			for (EntityDust i : ents)
+			{
+				if (i.event == null)
+					continue;
+				if (i.event.getClass() == RunePowerRelay.class)
+				{
+					((RunePowerRelay) i.event).removeSelfFrom(i, e);
+				}
+			}
+		}
+	}
 
-    public abstract int getStartFuel();     //amount of fuel to start with
-    public abstract int getMaxFuel();       //Max amount of fuel
-    public abstract int getStableFuelAmount(EntityDust e);    //amount of fuel requested
-    public abstract boolean isPaused(EntityDust e); //pause the fuel depletion
+	public void subtractFuel(EntityDust e)
+	{
+		e.setFuel(e.getFuel() - 1);
+	}
 
-    /**
-     * Called to check if the rune is requesting anymore power or if it is 
-     * currently stable where it is.
-     * @param e EntityDust instance
-     * @return The amount of power it wants, if needed
-     */
-    public int powerWanted(EntityDust e)
-    {
-        int cur = e.getFuel();
-        int rtn = 0;
-        int stable = this.getStableFuelAmount(e);
+	public void addFuel(EntityDust e, int amt)
+	{
+		if (e.getFuel() + amt > this.getMaxFuel())
+		{
+			return;
+		}
 
-        if (stable > cur)
-        {
-            rtn = stable - cur;
-        }
+		e.setFuel(e.getFuel() + amt);
+	}
 
-        return rtn;
-    }
+	public abstract int getStartFuel(); // amount of fuel to start with
+
+	public abstract int getMaxFuel(); // Max amount of fuel
+
+	public abstract int getStableFuelAmount(EntityDust e); // amount of fuel
+															// requested
+
+	public abstract boolean isPaused(EntityDust e); // pause the fuel depletion
+
+	/**
+	 * Called to check if the rune is requesting anymore power or if it is
+	 * currently stable where it is.
+	 * 
+	 * @param e
+	 *            EntityDust instance
+	 * @return The amount of power it wants, if needed
+	 */
+	public int powerWanted(EntityDust e)
+	{
+		int cur = e.getFuel();
+		int rtn = 0;
+		int stable = this.getStableFuelAmount(e);
+
+		if (stable > cur)
+		{
+			rtn = stable - cur;
+		}
+
+		return rtn;
+	}
 }

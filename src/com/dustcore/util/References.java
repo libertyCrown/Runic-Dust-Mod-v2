@@ -2,7 +2,7 @@ package com.dustcore.util;
 
 import java.io.File;
 
-public class References 
+public class References
 {
 	public static final int warpVer = 1;
 	public static boolean debug = false;
@@ -21,8 +21,8 @@ public class References
 	public static int DustMetaDefault = 0;
 	public static int DustMetaUsing = 1;
 	public static int DustMetaUsed = 2;
-	
-	/**Mod ids**/
+
+	/** Mod ids **/
 	public static int BLOCK_DustID = 3465;
 	public static int BLOCK_DustTableID = 3466;
 	public static int BLOCK_RutID = 3467;

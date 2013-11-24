@@ -24,84 +24,103 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
-public class ClientProxy extends CommonProxy {
-	
+public class ClientProxy extends CommonProxy
+{
+
 	@Override
-	public boolean isClient(){
+	public boolean isClient()
+	{
 		return true;
 	}
-	
+
 	@Override
-	public int getBlockModel(Block b) {
-		if(b == DustContent.dust) return DustBlockRenderers.dustModelID;
-		if(b == DustContent.rutBlock) return DustBlockRenderers.rutModelID;
+	public int getBlockModel(Block b)
+	{
+		if (b == DustContent.dust)
+			return DustBlockRenderers.dustModelID;
+		if (b == DustContent.rutBlock)
+			return DustBlockRenderers.rutModelID;
 		return -1;
 	}
-	
+
 	@Override
-	public void resetPlayerTomePage() {
+	public void resetPlayerTomePage()
+	{
 		GuiTome.runePage = 0;
 		GuiTome.insPage = 0;
 	}
-	
+
 	@Override
-	public World getClientWorld() {
+	public World getClientWorld()
+	{
 		return FMLClientHandler.instance().getClient().theWorld;
 	}
-	
+
 	@Override
-	public void checkRunePage(DustShape shape) {
+	public void checkRunePage(DustShape shape)
+	{
 		PageHelper.instance.checkRuneImage(shape);
 	}
-	
+
 	@Override
-	public void checkInscriptionPage(InscriptionEvent shape) {
+	public void checkInscriptionPage(InscriptionEvent shape)
+	{
 		PageHelper.instance.checkInscriptionImage(shape);
 	}
-	
+
 	@Override
-	public void registerEventHandlers() {
+	public void registerEventHandlers()
+	{
 		super.registerEventHandlers();
 	}
-	
+
 	@Override
-	public void registerRenderInformation() 
+	public void registerRenderInformation()
 	{
 		PageHelper.instance = new PageHelper();
-        
-        DustBlockRenderers.dustModelID = RenderingRegistry.getNextAvailableRenderId();
-        DustBlockRenderers.rutModelID = RenderingRegistry.getNextAvailableRenderId();
-        
-        RenderingRegistry.registerBlockHandler(new DustBlockRenderers(DustBlockRenderers.dustModelID));
-        RenderingRegistry.registerBlockHandler(new DustBlockRenderers(DustBlockRenderers.rutModelID));
-        
-        RenderingRegistry.registerEntityRenderingHandler(EntityDust.class, new RenderEntityDust());
-        RenderingRegistry.registerEntityRenderingHandler(EntityBlock.class, new RenderEntityBlock());
-        MinecraftForge.EVENT_BUS.register(new RenderLastHandler());
-	}
-	
-	@Override
-	public void registerTileEntityRenderers() 
-	{
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDustTable.class, new RenderDustTable());
+
+		DustBlockRenderers.dustModelID = RenderingRegistry
+				.getNextAvailableRenderId();
+		DustBlockRenderers.rutModelID = RenderingRegistry
+				.getNextAvailableRenderId();
+
+		RenderingRegistry.registerBlockHandler(new DustBlockRenderers(
+				DustBlockRenderers.dustModelID));
+		RenderingRegistry.registerBlockHandler(new DustBlockRenderers(
+				DustBlockRenderers.rutModelID));
+
+		RenderingRegistry.registerEntityRenderingHandler(EntityDust.class,
+				new RenderEntityDust());
+		RenderingRegistry.registerEntityRenderingHandler(EntityBlock.class,
+				new RenderEntityBlock());
+		MinecraftForge.EVENT_BUS.register(new RenderLastHandler());
 	}
 
-	
 	@Override
-	public void openTomeGUI(ItemStack itemstack, EntityPlayer p) {
-//		ModLoader.openGUI(p, new GuiTome(itemstack));
-		FMLClientHandler.instance().displayGuiScreen(p, new GuiTome(itemstack));
-//		p.openGui(DustMod.instance, );
+	public void registerTileEntityRenderers()
+	{
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDustTable.class,
+				new RenderDustTable());
 	}
-	
+
+	@Override
+	public void openTomeGUI(ItemStack itemstack, EntityPlayer p)
+	{
+		// ModLoader.openGUI(p, new GuiTome(itemstack));
+		FMLClientHandler.instance().displayGuiScreen(p, new GuiTome(itemstack));
+		// p.openGui(DustMod.instance, );
+	}
+
 	@Override
 	public boolean placeDustWithTome(ItemStack itemstack, EntityPlayer p,
-			World world, int i, int j, int k, int l) {
-        return true;
+			World world, int i, int j, int k, int l)
+	{
+		return true;
 	}
-	
+
 	@Override
-	public void tickMouseManager() {
+	public void tickMouseManager()
+	{
 		super.tickMouseManager();
 		MouseManager.instance.onTick();
 	}

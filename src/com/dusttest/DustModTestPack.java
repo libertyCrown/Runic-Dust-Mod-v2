@@ -10,6 +10,7 @@ import com.dusttest.inscriptions.MountainCutterInscription;
 import com.dusttest.inscriptions.WaterAffinity;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -24,23 +25,27 @@ import cpw.mods.fml.common.network.NetworkMod;
  */
 @Mod(modid = "DustModTestPack", name = "Dust mod Test pack", version = "0.03", dependencies = "after:DustMod")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
-public class DustModTestPack {
+public class DustModTestPack
+{
 
 	@Instance("DustModTestPack")
 	public static DustModTestPack instance;
 
-	@PostInit
-	public void postInit(FMLPostInitializationEvent evt) {
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent evt)
+	{
 		registerDusts();
 		registerRunes();
 		registerInscriptions();
 	}
 
-	public void registerDusts() {
+	public void registerDusts()
+	{
 
 	}
 
-	public void registerRunes() {
+	public void registerRunes()
+	{
 
 		int N = -1;
 		int P = 100;
@@ -67,7 +72,8 @@ public class DustModTestPack {
 		// DustManager.registerLocalDustShape(s, new LaunchTestRune());
 	}
 
-	public void registerInscriptions() {
+	public void registerInscriptions()
+	{
 
 		int N = -1;
 		int P = 100;
@@ -80,7 +86,8 @@ public class DustModTestPack {
 
 		design = new int[][] { { 0, P, P, 0 }, { P, G, G, P }, { P, G, G, P },
 				{ 0, P, P, 0 } };
-		evt = new MountainCutterInscription(design, "cut", "Moutain Cutter", 100);
+		evt = new MountainCutterInscription(design, "cut", "Moutain Cutter",
+				100);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 

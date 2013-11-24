@@ -24,23 +24,27 @@ import com.dustcore.util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemSpiritPickaxe extends ItemPickaxe {
+public class ItemSpiritPickaxe extends ItemPickaxe
+{
 	private static Block blocksEffectiveAgainst[];
 
-	public ItemSpiritPickaxe(int i, EnumToolMaterial enumtoolmaterial) {
+	public ItemSpiritPickaxe(int i, EnumToolMaterial enumtoolmaterial)
+	{
 		super(i, enumtoolmaterial);
 		setMaxDamage(250);
 		efficiencyOnProperMaterial = 16F;
 	}
 
-	public EnumRarity func_40398_f(ItemStack itemstack) {
+	public EnumRarity func_40398_f(ItemStack itemstack)
+	{
 		return EnumRarity.epic;
 	}
 
 	/**
 	 * How long it takes to use or consume an item
 	 */
-	public int getMaxItemUseDuration(ItemStack par1ItemStack) {
+	public int getMaxItemUseDuration(ItemStack par1ItemStack)
+	{
 		return 72000;
 	}
 
@@ -48,7 +52,8 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 	 * returns the action that specifies what animation to play when the items
 	 * is being used
 	 */
-	public EnumAction getItemUseAction(ItemStack par1ItemStack) {
+	public EnumAction getItemUseAction(ItemStack par1ItemStack)
+	{
 		return EnumAction.bow;
 	}
 
@@ -57,7 +62,8 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 	 * pressed. Args: itemStack, world, entityPlayer
 	 */
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World,
-			EntityPlayer par3EntityPlayer) {
+			EntityPlayer par3EntityPlayer)
+	{
 		par3EntityPlayer.setItemInUse(par1ItemStack,
 				this.getMaxItemUseDuration(par1ItemStack));
 
@@ -65,7 +71,8 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 	}
 
 	public void onPlayerStoppedUsing(ItemStack item, World world,
-			EntityPlayer player, int useAmt) {
+			EntityPlayer player, int useAmt)
+	{
 		int use = this.getMaxItemUseDuration(item) - useAmt;
 
 		float ticks = 1F;
@@ -78,10 +85,11 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 		Vec3 result = pos.addVector(look.xCoord * distance, look.yCoord
 				* distance, look.zCoord * distance);
 
-		//TODO-right fix?
+		// TODO-right fix?
 		MovingObjectPosition click = player.worldObj.clip(pos, result);
 
-		if (click == null) {
+		if (click == null)
+		{
 			return;
 		}
 
@@ -95,19 +103,24 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 		level *= level;
 		double tol = (double) level / 900D;
 
-		if (use > 25) {
+		if (use > 25)
+		{
 			boolean creative = player.capabilities.isCreativeMode;
 			boolean playedSound = false;
 			int rad = 1;
-			for (int i = -rad; i <= rad; i++) {
-				for (int j = -rad; j <= rad; j++) {
-					for (int k = -rad; k <= rad; k++) {
+			for (int i = -rad; i <= rad; i++)
+			{
+				for (int j = -rad; j <= rad; j++)
+				{
+					for (int k = -rad; k <= rad; k++)
+					{
 						if (item.getItemDamage() >= item.getMaxDamage())
 							continue;
 						int bid = world.getBlockId(x + i, y + j, z + k);
 						int meta = world.getBlockMetadata(x + i, y + j, z + k);
 						Block block = Block.blocksList[bid];
-						try {
+						try
+						{
 
 							if (block != null) // block is not null (air)
 							{
@@ -116,7 +129,8 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 																	// is made
 																	// of rock
 								{
-									if (!playedSound) {
+									if (!playedSound)
+									{
 										world.playSoundEffect(
 												(double) ((float) i + 0.5F),
 												(double) ((float) j + 0.5F),
@@ -126,10 +140,12 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 												block.stepSound.getPitch() * 0.99F);
 										playedSound = true;
 									}
-									if (rand.nextDouble() < tol) {
+									if (rand.nextDouble() < tol)
+									{
 										EntityItem ei = player
 												.dropPlayerItem(new ItemStack(
-														DustContent.idust, 1, 300));
+														DustContent.idust, 1,
+														300));
 										ei.setPosition(x + 0.5 + i,
 												y + 0.5 + j, z + 0.5 + k);
 										ei.motionX = ei.motionY = ei.motionZ;
@@ -137,12 +153,13 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 									boolean sucess = block.removeBlockByPlayer(
 											world, player, x + i, y + j, z + k);
 
-									if (sucess) {
+									if (sucess)
+									{
 										block.onBlockDestroyedByPlayer(world, x
 												+ i, y + j, z + k, meta);
 									}
-									world.setBlock(i + x, j + y, k
-											+ z, 0,0,3); // update world
+									world.setBlock(i + x, j + y, k + z, 0, 0, 3); // update
+																					// world
 									block.onBlockDestroyedByPlayer(world,
 											i + x, j + y, k + z, world
 													.getBlockMetadata(i + x, j
@@ -154,9 +171,11 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 										item.damageItem(1, player);
 								}
 							}
-						} catch (Exception e) {
+						} catch (Exception e)
+						{
 							DustMod.log(Level.WARNING, "Error breaking block "
-									+ block.getUnlocalizedName(), e.getMessage());
+									+ block.getUnlocalizedName(),
+									e.getMessage());
 							e.printStackTrace();
 						}
 					}
@@ -165,11 +184,12 @@ public class ItemSpiritPickaxe extends ItemPickaxe {
 		}
 	}
 
-	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon(References.spritePath + this.getUnlocalizedName().replace("item.", ""));
+	public void registerIcons(IconRegister par1IconRegister)
+	{
+		this.itemIcon = par1IconRegister.registerIcon(References.spritePath
+				+ this.getUnlocalizedName().replace("item.", ""));
 	}
 
 }

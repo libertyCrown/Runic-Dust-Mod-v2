@@ -6,21 +6,20 @@
 
 package org.xml.sax;
 
-
 /**
  * Exception class for an unrecognized identifier.
- *
- * <blockquote>
- * <em>This module, both source code and documentation, is in the
- * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em>
- * See <a href='http://www.saxproject.org'>http://www.saxproject.org</a>
- * for further information.
- * </blockquote>
- *
- * <p>An XMLReader will throw this exception when it finds an
- * unrecognized feature or property identifier; SAX applications and
- * extensions may use this class for other, similar purposes.</p>
- *
+ * 
+ * <blockquote> <em>This module, both source code and documentation, is in the
+ * Public Domain, and comes with <strong>NO WARRANTY</strong>.</em> See <a
+ * href='http://www.saxproject.org'>http://www.saxproject.org</a> for further
+ * information. </blockquote>
+ * 
+ * <p>
+ * An XMLReader will throw this exception when it finds an unrecognized feature
+ * or property identifier; SAX applications and extensions may use this class
+ * for other, similar purposes.
+ * </p>
+ * 
  * @since SAX 2.0
  * @author David Megginson
  * @version 2.0.1 (sax2r2)
@@ -29,24 +28,24 @@ package org.xml.sax;
 public class SAXNotRecognizedException extends SAXException
 {
 
-    /**
-     * Default constructor.
-     */
-    public SAXNotRecognizedException ()
-    {
-	super();
-    }
+	/**
+	 * Default constructor.
+	 */
+	public SAXNotRecognizedException()
+	{
+		super();
+	}
 
-
-    /**
-     * Construct a new exception with the given message.
-     *
-     * @param message The text message of the exception.
-     */
-    public SAXNotRecognizedException (String message)
-    {
-	super(message);
-    }
+	/**
+	 * Construct a new exception with the given message.
+	 * 
+	 * @param message
+	 *            The text message of the exception.
+	 */
+	public SAXNotRecognizedException(String message)
+	{
+		super(message);
+	}
 
 }
 

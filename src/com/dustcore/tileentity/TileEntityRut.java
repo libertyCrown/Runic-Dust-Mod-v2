@@ -13,373 +13,397 @@ import com.dustcore.util.References;
 
 public class TileEntityRut extends TileEntity
 {
-    public static float hardnessStandard = -1;
-    public int maskBlock;
-    public int maskMeta;
-    public int prevFluid;
-    public int fluid;
-    public int[][][] ruts;
-    public boolean isBeingUsed = false;
-    public boolean isDead = false;
-    public int ticksExisted = 0;
-    
-    public int dustEntID;
+	public static float hardnessStandard = -1;
+	public int maskBlock;
+	public int maskMeta;
+	public int prevFluid;
+	public int fluid;
+	public int[][][] ruts;
+	public boolean isBeingUsed = false;
+	public boolean isDead = false;
+	public int ticksExisted = 0;
 
-    private boolean hasFlame = false;
-    private int fr,fg,fb; //flame rgb
-    
-    public boolean[][][] neighborSolid = null;
+	public int dustEntID;
 
-    public boolean changed = true;
+	private boolean hasFlame = false;
+	private int fr, fg, fb; // flame rgb
 
-    public TileEntityRut()
-    {
-    	if(hardnessStandard == -1){
-    		 hardnessStandard = Block.gravel.getBlockHardness(worldObj,xCoord,yCoord,zCoord);
-    	}
-        ruts = new int[3][3][3];
+	public boolean[][][] neighborSolid = null;
 
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int k = 0; k < 3; k++)
-                {
-                    ruts[i][j][k] = 0;
-                }
-            }
-        }
-    }
+	public boolean changed = true;
 
-    public boolean hasChanged()
-    {
-        boolean rtn = changed;
-        changed = false;
-        return rtn;
-    }
+	public TileEntityRut()
+	{
+		if (hardnessStandard == -1)
+		{
+			hardnessStandard = Block.gravel.getBlockHardness(worldObj, xCoord,
+					yCoord, zCoord);
+		}
+		ruts = new int[3][3][3];
 
-    @Override
-    public void updateEntity()
-    {
-        super.updateEntity();
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				for (int k = 0; k < 3; k++)
+				{
+					ruts[i][j][k] = 0;
+				}
+			}
+		}
+	}
 
-        if (neighborSolid == null)
-        {
-            neighborSolid = new boolean[3][3][3];
-            updateNeighbors();
-        }
+	public boolean hasChanged()
+	{
+		boolean rtn = changed;
+		changed = false;
+		return rtn;
+	}
 
-        if (isEmpty() || (Block.blocksList[maskBlock] instanceof BlockSand && BlockSand.canFallBelow(worldObj, xCoord, yCoord - 1, zCoord)))
-        {
-            isDead = true;
-            worldObj.setBlock(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
-            this.invalidate();
-            return;
-        }
+	@Override
+	public void updateEntity()
+	{
+		super.updateEntity();
 
-        if (worldObj.getWorldTime() % 14 == 0 && prevFluid == fluid && fluidIsFluid())
-        {
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, maskMeta,0);
-            int i = xCoord, j = yCoord, k = zCoord;
-            super.updateEntity();
+		if (neighborSolid == null)
+		{
+			neighborSolid = new boolean[3][3][3];
+			updateNeighbors();
+		}
 
-            for (int ix = -1; ix <= 1; ix++)
-            {
-                for (int iy = -1; iy <= 0; iy++)
-                {
-                    for (int iz = -1; iz <= 1; iz++)
-                    {
-                        if ((ix == -1 || ix == 1) && ix == iy && (iz == -1 || iz == 1))
-                        {
-                            continue;
-                        }
+		if (isEmpty()
+				|| (Block.blocksList[maskBlock] instanceof BlockSand && BlockSand
+						.canFallBelow(worldObj, xCoord, yCoord - 1, zCoord)))
+		{
+			isDead = true;
+			worldObj.setBlock(xCoord, yCoord, zCoord, maskBlock, maskMeta, 3);
+			this.invalidate();
+			return;
+		}
 
-                        if ((ix == -1 || ix == 1) && (iy == -1 || iy == 1) && ix != iy && (iz == -1 || iz == 1))
-                        {
-                            continue;
-                        }
+		if (worldObj.getWorldTime() % 14 == 0 && prevFluid == fluid
+				&& fluidIsFluid())
+		{
+			worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord,
+					maskMeta, 0);
+			int i = xCoord, j = yCoord, k = zCoord;
+			super.updateEntity();
 
-                        if (iy == 0 && (ix == -1 || ix == 1) && (iz == -1 || iz == 1))
-                        {
-                            continue;
-                        }
+			for (int ix = -1; ix <= 1; ix++)
+			{
+				for (int iy = -1; iy <= 0; iy++)
+				{
+					for (int iz = -1; iz <= 1; iz++)
+					{
+						if ((ix == -1 || ix == 1) && ix == iy
+								&& (iz == -1 || iz == 1))
+						{
+							continue;
+						}
 
-                        if (worldObj.getBlockId(i + ix, j + iy, k + iz) == DustContent.rutBlock.blockID)
-                        {
-                            TileEntityRut ter = (TileEntityRut)worldObj.getBlockTileEntity(i + ix, j + iy, k + iz);
+						if ((ix == -1 || ix == 1) && (iy == -1 || iy == 1)
+								&& ix != iy && (iz == -1 || iz == 1))
+						{
+							continue;
+						}
 
-                            if (ter.fluid == 0)
-                            {
-                                ter.setFluid(this.fluid);
-                            }
-                            else if (ter.fluid == Block.waterStill.blockID && this.fluid == Block.lavaStill.blockID)
-                            {
-                                ter.setFluid(Block.cobblestone.blockID);
-                                this.setFluid(Block.cobblestone.blockID);
-                            }
-                            else if (this.fluid == Block.waterStill.blockID && ter.fluid == Block.lavaStill.blockID)
-                            {
-                                ter.setFluid(Block.cobblestone.blockID);
-                                this.setFluid(Block.cobblestone.blockID);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+						if (iy == 0 && (ix == -1 || ix == 1)
+								&& (iz == -1 || iz == 1))
+						{
+							continue;
+						}
 
-        if (worldObj.getWorldTime() % 60 == 0 && fluid == 0)
-        {
-            for (int ix = -1; ix <= 1; ix++)
-            {
-                for (int iy = -1; iy <= 1; iy++)
-                {
-                    for (int iz = -1; iz <= 1; iz++)
-                    {
-                        if (ix == iy || ix == iz || iy == iz)
-                        {
-                            int check = worldObj.getBlockId(xCoord + ix, yCoord + iy, zCoord + iz);
+						if (worldObj.getBlockId(i + ix, j + iy, k + iz) == DustContent.rutBlock.blockID)
+						{
+							TileEntityRut ter = (TileEntityRut) worldObj
+									.getBlockTileEntity(i + ix, j + iy, k + iz);
 
-                            if (fluid == 0)
-                            {
-                                if (check == Block.lavaStill.blockID || check == Block.lavaMoving.blockID)
-                                {
-                                    setFluid(Block.lavaStill.blockID);
-//                                    mod_DustMod.notifyBlockChange(worldObj, xCoord, yCoord, zCoord, 0);
-                                }
-                                else if (check == Block.waterStill.blockID || check == Block.waterMoving.blockID)
-                                {
-                                    setFluid(Block.waterStill.blockID);
-//                                    mod_DustMod.notifyBlockChange(worldObj, xCoord, yCoord, zCoord, 0);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+							if (ter.fluid == 0)
+							{
+								ter.setFluid(this.fluid);
+							} else if (ter.fluid == Block.waterStill.blockID
+									&& this.fluid == Block.lavaStill.blockID)
+							{
+								ter.setFluid(Block.cobblestone.blockID);
+								this.setFluid(Block.cobblestone.blockID);
+							} else if (this.fluid == Block.waterStill.blockID
+									&& ter.fluid == Block.lavaStill.blockID)
+							{
+								ter.setFluid(Block.cobblestone.blockID);
+								this.setFluid(Block.cobblestone.blockID);
+							}
+						}
+					}
+				}
+			}
+		}
 
-        prevFluid = fluid;
-    }
+		if (worldObj.getWorldTime() % 60 == 0 && fluid == 0)
+		{
+			for (int ix = -1; ix <= 1; ix++)
+			{
+				for (int iy = -1; iy <= 1; iy++)
+				{
+					for (int iz = -1; iz <= 1; iz++)
+					{
+						if (ix == iy || ix == iz || iy == iz)
+						{
+							int check = worldObj.getBlockId(xCoord + ix, yCoord
+									+ iy, zCoord + iz);
 
-    public boolean updateNeighbors()
-    {
-    	boolean rtn = false;
-        if (neighborSolid == null)
-        {
-        	rtn = true;
-            neighborSolid = new boolean[3][3][3];
-        }
+							if (fluid == 0)
+							{
+								if (check == Block.lavaStill.blockID
+										|| check == Block.lavaMoving.blockID)
+								{
+									setFluid(Block.lavaStill.blockID);
+								} else if (check == Block.waterStill.blockID
+										|| check == Block.waterMoving.blockID)
+								{
+									setFluid(Block.waterStill.blockID);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 
-        changed = true;
+		prevFluid = fluid;
+	}
 
-        for (int i = -1; i <= 1; i++)
-            for (int j = -1; j <= 1; j++)
-                for (int k = -1; k <= 1; k++)
-                {
-                	boolean prev = neighborSolid[i + 1][j + 1][k + 1]; 
-                    int bid = worldObj.getBlockId(xCoord + i, yCoord + j, zCoord + k);
-                    boolean next = (bid != 0 && (Block.blocksList[bid].isOpaqueCube() || Block.blocksList[bid] == DustContent.rutBlock));
-                    if(prev != next) rtn = true;
-                    neighborSolid[i + 1][j + 1][k + 1] = next;
-                }
-        return rtn;
-    }
+	public boolean updateNeighbors()
+	{
+		boolean rtn = false;
+		if (neighborSolid == null)
+		{
+			rtn = true;
+			neighborSolid = new boolean[3][3][3];
+		}
 
-    public boolean isNeighborSolid(int ix, int iy, int iz)
-    {
-        if (neighborSolid == null)
-        {
-            updateNeighbors();
-        }
+		changed = true;
 
-        return neighborSolid[ix + 1][iy + 1][iz + 1];
-    }
+		for (int i = -1; i <= 1; i++)
+			for (int j = -1; j <= 1; j++)
+				for (int k = -1; k <= 1; k++)
+				{
+					boolean prev = neighborSolid[i + 1][j + 1][k + 1];
+					int bid = worldObj.getBlockId(xCoord + i, yCoord + j,
+							zCoord + k);
+					boolean next = (bid != 0 && (Block.blocksList[bid]
+							.isOpaqueCube() || Block.blocksList[bid] == DustContent.rutBlock));
+					if (prev != next)
+						rtn = true;
+					neighborSolid[i + 1][j + 1][k + 1] = next;
+				}
+		return rtn;
+	}
 
-    @Override
-    public void writeToNBT(NBTTagCompound tag)
-    {
-        super.writeToNBT(tag);
-        tag.setInteger("maskBlock", maskBlock);
-        tag.setInteger("maskMeta", maskMeta);
-        tag.setInteger("fluid", fluid);
-        tag.setBoolean("isBeingUsed", isBeingUsed);
+	public boolean isNeighborSolid(int ix, int iy, int iz)
+	{
+		if (neighborSolid == null)
+		{
+			updateNeighbors();
+		}
 
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int k = 0; k < 3; k++)
-                {
-                    tag.setInteger("rut[" + i + "," + j + "," + k + "]", ruts[i][j][k]);
-                }
-            }
-        }
-        
-        tag.setBoolean("flame", hasFlame);
-        tag.setInteger("flameR", fr);
-        tag.setInteger("flameG", fg);
-        tag.setInteger("flameB", fb);
-    }
-    public void readFromNBT(NBTTagCompound tag)
-    {
-        super.readFromNBT(tag);
+		return neighborSolid[ix + 1][iy + 1][iz + 1];
+	}
 
-        if (tag.hasKey("maskBlock"))
-        {
-            maskBlock = tag.getInteger("maskBlock");
-        }
-        else
-        {
-            maskBlock = Block.workbench.blockID;
-        }
+	@Override
+	public void writeToNBT(NBTTagCompound tag)
+	{
+		super.writeToNBT(tag);
+		tag.setInteger("maskBlock", maskBlock);
+		tag.setInteger("maskMeta", maskMeta);
+		tag.setInteger("fluid", fluid);
+		tag.setBoolean("isBeingUsed", isBeingUsed);
 
-        if (tag.hasKey("maskMeta"))
-        {
-            maskMeta = tag.getInteger("maskMeta");
-        }
-        else
-        {
-            maskMeta = 2;
-        }
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				for (int k = 0; k < 3; k++)
+				{
+					tag.setInteger("rut[" + i + "," + j + "," + k + "]",
+							ruts[i][j][k]);
+				}
+			}
+		}
 
-        if (tag.hasKey("fluid"))
-        {
-            fluid = tag.getInteger("fluid");
-        }
-        else
-        {
-            fluid = 2;
-        }
+		tag.setBoolean("flame", hasFlame);
+		tag.setInteger("flameR", fr);
+		tag.setInteger("flameG", fg);
+		tag.setInteger("flameB", fb);
+	}
 
-        if (tag.hasKey("isBeingUsed"))
-        {
-            isBeingUsed = tag.getBoolean("isBeingUsed");
-        }
+	public void readFromNBT(NBTTagCompound tag)
+	{
+		super.readFromNBT(tag);
 
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int k = 0; k < 3; k++)
-                {
-                    String stag = "rut[" + i + "," + j + "," + k + "]";
+		if (tag.hasKey("maskBlock"))
+		{
+			maskBlock = tag.getInteger("maskBlock");
+		} else
+		{
+			maskBlock = Block.workbench.blockID;
+		}
 
-                    if (tag.hasKey(stag))
-                    {
-                        ruts[i][j][k] = tag.getInteger(stag);
-                    }
-                }
-            }
-        }
-        
-        if(tag.hasKey("flame")){
-        	this.hasFlame = tag.getBoolean("flame");
-        	fr = tag.getInteger("flameR");
-        	fg = tag.getInteger("flameG");
-        	fb = tag.getInteger("flameB");
-        }
-    }
+		if (tag.hasKey("maskMeta"))
+		{
+			maskMeta = tag.getInteger("maskMeta");
+		} else
+		{
+			maskMeta = 2;
+		}
 
-    public void setRut(EntityPlayer p, int i, int j, int k, int l)
-    {
-    	if(p != null && !worldObj.canMineBlock(p, this.xCoord, this.yCoord, this.zCoord)) return;
-        if (isBeingUsed)
-        {
-            return;
-        }
+		if (tag.hasKey("fluid"))
+		{
+			fluid = tag.getInteger("fluid");
+		} else
+		{
+			fluid = 2;
+		}
 
-        changed = true;
+		if (tag.hasKey("isBeingUsed"))
+		{
+			isBeingUsed = tag.getBoolean("isBeingUsed");
+		}
 
-        if (canEdit())
-        {
-            if ((i == 0 || i == 2) && i == j && (k == 0 || k == 2))
-            {
-                return;
-            }
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				for (int k = 0; k < 3; k++)
+				{
+					String stag = "rut[" + i + "," + j + "," + k + "]";
 
-            if ((i == 0 || i == 2) && (j == 0 || j == 2) && i != j && (k == 0 || k == 2))
-            {
-                return;
-            }
+					if (tag.hasKey(stag))
+					{
+						ruts[i][j][k] = tag.getInteger(stag);
+					}
+				}
+			}
+		}
 
-            ruts[i][j][k] = l;
-        }
+		if (tag.hasKey("flame"))
+		{
+			this.hasFlame = tag.getBoolean("flame");
+			fr = tag.getInteger("flameR");
+			fg = tag.getInteger("flameG");
+			fb = tag.getInteger("flameB");
+		}
+	}
 
-//        System.out.println("Setting [" + i + "," + j + "," + k + "]");
-        worldObj.notifyBlockChange(xCoord, yCoord, zCoord, 0);
-        worldObj.markBlockForUpdate(xCoord,yCoord,zCoord);
-    }
-    public int getRut(int i, int j, int k)
-    {
-        return ruts[i][j][k];
-    }
+	public void setRut(EntityPlayer p, int i, int j, int k, int l)
+	{
+		if (p != null
+				&& !worldObj.canMineBlock(p, this.xCoord, this.yCoord,
+						this.zCoord))
+			return;
+		if (isBeingUsed)
+		{
+			return;
+		}
 
-    public void setRenderFlame(boolean val, int r, int g, int b){
-    	this.hasFlame = val;
-    	this.fr = r;
-    	this.fg = g;
-    	this.fb = b;
-    	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-    }
+		changed = true;
 
-	public boolean hasFlame() {
+		if (canEdit())
+		{
+			if ((i == 0 || i == 2) && i == j && (k == 0 || k == 2))
+			{
+				return;
+			}
+
+			if ((i == 0 || i == 2) && (j == 0 || j == 2) && i != j
+					&& (k == 0 || k == 2))
+			{
+				return;
+			}
+
+			ruts[i][j][k] = l;
+		}
+
+		worldObj.notifyBlockChange(xCoord, yCoord, zCoord, 0);
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+	}
+
+	public int getRut(int i, int j, int k)
+	{
+		return ruts[i][j][k];
+	}
+
+	public void setRenderFlame(boolean val, int r, int g, int b)
+	{
+		this.hasFlame = val;
+		this.fr = r;
+		this.fg = g;
+		this.fb = b;
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+	}
+
+	public boolean hasFlame()
+	{
 		return hasFlame;
 	}
-	public int[] getFlameColor(){
-		return new int[]{fr,fg,fb};
+
+	public int[] getFlameColor()
+	{
+		return new int[] { fr, fg, fb };
 	}
-    
-    public void resetBlock()
-    {
-        isDead = true;
-        worldObj.setBlock(xCoord, yCoord, zCoord, maskBlock, maskMeta,3);
-    }
 
-    public boolean fluidIsFluid()
-    {
-        Block f = Block.blocksList[fluid];
-        return (f == null || f == Block.waterStill || f == Block.lavaStill);
-    }
+	public void resetBlock()
+	{
+		isDead = true;
+		worldObj.setBlock(xCoord, yCoord, zCoord, maskBlock, maskMeta, 3);
+	}
 
-    public void setFluid(int fluid)
-    {
-        if (this.fluid != fluid)
-        {
-            this.fluid = fluid;
-            worldObj.notifyBlockChange(xCoord, yCoord, zCoord, 0);
-            changed = true;
-            worldObj.markBlockForUpdate(xCoord,yCoord,zCoord);
-        }
-    }
-    public boolean canEdit()
-    {
-        Block f = Block.blocksList[fluid];
-        return (fluidIsFluid() || f.getBlockHardness(worldObj,xCoord,yCoord,zCoord) <= hardnessStandard || References.Enable_Decorative_Ruts) && !isBeingUsed;
-    }
+	public boolean fluidIsFluid()
+	{
+		Block f = Block.blocksList[fluid];
+		return (f == null || f == Block.waterStill || f == Block.lavaStill);
+	}
 
-    public boolean isEmpty()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                for (int k = 0; k < 3; k++)
-                {
-                    if (getRut(i, j, k) != 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-        }
+	public void setFluid(int fluid)
+	{
+		if (this.fluid != fluid)
+		{
+			this.fluid = fluid;
+			worldObj.notifyBlockChange(xCoord, yCoord, zCoord, 0);
+			changed = true;
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
+	}
 
-        return true;
-    }
+	public boolean canEdit()
+	{
+		Block f = Block.blocksList[fluid];
+		return (fluidIsFluid()
+				|| f.getBlockHardness(worldObj, xCoord, yCoord, zCoord) <= hardnessStandard || References.Enable_Decorative_Ruts)
+				&& !isBeingUsed;
+	}
 
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        return PacketHandler.getTERPacket(this);
-    }
+	public boolean isEmpty()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				for (int k = 0; k < 3; k++)
+				{
+					if (getRut(i, j, k) != 0)
+					{
+						return false;
+					}
+				}
+			}
+		}
+
+		return true;
+	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		return PacketHandler.getTERPacket(this);
+	}
 }

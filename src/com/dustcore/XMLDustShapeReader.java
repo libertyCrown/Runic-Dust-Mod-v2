@@ -14,7 +14,8 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import com.dustcore.api.DustManager;
 import com.dustcore.event.DustEvent;
 
-public class XMLDustShapeReader extends DefaultHandler {
+public class XMLDustShapeReader extends DefaultHandler
+{
 
 	public String currentTag = null;
 	public String currentValue = "";
@@ -26,9 +27,9 @@ public class XMLDustShapeReader extends DefaultHandler {
 	private boolean solid = false;
 	private String sacrifices = "Error:Unloaded rune";
 	private String description = "Error:Unloaded rune";
-	private int width=0, height=0;
-	private int ox=0, oy=0;
-	private int cx=0, cy=0;
+	private int width = 0, height = 0;
+	private int ox = 0, oy = 0;
+	private int cx = 0, cy = 0;
 	private int[][][] design = new int[0][0][0];
 	private int[] rotationMatrix = new int[8];
 	private String author = "Error:Unloaded rune";
@@ -36,29 +37,33 @@ public class XMLDustShapeReader extends DefaultHandler {
 
 	private DustEvent event;
 	private String runeFile;
-	
-	public static void readAndRegisterShape(String runeFile, DustEvent e){
-		new XMLDustShapeReader(runeFile,e).run();
+
+	public static void readAndRegisterShape(String runeFile, DustEvent e)
+	{
+		new XMLDustShapeReader(runeFile, e).run();
 	}
-	
-	private XMLDustShapeReader(String runeFile, DustEvent e) {
+
+	private XMLDustShapeReader(String runeFile, DustEvent e)
+	{
 		super();
 		this.event = e;
-		this.runeFile = (!runeFile.startsWith("/") ? "/":"") + runeFile;
+		this.runeFile = (!runeFile.startsWith("/") ? "/" : "") + runeFile;
 	}
-	
-	private void run(){
-		try {
+
+	private void run()
+	{
+		try
+		{
 			XMLReader xr = XMLReaderFactory.createXMLReader();
 			xr.setContentHandler(this);
 			xr.setErrorHandler(this);
 
-			
 			InputStream fileStream = XMLDustShapeReader.class
 					.getResourceAsStream(runeFile);
 
 			xr.parse(new InputSource(fileStream));
-		} catch (Exception ex) {
+		} catch (Exception ex)
+		{
 			DustMod.log(Level.SEVERE, "Unable to read rune XML file! "
 					+ runeFile, ex.getMessage());
 			ex.printStackTrace();
@@ -67,21 +72,26 @@ public class XMLDustShapeReader extends DefaultHandler {
 
 	@Override
 	public void startElement(String uri, String localName, String qName,
-			Attributes att) throws SAXException {
+			Attributes att) throws SAXException
+	{
 		currentTag = localName;
 
-		if ("name".equals(currentTag)) {
+		if ("name".equals(currentTag))
+		{
 			this.displayName = att.getValue("display");
 			this.idName = att.getValue("id");
-		} else if ("id".equals(currentTag)) {
+		} else if ("id".equals(currentTag))
+		{
 			String num = att.getValue("value");
 			if (num != null && !num.isEmpty())
 				this.id = Integer.parseInt(num);
 			else
 				this.id = -1;
-		} else if ("solid".equals(currentTag)) {
+		} else if ("solid".equals(currentTag))
+		{
 			this.solid = Boolean.parseBoolean(att.getValue("value"));
-		} else if ("design".equals(currentTag)) {
+		} else if ("design".equals(currentTag))
+		{
 			String num = att.getValue("width");
 			if (num != null && !num.isEmpty())
 				this.width = Integer.parseInt(num);
@@ -120,7 +130,8 @@ public class XMLDustShapeReader extends DefaultHandler {
 
 			this.design = new int[1][height][width];
 
-		} else if (currentTag.length() == 4 && currentTag.startsWith("rot")) {
+		} else if (currentTag.length() == 4 && currentTag.startsWith("rot"))
+		{
 			int rot = Integer.parseInt(currentTag.charAt(3) + "");
 
 			String x = att.getValue("x");
@@ -139,55 +150,83 @@ public class XMLDustShapeReader extends DefaultHandler {
 
 	@Override
 	public void endElement(String uri, String localName, String qName)
-			throws SAXException {
-		if ("description".equals(currentTag)) {
+			throws SAXException
+	{
+		if ("description".equals(currentTag))
+		{
 			this.description = currentValue;
-		} else if ("sacrifices".equals(currentTag)) {
+		} else if ("sacrifices".equals(currentTag))
+		{
 			this.sacrifices = currentValue;
-		} else if ("author".equals(currentTag)) {
+		} else if ("author".equals(currentTag))
+		{
 			this.author = currentValue.trim().replaceAll("\n", " ");
-		} else if ("allowedVariables".equals(currentTag)) {
+		} else if ("allowedVariables".equals(currentTag))
+		{
 			String[] splitLine = currentValue.split("\n");
-			for (String line : splitLine) {
+			for (String line : splitLine)
+			{
 				String[] splitComma = line.split(",");
-				for (String element : splitComma) {
-					try {
+				for (String element : splitComma)
+				{
+					try
+					{
 						allowedVariables.add(Integer.parseInt(element.trim()));
-					} catch (NumberFormatException e) {
+					} catch (NumberFormatException e)
+					{
 					}
 				}
 			}
-		} else if ("design".equals(currentTag)) {
+		} else if ("design".equals(currentTag))
+		{
 			int x = 0, y = 0;
 
 			String[] splitLine = currentValue.split("\n");
-			if (splitLine.length != height) {
-				DustMod.log(Level.SEVERE, "Error reading rune XML file! Design height does not match the specified height!", idName);
-			} else {
-				for (String line : splitLine) {
+			if (splitLine.length != height)
+			{
+				DustMod.log(
+						Level.SEVERE,
+						"Error reading rune XML file! Design height does not match the specified height!",
+						idName);
+			} else
+			{
+				for (String line : splitLine)
+				{
 					String[] splitComma = line.split(",");
-					if (splitComma.length != width) {
-						DustMod.log(Level.SEVERE, "Error reading rune XML file! Design width does not match the specified width!", idName);
+					if (splitComma.length != width)
+					{
+						DustMod.log(
+								Level.SEVERE,
+								"Error reading rune XML file! Design width does not match the specified width!",
+								idName);
 						break;
 					}
-					for (String element : splitComma) {
+					for (String element : splitComma)
+					{
 						element = element.trim();
 						int val = 0;
-						if("N".equals(element)) val = -1;
-						else if("P".equals(element)) val = 100;
-						else if("G".equals(element)) val = 200;
-						else if("L".equals(element)) val = 300;
-						else if("B".equals(element)) val = 400;
+						if ("N".equals(element))
+							val = -1;
+						else if ("P".equals(element))
+							val = 100;
+						else if ("G".equals(element))
+							val = 200;
+						else if ("L".equals(element))
+							val = 300;
+						else if ("B".equals(element))
+							val = 400;
 						else
-							try {
+							try
+							{
 								val = Integer.parseInt(element.trim());
-								
-							} catch (NumberFormatException e) {
+
+							} catch (NumberFormatException e)
+							{
 							}
 						design[0][y][x] = val;
 						x++;
 					}
-					x=0;
+					x = 0;
 					y++;
 				}
 			}
@@ -198,10 +237,13 @@ public class XMLDustShapeReader extends DefaultHandler {
 
 	@Override
 	public void characters(char[] ch, int start, int length)
-			throws SAXException {
-		for (int i = start; i < start + length; i++) {
+			throws SAXException
+	{
+		for (int i = start; i < start + length; i++)
+		{
 			char c = ch[i];
-			if (c != '\t') {
+			if (c != '\t')
+			{
 				this.currentValue += c;
 			}
 		}
@@ -209,8 +251,10 @@ public class XMLDustShapeReader extends DefaultHandler {
 	}
 
 	@Override
-	public void endDocument() throws SAXException {
-		DustShape s = new DustShape(width, height, idName, solid, ox,oy,cx,cy, id);
+	public void endDocument() throws SAXException
+	{
+		DustShape s = new DustShape(width, height, idName, solid, ox, oy, cx,
+				cy, id);
 		s.setData(design);
 		s.setRotationMatrix(rotationMatrix);
 		s.addAllowedVariable(allowedVariables);
@@ -218,7 +262,7 @@ public class XMLDustShapeReader extends DefaultHandler {
 		s.setNotes(sacrifices);
 		s.setDesc(description);
 		s.setAuthor(author);
-		
+
 		DustManager.registerLocalDustShape(s, event);
 	}
 }

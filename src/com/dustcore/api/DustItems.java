@@ -1,5 +1,6 @@
 package com.dustcore.api;
 
-public class DustItems {
+public class DustItems
+{
 
 }

@@ -7,22 +7,23 @@ import com.dustcore.config.DustContent;
 
 public class DustModTab
 {
-	public static CreativeTabs dustTab = new CreativeTabs("Runic Dust Mod- Core")
+	public static CreativeTabs dustTab = new CreativeTabs(
+			"Runic Dust Mod- Core")
 	{
-		public ItemStack getIconItemStack() 
+		public ItemStack getIconItemStack()
 		{
 			return new ItemStack(DustContent.tome);
 		}
-		
+
 		public String getTabLabel()
 		{
 			return "Runic Dust Mod- Core";
 		}
 
-    	public String getTranslatedTabLabel()
-    	{
-        	return getTabLabel();
-    	}
+		public String getTranslatedTabLabel()
+		{
+			return getTabLabel();
+		}
 	};
 
 }

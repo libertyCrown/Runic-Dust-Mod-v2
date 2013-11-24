@@ -26,19 +26,22 @@ import com.dustcore.util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemWornInscription extends ItemArmor implements ISpecialArmor 
+public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 {
 
 	public static final int max = 1001;
-	
-	public ItemWornInscription(int id) {
+
+	public ItemWornInscription(int id)
+	{
 		super(id, EnumArmorMaterial.CLOTH, 0, 1);
-//		 this.hasSubtypes = true;
+		// this.hasSubtypes = true;
 		this.setMaxDamage(1001);
 	}
 
 	@Override
-	public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot) {
+	public ArmorProperties getProperties(EntityLivingBase player,
+			ItemStack armor, DamageSource source, double damage, int slot)
+	{
 		int prevented = (int) damage
 				- DustMod.inscriptionManager.getPreventedDamage(player, armor,
 						source, (int) damage);
@@ -48,21 +51,25 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 	}
 
 	@Override
-	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot) {
+	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
+	{
 
 		return DustMod.inscriptionManager.getArmor(player, armor);
 	}
 
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack,
-			DamageSource source, int damage, int slot) {
+			DamageSource source, int damage, int slot)
+	{
 		DustMod.inscriptionManager.onDamage(entity, stack, source, damage);
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
+	public String getUnlocalizedName(ItemStack itemstack)
+	{
 		if (itemstack.getItemDamage() == -1
-				|| InscriptionManager.getEvent(itemstack) == null) {
+				|| InscriptionManager.getEvent(itemstack) == null)
+		{
 			return "inscblank";
 		}
 		return "insc." + InscriptionManager.getEvent(itemstack).idName;
@@ -70,8 +77,10 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List list) {
-		for (InscriptionEvent i : InscriptionManager.getEvents()) {
+	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List list)
+	{
+		for (InscriptionEvent i : InscriptionManager.getEvents())
+		{
 			ItemStack item = new ItemStack(itemID, 1, 0);
 			if (!item.hasTagCompound())
 				item.setTagCompound(new NBTTagCompound());
@@ -83,20 +92,25 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack item,
-			EntityPlayer par2EntityPlayer, List list, boolean par4) {
+	public void addInformation(ItemStack item, EntityPlayer par2EntityPlayer,
+			List list, boolean par4)
+	{
 		super.addInformation(item, par2EntityPlayer, list, par4);
-		if(item.hasTagCompound() && item.getTagCompound().hasKey("description")){
+		if (item.hasTagCompound()
+				&& item.getTagCompound().hasKey("description"))
+		{
 			String desc = item.getTagCompound().getString("description");
-			for(String s:desc.split("\n")){
+			for (String s : desc.split("\n"))
+			{
 				list.add(s);
 			}
 		}
 	}
-	
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack item, World world,
-			EntityPlayer p) {
+			EntityPlayer p)
+	{
 		return InscriptionManager.onItemRightClick(p, item);
 	}
 
@@ -104,12 +118,14 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 	protected long lastCheck = 0;
 
 	public MovingObjectPosition getMovingObjectPositionFromPlayer(World world,
-			EntityPlayer par2EntityPlayer, boolean par3) {
+			EntityPlayer par2EntityPlayer, boolean par3)
+	{
 		// System.out.println("MOP Check " + world.getWorldTime() + " " +
 		// lastCheck);
 		if (lastCheck > world.getWorldTime())
 			lastCheck = world.getWorldTime();
-		if (lastMOP != null && world.getWorldTime() - lastCheck < 0) {
+		if (lastMOP != null && world.getWorldTime() - lastCheck < 0)
+		{
 			// System.out.println("MOP Cache");
 			return lastMOP;
 		}
@@ -148,18 +164,19 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 		lastMOP = world.rayTraceBlocks_do_do(var13, var23, par3, !par3);
 		return lastMOP;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIconFromDamageForRenderPass(int par1, int par2) 
+	public Icon getIconFromDamageForRenderPass(int par1, int par2)
 	{
 		return this.itemIcon;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister par1IconRegister) 
+	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(References.spritePath + "wornInscription");
+		this.itemIcon = par1IconRegister.registerIcon(References.spritePath
+				+ "wornInscription");
 	}
 }
