@@ -23,8 +23,7 @@ public class GuiHandler implements IGuiHandler
 			ItemStack item = player.getCurrentEquippedItem();
 			if (item != null && item.itemID == DustContent.inscription.itemID)
 			{
-				return new InscriptionGuiContainer(player.inventory,
-						DustContent.inscription.getInventory(item));
+				return new InscriptionGuiContainer(player.inventory, DustContent.inscription.getInventory(item));
 			}
 		}
 		return null;
@@ -40,8 +39,7 @@ public class GuiHandler implements IGuiHandler
 			ItemStack item = player.getCurrentEquippedItem();
 			if (item != null && item.itemID == DustContent.inscription.itemID)
 			{
-				return new GuiInscription(player,
-						DustContent.inscription.getInventory(item));
+				return new GuiInscription(player, DustContent.inscription.getInventory(item));
 			}
 		}
 		return null;

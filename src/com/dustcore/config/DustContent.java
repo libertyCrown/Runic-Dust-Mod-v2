@@ -28,6 +28,7 @@ import com.dustcore.tileentity.TileEntityRut;
 import com.dustcore.util.References;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class DustContent
 {
@@ -109,14 +110,6 @@ public class DustContent
 		wornInscription.setCreativeTab(DustModTab.dustTab);
 		pouch = new ItemPouch(References.ITEM_PouchID, dust);
 		pouch.setCreativeTab(DustModTab.dustTab);
-		/*
-		 * LanguageRegistry.instance().addStringLocalization("emptyinsc.name",
-		 * "Blank Runic Inscription");
-		 * LanguageRegistry.instance().addStringLocalization("driedinsc.name",
-		 * "Dried Drawing");
-		 * LanguageRegistry.instance().addStringLocalization("dryinginsc.name",
-		 * "Drying Inscription");
-		 */
 	}
 
 	public static void initCrafting()

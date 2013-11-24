@@ -22,8 +22,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 public class GuiInscription extends GuiContainer
 {
 
-	private ResourceLocation texture = new ResourceLocation(References.path
-			+ "/inscription.png");
+	private ResourceLocation texture = new ResourceLocation(References.path + "/inscription.png");
 	public InventoryInscription insc;
 	public InventoryPlayer playerInv;
 	public EntityPlayer player;
@@ -72,7 +71,7 @@ public class GuiInscription extends GuiContainer
 		if (info.getHasStack() && insc.canEdit())
 		{
 			ItemStack stack = info.getStack();
-			int slot = stack.getItemDamage();// slot = 259;
+			int slot = stack.getItemDamage();
 			int id = stack.getItemDamage();
 			Slot highlightSlot = this.inventorySlots.getSlot(slot + 1);
 			this.drawTexturedModalRect(highlightSlot.xDisplayPosition - 2,
@@ -160,10 +159,9 @@ public class GuiInscription extends GuiContainer
 	@Override
 	protected void mouseClicked(int x, int y, int b)
 	{
-
 		Slot slot = this.getSlotAtPosition(x, y);
 		if (slot != null && slot.getHasStack()
-				&& slot.getStack().itemID == DustContent.ink.itemID)
+				&& slot.getStack()/*.itemID*/ == new ItemStack(DustContent.ink)/*.itemID*/)
 		{
 			int id = ItemInk.getDustID(slot.getStack());
 			insc.setInventorySlotContents(0, new ItemStack(
@@ -171,7 +169,6 @@ public class GuiInscription extends GuiContainer
 		}
 		if (isOnMap(x, y))
 		{
-			// System.out.println("rawr");
 			isDown = true;
 			button = b;
 			buttonUpDelay = 3;
@@ -186,7 +183,6 @@ public class GuiInscription extends GuiContainer
 	// Stopped being constant. Would only call when mouse released
 	protected void mouseMovedOrUp(int x, int y, int b)
 	{
-		// System.out.println("waat " + isDown + " " + b + " " + buttonUpDelay);
 		if (buttonUpDelay > 0)
 			buttonUpDelay--;
 
@@ -228,31 +224,30 @@ public class GuiInscription extends GuiContainer
 					setDust(x, y, id);
 					FMLClientHandler.instance().sendPacket(
 							PacketHandler.getUseInkPacket(slot, 1));
-					// this.inventorySlots.putStackInSlot(slot, stack);
+					this.inventorySlots.putStackInSlot(slot, stack);
 					this.playerInv.setInventorySlotContents(slot, stack);
 					this.inventorySlots.putStackInSlot(slot + 1, stack);
-					if (stack.itemID != DustContent.ink.itemID)
+					if (stack != new ItemStack(DustContent.ink))
 					{
-						// this.inventorySlots.putStackInSlot(0, new
-						// ItemStack(DustMod.ink.itemID, 0, -1));
-						// Loop through player's hotbar for inks
-						// for(int i = 1; i < 10; i++){
-						// ItemStack item = this.playerInv.getStackInSlot(i-1);
-						// if(item != null && item.itemID ==
-						// DustMod.ink.itemID){
-						// int dustId = ItemInk.getDustID(item);
-						// this.inventorySlots.putStackInSlot(0, new
-						// ItemStack(DustMod.ink.itemID, dustId, i-1));
-						// break;
-						// }
-						// }
+						 this.inventorySlots.putStackInSlot(0, new
+						 ItemStack(DustContent.ink.itemID, 0, -1));
+						 //Loop through player's hotbar for inks
+						 for(int i = 1; i < 10; i++){
+						 ItemStack item = this.playerInv.getStackInSlot(i-1);
+						 if(item != null && item.itemID == DustContent.ink.itemID)
+						 {
+							 int dustId = ItemInk.getDustID(item);
+							 this.inventorySlots.putStackInSlot(0, new
+									 ItemStack(DustContent.ink.itemID, dustId, i-1));
+							 break;
+						 }
+						 }
 					}
 				}
 			}
-
 		}
-		// super.mouseMovedOrUp(x, y, b);
 	}
+
 
 	@Override
 	public void updateScreen()
@@ -262,74 +257,8 @@ public class GuiInscription extends GuiContainer
 		int y = this.height - Mouse.getEventY() * this.height
 				/ this.mc.displayHeight - 1;
 		int b = Mouse.getEventButton();
-		// System.out.println(Mouse.getEventButton());
-		// if(Mouse.getEventButton() == -1) isDown = false;
 		mouseMovedOrUp(x, y, b);
 	}
-
-	// @Override
-	// public void updateScreen() {
-	// super.updateScreen();
-	//
-	// int x = Mouse.getEventX() * this.width / this.mc.displayWidth;
-	// int y = this.height - Mouse.getEventY() * this.height /
-	// this.mc.displayHeight - 1;
-	// int b = Mouse.getEventButton();
-	//
-	//
-	// if(!insc.canEdit()) return;
-	// System.out.println("isdown " + isDown);
-	// if(isDown){
-	// int sx = this.guiLeft;
-	// int sy = this.guiTop;
-	// x -= 42 + sx;
-	// y -= 19 + sy;
-	// x/=6;
-	// y/=6;
-	//
-	// if(x < 0 || y < 0 || x >= 16 || y >= 16){
-	// return;
-	// }
-	//
-	// if(button == 1) {
-	// setDust(x,y,0);
-	// }
-	// if(button == 0 && this.inventorySlots.getSlot(0).getStack() != null) {
-	// int slot = this.inventorySlots.getSlot(0).getStack().getItemDamage();
-	// int id = this.inventorySlots.getSlot(0).getStack().stackSize;
-	// ItemStack stack = this.playerInv.getStackInSlot(slot);
-	// if(getDust(x,y) != id && ItemInk.reduce(stack, 1)){
-	// setDust(x,y,id);
-	// FMLClientHandler.instance().sendPacket(PacketHandler.getUseInkPacket(slot,
-	// 1));
-	// // this.inventorySlots.putStackInSlot(slot, stack);
-	// this.playerInv.setInventorySlotContents(slot, stack);
-	// this.inventorySlots.putStackInSlot(slot+1, stack);
-	// if(stack.itemID != DustMod.ink.itemID){
-	// // this.inventorySlots.putStackInSlot(0, new
-	// ItemStack(DustMod.ink.itemID, 0, -1));
-	// //Loop through player's hotbar for inks
-	// // for(int i = 1; i < 10; i++){
-	// // ItemStack item = this.playerInv.getStackInSlot(i-1);
-	// // if(item != null && item.itemID == DustMod.ink.itemID){
-	// // int dustId = ItemInk.getDustID(item);
-	// // this.inventorySlots.putStackInSlot(0, new
-	// ItemStack(DustMod.ink.itemID, dustId, i-1));
-	// // break;
-	// // }
-	// // }
-	// }
-	// }
-	// }
-	//
-	// }
-	//
-	// if(b != -1){
-	// button = b;
-	// isDown = false;
-	// }
-	// }
-
 	public boolean isOnMap(int x, int y)
 	{
 		int tol = 0;

@@ -55,7 +55,6 @@ public class GuiTome extends GuiScreen
 	protected int guiTop;
 
 	public GuiButton button;
-	// public GuiTextField nameField;
 
 	public int offX;
 
@@ -66,7 +65,7 @@ public class GuiTome extends GuiScreen
 	{
 		super();
 		this.itemstack = itemstack;
-		xSize = 206;// 176;
+		xSize = 206;
 		ySize = 166;
 		offX = xSize / 4;
 	}

@@ -67,7 +67,6 @@ public class CommonProxy implements IGuiHandler
 
 	public void registerEventHandlers()
 	{
-		// System.out.println("Register");
 		TickHandler tick = new TickHandler();
 		TickRegistry.registerTickHandler(tick, Side.CLIENT);
 		TickRegistry.registerTickHandler(tick, Side.SERVER);
@@ -81,7 +80,6 @@ public class CommonProxy implements IGuiHandler
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z)
 	{
-		// Object rtn = new GuiTome(player.getCurrentEquippedItem());
 		return null;
 	}
 
@@ -89,7 +87,6 @@ public class CommonProxy implements IGuiHandler
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z)
 	{
-		// Object rtn = new GuiTome(player.getCurrentEquippedItem());
 		return null;
 	}
 

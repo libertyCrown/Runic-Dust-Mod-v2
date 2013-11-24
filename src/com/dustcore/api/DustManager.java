@@ -251,8 +251,6 @@ public class DustManager
 				DustMod.log(Level.FINE, "Rune permission for "
 						+ eventInstance.name + " set to "
 						+ eventInstance.permission);
-				// System.out.println("[DustMod] Rune permission for " +
-				// eventInstance.name + " set to " + eventInstance.permission);
 			}
 		}
 
@@ -261,7 +259,6 @@ public class DustManager
 		LanguageRegistry.instance().addStringLocalization(
 				"tile.scroll" + shape.name + ".name", "en_US",
 				shape.getRuneName() + " Placing Scroll");
-		// DustItemManager.reloadLanguage();
 	}
 
 	/**

@@ -66,6 +66,11 @@ public class InscriptionManager
 				DustMod.log(Level.FINE, "Inscription permission for "
 						+ evt.idName + " set to " + evt.permission);
 			}
+			DustMod.log(Level.FINER, "Registering local inscription " + evt.idName);
+			LanguageRegistry.instance().addStringLocalization(
+					"insc." + evt.idName + ".name", evt.properName);
+			DustMod.proxy.checkInscriptionPage(evt);
+			evt.isRemote = true;
 		}
 
 		config.save();
@@ -76,7 +81,7 @@ public class InscriptionManager
 		eventsRemote.add(evt);
 		DustMod.log(Level.FINER, "Registering remote inscription " + evt.idName);
 		LanguageRegistry.instance().addStringLocalization(
-				"insc." + evt.idName + ".name", "en_US", evt.properName);
+				"insc." + evt.idName + ".name", evt.properName);
 		DustMod.proxy.checkInscriptionPage(evt);
 		evt.isRemote = true;
 	}

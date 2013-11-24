@@ -106,9 +106,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void openTomeGUI(ItemStack itemstack, EntityPlayer p)
 	{
-		// ModLoader.openGUI(p, new GuiTome(itemstack));
 		FMLClientHandler.instance().displayGuiScreen(p, new GuiTome(itemstack));
-		// p.openGui(DustMod.instance, );
 	}
 
 	@Override

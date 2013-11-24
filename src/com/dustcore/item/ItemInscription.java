@@ -38,27 +38,6 @@ public class ItemInscription extends DustModItem
 		return new InventoryInscription(item);
 	}
 
-	// @Override
-	// @SideOnly(Side.CLIENT)
-	// public int getIconFromDamage(int meta) {
-	// // TODO Auto-generated method stub
-	// return 38;//meta == max ? 37 : 38;
-	// }
-	// @Override
-	// public int getIconIndex(ItemStack stack, int renderPass,
-	// EntityPlayer player, ItemStack usingItem, int useRemaining) {
-	//
-	// boolean isDried = isDried(stack);
-	// int damage = stack.getItemDamage();
-	// if(isDried || true) {
-	// return 38;
-	// }
-	// else {
-	// return 37;
-	// }
-	//
-	// }
-
 	@Override
 	public ItemStack onItemRightClick(ItemStack item, World world,
 			EntityPlayer player)

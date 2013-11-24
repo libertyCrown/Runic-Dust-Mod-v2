@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
@@ -63,7 +64,14 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 	{
 		DustMod.inscriptionManager.onDamage(entity, stack, source, damage);
 	}
-
+	
+	@Override
+	public String getArmorTexture(ItemStack itemstack, Entity ent, int i,int j)
+	{
+		return References.path + "/wornInscription.png";
+		
+	}
+	
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack)
 	{
@@ -120,13 +128,10 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 	public MovingObjectPosition getMovingObjectPositionFromPlayer(World world,
 			EntityPlayer par2EntityPlayer, boolean par3)
 	{
-		// System.out.println("MOP Check " + world.getWorldTime() + " " +
-		// lastCheck);
 		if (lastCheck > world.getWorldTime())
 			lastCheck = world.getWorldTime();
 		if (lastMOP != null && world.getWorldTime() - lastCheck < 0)
 		{
-			// System.out.println("MOP Cache");
 			return lastMOP;
 		}
 		lastCheck = world.getWorldTime();
@@ -154,11 +159,6 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 		float var18 = var15 * var16;
 		float var20 = var14 * var16;
 		double var21 = 65.0D;
-		// if (par2EntityPlayer instanceof EntityPlayerMP)
-		// {
-		// var21 =
-		// ((EntityPlayerMP)par2EntityPlayer).theItemInWorldManager.getBlockReachDistance();
-		// }
 		Vec3 var23 = var13.addVector((double) var18 * var21, (double) var17
 				* var21, (double) var20 * var21);
 		lastMOP = world.rayTraceBlocks_do_do(var13, var23, par3, !par3);

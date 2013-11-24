@@ -66,10 +66,11 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 		PacketHandler.CHANNEL_SpawnParticles,
 		PacketHandler.CHANNEL_SetEntVelocity,
 		PacketHandler.CHANNEL_RendBrokenTool })
+
 public class DustMod
 {
 
-	@Instance("DustMod")
+	@Instance("DustModCore")
 	public static DustMod instance;
 	public static int prevVoidSize;
 	public static HashMap<String, ArrayList<ItemStack>> voidInventory;
@@ -104,20 +105,25 @@ public class DustMod
 	@EventHandler
 	public void load(FMLInitializationEvent evt)
 	{
+		// Loads blocks, items, tiles, and crafting recipes
 		DustContent.initContent();
 		DustContent.initCrafting();
-		NetworkRegistry.instance().registerConnectionHandler(
-				new PacketHandler());
+		
+		// Proxy registries
 		proxy.registerEventHandlers();
 		proxy.registerTileEntityRenderers();
-		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		proxy.registerRenderInformation();
+		
+		// Register runes, dusts, inscriptions, ect.
 		DustItemManager.registerDefaultDusts();
 		DustManager.registerDefaultShapes();
 		InscriptionManager.registerDefaultInscriptions();
+		
+		// Finish up already!
+		NetworkRegistry.instance().registerConnectionHandler(new PacketHandler());
+		NetworkRegistry.instance().registerGuiHandler(this.instance, new GuiHandler());
 		MinecraftForge.EVENT_BUS.register(this);
-		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
-
+		
 		// Entity registry
 		EntityRegistry.registerModEntity(EntityDust.class, "dustentity",
 				References.ENTITY_FireSpriteID, this, 192, 2, false);
@@ -137,7 +143,6 @@ public class DustMod
 
 		if (evt.world.isRemote)
 			return;
-		// System.out.println("World event Load " + evt.world);
 
 		ISaveHandler save = evt.world.getSaveHandler();
 		int nameLength = (new StringBuilder())

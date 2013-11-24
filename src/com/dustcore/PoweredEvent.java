@@ -125,9 +125,6 @@ public abstract class PoweredEvent extends DustEvent
 		{
 			e.setColorStar(255, 255, 0);
 		}
-
-		// System.out.println("PowerPercent " + powerPercent + " Color " + c +
-		// " " + e.ri + ":" + e.gi + ":" + e.bi);
 	}
 
 	@Override
