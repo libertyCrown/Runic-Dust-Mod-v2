@@ -12,13 +12,18 @@ import net.minecraft.util.StringTranslate;
 
 import com.dustcore.DustMod;
 import com.dustcore.config.DustContent;
+import com.dustcore.item.DustModItem;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class DustItemManager
 {
-
+	/**
+	 * The item that must be used to register new dusts into the game.
+	 */
+	public static DustModItem idust;
+	
 	public static DustColor[] colors = new DustColor[1000];
 	public static String[] names = new String[1000];
 	public static String[] ids = new String[1000];
@@ -60,11 +65,10 @@ public class DustItemManager
 				"tile.ink." + idName + ".name", "en_US", name + " Runic Ink");
 		LanguageRegistry.instance().addStringLocalization(
 				"pouch." + idName + ".name", "en_US", name + " Dust Pouch");
-		// reloadLanguage();
 
 		GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),
 				new Object[] { new ItemStack(Item.potion.itemID, 1, 0),
-						new ItemStack(DustContent.idust, 1, value),
+						new ItemStack(idust, 1, value),
 						Item.ghastTear });
 		GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),
 				new Object[] { new ItemStack(Item.potion.itemID, 1, 0),
@@ -74,11 +78,9 @@ public class DustItemManager
 		ItemStack craft = new ItemStack(DustContent.pouch, 1, value * 2);
 		GameRegistry.addRecipe(craft, new Object[] { " s ", "ldl", " l ", 's',
 				new ItemStack(Item.silk, 1), 'd',
-				new ItemStack(DustContent.idust, 1, value), 'l',
+				new ItemStack(idust, 1, value), 'l',
 				new ItemStack(Item.leather, 1) });
-		// GameRegistry.addShapelessRecipe(craft, new Object[]{craft, new
-		// ItemStack(DustMod.idust,1,value)});
-		GameRegistry.addShapelessRecipe(new ItemStack(DustContent.idust, 1,
+		GameRegistry.addShapelessRecipe(new ItemStack(idust, 1,
 				value), new ItemStack(DustContent.pouch, 1, value * 2 + 1));
 	}
 
@@ -91,9 +93,6 @@ public class DustItemManager
 					"[DustMod] Remote error! Dust value already taken! "
 							+ value);
 		}
-
-		// System.out.println("Register new remote dust " + primaryColor + " " +
-		// secondaryColor + " " + floorColor);
 
 		colorsRemote[value] = new DustColor(primaryColor, secondaryColor,
 				floorColor);
@@ -109,7 +108,7 @@ public class DustItemManager
 
 		GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),
 				new Object[] { new ItemStack(Item.potion.itemID, 1, 0),
-						new ItemStack(DustContent.idust, 1, value),
+						new ItemStack(idust, 1, value),
 						Item.ghastTear });
 		GameRegistry.addShapelessRecipe(DustContent.ink.getInk(value),
 				new Object[] { new ItemStack(Item.potion.itemID, 1, 0),
@@ -119,45 +118,14 @@ public class DustItemManager
 		ItemStack craft = new ItemStack(DustContent.pouch, 1, value * 2);
 		GameRegistry.addRecipe(craft, new Object[] { " s ", "ldl", " l ", 's',
 				new ItemStack(Item.silk, 1), 'd',
-				new ItemStack(DustContent.idust, 1, value), 'l',
+				new ItemStack(idust, 1, value), 'l',
 				new ItemStack(Item.leather, 1) });
-		// GameRegistry.addShapelessRecipe(craft, new Object[]{craft, new
-		// ItemStack(DustMod.idust,1,value)});
-		GameRegistry.addShapelessRecipe(new ItemStack(DustContent.idust, 1,
+		GameRegistry.addShapelessRecipe(new ItemStack(idust, 1,
 				value), new ItemStack(DustContent.pouch, 1, value * 2 + 1));
-		// reloadLanguage();
 	}
 
-	/*
-	 * public static void reloadLanguage() {
-	 * if(FMLCommonHandler.instance().getSide() != Side.CLIENT) return; try{
-	 * //StringTranslate st = new StringTranslate(); String curLan =
-	 * Minecraft.getMinecraft().gameSettings.language;
-	 * 
-	 * Properties var2 = new Properties();
-	 * 
-	 * try { loadLanguage(st, var2, "en_US"); } catch (IOException var8) { ; }
-	 * 
-	 * st.isUnicode = false;
-	 * 
-	 * if (!"en_US".equals(par1Str)) { try { loadLanguage(st,var2, curLan);
-	 * Enumeration var3 = var2.propertyNames();
-	 * 
-	 * while (var3.hasMoreElements() && !st.()) { Object var4 =
-	 * var3.nextElement(); Object var5 = var2.get(var4);
-	 * 
-	 * if (var5 != null) { String var6 = var5.toString();
-	 * 
-	 * for (int var7 = 0; var7 < var6.length(); ++var7) { if (var6.charAt(var7)
-	 * >= 256) { st.isUnicode = true; break; } } } } } catch (IOException var9)
-	 * { var9.printStackTrace(); return; } }
-	 * 
-	 * st.currentLanguage = par1Str; st.translateTable = var2; } catch(Exception
-	 * e){
-	 * 
-	 * } }
-	 */
-
+	
+	//TODO- This is old, needs to be updated
 	private static void loadLanguage(StringTranslate st,
 			Properties par1Properties, String par2Str) throws IOException
 	{

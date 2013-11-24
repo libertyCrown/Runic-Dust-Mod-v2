@@ -366,7 +366,7 @@ public class DustMod
 
 	public static Item getItemDust()
 	{
-		return DustContent.idust;
+		return DustItemManager.idust;
 	}
 
 	public static Item getNegator()

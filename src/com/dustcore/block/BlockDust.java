@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 import com.dustcore.DustMod;
+import com.dustcore.api.DustItemManager;
 import com.dustcore.api.DustManager;
 import com.dustcore.config.DustContent;
 import com.dustcore.item.ItemPouch;
@@ -248,7 +249,7 @@ public class BlockDust extends BlockContainer
 					{
 						if (!player.capabilities.isCreativeMode)
 							this.dropBlockAsItem_do(world, i, j, k,
-									new ItemStack(DustContent.idust.itemID, 1,
+									new ItemStack(DustItemManager.idust.itemID, 1,
 											dust));
 					}
 				}
@@ -314,7 +315,7 @@ public class BlockDust extends BlockContainer
 		}
 
 		if (item == null
-				|| (item.itemID != DustContent.idust.itemID && item.itemID != DustContent.pouch.itemID))
+				|| (item.itemID != DustItemManager.idust.itemID && item.itemID != DustContent.pouch.itemID))
 		{
 			return false;
 		}
@@ -385,7 +386,7 @@ public class BlockDust extends BlockContainer
 				ItemStack is = p.inventory.mainInventory[sind];
 
 				if (is != null
-						&& ((is.itemID == DustContent.idust.itemID && is
+						&& ((is.itemID == DustItemManager.idust.itemID && is
 								.getItemDamage() == dust) || (is.itemID == DustContent.pouch.itemID
 								&& ItemPouch.getValue(is) == dust && ItemPouch
 								.getDustAmount(is) > 0)))
@@ -519,7 +520,7 @@ public class BlockDust extends BlockContainer
 								i,
 								j,
 								k,
-								new ItemStack(DustContent.idust.itemID, 1, ted
+								new ItemStack(DustItemManager.idust.itemID, 1, ted
 										.getDust(rx, rz)));
 					}
 

@@ -66,7 +66,7 @@ import cpw.mods.fml.common.network.NetworkMod;
  * make sure that the added content is balanced and fair.
  * 
  */
-@Mod(modid = "DustModDefaults", name = "Runic Dust Mod- Default Pack", version = "v2.0", dependencies = "after:DustMod")
+@Mod(modid = "DustModDefaults", name = "Runic Dust Mod- Default Pack", version = "v2.0", dependencies = "after:DustModCore")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModDefaults
 {
@@ -91,167 +91,157 @@ public class DustModDefaults
 	{
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/torch.xml", new RuneTorch());
-
-		XMLDustShapeReader
-				.readAndRegisterShape(
-						"/assets/dustdefault/runedata/rabbit.xml",
-						new RuneRabbitHole());
+				"/assets/dustdefault/runedata/entry/torch.xml", new RuneTorch());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/healing.xml", new RuneHealing());
-
-		XMLDustShapeReader
-				.readAndRegisterShape(
-						"/assets/dustdefault/runedata/lumber.xml",
-						new RuneLumberjack());
-
-		XMLDustShapeReader
-				.readAndRegisterShape(
-						"/assets/dustdefault/runedata/campfire.xml",
-						new RuneCampfire());
+						"/assets/dustdefault/runedata/entry/rabbit.xml", new RuneRabbitHole());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/depths.xml", new RuneDepths());
+				"/assets/dustdefault/runedata/entry/healing.xml", new RuneHealing());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/heights.xml", new RuneHeights());
+						"/assets/dustdefault/runedata/entry/lumber.xml", new RuneLumberjack());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/farm.xml", new RuneFarm());
+						"/assets/dustdefault/runedata/entry/campfire.xml", new RuneCampfire());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/leapfrog.xml",
+				"/assets/dustdefault/runedata/entry/depths.xml", new RuneDepths());
+
+		XMLDustShapeReader.readAndRegisterShape(
+				"/assets/dustdefault/runedata/entry/heights.xml", new RuneHeights());
+
+		XMLDustShapeReader.readAndRegisterShape(
+				"/assets/dustdefault/runedata/entry/farm.xml", new RuneFarm());
+
+		XMLDustShapeReader.readAndRegisterShape(
+				"/assets/dustdefault/runedata/entry/leapfrog.xml",
 				new RuneLillyBridge());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/dawn.xml", new RuneDawn());
+				"/assets/dustdefault/runedata/entry/dawn.xml", new RuneDawn());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/dusk.xml", new RuneDusk());
+				"/assets/dustdefault/runedata/entry/dusk.xml", new RuneDusk());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/trap.fire.xml",
+				"/assets/dustdefault/runedata/entry/trap.fire.xml",
 				new RuneTrapFire());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/trap.lightning.xml",
+				"/assets/dustdefault/runedata/entry/trap.lightning.xml",
 				new RuneTrapLightning());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/trap.poison.xml",
+				"/assets/dustdefault/runedata/entry/trap.poison.xml",
 				new RuneTrapPoison());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/trap.detonation.xml",
+				"/assets/dustdefault/runedata/entry/trap.detonation.xml",
 				new RuneDetonation());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/trap.entrap.xml",
+				"/assets/dustdefault/runedata/entry/trap.entrap.xml",
 				new RuneTrapCage());
 
-		XMLDustShapeReader
-				.readAndRegisterShape(
-						"/assets/dustdefault/runedata/timelock.xml",
-						new RuneTimeLock());
+		XMLDustShapeReader.readAndRegisterShape(
+						"/assets/dustdefault/runedata/entry/timelock.xml", new RuneTimeLock());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/void.xml", new RuneVoidStorage());
+				"/assets/dustdefault/runedata/entry/void.xml", new RuneVoidStorage());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/wall.xml", new RuneBarrier());
+				"/assets/dustdefault/runedata/entry/wall.xml", new RuneBarrier());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/wisdom.xml", new RuneWisdom());
+				"/assets/dustdefault/runedata/entry/wisdom.xml", new RuneWisdom());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/speed.xml", new RuneSpeed());
+				"/assets/dustdefault/runedata/entry/speed.xml", new RuneSpeed());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/compression.xml",
+				"/assets/dustdefault/runedata/entry/compression.xml",
 				new RuneCompression());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/firerain.xml",
+				"/assets/dustdefault/runedata/entry/firerain.xml",
 				new RuneHellstorm());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/eggifier.xml", new RuneRebirth());
+				"/assets/dustdefault/runedata/entry/eggifier.xml", new RuneRebirth());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/resurrection.xml",
+				"/assets/dustdefault/runedata/entry/resurrection.xml",
 				new RuneResurrection());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/power_relay.xml",
+				"/assets/dustdefault/runedata/entry/power_relay.xml",
 				new RunePowerRelay());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/charge_inscriptions.xml",
+				"/assets/dustdefault/runedata/entry/charge_inscriptions.xml",
 				new RuneChargeInscription());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/spawner_collection.xml",
+				"/assets/dustdefault/runedata/entry/spawner_collection.xml",
 				new RuneSpawnerCollector());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/spawner_reassignment.xml",
+				"/assets/dustdefault/runedata/entry/spawner_reassignment.xml",
 				new RuneSpawnerReprog());
 
-		XMLDustShapeReader
-				.readAndRegisterShape(
-						"/assets/dustdefault/runedata/teleport.xml",
-						new RuneTeleport());
+		XMLDustShapeReader.readAndRegisterShape(
+						"/assets/dustdefault/runedata/entry/teleport.xml", new RuneTeleport());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/minitele.xml",
+				"/assets/dustdefault/runedata/entry/minitele.xml",
 				new RuneMiniTeleport());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/sprite.fire.xml",
+				"/assets/dustdefault/runedata/entry/sprite.fire.xml",
 				new RuneFireSprite());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/sprite.earth.xml",
+				"/assets/dustdefault/runedata/entry/sprite.earth.xml",
 				new RuneEarthSprite());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/bounce.xml", new RuneBounce());
+				"/assets/dustdefault/runedata/entry/bounce.xml", new RuneBounce());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/spawn_record.xml",
+				"/assets/dustdefault/runedata/entry/spawn_record.xml",
 				new RuneRecord());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/spirit_tools.xml",
+				"/assets/dustdefault/runedata/entry/spirit_tools.xml",
 				new RuneSpiritTool());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/ench.firebow.xml",
+				"/assets/dustdefault/runedata/entry/ench.firebow.xml",
 				new RuneEnchFireBow());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/ench.silktouch.xml",
+				"/assets/dustdefault/runedata/entry/ench.silktouch.xml",
 				new RuneEnchSilkTouch());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/ench.fortune.xml",
+				"/assets/dustdefault/runedata/entry/ench.fortune.xml",
 				new RuneEnchFortune());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/protection.xml",
+				"/assets/dustdefault/runedata/entry/protection.xml",
 				new RuneForcefield());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/level_earth.xml",
+				"/assets/dustdefault/runedata/entry/level_earth.xml",
 				new RuneLevelEarth());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/lift_terrain.xml",
+				"/assets/dustdefault/runedata/entry/lift_terrain.xml",
 				new RuneMountain());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/sarlacc.xml", new RuneSarlacc());
+				"/assets/dustdefault/runedata/entry/sarlacc.xml", new RuneSarlacc());
 
 		// last id used: 46
 		// notes for reanimation:

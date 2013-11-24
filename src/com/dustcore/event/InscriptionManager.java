@@ -37,8 +37,6 @@ public class InscriptionManager
 		events.add(evt);
 
 		DustMod.log(Level.FINER, "Registering inscription " + evt.idName);
-		// System.out.println("[DustMod] Registering inscription " +
-		// evt.idName);
 		if (config == null)
 		{
 			config = new Configuration(DustMod.suggestedConfig);
@@ -67,8 +65,6 @@ public class InscriptionManager
 			{
 				DustMod.log(Level.FINE, "Inscription permission for "
 						+ evt.idName + " set to " + evt.permission);
-				// System.out.println("[DustMod] Inscription permission for " +
-				// evt.idName + " set to " + evt.permission);
 			}
 		}
 
@@ -79,11 +75,8 @@ public class InscriptionManager
 	{
 		eventsRemote.add(evt);
 		DustMod.log(Level.FINER, "Registering remote inscription " + evt.idName);
-		// System.out.println("[DustMod] Registering remote inscription " +
-		// evt.idName);
 		LanguageRegistry.instance().addStringLocalization(
 				"insc." + evt.idName + ".name", "en_US", evt.properName);
-		// DustItemManager.reloadLanguage();
 		DustMod.proxy.checkInscriptionPage(evt);
 		evt.isRemote = true;
 	}
@@ -91,7 +84,6 @@ public class InscriptionManager
 	public static void resetRemoteInscriptions()
 	{
 		DustMod.log(Level.FINE, "Reseting remote inscriptions.");
-		// System.out.println("[DustMod] Reseting remote inscriptions.");
 
 		eventsRemote = new ArrayList<InscriptionEvent>();
 	}
@@ -101,8 +93,6 @@ public class InscriptionManager
 	{
 		if (((EntityPlayer) p).worldObj.isRemote)
 			return;
-
-		// tick(p, buttons, item);
 		if (item == null || item.getItemDamage() == ItemInscription.max)
 		{
 			return;
@@ -116,7 +106,6 @@ public class InscriptionManager
 		{
 			event.onUpdate((EntityPlayer) p, item, buttons);
 		}
-		// lastArmor.put(DustMod.getUsername(p), item);
 	}
 
 	public static void tick(Player p, boolean[] buttons, ItemStack item)
@@ -127,13 +116,9 @@ public class InscriptionManager
 		}
 		InscriptionEvent event = getEvent(item);
 		ItemStack last = lastArmor.get(DustMod.getUsername(p));
-		// ItemStack item = ((EntityPlayer) p).inventory.getStackInSlot(38);
 		boolean equal = (item != null && last != null
 				&& item.itemID == last.itemID && item.hasTagCompound() && item
 				.getTagCompound().equals(last.getTagCompound()));
-		// System.out.println("yo wtf "+
-		// ((EntityPlayer)p).worldObj.getWorldTime() + " " + event + " " + equal
-		// + " " + getEvent(last) + " " + item);
 
 		if (getEvent(last) != null && !equal)
 		{

@@ -678,7 +678,7 @@ public class DustShape
 		{
 			if (is != null)
 			{
-				if (is.itemID == DustContent.idust.itemID)
+				if (is.itemID == DustItemManager.idust.itemID)
 				{
 					pDustAmount[is.getItemDamage()] += is.stackSize;
 				} else if (is.itemID == DustContent.pouch.itemID)
@@ -806,7 +806,7 @@ public class DustShape
 
 					if (is != null && reduceDustAmount[id] > 0)
 					{
-						if (is.itemID == DustContent.idust.itemID
+						if (is.itemID == DustItemManager.idust.itemID
 								&& is.getItemDamage() == id)
 						{
 							while (reduceDustAmount[id] > 0 && is.stackSize > 0)
@@ -923,7 +923,7 @@ public class DustShape
 		{
 			if (is != null)
 			{
-				if (is.itemID == DustContent.idust.itemID)
+				if (is.itemID == DustItemManager.idust.itemID)
 				{
 					pDustAmount[is.getItemDamage()] += is.stackSize;
 				} else if (is.itemID == DustContent.pouch.itemID)
@@ -1068,7 +1068,7 @@ public class DustShape
 
 					if (is != null && reduceDustAmount[id] > 0)
 					{
-						if (is.itemID == DustContent.idust.itemID
+						if (is.itemID == DustItemManager.idust.itemID
 								&& is.getItemDamage() == id)
 						{
 							while (reduceDustAmount[id] > 0 && is.stackSize > 0)

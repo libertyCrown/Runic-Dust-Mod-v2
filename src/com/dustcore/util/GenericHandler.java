@@ -10,6 +10,7 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
 import com.dustcore.DustMod;
+import com.dustcore.api.DustItemManager;
 import com.dustcore.config.DustContent;
 import com.dustcore.event.InscriptionManager;
 import com.dustcore.item.ItemPouch;
@@ -39,17 +40,11 @@ public class GenericHandler implements ICraftingHandler
 		}
 
 		if (hasPouch
-				&& (item.itemID == DustContent.idust.itemID || item.itemID == DustContent.ink.itemID))
+				&& (item.itemID == DustItemManager.idust.itemID || item.itemID == DustContent.ink.itemID))
 		{
 			ItemPouch.subtractDust(pouch, 1);
 			DustContent.pouch.setContainerItemstack(pouch);
 		}
-
-		// else if(hasPouch && item.itemID == DustMod.pouch.itemID){
-		// DustMod.pouch.setContainerItem(null);
-		// DustMod.pouch.setContainerItemstack(null);
-		// ItemPouch.setAmount(item, ItemPouch.getDustAmount(pouch) + 1);
-		// }
 
 		if (hasPouch)
 		{
@@ -76,7 +71,7 @@ public class GenericHandler implements ICraftingHandler
 		ItemStack item = evt.item.getEntityItem();
 
 		int dust = item.getItemDamage();
-		if (item.itemID == DustContent.idust.itemID
+		if (item.itemID == DustItemManager.idust.itemID
 				&& (player.inventory.hasItemStack(new ItemStack(
 						DustContent.pouch.itemID, 1, dust * 2)) || player.inventory
 						.hasItemStack(new ItemStack(DustContent.pouch.itemID,

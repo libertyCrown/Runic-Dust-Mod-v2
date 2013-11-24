@@ -18,7 +18,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.dustcore.DustMod;
-import com.dustcore.config.DustContent;
+import com.dustcore.api.DustItemManager;
 import com.dustcore.util.References;
 
 import cpw.mods.fml.relauncher.Side;
@@ -144,7 +144,7 @@ public class ItemSpiritPickaxe extends ItemPickaxe
 									{
 										EntityItem ei = player
 												.dropPlayerItem(new ItemStack(
-														DustContent.idust, 1,
+														DustItemManager.idust, 1,
 														300));
 										ei.setPosition(x + 0.5 + i,
 												y + 0.5 + j, z + 0.5 + k);

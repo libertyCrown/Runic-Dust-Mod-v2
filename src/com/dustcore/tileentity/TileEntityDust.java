@@ -475,7 +475,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 			return null;
 		} else
 		{
-			return new ItemStack(DustContent.idust.itemID, 1, pattern[x][y]);
+			return new ItemStack(DustItemManager.idust.itemID, 1, pattern[x][y]);
 		}
 	}
 
@@ -503,7 +503,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 		int meta = item.getItemDamage();
 		int id = item.itemID;
 
-		if (id == DustContent.idust.itemID && size > 0)
+		if (id == DustItemManager.idust.itemID && size > 0)
 		{
 			pattern[x][y] = meta;
 		}

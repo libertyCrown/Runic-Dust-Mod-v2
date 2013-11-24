@@ -75,10 +75,6 @@ public class DustManager
 		result.entityDustID = EntityDustManager.getNextDustEntityID();
 		EntityDustManager.registerEntityDust(result, result.entityDustID);
 		result.setPosition(x, y - 0.8, z);
-		// result.posX = x;
-		// result.posY = y-0.8;//EntityDust.yOffset;
-		// result.posZ = z;
-		// result.dustPoints = points;
 		for (int i = 0; i < rot; i++)
 		{
 			map = DustShape.rotateMatrix(map);
@@ -150,8 +146,6 @@ public class DustManager
 		events.put(name, evt);
 		names.add(name);
 		evt.name = name;
-		// System.out.println("Added event " + name +". Total:" + names.size()
-		// );
 	}
 
 	public static DustShape getShape(int ind)
@@ -285,12 +279,9 @@ public class DustManager
 		namesRemote.add(shape.name);
 		DustMod.proxy.checkRunePage(shape);
 		DustMod.log(Level.FINER, "Registering remote rune: " + shape.name);
-		// System.out.println("[DustMod] Registering remote rune " +
-		// shape.name);
 		LanguageRegistry.instance().addStringLocalization(
-				"tile.scroll" + shape.name + ".name", "en_US",
+				"tile.scroll" + shape.name + ".name",
 				shape.getRuneName() + " Placing Scroll");
-		// DustItemManager.reloadLanguage();
 	}
 
 	/**
@@ -452,7 +443,7 @@ public class DustManager
 
 	public static void registerDefaultShapes()
 	{
-		// Moved! to DustModDefaults
+		
 	}
 
 	public static boolean isEmpty()

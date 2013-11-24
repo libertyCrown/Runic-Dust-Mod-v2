@@ -95,8 +95,6 @@ public class GuiTome extends GuiScreen
 		this.buttonList.add(button = new GuiButton(1, (width + xSize) / 2 + 2
 				- offX, (height - ySize) / 2 + 2 + ySize - 20, (width - xSize)
 				/ 2 + offX - 2, 20, "Description >"));
-		// nameField = new GuiTextField(this.fontRenderer, (width-xSize)/2 -
-		// offX,(height-ySize)/2-fontRenderer.FONT_HEIGHT-2, xSize,12);
 	}
 
 	/**
@@ -112,12 +110,12 @@ public class GuiTome extends GuiScreen
 			"Modders: Make custom runes!", "Insert joke here.",
 			"Direwolf20 is cool!", "Notch is cool!", "Jeb_ is cool!",
 			"Stop annoying LexManos!", "Go play Thaumcraft.",
-			"The QubeTubers are cool!", "Try Minecraft:Ars Magica!",
-			"Play outside!" };
+			"The QubeTubers are cool!", "Try Minecraft: Ars Magica!",
+			"Play outside!", "Now version 2!", "zombiepig333 says hi!" };
 	int randAuthor = (int) (Math.random() * derp.length);
 
 	/**
-	 * Draw the foreground layer for the GuiContainer (everythin in front of the
+	 * Draw the foreground layer for the GuiContainer (everything in front of the
 	 * items)
 	 */
 	protected void drawGuiContainerForegroundLayer()

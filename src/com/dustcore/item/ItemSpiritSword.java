@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 
-import com.dustcore.config.DustContent;
+import com.dustcore.api.DustItemManager;
 import com.dustcore.util.References;
 
 import cpw.mods.fml.relauncher.Side;
@@ -66,7 +66,7 @@ public class ItemSpiritSword extends ItemSword
 			if (rand.nextDouble() < 0.5D)
 				amt = 2;
 			EntityItem ei = player.dropPlayerItem(new ItemStack(
-					DustContent.idust, amt, 200));
+					DustItemManager.idust, amt, 200));
 			ei.setPosition(entity.posX, entity.posY, entity.posZ);
 			ei.delayBeforeCanPickup = 0;
 		}

@@ -252,7 +252,7 @@ public class ItemPouch extends DustModItem
 
 	public static int getDustAmount(ItemStack pouch)
 	{
-		if (pouch.itemID == DustContent.idust.itemID)
+		if (pouch.itemID == DustItemManager.idust.itemID)
 		{
 			return pouch.stackSize;
 		}
@@ -272,7 +272,7 @@ public class ItemPouch extends DustModItem
 
 	public static boolean subtractDust(ItemStack pouch, int sub)
 	{
-		if (pouch.itemID == DustContent.idust.itemID)
+		if (pouch.itemID == DustItemManager.idust.itemID)
 		{
 			if (pouch.stackSize >= sub)
 			{
@@ -312,7 +312,7 @@ public class ItemPouch extends DustModItem
 	 */
 	public static int addDust(ItemStack pouch, int add)
 	{
-		if (pouch.itemID == DustContent.idust.itemID)
+		if (pouch.itemID == DustItemManager.idust.itemID)
 		{
 			pouch.stackSize += add;
 			return 0;
@@ -348,7 +348,7 @@ public class ItemPouch extends DustModItem
 
 	public static void setAmount(ItemStack pouch, int amt)
 	{
-		if (pouch.itemID == DustContent.idust.itemID)
+		if (pouch.itemID == DustItemManager.idust.itemID)
 		{
 			pouch.stackSize -= amt;
 		}

@@ -28,11 +28,11 @@ public class InscriptionEvent
 	public boolean secret = false;
 	public String permission = "ALL";
 
-	// Set by the coder, unalterable by user configs.
-	// Setting it to false disallows all use, but if true it will not affect
-	// anything
-	// This is for the case where something breaks, it gives the coder time to
-	// fix it later
+	/** Set by the coder, unalterable by user configs.
+      * Setting it to false disallows all use, but if true it will not affect anything.
+	  * This is for the case where something breaks, it gives the coder time to
+	  * fix it later.
+	 */
 	public boolean permaAllowed = true;
 
 	public InscriptionEvent(int[][] design, String idName, String properName,
@@ -207,7 +207,6 @@ public class InscriptionEvent
 		{
 			item.stackSize = 1;
 			item.setItemDamage(ItemInscription.max);
-			// ent.inventory.armorInventory[2] = null;
 		}
 	}
 
