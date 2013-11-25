@@ -11,12 +11,12 @@ import net.minecraftforge.common.Configuration;
 
 import com.dustcore.DustMod;
 import com.dustcore.DustShape;
-import com.dustcore.PoweredEvent;
 import com.dustcore.block.BlockDust;
 import com.dustcore.config.DustContent;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.entity.EntityDustManager;
 import com.dustcore.event.DustEvent;
+import com.dustcore.event.PoweredEvent;
 import com.dustcore.tileentity.TileEntityDust;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -178,7 +178,6 @@ public class DustManager
 	public static void resetMultiplayerRunes()
 	{
 		DustMod.log(Level.FINE, "Reseting remote runes.");
-		// System.out.println("[DustMod] Resetting remote runes.");
 		namesRemote = new ArrayList<String>();
 		shapesRemote = new ArrayList<DustShape>();
 		DustMod.proxy.resetPlayerTomePage();
@@ -215,11 +214,10 @@ public class DustManager
 		}
 
 		DustMod.log(Level.FINER, "Registering rune: " + shape.name);
-		// System.out.println("[DustMod] Registering rune " + shape.name);
 
 		if (config == null)
 		{
-			config = new Configuration(DustMod.suggestedConfig);
+			config = new Configuration(DustMod.runeConfig);
 			config.load();
 			config.addCustomCategoryComment("INSCRIPTIONS",
 					"Allow specific inscriptions to be used. Options: ALL, NONE, OPS");
@@ -394,7 +392,6 @@ public class DustManager
 					}
 
 					DustMod.log(Level.FINER, "Left variable dust in rune.");
-					// System.out.println("[DustMod] Left variable dust in rune.");
 					return;
 				}
 			}
@@ -404,12 +401,10 @@ public class DustManager
 		for (int iter = 0; iter < DustManager.shapes.size(); iter++)
 		{
 			DustShape s = DustManager.shapes.get(iter);
-			// System.out.println("Dicks");
 			int[][] temptrim = trim;
 
 			if ((rot = s.compareData(trim)) != -1)
 			{
-				// trim = temptrim;
 				found = s;
 				break;
 			}

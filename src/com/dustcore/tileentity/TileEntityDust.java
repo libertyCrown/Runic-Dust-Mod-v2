@@ -20,7 +20,7 @@ import com.dustcore.api.DustItemManager;
 import com.dustcore.block.BlockDust;
 import com.dustcore.config.DustContent;
 import com.dustcore.entity.EntityDust;
-import com.dustcore.util.PacketHandler;
+import com.dustcore.handlers.PacketHandler;
 
 public class TileEntityDust extends TileEntity implements IInventory
 {
@@ -455,7 +455,6 @@ public class TileEntityDust extends TileEntity implements IInventory
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
 	{
 		super.onDataPacket(net, pkt);
-		// System.out.println("DataPacket");
 	}
 
 	@Override
@@ -475,7 +474,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 			return null;
 		} else
 		{
-			return new ItemStack(DustItemManager.idust.itemID, 1, pattern[x][y]);
+			return new ItemStack(DustItemManager.idust, 1, pattern[x][y]);
 		}
 	}
 

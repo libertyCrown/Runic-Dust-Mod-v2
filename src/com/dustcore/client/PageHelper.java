@@ -30,8 +30,8 @@ import com.dustcore.event.InscriptionEvent;
 public class PageHelper
 {
 	public static String folder = "/assets/dustcore/";
-	public static String runeFolder = "/assets/dustcore/runedata/image";
-	public static String insFolder = "/assets/dustcore/inscriptiondata/image";
+	public static String runeFolder = "/assets/dustcore/runedata/image/";
+	public static String insFolder = "/assets/dustcore/inscriptiondata/image/";
 	public static BufferedImage background;
 	public static BufferedImage backgroundIns;
 	public static BufferedImage shade;

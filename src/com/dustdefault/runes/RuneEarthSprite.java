@@ -13,9 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.dustcore.PoweredEvent;
 import com.dustcore.entity.EntityBlock;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.event.PoweredEvent;
 
 /**
  * 
@@ -105,9 +105,9 @@ public class RuneEarthSprite extends PoweredEvent
 
 			if (protect)
 			{
-				// p.posX = px+0.5D;
-				// p.posY = py + p.yOffset+0.1D;
-				// p.posZ = pz+0.5D;
+				 p.posX = px+0.5D;
+				 p.posY = py + p.yOffset+0.1D;
+				 p.posZ = pz+0.5D;
 				if (p.isSneaking() && !wasSneaking)
 					p.setPositionAndUpdate((double) px + 0.5D, (double) py
 							+ p.yOffset, (double) pz + 0.5D);
@@ -187,8 +187,8 @@ public class RuneEarthSprite extends PoweredEvent
 		for (Object o : e.genericList)
 		{
 			EntityBlock eb = (EntityBlock) o;
-			int y = (int) eb.posY;// e.worldObj.getHeightValue((int)eb.posX,
-									// (int)eb.posZ);
+			int y = (int) eb.posY; e.worldObj.getHeightValue((int)eb.posX,
+									 (int)eb.posZ);
 
 			for (int i = y; i >= 0; i--)
 			{
@@ -199,10 +199,10 @@ public class RuneEarthSprite extends PoweredEvent
 				}
 			}
 
-			// System.out.println("Position " + eb.posX + " " + " " + eb.posY +
-			// " " + eb.posZ);
-			// System.out.println("SettingPosition " + (int)eb.posX + " " + " "
-			// + y + " " + (int)eb.posZ);
+			 System.out.println("Position " + eb.posX + " " + " " + eb.posY +
+			 " " + eb.posZ);
+			 System.out.println("SettingPosition " + (int)eb.posX + " " + " "
+			 + y + " " + (int)eb.posZ);
 			eb.setOriginal((int) eb.posX, y + 1, (int) eb.posZ);
 			eb.returnToOrigin(0.2D);
 		}

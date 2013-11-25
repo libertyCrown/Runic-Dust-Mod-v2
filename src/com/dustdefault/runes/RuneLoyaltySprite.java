@@ -18,8 +18,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.MathHelper;
 
-import com.dustcore.PoweredEvent;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.event.PoweredEvent;
 
 /**
  * 

@@ -5,6 +5,7 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.dustcore.DustModTab;
 import com.dustcore.api.DustItemManager;
@@ -115,13 +116,13 @@ public class DustContent
 	public static void initCrafting()
 	{
 		GameRegistry.addRecipe(new ItemStack(dustTable, 1), new Object[] {
-				"dwd", "wbw", "dwd", 'd', new ItemStack(DustItemManager.idust, 1, -1), 'w',
-				new ItemStack(Block.planks, 1, -1), 'b',
-				new ItemStack(tome, -1) });
+				"dwd", "wbw", "dwd", 'd', new ItemStack(DustItemManager.idust, 1, OreDictionary.WILDCARD_VALUE), 'w',
+				new ItemStack(Block.planks, 1, OreDictionary.WILDCARD_VALUE), 'b',
+				new ItemStack(tome) });
 		GameRegistry.addRecipe(new ItemStack(dustTable, 1), new Object[] {
-				"wdw", "dbd", "wdw", 'd', new ItemStack(DustItemManager.idust, 1, -1), 'w',
-				new ItemStack(Block.planks, 1, -1), 'b',
-				new ItemStack(tome, -1) });
+				"wdw", "dbd", "wdw", 'd', new ItemStack(DustItemManager.idust, 1, OreDictionary.WILDCARD_VALUE), 'w',
+				new ItemStack(Block.planks, 1, OreDictionary.WILDCARD_VALUE), 'b',
+				new ItemStack(tome) });
 		GameRegistry.addRecipe(new ItemStack(chisel, 1), new Object[] { "st",
 				"i ", 's', new ItemStack(Block.cobblestone, 1), 't',
 				new ItemStack(Item.stick, 1), 'i',
@@ -130,61 +131,61 @@ public class DustContent
 				"s", "p", "p", 's', new ItemStack(Item.silk, 1), 'p',
 				new ItemStack(runicPaper, 1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						new ItemStack(Block.tallGrass, 1, -1),
 						new ItemStack(Block.tallGrass, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						new ItemStack(Block.leaves, 1, -1),
 						new ItemStack(Block.leaves, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						new ItemStack(Block.sapling, 1, -1),
 						new ItemStack(Block.sapling, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						Item.seeds, Item.seeds });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						Block.cactus, Block.cactus });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						Block.cactus, Item.seeds });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
-						Block.cactus, new ItemStack(Block.sapling, 1, -1) });
+				new Object[] { new ItemStack(Item.coal, 1),
+						Block.cactus, new ItemStack(Block.sapling, 1, OreDictionary.WILDCARD_VALUE) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						Block.cactus, new ItemStack(Block.leaves, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
-						Block.cactus, new ItemStack(Block.tallGrass, 1, -1) });
+				new Object[] { new ItemStack(Item.coal, 1),
+						Block.cactus, new ItemStack(Block.tallGrass, 1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
-						Item.seeds, new ItemStack(Block.sapling, 1, -1), });
+				new Object[] { new ItemStack(Item.coal, 1),
+						Item.seeds, new ItemStack(Block.sapling, 1, OreDictionary.WILDCARD_VALUE) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						Item.seeds, new ItemStack(Block.leaves, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						Item.seeds, new ItemStack(Block.tallGrass, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						new ItemStack(Block.sapling, 1, -1),
 						new ItemStack(Block.leaves, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						new ItemStack(Block.sapling, 1, -1),
 						new ItemStack(Block.tallGrass, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 100),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						new ItemStack(Block.leaves, 1, -1),
 						new ItemStack(Block.tallGrass, 1, -1) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 12, 200),
 				new Object[] { Item.gunpowder, new ItemStack(DustItemManager.idust, 1, 100),
 						new ItemStack(DustItemManager.idust, 1, 100) });
 		GameRegistry.addShapelessRecipe(new ItemStack(DustItemManager.idust, 8, 300),
-				new Object[] { new ItemStack(Item.coal.itemID, 1, -1),
+				new Object[] { new ItemStack(Item.coal, 1),
 						new ItemStack(Item.dyePowder, 2, 4),
 						new ItemStack(Item.dyePowder, 2, 4),
 						new ItemStack(Item.dyePowder, 2, 4) });
@@ -193,13 +194,7 @@ public class DustContent
 						new ItemStack(DustItemManager.idust, 1, 300),
 						new ItemStack(DustItemManager.idust, 1, 300) });
 		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0),
-				new Object[] { new ItemStack(DustItemManager.idust, 1, 100), Item.book });
-		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0),
-				new Object[] { new ItemStack(DustItemManager.idust, 1, 200), Item.book });
-		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0),
-				new Object[] { new ItemStack(DustItemManager.idust, 1, 300), Item.book });
-		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0),
-				new Object[] { new ItemStack(DustItemManager.idust, 1, 400), Item.book });
+				new Object[] { new ItemStack(DustItemManager.idust, 1, OreDictionary.WILDCARD_VALUE), Item.book });
 		GameRegistry.addShapelessRecipe(new ItemStack(runicPaper, 1),
 				new Object[] { Item.paper, Item.goldNugget, Item.goldNugget });
 

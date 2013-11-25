@@ -1,4 +1,4 @@
-package com.dustcore;
+package com.dustcore.event;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
 import com.dustcore.entity.EntityDust;
-import com.dustcore.event.DustEvent;
 import com.dustcore.tileentity.TileEntityDust;
 import com.dustdefault.runes.RunePowerRelay;
 

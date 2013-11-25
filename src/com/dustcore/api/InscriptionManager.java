@@ -1,4 +1,4 @@
-package com.dustcore.event;
+package com.dustcore.api;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +12,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.Configuration;
 
 import com.dustcore.DustMod;
+import com.dustcore.event.InscriptionEvent;
 import com.dustcore.item.ItemInscription;
 
 import cpw.mods.fml.common.network.Player;

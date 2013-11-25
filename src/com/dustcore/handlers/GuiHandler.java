@@ -1,4 +1,4 @@
-package com.dustcore.util;
+package com.dustcore.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

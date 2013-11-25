@@ -14,9 +14,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.dustcore.Sacrifice;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
+import com.dustcore.handlers.SacrificeHandler;
 import com.dustcore.tileentity.TileEntityRut;
 
 /**
@@ -40,7 +40,8 @@ public class RuneMountain extends DustEvent
 		e.setRenderBeam(true);
 		e.setColorStar(255, 255, 0);
 		e.setColorFire(0, 0, 255);
-		e.setRenderFireOnRuts(true);
+		//TODO- fix the flame effect
+		//e.setRenderFireOnRuts(true);
 	}
 
 	public void onInit(EntityDust e)
@@ -99,7 +100,7 @@ public class RuneMountain extends DustEvent
 				break;
 		}
 		e.sacrificeWaiting = 600;
-		this.addSacrificeList(new Sacrifice(99));
+		this.addSacrificeList(new SacrificeHandler(99));
 		loadArea(e);
 
 		e.setRenderFireOnRuts(true);
@@ -181,7 +182,6 @@ public class RuneMountain extends DustEvent
 							te = world.getBlockTileEntity(x, y + c, z);
 							tag = new NBTTagCompound();
 							te.writeToNBT(tag);
-							// world.removeBlockTileEntity(x, y+c, z);
 							te.invalidate();
 						}
 						world.setBlock(x, y + c + 1, z, 0, 0, 3);
@@ -200,40 +200,13 @@ public class RuneMountain extends DustEvent
 								tet.zCoord = z;
 								tet.blockMetadata = m;
 							}
-
-							// te.validate();
-							// Chunk chunk =
-							// e.worldObj.getChunkFromBlockCoords(e.getX(),
-							// e.getZ());
-							// te.xCoord = x;
-							// te.yCoord = y+c+1;
-							// te.zCoord = z;
-							//
-							// // world.removeBlockTileEntity(x,y+c+1,z);
-							// te.validate();
-							// world.setBlockTileEntity(x,y+c+1,z,te);
-							// chunk.setChunkBlockTileEntity(x & 0xf, y+c+1, z &
-							// 0xf, te);
-							// chunk.chunkTileEntityMap.put(new
-							// ChunkPosition(x&0xf,y+c+1,z&0xf), te);
-							// System.out.println("Validating " +
-							// (world.getBlockTileEntity(x,y+c+1,z)==te));
 						}
 
 						world.setBlockMetadataWithNotify(x, y + c + 1, z, m, 3);
-					} else
+					} 
+					else
 					{
-						// if(world.getBlockTileEntity(x, y+c, z) != null)
-						// world.getBlockTileEntity(x, y+c, z).validate();
-						// world.notifyBlockChange(x, y+c, z, 0);
 					}
-
-					// TileEntity FUCKER = world.getBlockTileEntity(x,y+c,z);
-					// int BITCH = world.getBlockId(x,y+c,z);
-					// if(FUCKER != null){
-					// if(FUCKER.blockType.blockID == BITCH)
-					// System.out.println("DIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIICKS");
-					// }
 				}
 			}
 

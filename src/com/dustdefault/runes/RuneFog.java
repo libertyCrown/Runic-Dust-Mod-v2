@@ -16,8 +16,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
 
-import com.dustcore.PoweredEvent;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.event.PoweredEvent;
 import com.dustcore.tileentity.TileEntityDust;
 
 /**

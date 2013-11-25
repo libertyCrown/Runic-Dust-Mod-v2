@@ -429,7 +429,6 @@ public class EntityDust extends Entity
 			renderFlamesRut = tag.getBoolean("renderFlamesRut");
 		}
 
-		// System.out.println("Sacrificewaiting = " + sacrificeWaiting);
 		if (tag.hasKey("sacrificeWaitingIsInvalid")
 				&& tag.getBoolean("sacrificeWaitingIsInvalid"))
 		{
@@ -538,11 +537,6 @@ public class EntityDust extends Entity
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound tag)
 	{
-		// if (lifetime != -1)
-		// {
-		// return;
-		// }
-
 		tag.setString("eventname", eventName);
 		tag.setInteger("ticksexist", ticksExisted);
 		tag.setBoolean("rendBeam", renderBeam);
@@ -637,16 +631,6 @@ public class EntityDust extends Entity
 
 		if (!worldObj.isRemote || true)
 		{
-			// if (!event.allowed)
-			// {
-			// reanimate = true;
-			// EntityPlayer player = worldObj.getPlayerEntityByName(summonerUN);
-			//
-			// if (player != null)
-			// {
-			// }
-			// }
-
 			if (!ignoreRune || (ticksExisted < birthLength && justBorn))
 			{
 				for (Integer[] i : dustPoints)
@@ -655,7 +639,6 @@ public class EntityDust extends Entity
 
 					if (!DustMod.isDust(id))
 					{
-						// System.out.println("Rune Broken!");
 						kill();
 						return;
 					}
@@ -720,15 +703,12 @@ public class EntityDust extends Entity
 
 			if (dustPoints == null)
 			{
-				// System.out.println("Dust points null. killing");
 				kill();
 				return;
 			}
 
 			if (reanimate)
 			{
-				// System.out.println("Reanimating rune...");
-
 				for (Integer[] i : dustPoints)
 				{
 					int id = worldObj.getBlockId(i[0], i[1], i[2]);
@@ -747,13 +727,9 @@ public class EntityDust extends Entity
 
 			if (event == null || eventName == null || eventName.isEmpty())
 			{
-				// System.out.println("poo " + event + " | " + eventName +
-				// " death");
 				kill();
 				return;
 			}
-
-			// System.out.println("rawr " + ticksExisted + " " +fade);
 			if (follow)
 			{
 				Entity tf = toFollow;
@@ -944,8 +920,6 @@ public class EntityDust extends Entity
 		double max = Math.PI / 2D;
 		double iter = 0.05;
 
-		// double[] locations = new double[12288];
-
 		for (double d3 = 0.0D; d3 < (3.14 / 2D); d3 += 0.05)
 		{
 			float f4 = (float) Math.sin(d3);
@@ -1006,7 +980,6 @@ public class EntityDust extends Entity
 	 */
 	public boolean canAlterBlock(int x, int y, int z)
 	{
-
 		EntityPlayer p = worldObj.getPlayerEntityByName(summonerUN);
 		if (p != null && !worldObj.canMineBlock(p, x, y, z))
 		{

@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
 
+import com.dustcore.DustMod;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.util.References;
 
@@ -57,7 +58,6 @@ public class RenderEntityDust extends Render implements IRenderLast
 			double offsetPerc = offset / (1 - 0.1875);
 			double perc = ((double) ticks / (double) EntityDust.birthLength);
 			scale *= Math.min(perc + 0.2, 1);
-			// System.out.println(offset + " " + perc);
 			yOffset = (float) perc * (float) offsetPerc - (float) offset;
 		}
 		Random random = new Random(432L);
@@ -249,7 +249,6 @@ public class RenderEntityDust extends Render implements IRenderLast
 			var10.draw();
 			var10.startDrawingQuads();
 			var10.setColorRGBA(e.rb, e.gb, e.bb, 48);
-			// var10.setColorRGBA(255, 255, 255, 32);
 			double var44 = 0.2D;
 			double var15 = 0.2D;
 			double var17 = 0.8D;
@@ -294,9 +293,7 @@ public class RenderEntityDust extends Render implements IRenderLast
 		System.out.println("BASIFM wat"
 				+ References.Enable_Render_Flames_On_Dust + " "
 				+ e.renderFlamesDust + " " + (e.dustPoints == null));
-
-		// GL11.glPushAttrib(GL11.GL_LIGHTING_BIT | GL11.GL_ENABLE_BIT |
-		// GL11.GL_COLOR_BUFFER_BIT);
+		
 		boolean renderFlamesDust = (References.Enable_Render_Flames_On_Dust
 				&& e.renderFlamesDust && e.dustPoints != null);
 		boolean renderFlamesRut = (References.Enable_Render_Flames_On_Ruts
@@ -457,13 +454,12 @@ public class RenderEntityDust extends Render implements IRenderLast
 			}
 
 		GL11.glPopMatrix();
-		// GL11.glPopAttrib();
 	}
 
 	public void renderBlockFire(World world, int i, int j, int k, int r, int g,
 			int b, Integer[] sides)
 	{
-		System.out.println("BLOCK FIRE");
+		DustMod.log("FIYA POWA", this);//.out.println("BLOCK FIRE");
 		GL11.glPushMatrix();
 		Block block = Block.fire;
 		GL11.glDisable(GL11.GL_LIGHTING);
@@ -488,33 +484,33 @@ public class RenderEntityDust extends Render implements IRenderLast
 
 		if (sides[0] == 1)
 		{
-			renderBlocks.renderFaceZPos(block, -0.5D, -0.5D, -0.5D,
+			renderBlocks.renderFaceXPos(block, -0.5D, -0.5D, -0.5D,
 					block.getBlockTextureFromSide(2));
-			renderBlocks.renderFaceZNeg(block, -0.5D, -0.5D, -1.5D,
+			renderBlocks.renderFaceXNeg(block, -0.5D, -0.5D, -1.5D,
 					block.getBlockTextureFromSide(3));
 		}
 
 		if (sides[1] == 1)
 		{
-			renderBlocks.renderFaceZNeg(block, -0.5D, -0.5D, -0.5D,
+			renderBlocks.renderFaceXNeg(block, -0.5D, -0.5D, -0.5D,
 					block.getBlockTextureFromSide(3));
-			renderBlocks.renderFaceZPos(block, -0.5D, -0.5D, 0.5D,
+			renderBlocks.renderFaceXPos(block, -0.5D, -0.5D, 0.5D,
 					block.getBlockTextureFromSide(2));
 		}
 
 		if (sides[2] == 1)
 		{
-			renderBlocks.renderFaceXNeg(block, -0.5D, -0.5D, -0.5D,
+			renderBlocks.renderFaceZNeg(block, -0.5D, -0.5D, -0.5D,
 					block.getBlockTextureFromSide(4));
-			renderBlocks.renderFaceXPos(block, -1.5D, -0.5D, -0.5D,
+			renderBlocks.renderFaceZPos(block, -1.5D, -0.5D, -0.5D,
 					block.getBlockTextureFromSide(5));
 		}
 
 		if (sides[3] == 1)
 		{
-			renderBlocks.renderFaceXPos(block, -0.5D, -0.5D, -0.5D,
+			renderBlocks.renderFaceZPos(block, -0.5D, -0.5D, -0.5D,
 					block.getBlockTextureFromSide(5));
-			renderBlocks.renderFaceXNeg(block, 0.5D, -0.5D, -0.5D,
+			renderBlocks.renderFaceZNeg(block, 0.5D, -0.5D, -0.5D,
 					block.getBlockTextureFromSide(4));
 		}
 
@@ -527,7 +523,6 @@ public class RenderEntityDust extends Render implements IRenderLast
 	public void doRender(Entity e, double d, double d1, double d2, float f,
 			float f1)
 	{
-		// System.out.println("Render entity dust");
 		EntityDust dust = (EntityDust) e;
 		float ri = (float) dust.ri / 255F;
 		float gi = (float) dust.gi / 255F;
@@ -536,13 +531,13 @@ public class RenderEntityDust extends Render implements IRenderLast
 		float go = (float) dust.go / 255F;
 		float bo = (float) dust.bo / 255F;
 
-		// if (dust.renderFlamesDust || dust.renderFlamesRut)
-		// {
-		// GL11.glPushMatrix();
-		// GL11.glTranslatef((float)d, (float)d1 + 0.3F, (float)d2);
-		// this.renderFlames(dust, f);
-		// GL11.glPopMatrix();
-		// }
+		 if (dust.renderFlamesDust || dust.renderFlamesRut)
+		 {
+			 GL11.glPushMatrix();
+			 GL11.glTranslatef((float)d, (float)d1 + 0.3F, (float)d2);
+			 this.renderFlames(dust, f);
+			 GL11.glPopMatrix();
+		 }
 
 		if (dust.renderBeam)
 		{
@@ -568,21 +563,7 @@ public class RenderEntityDust extends Render implements IRenderLast
 		if (dust.renderStar)
 		{
 			RenderLastHandler.registerLastRender(this, new Object[] { dust, d,
-					d1, d2, f, f1 }); // forge
-			// GL11.glPushMatrix();
-			// GL11.glTranslatef((float)d, (float)d1 + 1.0F, (float)d2 + 2F);
-			// //noforge
-			// renderStar(dust, f, (float)ri / 255F, (float)gi / 255F, (float)bi
-			// / 255F,
-			// (float)ro / 255F, (float)go / 255F, (float)bo / 255F,
-			// dust.starScale);
-			// dust.ticksExisted += 20;
-			// renderStar(dust, f, (float)ri / 255F, (float)gi / 255F, (float)bi
-			// / 255F,
-			// (float)ro / 255F, (float)go / 255F, (float)bo / 255F,
-			// dust.starScale);
-			// dust.ticksExisted -= 20;
-			// GL11.glPopMatrix();
+					d1, d2, f, f1 });
 		}
 	}
 

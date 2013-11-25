@@ -6,10 +6,10 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 
 import com.dustcore.DustMod;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
 
 public class RuneChargeInscription extends DustEvent
 {

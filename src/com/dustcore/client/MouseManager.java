@@ -5,7 +5,7 @@ import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.input.Mouse;
 
-import com.dustcore.util.PacketHandler;
+import com.dustcore.handlers.PacketHandler;
 
 import cpw.mods.fml.client.FMLClientHandler;
 

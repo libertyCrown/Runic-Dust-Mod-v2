@@ -15,8 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.ForgeDirection;
 
-import com.dustcore.PoweredEvent;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.event.PoweredEvent;
 import com.dustcore.tileentity.TileEntityDust;
 
 /**

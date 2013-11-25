@@ -291,10 +291,9 @@ public class DustShape
 
 		ArrayList<ArrayList<int[][]>> tblocks = new ArrayList();
 		int[] test = getBlockCoord(tox + w, toy + l, tox, toy);
-		int bwidth = test[0] + 2; // (int)Math.ceil((((double)w+Math.abs(oy))/4.0));
-		int bheight = test[1] + 2; // (int)Math.ceil(((double)(l+Math.abs(ox))/4.0));
+		int bwidth = test[0] + 2;
+		int bheight = test[1] + 2;
 
-		// System.out.println("fuckitalllll " + bwidth + " " + bheight);
 		for (int i = 0; i < bwidth; i++)
 		{
 			tblocks.add(new ArrayList());
@@ -319,9 +318,6 @@ public class DustShape
 					{
 						to = -2;
 					}
-
-					// System.out.println("what the dick " +
-					// Arrays.toString(c));
 					tblocks.get(c[0]).get(c[1])[c[2]][c[3]] = to;
 
 					if (to >= 0)
@@ -332,8 +328,6 @@ public class DustShape
 			}
 
 		return tblocks;
-		// System.out.println("Dust amount registered " + name + " " +
-		// Arrays.toString(dustAmt));
 	}
 
 	public int[] getBlockCoord(int x, int z)
@@ -347,11 +341,6 @@ public class DustShape
 		int j = (int) Math.floor((z + toy) / 4);
 		int nx = x + tox - i * 4;
 		int nz = z + toy - j * 4;
-		// if(i >= blocks.size() || j >= blocks.get(0).size())
-		// System.out.println("Derp bx:" + i + " by:" + j + " nx:" + nx + " nz:"
-		// + nz );
-		// if(nx < 0) nx = 0;
-		// if(nz < 0) nz = 0;
 		return new int[] { i, j, nx, nz };
 	}
 
@@ -397,15 +386,8 @@ public class DustShape
 	 */
 	public int compareData(int[][] d)
 	{
-		// int h = d.length;
 		int w = d.length;
 		int l = d[0].length;
-		// if(h > height) return -1;
-		// System.out.println("WHYYY " + w + " " + l + " " + width + " " +
-		// length);
-		// if(w > width) return -1;
-		// if(l > length) return -1;
-		// int dh = height - h;
 		int dw = width - w;
 		int dl = length - l;
 
@@ -417,14 +399,12 @@ public class DustShape
 
 		int rot = -1;
 
-		// System.out.println("potato " + dw + " " + dl);
 		for (int x = 0; x <= dw; x++)
 		{
 			for (int z = 0; z <= dl; z++)
 			{
 				if ((rot = compareChunk(d, x, 0, z)) == -1)
 				{
-					// System.out.println("dicks");
 					return -1;
 				}
 			}
@@ -450,7 +430,6 @@ public class DustShape
 					{
 						if (compare != iter && iter != 0)
 						{
-							// System.out.println("Rune mulicolored");
 							return -1;
 						}
 					}
@@ -468,20 +447,17 @@ public class DustShape
 
 	protected int compareChunk(int[][] d, int ox, int oy, int oz)
 	{
-		// int h = d.length;
 		// I shouldn't have to put this here, but it works
 		width = data[0].length;
 		length = data[0][0].length;
 		boolean equal = true;
 
-		// for(int y = 0; y < h; y++){
 		for (int rot = 0; rot < 4; rot++)
 		{
 			int w = d.length;
 			int l = d[0].length;
 			if (w != width || l != length)
 			{
-				// System.out.println("firsderp");
 				equal = false;
 			}
 
@@ -522,7 +498,6 @@ public class DustShape
 		}
 
 		d = flipMatrix(d);
-		// System.out.println("FLIP");
 
 		for (int rot = 0; rot < 4; rot++)
 		{
@@ -531,7 +506,6 @@ public class DustShape
 
 			if (w != width || l != length)
 			{
-				// System.out.println("firsderp");
 				equal = false;
 			}
 
@@ -1135,7 +1109,6 @@ public class DustShape
 			if (dust[i] < dustAmt[i])
 			{
 				DustMod.log(Level.FINER, "Not enough dust: " + i);
-				// System.out.println("[DustMod] Not enough dust:" + i);
 				return false;
 			}
 		}

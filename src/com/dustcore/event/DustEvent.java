@@ -17,16 +17,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.dustcore.DustMod;
-import com.dustcore.Sacrifice;
 import com.dustcore.config.DustContent;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.handlers.SacrificeHandler;
 import com.dustcore.tileentity.TileEntityDust;
 import com.dustcore.tileentity.TileEntityRut;
 
 public abstract class DustEvent
 {
 
-	protected ArrayList<ArrayList<Sacrifice>> waitingSacrifices;
+	protected ArrayList<ArrayList<SacrificeHandler>> waitingSacrifices;
 	private int sacID = 0;
 	public String name;
 	public boolean secret = false;
@@ -41,30 +41,30 @@ public abstract class DustEvent
 
 	public DustEvent()
 	{
-		waitingSacrifices = new ArrayList<ArrayList<Sacrifice>>();
+		waitingSacrifices = new ArrayList<ArrayList<SacrificeHandler>>();
 	}
 
-	public DustEvent addSacr(Sacrifice s)
+	public DustEvent addSacr(SacrificeHandler s)
 	{
 		if (sacID >= waitingSacrifices.size())
 		{
-			waitingSacrifices.add(new ArrayList<Sacrifice>());
+			waitingSacrifices.add(new ArrayList<SacrificeHandler>());
 		}
 
 		waitingSacrifices.get(sacID).add(s);
 		return this;
 	}
 
-	public DustEvent addSacrificeList(Sacrifice... s)
+	public DustEvent addSacrificeList(SacrificeHandler... s)
 	{
-		List<Sacrifice> sac = Arrays.asList(s);
+		List<SacrificeHandler> sac = Arrays.asList(s);
 
 		if (sacID >= waitingSacrifices.size())
 		{
-			waitingSacrifices.add(new ArrayList<Sacrifice>());
+			waitingSacrifices.add(new ArrayList<SacrificeHandler>());
 		}
 
-		ArrayList<Sacrifice> current = waitingSacrifices.get(sacID);
+		ArrayList<SacrificeHandler> current = waitingSacrifices.get(sacID);
 		current.addAll(sac);
 		sacID++;
 		return this;
@@ -96,12 +96,12 @@ public abstract class DustEvent
 		{
 			e.sacrificeWaiting--;
 
-			for (ArrayList<Sacrifice> arr : waitingSacrifices)
+			for (ArrayList<SacrificeHandler> arr : waitingSacrifices)
 			{
-				Sacrifice[] sacr = sacrifice(e, arr);
+				SacrificeHandler[] sacr = sacrifice(e, arr);
 				boolean cont = true;
 
-				for (Sacrifice s : sacr)
+				for (SacrificeHandler s : sacr)
 				{
 					if (!s.isComplete)
 					{
@@ -582,14 +582,14 @@ public abstract class DustEvent
 		return req;
 	}
 
-	public Sacrifice[] sacrifice(EntityDust e, ArrayList<Sacrifice> reqA)
+	public SacrificeHandler[] sacrifice(EntityDust e, ArrayList<SacrificeHandler> reqA)
 	{
 		List<Entity> sacrifice = this.getEntities(e, 3D);
-		Sacrifice[] req = new Sacrifice[reqA.size()];
+		SacrificeHandler[] req = new SacrificeHandler[reqA.size()];
 
 		for (int i = 0; i < reqA.size(); i++)
 		{
-			Sacrifice is = reqA.get(i);
+			SacrificeHandler is = reqA.get(i);
 			req[i] = is.clone();
 		}
 
@@ -611,7 +611,7 @@ public abstract class DustEvent
 				break;
 			}
 
-			for (Sacrifice s : req)
+			for (SacrificeHandler s : req)
 			{
 				if (s.isComplete)
 				{
@@ -643,7 +643,7 @@ public abstract class DustEvent
 		}
 
 		if (negate)
-			for (Sacrifice s : req)
+			for (SacrificeHandler s : req)
 			{
 				s.isComplete = true;
 			}
@@ -651,9 +651,9 @@ public abstract class DustEvent
 		return req;
 	}
 
-	public void handle(EntityDust e, Sacrifice[] sac)
+	public void handle(EntityDust e, SacrificeHandler[] sac)
 	{
-		for (Sacrifice s : sac)
+		for (SacrificeHandler s : sac)
 		{
 			s.handleObject(e, s.entity);
 		}

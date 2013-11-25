@@ -8,7 +8,7 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 
 import com.dustcore.config.DustContent;
-import com.dustcore.util.PacketHandler;
+import com.dustcore.handlers.PacketHandler;
 import com.dustcore.util.References;
 
 public class TileEntityRut extends TileEntity
@@ -357,6 +357,7 @@ public class TileEntityRut extends TileEntity
 		worldObj.setBlock(xCoord, yCoord, zCoord, maskBlock, maskMeta, 3);
 	}
 
+	//TODO- support modded fluids
 	public boolean fluidIsFluid()
 	{
 		Block f = Block.blocksList[fluid];

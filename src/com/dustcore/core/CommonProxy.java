@@ -8,8 +8,8 @@ import net.minecraftforge.common.MinecraftForge;
 
 import com.dustcore.DustShape;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.util.GenericHandler;
-import com.dustcore.util.TickHandler;
+import com.dustcore.handlers.GenericHandler;
+import com.dustcore.handlers.TickHandler;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;

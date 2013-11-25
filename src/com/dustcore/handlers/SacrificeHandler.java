@@ -1,4 +1,4 @@
-package com.dustcore;
+package com.dustcore.handlers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -9,29 +9,29 @@ import net.minecraft.util.DamageSource;
 
 import com.dustcore.entity.EntityDust;
 
-public class Sacrifice
+public class SacrificeHandler
 {
 	public ItemStack itemType;
 	public int entityType = -1;
 	public boolean isComplete = false;
 	public Entity entity;
 
-	public Sacrifice(ItemStack item)
+	public SacrificeHandler(ItemStack item)
 	{
 		this.itemType = item;
 	}
 
-	public Sacrifice(EntityLiving entity)
+	public SacrificeHandler(EntityLiving entity)
 	{
 		this.entityType = EntityList.getEntityID(entity);
 	}
 
-	public Sacrifice(int ent)
+	public SacrificeHandler(int ent)
 	{
 		this.entityType = ent;
 	}
 
-	public Sacrifice(String entityName)
+	public SacrificeHandler(String entityName)
 	{
 		Entity ent = EntityList.createEntityByName(entityName, null);
 		this.entityType = EntityList.getEntityID(ent);
@@ -79,9 +79,6 @@ public class Sacrifice
 			if (id == entityType)
 			{
 				e.data[15] = id;
-				// System.out.println("Got entity " + id);
-				// mod_DustMod.killEntity(ent);
-				// ent.setDead();
 				EntityLiving el = (EntityLiving) ent;
 				el.attackEntityFrom(DamageSource.magic, el.getHealth() * 10);
 				return true;
@@ -110,12 +107,10 @@ public class Sacrifice
 			}
 		} else if (ent instanceof EntityLiving && entityType != -1)
 		{
-			// System.out.println("dicks " + ent);
 			int id = EntityList.getEntityID(ent);
 
 			if (id == entityType)
 			{
-				// System.out.println("Golden");
 				return true;
 			}
 		}
@@ -123,17 +118,17 @@ public class Sacrifice
 		return false;
 	}
 
-	public Sacrifice clone()
+	public SacrificeHandler clone()
 	{
-		Sacrifice rtn = null;
+		SacrificeHandler rtn = null;
 
 		if (itemType != null)
 		{
-			rtn = new Sacrifice(new ItemStack(itemType.itemID,
+			rtn = new SacrificeHandler(new ItemStack(itemType.itemID,
 					itemType.stackSize, itemType.getItemDamage()));
 		} else
 		{
-			rtn = new Sacrifice(entityType);
+			rtn = new SacrificeHandler(entityType);
 		}
 
 		return rtn;

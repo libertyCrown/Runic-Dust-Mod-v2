@@ -1,4 +1,4 @@
-package com.dustcore.util;
+package com.dustcore.handlers;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -26,11 +26,11 @@ import net.minecraft.world.World;
 import com.dustcore.DustMod;
 import com.dustcore.DustShape;
 import com.dustcore.api.DustItemManager;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.api.DustItemManager.DustColor;
 import com.dustcore.api.DustManager;
 import com.dustcore.event.DustEvent;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
 import com.dustcore.item.ItemInk;
 import com.dustcore.tileentity.TileEntityDust;
 import com.dustcore.tileentity.TileEntityDustTable;

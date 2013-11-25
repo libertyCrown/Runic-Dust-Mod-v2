@@ -222,20 +222,9 @@ public class DustItemManager
 
 	public static void registerDefaultDusts()
 	{
-		registerDust(1, "(old, place or craft to update)", "plantdustold",
-				0x629B26, 0x8AD041, 0xC2E300);
 		registerDust(100, "Plant", "plantdust", 0x629B26, 0x8AD041, 0xC2E300);
-
-		registerDust(2, "(old, place or craft to update)", "gundustold",
-				0x696969, 0x979797, 0x666464);
 		registerDust(200, "Gunpowder", "gundust", 0x696969, 0x979797, 0x666464);
-
-		registerDust(3, "(old, place or craft to update)", "lapisdustold",
-				0x345EC3, 0x5A82E2, 0x0087FF);
 		registerDust(300, "Lapis", "lapisdust", 0x345EC3, 0x5A82E2, 0x0087FF);
-
-		registerDust(4, "(old, place or craft to update)", "blazedustold",
-				0xEA8A00, 0xFFFE31, 0xFF6E1E);
 		registerDust(400, "Blaze", "blazedust", 0xEA8A00, 0xFFFE31, 0xFF6E1E);
 	}
 

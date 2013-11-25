@@ -2,8 +2,8 @@
 {
   "modid": "DustMod",
   "name": "Runic Dust Mod v2",
-  "description": "A continuation of the popular Runic Dust Mod with a magical twist.",
-  "version": "v1.4pre1",
+  "description": "A continuation of the popular Runic Dust Mod.",
+  "version": "v2.0",
   "mcversion": "1.6.4",
   "url": "",
   "updateUrl": "",

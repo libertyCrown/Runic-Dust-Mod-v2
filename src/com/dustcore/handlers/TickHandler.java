@@ -1,4 +1,4 @@
-package com.dustcore.util;
+package com.dustcore.handlers;
 
 import java.util.EnumSet;
 

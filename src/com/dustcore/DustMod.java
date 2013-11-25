@@ -27,6 +27,7 @@ import net.minecraftforge.event.world.WorldEvent.Load;
 
 import com.dustcore.api.DustItemManager;
 import com.dustcore.api.DustManager;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.config.DustConfig;
 import com.dustcore.config.DustContent;
 import com.dustcore.core.CommonMouseHandler;
@@ -34,10 +35,9 @@ import com.dustcore.core.CommonProxy;
 import com.dustcore.entity.EntityBlock;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.entity.EntityDustManager;
-import com.dustcore.event.InscriptionManager;
+import com.dustcore.handlers.GuiHandler;
+import com.dustcore.handlers.PacketHandler;
 import com.dustcore.item.ItemWornInscription;
-import com.dustcore.util.GuiHandler;
-import com.dustcore.util.PacketHandler;
 import com.dustcore.util.References;
 import com.dustcore.util.VoidStorageManager;
 import com.dustcore.util.VoidTeleManager;
@@ -79,6 +79,7 @@ public class DustMod
 	public static int skipWarpTick = 0;
 	public static int numSec = 0; // number of secret runes
 	public static File suggestedConfig;
+	public static File runeConfig;
 
 	@SidedProxy(clientSide = "com.dustcore.client.ClientProxy", serverSide = "com.dustcore.core.CommonProxy")
 	public static CommonProxy proxy;
@@ -96,10 +97,12 @@ public class DustMod
 		}
 		hasLoaded = true;
 		suggestedConfig = new File(evt.getSuggestedConfigurationFile()
-				.getParent() + File.separator + "RunicDustCore.cfg");
-		DustConfig
-				.configInit(new File(evt.getModConfigurationDirectory()
-						.getAbsolutePath() + File.separator + "RunicDustCore.cfg"));
+				.getParent() + File.separator + "forge.cfg");
+		runeConfig = new File(evt.getSuggestedConfigurationFile()
+				.getParent() + File.separator + "runicdustmod/RuneConfig.cfg");
+		
+		DustConfig.configInit(new File(evt.getModConfigurationDirectory()
+						.getAbsolutePath() + File.separator + "runicdustmod/Core.cfg"));
 	}
 
 	@EventHandler
@@ -140,7 +143,6 @@ public class DustMod
 	@ForgeSubscribe
 	public void onWorldEvent(Load evt)
 	{
-
 		if (evt.world.isRemote)
 			return;
 

@@ -1,8 +1,8 @@
 package com.dusttest;
 
 import com.dustcore.DustShape;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
 import com.dusttest.inscriptions.ErfBendInscription;
 import com.dusttest.inscriptions.FireballInscription;
 import com.dusttest.inscriptions.GlideInscription;

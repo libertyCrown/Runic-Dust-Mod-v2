@@ -1,4 +1,4 @@
-package com.dustcore;
+package com.dustcore.client.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

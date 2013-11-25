@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 
 import com.dustcore.DustMod;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.config.DustContent;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
 
 public class InscriptionRocketLaunch extends InscriptionEvent
 {

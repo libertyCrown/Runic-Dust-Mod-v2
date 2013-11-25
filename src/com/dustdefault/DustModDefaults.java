@@ -1,8 +1,8 @@
 package com.dustdefault;
 
-import com.dustcore.XMLDustShapeReader;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
+import com.dustcore.handlers.XMLDustShapeReader;
 import com.dustdefault.inscriptions.InscriptionBlinker;
 import com.dustdefault.inscriptions.InscriptionBounce;
 import com.dustdefault.inscriptions.InscriptionTeleport;

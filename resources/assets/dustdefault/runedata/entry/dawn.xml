@@ -7,7 +7,7 @@
 		Sacrifice:
 		-4xRedstoneDust + 1LapisLazuli
 		Notes:
-		-If it is already day, it will last through to the next night night to do anything.
+		-If it is already day, it will last through to the next night before it does anything.
 	</sacrifices>
 	<description>
 		Description:

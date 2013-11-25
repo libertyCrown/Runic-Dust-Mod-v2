@@ -12,8 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 
-import com.dustcore.PoweredEvent;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.event.PoweredEvent;
 
 /**
  * 

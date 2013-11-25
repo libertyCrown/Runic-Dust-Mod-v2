@@ -1,4 +1,4 @@
-package com.dustcore;
+package com.dustcore.handlers;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -11,6 +11,8 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+import com.dustcore.DustMod;
+import com.dustcore.DustShape;
 import com.dustcore.api.DustManager;
 import com.dustcore.event.DustEvent;
 

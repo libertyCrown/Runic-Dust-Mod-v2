@@ -20,9 +20,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 import com.dustcore.DustMod;
-import com.dustcore.PoweredEvent;
 import com.dustcore.entity.EntityBlock;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.event.PoweredEvent;
 import com.dustcore.tileentity.TileEntityDust;
 import com.dustcore.util.VoidTeleManager;
 

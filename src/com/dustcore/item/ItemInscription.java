@@ -9,9 +9,9 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import com.dustcore.DustMod;
-import com.dustcore.InventoryInscription;
+import com.dustcore.api.InscriptionManager;
+import com.dustcore.client.inventory.InventoryInscription;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
 import com.dustcore.util.References;
 
 import cpw.mods.fml.relauncher.Side;

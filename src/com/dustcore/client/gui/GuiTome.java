@@ -13,10 +13,10 @@ import org.lwjgl.opengl.GL11;
 import com.dustcore.DustMod;
 import com.dustcore.DustShape;
 import com.dustcore.api.DustManager;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.client.PageHelper;
 import com.dustcore.client.render.RenderDustTable;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
 import com.dustcore.util.References;
 
 public class GuiTome extends GuiScreen

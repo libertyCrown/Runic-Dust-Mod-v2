@@ -9,9 +9,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.dustcore.Sacrifice;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
+import com.dustcore.handlers.SacrificeHandler;
 
 /**
  * 
@@ -53,7 +53,7 @@ public class RuneRebirth extends DustEvent
 		for (Object o : EntityList.IDtoClassMapping.keySet())
 		{
 			int i = (Integer) o;
-			this.addSacrificeList(new Sacrifice(i));
+			this.addSacrificeList(new SacrificeHandler(i));
 		}
 	}
 

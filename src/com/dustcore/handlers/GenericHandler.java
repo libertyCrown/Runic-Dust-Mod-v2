@@ -1,4 +1,4 @@
-package com.dustcore.util;
+package com.dustcore.handlers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,8 +11,8 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
 import com.dustcore.DustMod;
 import com.dustcore.api.DustItemManager;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.config.DustContent;
-import com.dustcore.event.InscriptionManager;
 import com.dustcore.item.ItemPouch;
 
 import cpw.mods.fml.common.ICraftingHandler;

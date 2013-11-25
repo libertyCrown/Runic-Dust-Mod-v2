@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 
-import com.dustcore.util.PacketHandler;
+import com.dustcore.handlers.PacketHandler;
 
 public class TileEntityDustTable extends TileEntity
 {

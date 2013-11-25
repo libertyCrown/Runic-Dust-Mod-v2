@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 
 import com.dustcore.DustMod;
+import com.dustcore.api.InscriptionManager;
 import com.dustcore.event.InscriptionEvent;
-import com.dustcore.event.InscriptionManager;
 import com.dustcore.util.References;
 
 import cpw.mods.fml.relauncher.Side;

@@ -8,8 +8,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.dustcore.PoweredEvent;
 import com.dustcore.entity.EntityDust;
+import com.dustcore.event.PoweredEvent;
 
 /**
  * 

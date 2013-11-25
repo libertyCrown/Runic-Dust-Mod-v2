@@ -78,12 +78,8 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler
 		TileEntityDust ted = (TileEntityDust) iblock
 				.getBlockTileEntity(i, j, k);
 		float t = 0.02F;
-		// int light = Block.lightValue[block.blockID];
-		// Block.lightValue[block.blockID] = 15;
 		Tessellator tes = Tessellator.instance;
 		tes.setBrightness(block.getMixedBrightnessForBlock(iblock, i, j, k));
-		// renderblocks.overrideBlockTexture = 0;
-		// tes.startDrawingQuads();
 
 		int[][][] rendArray = ted.getRendArrays();
 		int[][] midArray = rendArray[0]; // Actual points
@@ -308,8 +304,6 @@ public class DustBlockRenderers implements ISimpleBlockRenderingHandler
 		if (rut == null)
 			return false;
 		float t = 0.02F;
-		// int light = Block.lightValue[rutBlock.blockID];
-		// Block.lightValue[rutBlock.blockID] = 15;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(iblock, i,
 				j, k));

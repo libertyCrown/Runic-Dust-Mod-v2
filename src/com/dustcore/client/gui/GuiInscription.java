@@ -10,11 +10,11 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.dustcore.InventoryInscription;
 import com.dustcore.api.DustItemManager;
+import com.dustcore.client.inventory.InventoryInscription;
 import com.dustcore.config.DustContent;
+import com.dustcore.handlers.PacketHandler;
 import com.dustcore.item.ItemInk;
-import com.dustcore.util.PacketHandler;
 import com.dustcore.util.References;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -237,10 +237,10 @@ public class GuiInscription extends GuiContainer
 						 if(item != null && item.itemID == DustContent.ink.itemID)
 						 {
 							 int dustId = ItemInk.getDustID(item);
-							 this.inventorySlots.putStackInSlot(0, new
-									 ItemStack(DustContent.ink.itemID, dustId, i-1));
+							 /*this.inventorySlots.putStackInSlot(0, new
+									 ItemStack(DustContent.ink, dustId, i-1));*/
 							 break;
-						 }
+						  }
 						 }
 					}
 				}
