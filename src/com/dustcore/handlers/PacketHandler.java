@@ -55,8 +55,6 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 	public static final String CHANNEL_SetEntVelocity = "DustModSetVel";
 	public static final String CHANNEL_RendBrokenTool = "DustModBreakTool";
 
-	// public static final String CHANNEL_UpdatePlayerInv = "DustModUpdInv";
-
 	public static Packet getTEDPacket(TileEntityDust ted)
 	{
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);

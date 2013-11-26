@@ -3,11 +3,15 @@ package com.dusttest;
 import com.dustcore.DustShape;
 import com.dustcore.api.InscriptionManager;
 import com.dustcore.event.InscriptionEvent;
+import com.dustcore.handlers.XMLDustShapeReader;
 import com.dusttest.inscriptions.InscriptionErfBend;
 import com.dusttest.inscriptions.InscriptionFireball;
 import com.dusttest.inscriptions.InscriptionGlide;
 import com.dusttest.inscriptions.InscriptionMountainCutter;
 import com.dusttest.inscriptions.InscriptionWaterAffinity;
+import com.dusttest.runes.RuneBounce;
+import com.dusttest.runes.RuneEarthSprite;
+import com.dusttest.runes.RuneLumberjack;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -46,30 +50,13 @@ public class DustModTestPack
 
 	public void registerRunes()
 	{
-
-		int N = -1;
-		int P = 100;
-		int G = 200;
-		int L = 300;
-		int B = 400;
-		DustShape s;
-		int[][][] values;
-
-		s = new DustShape(4, 4, "launchtest", false, 0, 0, 0, 0, 200);
-		values = new int[][][] { { { G, 0, 0, G }, { 0, G, G, 0 },
-				{ 0, G, G, 0 }, { G, 0, 0, G } } };
-		s.setData(values);
-		s.setRuneName("Launch test Rune");
-		s.setNotes("Sacrifice:\n\n"
-				+ "-None: Normal torch spawn.\n"
-				+ "-1xFlint: Beacon rune.\n"
-				+ "\nNotes:\n\n"
-				+ "=Sacrificing a dye to an existing beacon will change its color.");
-		s.setDesc("Description:\n\n"
-				+ "Spawns a torch or, if a piece of flint is sacrficed, a beacon.");
-		s.setAuthor("billythegoat101 -TestPack");
-		s.setRotationMatrix(new int[] { 00, 00, 0, 0, 0, 0, 0, 0 });
-		// DustManager.registerLocalDustShape(s, new LaunchTestRune());
+		XMLDustShapeReader.readAndRegisterShape(
+				"/assets/dusttest/runedata/entry/bounce.xml", new RuneBounce());
+		XMLDustShapeReader.readAndRegisterShape(
+				"/assets/dusttest/runedata/entry/lumber.xml", new RuneLumberjack());
+		XMLDustShapeReader.readAndRegisterShape(
+				"/assets/dusttest/runedata/entry/sprite.earth.xml",
+				new RuneEarthSprite());
 	}
 
 	public void registerInscriptions()
@@ -107,7 +94,7 @@ public class DustModTestPack
 				{ 0, G, G, P, P, 0, 0, P, P, G, G, 0 },
 				{ 0, 0, 0, G, P, G, G, P, G, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, G, G, 0, 0, 0, 0, 0 } };
-		evt = new InscriptionGlide(1, design, "glideI1", "Glide I", 106);
+		evt = new InscriptionGlide(1, design, "glideI", "Glide I", 106);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
@@ -116,7 +103,7 @@ public class DustModTestPack
 				{ 0, 0, G, G, G, L, L, L, L, G, G, G, 0, 0 },
 				{ 0, 0, 0, 0, 0, G, L, L, G, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, L, L, 0, 0, 0, 0, 0, 0 } };
-		evt = new InscriptionGlide(2, design, "glideII1", "Glide II", 109);
+		evt = new InscriptionGlide(2, design, "glideII", "Glide II", 109);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 

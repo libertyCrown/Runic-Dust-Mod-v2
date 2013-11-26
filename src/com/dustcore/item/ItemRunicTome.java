@@ -1,6 +1,8 @@
 package com.dustcore.item;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -11,7 +13,10 @@ import com.dustcore.api.DustManager;
 import com.dustcore.config.DustContent;
 import com.dustcore.util.References;
 
-public class ItemRunicTome extends DustModItem
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+public class ItemRunicTome extends Item
 {
 	private int blockID;
 	private int tex;
@@ -65,5 +70,12 @@ public class ItemRunicTome extends DustModItem
 		}
 
 		return true;
+	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister par1IconRegister)
+	{
+		this.itemIcon = par1IconRegister.registerIcon(References.spritePath
+				+ "dustlibrary");
 	}
 }

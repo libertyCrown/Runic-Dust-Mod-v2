@@ -126,9 +126,6 @@ public class BlockDust extends BlockContainer
 			EntityLivingBase entityliving, ItemStack item)
 	{
 		super.onBlockPlacedBy(world, i, j, k, entityliving, item);
-		// this.onBlockActivated(world, i, j, k, (EntityPlayer) entityliving, 0,
-		// 0, 0, 0);
-
 		ItemStack equipped = ((EntityPlayer) entityliving)
 				.getCurrentEquippedItem();
 		if (equipped != null)
@@ -150,11 +147,7 @@ public class BlockDust extends BlockContainer
 		{
 			return world.isBlockSolidOnSide(i, j - 1, k, ForgeDirection.UP)
 					|| block == Block.glass || block == DustContent.rutBlock;
-			// return block.renderAsNormalBlock() || block == Block.glass ||
-			// world.isBlockSolidOnSide(i,j,k,0);
 		}
-
-		// return world.isBlockNormalCube(i, j - 1, k);
 	}
 
 	@Override
@@ -180,7 +173,7 @@ public class BlockDust extends BlockContainer
 
 				return ted.getRandomDustColor();
 
-			case BlockDust.ACTIVE_DUST:// case 3:
+			case BlockDust.ACTIVE_DUST:
 			case BlockDust.ACTIVATING_DUST:
 				return 0xDD0000;
 
@@ -211,6 +204,7 @@ public class BlockDust extends BlockContainer
 			world.notifyBlockChange(i, j, k, 0);
 		}
 		TileEntityDust ted = (TileEntityDust) world.getBlockTileEntity(i, j, k);
+		//TODO- just a note..
 		// ted.onNeighborBlockChange();
 
 		super.onNeighborBlockChange(world, i, j, k, l);
@@ -337,7 +331,6 @@ public class BlockDust extends BlockContainer
 		rx = Math.min(TileEntityDust.size - 1, rx);
 		rz = Math.min(TileEntityDust.size - 1, rz);
 
-		// System.out.println("Result: " + rx + " " + rz);
 		TileEntityDust ted = (TileEntityDust) world.getBlockTileEntity(i, j, k);
 
 		if (ted.getDust(rx, rz) <= 0)
@@ -469,9 +462,9 @@ public class BlockDust extends BlockContainer
 			return;
 
 		Vec3 look = p.getLookVec();
-		double mx = look.xCoord;// Math.cos((p.rotationYaw+90)*Math.PI/180);
-		double my = look.yCoord;// Math.sin(-p.rotationPitch*Math.PI/180);
-		double mz = look.zCoord;// Math.sin((p.rotationYaw+90)*Math.PI/180);
+		double mx = look.xCoord;
+		double my = look.yCoord;
+		double mz = look.zCoord;
 
 		for (double test = 0; test < 4; test += 0.01)
 		{
@@ -531,27 +524,22 @@ public class BlockDust extends BlockContainer
 					world.notifyBlockChange(i, j, k, 0);
 					ted.setDust(p, rx, rz, 0);
 
-					// System.out.println("drop click");
 					if (ted.isEmpty() && world.getBlockMetadata(i, j, k) != 10)
 					{
-						// System.out.println("Destroying");
 						world.setBlock(i, j, k, 0, 0, 3);
 						this.onBlockDestroyedByPlayer(world, i, j, k, 0);
 					}
 				}
 				break;
 			}
-
-			// world.setBlock((int)tx, (int)ty, (int)tz, Block.brick.blockID);
 		}
 
-		// super.onBlockClicked(world, i, j, k, p);
 	}
 
 	@Override
 	public int idDropped(int i, Random random, int j)
 	{
-		return 0;// i == 0 ? mod_DustMod.ITEM_DustID+256:0;
+		return 0;
 	}
 
 	public void updatePattern(World world, int i, int j, int k, EntityPlayer p)
@@ -561,7 +549,7 @@ public class BlockDust extends BlockContainer
 
 		if (n.size() == 0)
 		{
-			return; // dudewat
+			return;
 		}
 
 		for (Integer[] iter : n)
@@ -626,8 +614,6 @@ public class BlockDust extends BlockContainer
 				}
 			}
 		}
-
-		// System.out.println("ASNASO " + Arrays.deepToString(map));
 		DustManager.callShape(world, (double) sx + (double) dx / 2 + 0.5D,
 				j + 1D, (double) sz + (double) dz / 2 + 0.5D, map, n,
 				(p == null) ? null : p.username);

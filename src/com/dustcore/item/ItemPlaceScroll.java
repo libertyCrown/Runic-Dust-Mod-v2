@@ -1,13 +1,14 @@
 package com.dustcore.item;
 
 import java.util.List;
-import java.util.logging.Level;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
@@ -21,7 +22,6 @@ import com.dustcore.api.DustManager;
 import com.dustcore.config.DustContent;
 import com.dustcore.util.References;
 
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -29,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  * @author billythegoat101
  */
-public class ItemPlaceScroll extends DustModItem
+public class ItemPlaceScroll extends Item
 {
 	private int blockID;
 

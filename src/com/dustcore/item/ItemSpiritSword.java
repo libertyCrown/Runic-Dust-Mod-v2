@@ -79,6 +79,6 @@ public class ItemSpiritSword extends ItemSword
 	public void registerIcons(IconRegister par1IconRegister)
 	{
 		this.itemIcon = par1IconRegister.registerIcon(References.spritePath
-				+ this.getUnlocalizedName().replace("item.", ""));
+				+ "spiritSword");
 	}
 }

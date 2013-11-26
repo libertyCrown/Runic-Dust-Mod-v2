@@ -193,7 +193,6 @@ public class InscriptionTeleport extends InscriptionEvent
 			return true;
 		} else
 		{
-			// System.out.println("penis " + wearer.ticksExisted + " " + last);
 			if (wearer.ticksExisted < last)
 			{
 				onTele(item, wearer);

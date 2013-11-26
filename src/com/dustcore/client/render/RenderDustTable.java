@@ -83,7 +83,7 @@ public class RenderDustTable extends TileEntitySpecialRenderer
 		float t1y = (float) d1 + 0.75F;
 		float t1z = (float) d2 + 0.5F;
 		float t2x = 0F;
-		float t2y = 0.2F;// + MathHelper.sin(f1 * 0.1F) * 0.01F;
+		float t2y = 0.2F;
 		float t2z = 0;
 		float r1 = (-f3 * 180F) / (float) Math.PI;
 		float r2 = 60F;
@@ -92,10 +92,6 @@ public class RenderDustTable extends TileEntitySpecialRenderer
 		GL11.glTranslatef(t1x, t1y, t1z);
 		GL11.glTranslatef(t2x, t2y + 0.062f, t2z);
 		GL11.glScalef(scale, scale, scale);
-		// GL11.glTranslatef(0.0F, 0.2F + MathHelper.sin(f1 * 0.1F) * 0.01F,
-		// 0.0F);
-		// GL11.glRotatef((-f3 * 180F) / (float)Math.PI, 0.0F, 1.0F, 0.0F);
-		// GL11.glRotatef(60F, 0.0F, 0.0F, 1.0F);
 		GL11.glRotatef(r1, 0.0F, 1.0F, 0.0F);
 		GL11.glRotatef(r2, 0.0F, 0.0F, 1.0F);
 

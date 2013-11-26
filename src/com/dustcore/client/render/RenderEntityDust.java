@@ -290,9 +290,9 @@ public class RenderEntityDust extends Render implements IRenderLast
 
 	public void renderFlames(EntityDust e, float par2)
 	{
-		System.out.println("BASIFM wat"
-				+ References.Enable_Render_Flames_On_Dust + " "
-				+ e.renderFlamesDust + " " + (e.dustPoints == null));
+//		System.out.println("BASIFM wat"
+//				+ References.Enable_Render_Flames_On_Dust + " "
+//				+ e.renderFlamesDust + " " + (e.dustPoints == null));
 		
 		boolean renderFlamesDust = (References.Enable_Render_Flames_On_Dust
 				&& e.renderFlamesDust && e.dustPoints != null);
@@ -459,7 +459,6 @@ public class RenderEntityDust extends Render implements IRenderLast
 	public void renderBlockFire(World world, int i, int j, int k, int r, int g,
 			int b, Integer[] sides)
 	{
-		DustMod.log("FIYA POWA", this);//.out.println("BLOCK FIRE");
 		GL11.glPushMatrix();
 		Block block = Block.fire;
 		GL11.glDisable(GL11.GL_LIGHTING);

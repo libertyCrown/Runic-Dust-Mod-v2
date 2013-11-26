@@ -372,9 +372,6 @@ public abstract class DustEvent
 				entType,
 				AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D,
 						z + 1.0D).expand(radius, radius, radius));
-		// System.out.println("Retrieving entities " +
-		// world.worldProvider.worldType + " [" + x + "," + y + "," + z + "] " +
-		// l.size());
 		return l;
 	}
 
@@ -385,9 +382,6 @@ public abstract class DustEvent
 				e,
 				AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D,
 						z + 1.0D).expand(radius, radius, radius));
-		// System.out.println("Retrieving entities " +
-		// world.worldProvider.worldType + " [" + x + "," + y + "," + z + "] " +
-		// l.size());
 		return l;
 	}
 
@@ -506,24 +500,20 @@ public abstract class DustEvent
 						&& (c.getItemDamage() == -1 || c.getItemDamage() == is
 								.getItemDamage()))
 				{
-					DustMod.log("check1");
 					if (c.hasTagCompound() == is.hasTagCompound()
 							|| c.getItemDamage() == -1)
 					{
 						boolean match = false;
-						DustMod.log("check2");
 						if (c.hasTagCompound() && c.getItemDamage() != -1)
 						{
 							match = c.getTagCompound().equals(
 									is.getTagCompound());
-							DustMod.log("check3");
 							match = c.getTagCompound().equals(
 									is.getTagCompound());
 							NBTTagCompound cTag = c.getTagCompound();
 							NBTTagCompound isTag = is.getTagCompound();
 							if (cTag.getTags().size() == isTag.getTags().size())
 							{
-								DustMod.log("check4");
 								match = true;
 								Object[] cCol = cTag.getTags().toArray();
 								Object[] isCol = isTag.getTags().toArray();
@@ -633,9 +623,6 @@ public abstract class DustEvent
 					{
 						s.isComplete = true;
 					}
-
-					// System.out.println("Sacrifice matched to " + i + " "
-					// + s.isComplete);
 					s.entity = i;
 					break;
 				}
@@ -681,11 +668,6 @@ public abstract class DustEvent
 	protected final void findRutsWithDistance(EntityDust e, int distance)
 	{
 		World w = e.worldObj;
-		// int ix = e.getX();
-		// int iy = e.getY();
-		// int iz = e.getZ();
-		//
-		// iy = e.dustPoints.get(0)[1]-1;
 		ArrayList<Integer[]> ruts = new ArrayList<Integer[]>();
 
 		for (Integer[] i : e.dustPoints)
@@ -701,11 +683,6 @@ public abstract class DustEvent
 	protected final void findRuts(EntityDust e, int fluidID)
 	{
 		World w = e.worldObj;
-		// int ix = e.getX();
-		// int iy = e.getY();
-		// int iz = e.getZ();
-		//
-		// iy = e.dustPoints.get(0)[1]-1;
 		ArrayList<Integer[]> ruts = new ArrayList<Integer[]>();
 
 		for (Integer[] i : e.dustPoints)
@@ -831,8 +808,6 @@ public abstract class DustEvent
 					if (hx == lx && hy == ly && hz == lz)
 					{
 						farea.add(new Integer[] { lx, ly, lz });
-						// farea.add(new Integer[]{lx,ly+3,lz});
-						// farea.add(new Integer[]{hx,hy+1,hz});
 						get = true;
 						break next;
 					}
@@ -857,7 +832,6 @@ public abstract class DustEvent
 				{
 					farea.add(new Integer[] { hx, hy, hz });
 					get = true;
-					// break next;
 				}
 			}
 
@@ -872,7 +846,6 @@ public abstract class DustEvent
 					{
 						farea.add(new Integer[] { lx, ly, lz });
 						get = true;
-						// break next;
 					}
 				}
 		}
@@ -895,7 +868,6 @@ public abstract class DustEvent
 				{
 					farea.add(new Integer[] { vx, vy, vz });
 					get = true;
-					// break next;
 				}
 			}
 
@@ -910,12 +882,10 @@ public abstract class DustEvent
 					{
 						farea.add(new Integer[] { hx, hy, hz });
 						get = true;
-						// break next;
 					}
 				}
 		}
 
-		// farea = ruts;
 		// cleanup because I'm not smart enough to do it right the first time
 		List<Integer> remove = new ArrayList<Integer>();
 		next:
@@ -949,18 +919,13 @@ public abstract class DustEvent
 
 					if (ix == jx && iy == jy && iz == jz)
 					{
-						// for(Integer r:remove){
-						// if(r == j){
-						// continue nextIn;
-						// }
-						// }
+
 						remove.add(j);
 						rem = true;
 					}
 				}
 			}
 
-			// if(!rem)
 			remRut:
 
 			for (Integer[] rut : ruts)
@@ -993,10 +958,7 @@ public abstract class DustEvent
 			temp.add(farea.get(i));
 		}
 
-		// System.out.println("Area : " + farea.size() + " " + temp.size() + " "
-		// + remove.size());
 		farea = temp;
-		// if(farea.size() > 10000) return false;
 		e.rutAreaPoints = farea;
 		return true;
 	}
@@ -1050,7 +1012,6 @@ public abstract class DustEvent
 							length.add(a);
 						}
 
-						// break next;
 					} else if (iy == jy && iz == jz && jx > ix)
 					{
 						int dist = jx - ix;
@@ -1061,7 +1022,6 @@ public abstract class DustEvent
 							horiz.add(a);
 						}
 
-						// break next;
 					} else if (ix == jx && iz == jz && jy > iy)
 					{
 						int dist = jy - iy;
@@ -1071,8 +1031,6 @@ public abstract class DustEvent
 							Integer[] a = new Integer[] { jx, iy + v, jz };
 							vert.add(a);
 						}
-
-						// break next;
 					}
 				}
 			}
@@ -1097,7 +1055,6 @@ public abstract class DustEvent
 				{
 					farea.add(v);
 					get = true;
-					// break next;
 				}
 			}
 
@@ -1111,10 +1068,7 @@ public abstract class DustEvent
 					if (hx == lx && hy == ly && hz == lz)
 					{
 						farea.add(l);
-						// farea.add(new Integer[]{lx,ly+3,lz});
-						// farea.add(new Integer[]{hx,hy+1,hz});
 						get = true;
-						// break next;
 					}
 				}
 		}
@@ -1137,7 +1091,6 @@ public abstract class DustEvent
 				{
 					farea.add(h);
 					get = true;
-					// break next;
 				}
 			}
 
@@ -1152,7 +1105,6 @@ public abstract class DustEvent
 					{
 						farea.add(l);
 						get = true;
-						// break next;
 					}
 				}
 		}
@@ -1175,7 +1127,6 @@ public abstract class DustEvent
 				{
 					farea.add(v);
 					get = true;
-					// break next;
 				}
 			}
 
@@ -1190,12 +1141,10 @@ public abstract class DustEvent
 					{
 						farea.add(h);
 						get = true;
-						// break next;
 					}
 				}
 		}
 
-		// farea = ruts;
 		// cleanup because I'm not smart enough to do it right the first time
 		List<Integer> remove = new ArrayList<Integer>();
 		next:
@@ -1229,18 +1178,12 @@ public abstract class DustEvent
 
 					if (ix == jx && iy == jy && iz == jz)
 					{
-						// for(Integer r:remove){
-						// if(r == j){
-						// continue nextIn;
-						// }
-						// }
 						remove.add(j);
 						rem = true;
 					}
 				}
 			}
 
-			// if(!rem)
 			remRut:
 
 			for (Integer[] rut : ruts)
@@ -1273,10 +1216,7 @@ public abstract class DustEvent
 			temp.add(farea.get(i));
 		}
 
-		// System.out.println("Area : " + farea.size() + " " + temp.size() + " "
-		// + remove.size());
 		farea = temp;
-		// if(farea.size() > 10000) return false;
 		e.rutAreaPoints = farea;
 		return true;
 	}
@@ -1328,7 +1268,6 @@ public abstract class DustEvent
 							length.add(a);
 						}
 
-						// break next;
 					} else if (iz == jz && jx > ix)
 					{
 						int dist = jx - ix;
@@ -1339,13 +1278,12 @@ public abstract class DustEvent
 							horiz.add(a);
 						}
 
-						// break next;
 					}
 				}
 			}
 		}
 
-		// check for confimration
+		// check for confirmation
 		for (Integer[] h : horiz)
 		{
 			int hx = h[0];
@@ -1361,10 +1299,7 @@ public abstract class DustEvent
 				if (hx == lx && hz == lz)
 				{
 					farea.add(l);
-					// farea.add(new Integer[]{lx,ly+3,lz});
-					// farea.add(new Integer[]{hx,hy+1,hz});
 					get = true;
-					// break next;
 				}
 			}
 		}
@@ -1437,11 +1372,7 @@ public abstract class DustEvent
 
 			temp.add(farea.get(i));
 		}
-
-		// System.out.println("Area : " + farea.size() + " " + temp.size() + " "
-		// + remove.size());
 		farea = temp;
-		// if(farea.size() > 10000) return false;
 		e.rutAreaPoints = farea;
 		return true;
 	}

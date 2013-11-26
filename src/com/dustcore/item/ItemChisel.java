@@ -3,6 +3,7 @@ package com.dustcore.item;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -13,7 +14,7 @@ import com.dustcore.util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemChisel extends DustModItem
+public class ItemChisel extends Item
 {
 	public ItemChisel(int i)
 	{

@@ -20,7 +20,7 @@ import com.dustcore.util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemPouch extends DustModItem
+public class ItemPouch extends Item
 {
 
 	public static final int max = 6400;

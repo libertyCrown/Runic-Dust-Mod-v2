@@ -12,13 +12,14 @@ import com.dustcore.api.DustItemManager;
 import com.dustcore.block.BlockDust;
 import com.dustcore.block.BlockDustTable;
 import com.dustcore.block.BlockRut;
-import com.dustcore.item.DustModItem;
 import com.dustcore.item.ItemChisel;
 import com.dustcore.item.ItemDust;
 import com.dustcore.item.ItemInk;
 import com.dustcore.item.ItemInscription;
+import com.dustcore.item.ItemNegateSacrifice;
 import com.dustcore.item.ItemPlaceScroll;
 import com.dustcore.item.ItemPouch;
+import com.dustcore.item.ItemRunicPaper;
 import com.dustcore.item.ItemRunicTome;
 import com.dustcore.item.ItemSpiritPickaxe;
 import com.dustcore.item.ItemSpiritSword;
@@ -29,20 +30,19 @@ import com.dustcore.tileentity.TileEntityRut;
 import com.dustcore.util.References;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class DustContent
 {
 	public static Block dust;
 	public static Block dustTable;
 	public static Block rutBlock;
-	public static DustModItem tome;
-	public static DustModItem dustScroll;
+	public static Item tome;
+	public static Item dustScroll;
 	public static Item spiritPickaxe;
 	public static Item spiritSword;
-	public static DustModItem chisel;
-	public static DustModItem negateSacrifice;
-	public static DustModItem runicPaper;
+	public static Item chisel;
+	public static Item negateSacrifice;
+	public static Item runicPaper;
 	public static ItemInscription inscription;
 	public static ItemInk ink;
 	public static ItemWornInscription wornInscription;
@@ -69,26 +69,26 @@ public class DustContent
 		GameRegistry.registerTileEntity(TileEntityRut.class, "RutBlock");
 
 		// Item registries
-		DustItemManager.idust = (DustModItem) (new ItemDust(References.ITEM_DustID, dust))
+		DustItemManager.idust = new ItemDust(References.ITEM_DustID, dust)
 				.setUnlocalizedName("idust").setCreativeTab(DustModTab.dustTab);
 		GameRegistry.registerItem(DustItemManager.idust, DustItemManager.idust.getUnlocalizedName());
-		tome = (DustModItem) (new ItemRunicTome(References.ITEM_RunicTomeID))
+		tome = new ItemRunicTome(References.ITEM_RunicTomeID)
 				.setUnlocalizedName("dustlibrary").setCreativeTab(
 						DustModTab.dustTab);
 		GameRegistry.registerItem(tome, "DustLibrary");
-		negateSacrifice = (DustModItem) new DustModItem(
+		negateSacrifice = new ItemNegateSacrifice(
 				References.ITEM_SacrificeNegationID).setUnlocalizedName(
 				"negatesacrifice").setCreativeTab(DustModTab.dustTab);
 		GameRegistry.registerItem(negateSacrifice, "NegateSacrifice");
-		runicPaper = (DustModItem) (new DustModItem(
-				References.ITEM_RunicPaperID)).setUnlocalizedName("runicpaper")
+		runicPaper = new ItemRunicPaper(
+				References.ITEM_RunicPaperID).setUnlocalizedName("runicpaper")
 				.setCreativeTab(DustModTab.dustTab);
 		GameRegistry.registerItem(runicPaper, "RunicPaper");
-		dustScroll = (DustModItem) (new ItemPlaceScroll(
-				References.ITEM_DustScrollID)).setUnlocalizedName("dustscroll")
+		dustScroll = new ItemPlaceScroll(
+				References.ITEM_DustScrollID).setUnlocalizedName("dustscroll")
 				.setCreativeTab(DustModTab.dustTab);
 		GameRegistry.registerItem(dustScroll, "DustScroll");
-		chisel = (DustModItem) new ItemChisel(References.ITEM_ChiselID)
+		chisel = new ItemChisel(References.ITEM_ChiselID)
 				.setUnlocalizedName("dustchisel").setCreativeTab(
 						DustModTab.dustTab);
 		GameRegistry.registerItem(chisel, "DustChisel");

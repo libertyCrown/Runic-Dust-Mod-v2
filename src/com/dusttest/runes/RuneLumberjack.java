@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.dustdefault.runes;
+package com.dusttest.runes;
 
 import java.util.Random;
 

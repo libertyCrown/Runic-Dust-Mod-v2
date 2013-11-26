@@ -63,11 +63,6 @@ public class RuneFireSprite extends PoweredEvent
 
 		EntityPlayer player = e.worldObj.getPlayerEntityByName(e.summonerUN);
 
-		// if (true/*!e.worldObj.multiplayerWorld*/)
-		// {
-		// player = ModLoader.getMinecraftInstance().thePlayer;
-		// }
-
 		if (player == null)
 		{
 			e.data[0] = 1;
@@ -96,7 +91,6 @@ public class RuneFireSprite extends PoweredEvent
 
 		if (e.ticksExisted % 100 == 0 && Math.random() < 0.5)
 		{
-			// System.out.println("ignite");
 			int ex = e.getX();
 			int ey = e.getY();
 			int ez = e.getZ();

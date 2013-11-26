@@ -11,13 +11,11 @@ import com.dustdefault.inscriptions.InscriptionRespawn;
 import com.dustdefault.inscriptions.InscriptionRocketLaunch;
 import com.dustdefault.inscriptions.InscriptionVoidStorage;
 import com.dustdefault.runes.RuneDetonation;
-import com.dustdefault.runes.RuneBounce;
 import com.dustdefault.runes.RuneTrapCage;
 import com.dustdefault.runes.RuneCampfire;
 import com.dustdefault.runes.RuneChargeInscription;
 import com.dustdefault.runes.RuneCompression;
 import com.dustdefault.runes.RuneDawn;
-import com.dustdefault.runes.RuneEarthSprite;
 import com.dustdefault.runes.RuneRebirth;
 import com.dustdefault.runes.RuneFarm;
 import com.dustdefault.runes.RuneEnchFireBow;
@@ -32,14 +30,12 @@ import com.dustdefault.runes.RuneRabbitHole;
 import com.dustdefault.runes.RuneMountain;
 import com.dustdefault.runes.RuneTrapLightning;
 import com.dustdefault.runes.RuneLillyBridge;
-import com.dustdefault.runes.RuneLumberjack;
 import com.dustdefault.runes.RuneDusk;
 import com.dustdefault.runes.RuneMiniTeleport;
 import com.dustdefault.runes.RuneHeights;
 import com.dustdefault.runes.RuneDepths;
 import com.dustdefault.runes.RuneTrapPoison;
 import com.dustdefault.runes.RunePowerRelay;
-//import com.dustdefault.runes.DEPowerRelay;
 import com.dustdefault.runes.RuneResurrection;
 import com.dustdefault.runes.RuneEnchSilkTouch;
 import com.dustdefault.runes.RuneRecord;
@@ -54,6 +50,9 @@ import com.dustdefault.runes.RuneVoidStorage;
 import com.dustdefault.runes.RuneBarrier;
 import com.dustdefault.runes.RuneSarlacc;
 import com.dustdefault.runes.RuneWisdom;
+import com.dusttest.runes.RuneBounce;
+import com.dusttest.runes.RuneEarthSprite;
+import com.dusttest.runes.RuneLumberjack;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -98,9 +97,6 @@ public class DustModDefaults
 
 		XMLDustShapeReader.readAndRegisterShape(
 				"/assets/dustdefault/runedata/entry/healing.xml", new RuneHealing());
-
-		XMLDustShapeReader.readAndRegisterShape(
-						"/assets/dustdefault/runedata/entry/lumber.xml", new RuneLumberjack());
 
 		XMLDustShapeReader.readAndRegisterShape(
 						"/assets/dustdefault/runedata/entry/campfire.xml", new RuneCampfire());
@@ -200,13 +196,6 @@ public class DustModDefaults
 		XMLDustShapeReader.readAndRegisterShape(
 				"/assets/dustdefault/runedata/entry/sprite.fire.xml",
 				new RuneFireSprite());
-
-		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/entry/sprite.earth.xml",
-				new RuneEarthSprite());
-
-		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/entry/bounce.xml", new RuneBounce());
 
 		XMLDustShapeReader.readAndRegisterShape(
 				"/assets/dustdefault/runedata/entry/spawn_record.xml",

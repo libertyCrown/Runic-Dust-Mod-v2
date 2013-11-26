@@ -188,8 +188,7 @@ public class ItemSpiritPickaxe extends ItemPickaxe
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(References.spritePath
-				+ this.getUnlocalizedName().replace("item.", ""));
+		this.itemIcon = par1IconRegister.registerIcon(References.spritePath + "spiritPickaxe");
 	}
 
 }

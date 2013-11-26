@@ -12,7 +12,6 @@ import net.minecraft.util.StringTranslate;
 
 import com.dustcore.DustMod;
 import com.dustcore.config.DustContent;
-import com.dustcore.item.DustModItem;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -22,7 +21,7 @@ public class DustItemManager
 	/**
 	 * The item that must be used to register new dusts into the game.
 	 */
-	public static DustModItem idust;
+	public static Item idust;
 	
 	public static DustColor[] colors = new DustColor[1000];
 	public static String[] names = new String[1000];

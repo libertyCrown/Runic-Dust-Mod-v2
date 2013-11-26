@@ -17,7 +17,7 @@ import com.dustcore.util.References;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemInk extends DustModItem
+public class ItemInk extends Item
 {
 
 	public static final int maxAmount = 32;

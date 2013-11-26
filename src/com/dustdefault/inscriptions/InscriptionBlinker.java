@@ -57,9 +57,6 @@ public class InscriptionBlinker extends InscriptionEvent
 	{
 		super.onUpdate(wearer, item, buttons);
 
-		// System.out.println("huh " + wasFalling(item) + " " + wearer.posY +
-		// " " + wearer.isCollidedVertically + " " + wearer.onGround);
-
 		if (wasFalling(item)
 				&& wearer.ticksExisted
 						- item.getTagCompound().getInteger("lastTele") > 20)
@@ -81,7 +78,6 @@ public class InscriptionBlinker extends InscriptionEvent
 
 			Vec3 look = wearer.getLookVec();
 			double dist = 11D;
-			System.out.println();
 			testLoc[0] = wearer.posX + dist * look.xCoord;
 			testLoc[1] = wearer.posY + dist * look.yCoord
 					+ wearer.getEyeHeight();

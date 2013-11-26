@@ -6,9 +6,8 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 
-public class RenderLastHandler /* implements IRenderWorldLastHandler */
-{ // [forge
-
+public class RenderLastHandler
+{
 	public static HashMap<Object[], IRenderLast> map = new HashMap<Object[], IRenderLast>();
 
 	@ForgeSubscribe
@@ -20,17 +19,14 @@ public class RenderLastHandler /* implements IRenderWorldLastHandler */
 		partialTicks = evt.partialTicks;
 		for (Object[] o : map.keySet())
 		{
-			// System.out.println("Render");
 			map.get(o).renderLast(o, partialTicks);
 		}
 
-		// System.out.println("Reset");
 		map = new HashMap<Object[], IRenderLast>();
 	}
 
 	public static void registerLastRender(IRenderLast rend, Object[] o)
 	{
-		// System.out.println("Regist");
 		map.put(o, rend);
 	}
 }
