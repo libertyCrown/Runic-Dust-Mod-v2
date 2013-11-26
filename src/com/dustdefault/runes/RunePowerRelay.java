@@ -136,15 +136,12 @@ public class RunePowerRelay extends PoweredEvent
 				needPower++;
 				int want = ((PoweredEvent) i.event).powerWanted(i);
 				totalPowerRequest += want;
-				// e.data[0] += ((PoweredEvent)i.event).getStableFuelAmount(i);
 				registerSelfTo(e, i);
 			} else if (i.event == this && i != e)
 			{
-				// if(i.getFuel() > e.getFuel()){
 				int split = (i.getFuel() + e.getFuel()) / 2;
 				i.setFuel(split);
 				e.setFuel(split);
-				// }
 			}
 		}
 
@@ -159,8 +156,6 @@ public class RunePowerRelay extends PoweredEvent
 
 		EntityDust[] arr = new EntityDust[network.size()];
 		network.toArray(arr);
-		// System.out.println("Amount need power: " + needPower + " " +
-		// ents.size());
 		boolean hasEnough = e.getFuel() >= totalPowerRequest;
 		int fuel = (hasEnough) ? totalPowerRequest : e.getFuel();
 

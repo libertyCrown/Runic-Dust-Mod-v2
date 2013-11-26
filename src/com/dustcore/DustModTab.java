@@ -8,7 +8,7 @@ import com.dustcore.config.DustContent;
 public class DustModTab
 {
 	public static CreativeTabs dustTab = new CreativeTabs(
-			"Runic Dust Mod- Core")
+			"Runic Dust Mod")
 	{
 		public ItemStack getIconItemStack()
 		{
@@ -17,7 +17,7 @@ public class DustModTab
 
 		public String getTabLabel()
 		{
-			return "Runic Dust Mod- Core";
+			return "Runic Dust Mod";
 		}
 
 		public String getTranslatedTabLabel()

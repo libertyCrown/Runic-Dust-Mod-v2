@@ -161,7 +161,7 @@ public class GuiInscription extends GuiContainer
 	{
 		Slot slot = this.getSlotAtPosition(x, y);
 		if (slot != null && slot.getHasStack()
-				&& slot.getStack()/*.itemID*/ == new ItemStack(DustContent.ink)/*.itemID*/)
+				&& slot.getStack().itemID == new ItemStack(DustContent.ink).itemID)
 		{
 			int id = ItemInk.getDustID(slot.getStack());
 			insc.setInventorySlotContents(0, new ItemStack(
@@ -173,7 +173,6 @@ public class GuiInscription extends GuiContainer
 			button = b;
 			buttonUpDelay = 3;
 		}
-		super.mouseClicked(x, y, b);
 	}
 
 	public int button = -1;
@@ -224,29 +223,17 @@ public class GuiInscription extends GuiContainer
 					setDust(x, y, id);
 					FMLClientHandler.instance().sendPacket(
 							PacketHandler.getUseInkPacket(slot, 1));
-					this.inventorySlots.putStackInSlot(slot, stack);
 					this.playerInv.setInventorySlotContents(slot, stack);
 					this.inventorySlots.putStackInSlot(slot + 1, stack);
 					if (stack != new ItemStack(DustContent.ink))
 					{
-						 this.inventorySlots.putStackInSlot(0, new
-						 ItemStack(DustContent.ink.itemID, 0, -1));
-						 //Loop through player's hotbar for inks
-						 for(int i = 1; i < 10; i++){
-						 ItemStack item = this.playerInv.getStackInSlot(i-1);
-						 if(item != null && item.itemID == DustContent.ink.itemID)
-						 {
-							 int dustId = ItemInk.getDustID(item);
-							 /*this.inventorySlots.putStackInSlot(0, new
-									 ItemStack(DustContent.ink, dustId, i-1));*/
-							 break;
-						  }
-						 }
+						//do nothin' :P
 					}
 				}
 			}
 		}
 	}
+
 
 
 	@Override
