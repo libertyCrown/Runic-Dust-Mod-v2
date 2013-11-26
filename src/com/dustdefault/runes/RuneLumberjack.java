@@ -28,7 +28,6 @@ public class RuneLumberjack extends DustEvent
 	public void initGraphics(EntityDust e)
 	{
 		super.initGraphics(e);
-
 		e.setRenderStar(true);
 		e.setColorStarOuter(77, 65, 47);
 		e.setColorStarInner(77, 65, 47);
@@ -40,7 +39,7 @@ public class RuneLumberjack extends DustEvent
 		ItemStack[] sac = new ItemStack[] 
 		{ 
 			new ItemStack(Item.stick, 2),
-			new ItemStack(Block.wood, OreDictionary.WILDCARD_VALUE)
+			new ItemStack(Block.wood, 3, OreDictionary.WILDCARD_VALUE)
 			};
 		sac = this.sacrifice(e, sac);
 

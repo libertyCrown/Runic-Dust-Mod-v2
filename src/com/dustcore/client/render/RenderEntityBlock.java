@@ -10,7 +10,6 @@ import com.dustcore.entity.EntityBlock;
 
 public class RenderEntityBlock extends RenderFallingSand
 {
-
 	public RenderEntityBlock()
 	{
 		this.setRenderManager(RenderManager.instance);
@@ -20,8 +19,7 @@ public class RenderEntityBlock extends RenderFallingSand
 	public void doRender(Entity ent, double par2, double par4, double par6,
 			float par8, float par9)
 	{
-		if (!((EntityBlock) ent).lingering) // dont want it to be visible if
-											// lingering
+		if (!((EntityBlock) ent).lingering) // dont want it to be visible if lingering
 		{
 			if (((EntityBlock) ent).blockID != 0)
 			{

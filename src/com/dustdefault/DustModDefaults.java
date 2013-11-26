@@ -66,12 +66,12 @@ import cpw.mods.fml.common.network.NetworkMod;
  * make sure that the added content is balanced and fair.
  * 
  */
-@Mod(modid = "DustModDefaults", name = "Runic Dust Mod- Default Runes", version = "v2.0", dependencies = "after:DustModCore")
+@Mod(modid = "DustDefaults", name = "Runic Dust Mod- Default Runes", version = "v2.0", dependencies = "after:DustModCore")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModDefaults
 {
 
-	@Instance("DustModDefaults")
+	@Instance("DustDefaults")
 	public static DustModDefaults instance;
 
 	@EventHandler
@@ -94,7 +94,7 @@ public class DustModDefaults
 				"/assets/dustdefault/runedata/entry/torch.xml", new RuneTorch());
 
 		XMLDustShapeReader.readAndRegisterShape(
-						"/assets/dustdefault/runedata/entry/rabbit.xml", new RuneRabbitHole());
+						"/assets/dustdefault/runedata/entry/rabbithole.xml", new RuneRabbitHole());
 
 		XMLDustShapeReader.readAndRegisterShape(
 				"/assets/dustdefault/runedata/entry/healing.xml", new RuneHealing());
@@ -115,7 +115,7 @@ public class DustModDefaults
 				"/assets/dustdefault/runedata/entry/farm.xml", new RuneFarm());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/entry/leapfrog.xml",
+				"/assets/dustdefault/runedata/entry/lillybridge.xml",
 				new RuneLillyBridge());
 
 		XMLDustShapeReader.readAndRegisterShape(
@@ -151,7 +151,7 @@ public class DustModDefaults
 				"/assets/dustdefault/runedata/entry/void.xml", new RuneVoidStorage());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/entry/wall.xml", new RuneBarrier());
+				"/assets/dustdefault/runedata/entry/barrier.xml", new RuneBarrier());
 
 		XMLDustShapeReader.readAndRegisterShape(
 				"/assets/dustdefault/runedata/entry/wisdom.xml", new RuneWisdom());
@@ -168,7 +168,7 @@ public class DustModDefaults
 				new RuneHellstorm());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/entry/eggifier.xml", new RuneRebirth());
+				"/assets/dustdefault/runedata/entry/rebirth.xml", new RuneRebirth());
 
 		XMLDustShapeReader.readAndRegisterShape(
 				"/assets/dustdefault/runedata/entry/resurrection.xml",
@@ -229,7 +229,7 @@ public class DustModDefaults
 				new RuneEnchFortune());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/entry/protection.xml",
+				"/assets/dustdefault/runedata/entry/forcefield.xml",
 				new RuneForcefield());
 
 		XMLDustShapeReader.readAndRegisterShape(
@@ -237,7 +237,7 @@ public class DustModDefaults
 				new RuneLevelEarth());
 
 		XMLDustShapeReader.readAndRegisterShape(
-				"/assets/dustdefault/runedata/entry/lift_terrain.xml",
+				"/assets/dustdefault/runedata/entry/mountain.xml",
 				new RuneMountain());
 
 		XMLDustShapeReader.readAndRegisterShape(

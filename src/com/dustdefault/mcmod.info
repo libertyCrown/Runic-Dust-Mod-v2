@@ -1,0 +1,22 @@
+[
+{
+  "modid": "DustDefaults",
+  "name": "Runic Dust Mod- Default Runes",
+  "description": "A Runic Dust Mod addon that adds many new runes and inscriptions.  The 'official' runes of the mod.",
+  "version": "v2.0",
+  "mcversion": "1.6.4",
+  "url": "",
+  "updateUrl": "",
+  "authors": [
+    "zombiepig333"
+  ],
+  "credits": "billythegoat101 for making the original mod",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  "mod_MinecraftForge; DustModCore"
+  ]
+}
+]

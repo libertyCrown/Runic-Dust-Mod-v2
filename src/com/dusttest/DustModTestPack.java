@@ -23,12 +23,12 @@ import cpw.mods.fml.common.network.NetworkMod;
  * @author billythegoat101
  * 
  */
-@Mod(modid = "DustModTestPack", name = "Runic Dust Mod- Testing Pack", version = "v2.0", dependencies = "after:DustMod")
+@Mod(modid = "DustTestPack", name = "Runic Dust Mod- Testing Pack", version = "v2.0", dependencies = "after:DustMod")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModTestPack
 {
 
-	@Instance("DustModTestPack")
+	@Instance("DustTestPack")
 	public static DustModTestPack instance;
 
 	@EventHandler

@@ -36,7 +36,7 @@ public class RuneBounce extends DustEvent
 
 	public void onInit(EntityDust e)
 	{
-		ItemStack[] req = new ItemStack[] { new ItemStack(Item.slimeBall, 4, -1) };
+		ItemStack[] req = new ItemStack[] { new ItemStack(Item.slimeBall, 4) };
 		sacrifice(e, req);
 
 		if (req[0].stackSize > 0)
@@ -66,7 +66,7 @@ public class RuneBounce extends DustEvent
 					i.addVelocity(0, 1.27D, 0);
 					i.velocityChanged = true;
 				}
-				if (!el.onGround /* i.motionY < 0 */)
+				if (!el.onGround)
 				{
 					i.fallDistance = 0;
 				} else

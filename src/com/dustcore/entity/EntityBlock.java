@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityFallingSand;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -109,15 +110,6 @@ public class EntityBlock extends EntityFallingSand
 			updateEntityFromDataWatcher();
 		}
 
-		// return;
-		// }
-
-		// if ((this.ticksExisted % 10 == 0 && this.ticksExisted < 100) ||
-		// this.ticksExisted % 60 == 0)
-		// {
-		// updateDataWatcher();
-		// }
-
 		if (!throwing)
 			motionX = motionY = motionZ = 0;
 		else
@@ -174,16 +166,8 @@ public class EntityBlock extends EntityFallingSand
 					&& (dist < 1.4D || (Math.abs(motionX) < velTol
 							&& Math.abs(motionY) < velTol && Math.abs(motionY) < velTol)))
 			{
-				// placeWhenArrived = false;
-				// if (lingering)
-				// {
-				// lingering = true;
-				// this.updateDataWatcher();
-				// }
-
 				if (lingering && worldObj.getBlockId(lx, ly, lz) != blockID)
 				{
-					// System.out.println("DEATH2");
 					setDead();
 					return;
 				}
@@ -210,12 +194,10 @@ public class EntityBlock extends EntityFallingSand
 				}
 			} else
 			{
-				// System.out.println("DEATH3");
 				setDead();
 			}
 		} else if ((parentDust != null && parentDust.isDead) || blockID == 0)
 		{
-			// System.out.println("DEATH4");
 			setDead();
 			return;
 		}
@@ -225,12 +207,6 @@ public class EntityBlock extends EntityFallingSand
 
 	public void updateSand()
 	{
-		// if (this.blockID == 0)
-		// {
-		// // this.setDead();
-		// }
-		// else
-		// {
 		this.prevPosX = this.posX;
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
@@ -246,19 +222,6 @@ public class EntityBlock extends EntityFallingSand
 			int var1 = MathHelper.floor_double(this.posX);
 			int var2 = MathHelper.floor_double(this.posY);
 			int var3 = MathHelper.floor_double(this.posZ);
-
-			// if (this.fallTime == 1)
-			// {
-			// if (this.fallTime == 1 && this.worldObj.getBlockId(var1, var2,
-			// var3) == this.blockID)
-			// {
-			// this.worldObj.setBlockWithNotify(var1, var2, var3, 0);
-			// }
-			// else
-			// {
-			// this.setDead();
-			// }
-			// }
 
 			if (this.onGround)
 			{
@@ -307,7 +270,6 @@ public class EntityBlock extends EntityFallingSand
 				this.setDead();
 			}
 		}
-		// }
 
 		// Collision with entity
 		double knockback = 2D;
@@ -330,11 +292,7 @@ public class EntityBlock extends EntityFallingSand
 			Entity var10 = (Entity) var9.next();
 
 			if (var10.getClass() != this.getClass()
-					&& var10.canBeCollidedWith()/*
-												 * && (var10 !=
-												 * this.shootingEntity ||
-												 * this.ticksInAir >= 5)
-												 */)
+					&& var10.canBeCollidedWith())
 			{
 				var11 = 0.3F;
 				AxisAlignedBB var12 = var10.boundingBox.expand((double) var11,
@@ -359,12 +317,10 @@ public class EntityBlock extends EntityFallingSand
 		{
 			if (var5.attackEntityFrom(DamageSource.inWall, 104))
 			{
-				if (var5 instanceof EntityLiving)
+				if (var5 instanceof EntityLivingBase)
 				{
-					++((EntityLiving) var5).arrowHitTimer;
+					++((EntityLivingBase) var5).arrowHitTimer;
 
-					// if (this.knockbackStrength > 0)
-					// {
 					float var25 = MathHelper.sqrt_double(this.motionX
 							* this.motionX + this.motionZ * this.motionZ);
 
@@ -375,11 +331,7 @@ public class EntityBlock extends EntityFallingSand
 								this.motionZ * (double) knockback
 										* 0.6000000238418579D / (double) var25);
 					}
-					// }
 				}
-
-				// this.worldObj.playSoundAtEntity(this, "random.bowhit", 1.0F,
-				// 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
 				this.setDead();
 			} else
 			{

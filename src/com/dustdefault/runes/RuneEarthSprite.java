@@ -94,7 +94,7 @@ public class RuneEarthSprite extends PoweredEvent
 			float vel = p.capabilities.getWalkSpeed();
 			boolean wasSneaking = e.data[2] == 1;
 			boolean wasProtect = e.data[3] == 1;
-			boolean protect = (vel == 0) && p.isSneaking()
+			boolean protect = (vel == 0) && p.isSneaking() 
 					&& Math.abs(p.motionY) < 0.08D && p.onGround;
 			e.data[2] = (p.isSneaking() ? 1 : 0);
 			e.data[3] = protect ? 1 : 0;
@@ -104,15 +104,11 @@ public class RuneEarthSprite extends PoweredEvent
 
 			if (protect)
 			{
-				 p.posX = px+0.5D;
-				 p.posY = py + p.yOffset+0.1D;
-				 p.posZ = pz+0.5D;
 				if (p.isSneaking() && !wasSneaking)
 					p.setPositionAndUpdate((double) px + 0.5D, (double) py
 							+ p.yOffset, (double) pz + 0.5D);
 				{
 					p.capabilities.setPlayerWalkSpeed(0);
-					// p.setVelocity(0,0,0);
 				}
 			}
 			if (!protect && wasProtect)
@@ -124,10 +120,6 @@ public class RuneEarthSprite extends PoweredEvent
 			for (Object o : e.genericList)
 			{
 				EntityBlock eb = (EntityBlock) o;
-				// if(eb.gv > vel) {
-				// ind++;
-				// continue;
-				// }
 				int bx = 0, by = 0, bz = 0;
 
 				if (ind % 2 == 0)
@@ -143,13 +135,12 @@ public class RuneEarthSprite extends PoweredEvent
 					bz = (ind < 6) ? 1 : -1;
 				}
 
-				if (protect /* && worldObj.getBlockId(px+bx,py+by,pz+bz) == 0 */)
+				if (protect)
 				{
 					eb.setPosition(px + bx, py + by, pz + bz);
 					eb.placeAndLinger(0.6D, px + bx, py + by + 1, pz + bz);
 				} else
 				{
-					// eb.unplace();
 					int period = 60;
 					double dist = 3D;
 					double ticks = (e.ticksExisted + ind * 8) % period;
@@ -166,11 +157,6 @@ public class RuneEarthSprite extends PoweredEvent
 				ind++;
 			}
 		}
-
-		// if(seb != null){
-		// seb.setPosition(p.posX, e.posY, e.posZ);
-		// }
-
 		if (e.ticksExisted > 24000 * 3)
 		{
 			e.fade();
@@ -186,8 +172,7 @@ public class RuneEarthSprite extends PoweredEvent
 		for (Object o : e.genericList)
 		{
 			EntityBlock eb = (EntityBlock) o;
-			int y = (int) eb.posY; e.worldObj.getHeightValue((int)eb.posX,
-									 (int)eb.posZ);
+			int y = (int) eb.posY;
 
 			for (int i = y; i >= 0; i--)
 			{
@@ -197,11 +182,6 @@ public class RuneEarthSprite extends PoweredEvent
 					break;
 				}
 			}
-
-			 System.out.println("Position " + eb.posX + " " + " " + eb.posY +
-			 " " + eb.posZ);
-			 System.out.println("SettingPosition " + (int)eb.posX + " " + " "
-			 + y + " " + (int)eb.posZ);
 			eb.setOriginal((int) eb.posX, y + 1, (int) eb.posZ);
 			eb.returnToOrigin(0.2D);
 		}
