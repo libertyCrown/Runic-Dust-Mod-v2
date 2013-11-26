@@ -3,11 +3,11 @@ package com.dusttest;
 import com.dustcore.DustShape;
 import com.dustcore.api.InscriptionManager;
 import com.dustcore.event.InscriptionEvent;
-import com.dusttest.inscriptions.ErfBendInscription;
-import com.dusttest.inscriptions.FireballInscription;
-import com.dusttest.inscriptions.GlideInscription;
-import com.dusttest.inscriptions.MountainCutterInscription;
-import com.dusttest.inscriptions.WaterAffinity;
+import com.dusttest.inscriptions.InscriptionErfBend;
+import com.dusttest.inscriptions.InscriptionFireball;
+import com.dusttest.inscriptions.InscriptionGlide;
+import com.dusttest.inscriptions.InscriptionMountainCutter;
+import com.dusttest.inscriptions.InscriptionWaterAffinity;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -23,7 +23,7 @@ import cpw.mods.fml.common.network.NetworkMod;
  * @author billythegoat101
  * 
  */
-@Mod(modid = "DustModTestPack", name = "Dust mod Test pack", version = "0.03", dependencies = "after:DustMod")
+@Mod(modid = "DustModTestPack", name = "Runic Dust Mod- Testing Pack", version = "v2.0", dependencies = "after:DustMod")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModTestPack
 {
@@ -86,20 +86,20 @@ public class DustModTestPack
 
 		design = new int[][] { { 0, P, P, 0 }, { P, G, G, P }, { P, G, G, P },
 				{ 0, P, P, 0 } };
-		evt = new MountainCutterInscription(design, "cut", "Moutain Cutter",
+		evt = new InscriptionMountainCutter(design, "cut", "Moutain Cutter",
 				100);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
 		design = new int[][] { { 0, P, P, 0 }, { P, L, L, P }, { P, L, L, P },
 				{ 0, P, P, 0 } };
-		evt = new ErfBendInscription(design, "erfbendin", "ERF BENDIN", 1002);
+		evt = new InscriptionErfBend(design, "erfbendin", "ERF BENDIN", 1002);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
 		design = new int[][] { { 0, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
 				{ 0, G, G, 0 } };
-		evt = new FireballInscription(design, "fireball", "Fire Ball", 105);
+		evt = new InscriptionFireball(design, "fireball", "Fire Ball", 105);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
@@ -107,7 +107,7 @@ public class DustModTestPack
 				{ 0, G, G, P, P, 0, 0, P, P, G, G, 0 },
 				{ 0, 0, 0, G, P, G, G, P, G, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, G, G, 0, 0, 0, 0, 0 } };
-		evt = new GlideInscription(1, design, "glideI1", "Glide I", 106);
+		evt = new InscriptionGlide(1, design, "glideI1", "Glide I", 106);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
@@ -116,13 +116,13 @@ public class DustModTestPack
 				{ 0, 0, G, G, G, L, L, L, L, G, G, G, 0, 0 },
 				{ 0, 0, 0, 0, 0, G, L, L, G, 0, 0, 0, 0, 0 },
 				{ 0, 0, 0, 0, 0, 0, L, L, 0, 0, 0, 0, 0, 0 } };
-		evt = new GlideInscription(2, design, "glideII1", "Glide II", 109);
+		evt = new InscriptionGlide(2, design, "glideII1", "Glide II", 109);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 
 		design = new int[][] { { G, G, G, 0 }, { G, B, B, G }, { G, B, B, G },
 				{ 0, G, G, 0 } };
-		evt = new WaterAffinity(design, "watertest", "Water Affinity", 107);
+		evt = new InscriptionWaterAffinity(design, "watertest", "Water Affinity", 107);
 		evt.setAuthor("billythegoat101 -TestPack");
 		InscriptionManager.registerInscriptionEvent(evt);
 

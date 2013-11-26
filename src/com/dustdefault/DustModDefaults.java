@@ -66,7 +66,7 @@ import cpw.mods.fml.common.network.NetworkMod;
  * make sure that the added content is balanced and fair.
  * 
  */
-@Mod(modid = "DustModDefaults", name = "Runic Dust Mod- Default Pack", version = "v2.0", dependencies = "after:DustModCore")
+@Mod(modid = "DustModDefaults", name = "Runic Dust Mod- Default Runes", version = "v2.0", dependencies = "after:DustModCore")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModDefaults
 {

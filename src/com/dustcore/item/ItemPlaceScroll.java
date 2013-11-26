@@ -67,9 +67,9 @@ public class ItemPlaceScroll extends DustModItem
 			if (wielder.capabilities.isCreativeMode)
 			{
 				ds.drawOnWorldWhole(world, i, j, k, (EntityPlayer) wielder, r);
-			} else
+			} 
+			else
 			{
-
 				ds.drawOnWorldPart(world, i, j, k, (EntityPlayer) wielder, r,
 						((EntityPlayer) wielder).getItemInUseCount());
 			}

@@ -25,9 +25,6 @@ import com.dustcore.event.DustEvent;
  */
 public class EntityBlock extends EntityFallingSand
 {
-	// public int blockID;
-	// protected int meta;
-
 	/** How long the block has been falling for. */
 	protected int fallTime;
 	protected boolean save = true;
@@ -106,13 +103,6 @@ public class EntityBlock extends EntityFallingSand
 		{
 			this.extinguish();
 		}
-
-		// System.out.println("RAWR " + this.noClip + " " + this.going);
-
-		// if (worldObj.isRemote)
-		// {
-		// super.onEntityUpdate();
-
 		if ((this.ticksExisted % 10 == 0 && this.ticksExisted < 100)
 				|| this.ticksExisted % 60 == 0)
 		{
@@ -132,11 +122,6 @@ public class EntityBlock extends EntityFallingSand
 			motionX = motionY = motionZ = 0;
 		else
 		{
-			// System.out.println("wat " + motionX + " " + motionY + " " +
-			// motionZ);
-			// updateSand();
-			// this.moveEntity(motionX, motionY, motionZ);
-			// this.
 		}
 		if (justBorn && hasParentDust && parentDust == null)
 		{
@@ -516,7 +501,6 @@ public class EntityBlock extends EntityFallingSand
 				lingerWhenArrived = false;
 			} else
 			{
-				// System.out.println("DEATH5");
 				setDead();
 			}
 		}

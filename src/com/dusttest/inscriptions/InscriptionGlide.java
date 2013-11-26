@@ -10,14 +10,14 @@ import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 import com.dustcore.event.InscriptionEvent;
 
-public class GlideInscription extends InscriptionEvent
+public class InscriptionGlide extends InscriptionEvent
 {
 
 	private int power = 1;
 	private double motionYMul;
 	private float jumpFactor;
 
-	public GlideInscription(int power, int[][] design, String idName,
+	public InscriptionGlide(int power, int[][] design, String idName,
 			String properName, int id)
 	{
 		super(design, idName, properName, id);

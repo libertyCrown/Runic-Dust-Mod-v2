@@ -272,7 +272,7 @@ public class EntityDust extends Entity
 	{
 		this.renderStar = b;
 	}
-
+    //TODO- suspicous code...
 	public void setRenderFireOnRune(boolean b)
 	{
 		this.renderFlamesDust = b;
@@ -286,7 +286,7 @@ public class EntityDust extends Entity
 			}
 		}
 	}
-
+	//TODO- suspicous code
 	public void setRenderFireOnRuts(boolean b)
 	{
 		this.renderFlamesRut = b;
@@ -469,8 +469,6 @@ public class EntityDust extends Entity
 		if (event == null)
 		{
 			reanimate = true;
-			DustMod.log(Level.INFO,
-					"This rune has been updated! Reactivating...");
 		}
 
 		dustPoints = new ArrayList<Integer[]>();
@@ -624,7 +622,7 @@ public class EntityDust extends Entity
 			return;
 		}
 
-		if (/* !worldObj.isRemote && */((this.ticksExisted % 10 == 0 && this.ticksExisted < 100) || this.ticksExisted % 60 == 0))
+		if (((this.ticksExisted % 10 == 0 && this.ticksExisted < 100) || this.ticksExisted % 60 == 0))
 		{
 			updateDataWatcher();
 		}

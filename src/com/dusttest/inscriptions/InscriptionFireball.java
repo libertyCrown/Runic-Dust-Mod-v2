@@ -15,10 +15,10 @@ import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 import com.dustcore.event.InscriptionEvent;
 
-public class FireballInscription extends InscriptionEvent
+public class InscriptionFireball extends InscriptionEvent
 {
 
-	public FireballInscription(int[][] design, String idName,
+	public InscriptionFireball(int[][] design, String idName,
 			String properName, int id)
 	{
 		super(design, idName, properName, id);

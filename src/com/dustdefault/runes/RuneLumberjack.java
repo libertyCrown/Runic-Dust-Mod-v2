@@ -11,6 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.dustcore.DustMod;
 import com.dustcore.entity.EntityDust;
@@ -32,16 +33,18 @@ public class RuneLumberjack extends DustEvent
 		e.setColorStarOuter(77, 65, 47);
 		e.setColorStarInner(77, 65, 47);
 		e.setStarScale(1.12F);
-
 	}
 
 	public void onInit(EntityDust e)
 	{
-		ItemStack[] sac = new ItemStack[] { new ItemStack(Item.stick, 2),
-				new ItemStack(Block.wood, 3, -1) };
+		ItemStack[] sac = new ItemStack[] 
+		{ 
+			new ItemStack(Item.stick, 2),
+			new ItemStack(Block.wood, OreDictionary.WILDCARD_VALUE)
+			};
 		sac = this.sacrifice(e, sac);
 
-		if (sac[0].stackSize > 0 || sac[1].stackSize > 0)
+		if (!checkSacrifice(sac))
 		{
 			e.fizzle();
 			return;
@@ -274,9 +277,6 @@ public class RuneLumberjack extends DustEvent
 				world.spawnEntityInWorld(ei);
 			}
 		}
-
-		// Block.wood.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x,
-		// y, z), 1);
 		world.setBlock(x, y, z, 0, 0, 3);
 
 		for (int i = -2; i <= 2; i++)
@@ -287,11 +287,6 @@ public class RuneLumberjack extends DustEvent
 				{
 					if (i == 0 || k == 0)
 					{
-						// if (isTree(world,x+i,y+j,z+k))
-						// {
-						// checkWood(world, x + i, y + j, z + k, dustID, sx, sy,
-						// sz);
-						// } else
 						if (isLeaves(world, x + i, y + j, z + k))
 						{
 							checkLeaves(world, x + i, y + j, z + k, dustID, sx,
@@ -311,10 +306,6 @@ public class RuneLumberjack extends DustEvent
 			return false;
 		}
 
-		// int meta = world.getBlockMetadata(i,j,k);
-		// if(meta >= 4)
-		// return false;
-
 		return true;
 	}
 
@@ -326,11 +317,6 @@ public class RuneLumberjack extends DustEvent
 			return false;
 		}
 
-		// int meta = world.getBlockMetadata(i,j,k);
-		// if((meta&8) == 0){
-		// return false;
-		// }
-
 		return true;
 	}
 
@@ -339,17 +325,6 @@ public class RuneLumberjack extends DustEvent
 		Random rand = new Random();
 		double width = 1.3d;
 		double height = 1.3d;
-		// double var8 = 10.0D;
-		// for (int var1 = 0; var1 < 20; ++var1)
-		// {
-		// double rx = rand.nextGaussian() * 0.02D;
-		// double ry = rand.nextGaussian() * 0.02D;
-		// double rz = rand.nextGaussian() * 0.02D;
-		// world.spawnParticle("explode", x + (double) (y * 2.0F) - (double)
-		// width - rx * var8, y + (double) (rand.nextFloat() * height) - ry *
-		// var8, z + (double) (rand.nextFloat() * width * 2.0F) - (double) width
-		// - rz * var8, rx, ry, rz);
-		// }
 
 		DustMod.spawnParticles(world, "explode", x + width / 2, y + height / 2,
 				z + width / 2, 0, 0, 0, 5, width, height, width);

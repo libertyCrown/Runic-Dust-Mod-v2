@@ -61,8 +61,7 @@ public class RuneEarthSprite extends PoweredEvent
 
 		for (int i = 0; i < 8; i++)
 		{
-			EntityBlock eb = new EntityBlock(e.worldObj, e.getX(),
-					e.getY() + 2, e.getZ(), Block.glass.blockID);
+			EntityBlock eb = new EntityBlock(e.worldObj, e.getX(), e.getY() + 2, e.getZ(), Block.glass.blockID);
 			eb.setParent(e);
 			registerFollower(e, eb);
 			eb.updateDataWatcher();

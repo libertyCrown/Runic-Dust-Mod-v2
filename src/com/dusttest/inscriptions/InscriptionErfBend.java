@@ -26,10 +26,10 @@ import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 import com.dustcore.event.InscriptionEvent;
 
-public class ErfBendInscription extends InscriptionEvent
+public class InscriptionErfBend extends InscriptionEvent
 {
 
-	public ErfBendInscription(int[][] design, String idName, String properName,
+	public InscriptionErfBend(int[][] design, String idName, String properName,
 			int id)
 	{
 		super(design, idName, properName, id);

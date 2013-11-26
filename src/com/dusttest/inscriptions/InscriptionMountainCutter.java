@@ -12,10 +12,10 @@ import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 import com.dustcore.event.InscriptionEvent;
 
-public class MountainCutterInscription extends InscriptionEvent
+public class InscriptionMountainCutter extends InscriptionEvent
 {
 
-	public MountainCutterInscription(int[][] design, String idName,
+	public InscriptionMountainCutter(int[][] design, String idName,
 			String properName, int id)
 	{
 		super(design, idName, properName, id);

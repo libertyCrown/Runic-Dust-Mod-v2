@@ -13,9 +13,9 @@ import com.dustcore.event.InscriptionEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
-public class WaterAffinity extends InscriptionEvent
+public class InscriptionWaterAffinity extends InscriptionEvent
 {
-	public WaterAffinity(int[][] design, String idName, String properName,
+	public InscriptionWaterAffinity(int[][] design, String idName, String properName,
 			int id)
 	{
 		super(design, idName, properName, id);

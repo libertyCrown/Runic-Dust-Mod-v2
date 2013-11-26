@@ -56,7 +56,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid = "DustModCore", name = "RunicDustMod-Core", version = "v2.0")
+@Mod(modid = "DustModCore", name = "Runic Dust Mod-Core", version = "v2.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class, channels = {
 		PacketHandler.CHANNEL_DMRune, PacketHandler.CHANNEL_TEDust,
 		PacketHandler.CHANNEL_TELexicon, PacketHandler.CHANNEL_TERut,

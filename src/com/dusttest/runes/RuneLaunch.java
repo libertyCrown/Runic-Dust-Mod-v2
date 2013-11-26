@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
 
-public class LaunchTestRune extends DustEvent
+public class RuneLaunch extends DustEvent
 {
 
 	@Override
