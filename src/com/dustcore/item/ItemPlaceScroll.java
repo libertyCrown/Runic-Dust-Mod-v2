@@ -64,15 +64,7 @@ public class ItemPlaceScroll extends Item
 
 		try
 		{
-			if (wielder.capabilities.isCreativeMode)
-			{
-				ds.drawOnWorldWhole(world, i, j, k, (EntityPlayer) wielder, r);
-			} 
-			else
-			{
-				ds.drawOnWorldPart(world, i, j, k, (EntityPlayer) wielder, r,
-						((EntityPlayer) wielder).getItemInUseCount());
-			}
+			ds.drawOnWorldWhole(world, i, j, k, (EntityPlayer) wielder, r);
 		} catch (Exception e)
 		{
 			e.printStackTrace();

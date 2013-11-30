@@ -824,7 +824,6 @@ public class DustShape
 		return true;
 	}
 
-	@SideOnly(Side.CLIENT)
 	public boolean drawOnWorldPart(World w, int i, int j, int k,
 			EntityPlayer p, int r, int itemUse)
 	{
