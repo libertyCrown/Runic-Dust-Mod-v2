@@ -146,8 +146,6 @@ public abstract class DustEvent
 		{
 			for (Integer[] i : e.rutPoints)
 			{
-				// world.setBlockWithNotify(i[0], i[1], i[2],
-				// Block.melon.blockID);
 				TileEntityRut ter = (TileEntityRut) e.worldObj
 						.getBlockTileEntity(i[0], i[1], i[2]);
 

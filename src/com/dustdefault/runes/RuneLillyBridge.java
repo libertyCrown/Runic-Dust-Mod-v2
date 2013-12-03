@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 import com.dustcore.entity.EntityDust;
 import com.dustcore.event.DustEvent;
@@ -36,8 +37,9 @@ public class RuneLillyBridge extends DustEvent
 	public void onInit(EntityDust e)
 	{
 		World world = e.worldObj;
-		ItemStack[] req = this.sacrifice(e, new ItemStack[] { new ItemStack(
-				Block.leaves, 4, -1) });
+		ItemStack[] req = this.sacrifice(e, new ItemStack[]{ 
+				new ItemStack(Block.leaves, 4, 0)
+		});
 
 		if (req[0].stackSize != 0)
 		{
@@ -85,8 +87,6 @@ public class RuneLillyBridge extends DustEvent
 					world.setBlock(x, y + i, z, Block.waterlily.blockID, 0, 3);
 				}
 			}
-
-			// world.setBlockWithNotify(x,y,z,Block.brick.blockID);
 		}
 
 		if (e.ticksExisted > 16 * period)
