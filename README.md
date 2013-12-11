@@ -8,9 +8,9 @@ If you want to submit a code change, make a pull request and I will see if it sh
 will unless it is something stupid (such as throwing a ton of spam into the minecraft log for no real reason).
 
 
-Forum Thread: http://www.minecraftforum.net/topic/1991128-wip-forge-runic-dust-mod-v2/
+Forum Thread: http://www.minecraftforum.net/topic/2152411-164-runic-dust-mod-v2-its-back/#entry26394895
 
-Download Page (WIP): https://googledrive.com/host/0B8EtxI3CunJJa0NEZHBDdWJUcGs/
+Download Page: https://googledrive.com/host/0B8EtxI3CunJJa0NEZHBDdWJUcGs/site/ 
 
 
 Localizations
@@ -28,3 +28,11 @@ I have also made it so you can translate the entries that are found in the runic
 3. Put all entries (make sure they share the names of the originals) inside of the folder you created.
 
 The game should read them without any problem if you follow this correctly.
+
+
+Guidelines For Submitting an Issue
+==================================
+
+1. Be sure the issue has not already been reported and/or closed already.
+2. Always include the mod version, crash report when availible(pastebin please!) and other proof of the issue.
+3. Be clear with what the reported error is; if I don't understand the problem, I cannot fix it.
