@@ -1,0 +1,54 @@
+2013-12-12 11:50:08 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 11:50:09 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 11:50:10 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 11:50:17 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Example Mod
+2013-12-12 11:50:18 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Example Mod
+2013-12-12 11:50:20 [CLIENT] [SEVERE] Realms: Invalid session id
+2013-12-12 11:50:31 [CLIENT] [INFO] Stopping!
+2013-12-12 12:05:04 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 12:05:04 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 12:05:04 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 12:05:09 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack, FMLFileResourcePack:Runic Dust Mod- Thaumcraft Compat
+2013-12-12 12:05:10 [CLIENT] [SEVERE] Realms: Invalid session id
+2013-12-12 12:05:17 [CLIENT] [INFO] Stopping!
+2013-12-12 12:12:58 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 12:12:58 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 12:12:58 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 12:13:03 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack, FMLFileResourcePack:Runic Dust Mod- Thaumcraft Compat, FMLFileResourcePack:Thaumcraft
+2013-12-12 12:13:50 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 12:13:51 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 12:13:52 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 12:13:56 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:13:58 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:13:59 [CLIENT] [SEVERE] Realms: Invalid session id
+2013-12-12 12:14:15 [CLIENT] [INFO] Stopping!
+2013-12-12 12:16:10 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 12:16:11 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 12:16:11 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 12:16:17 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:16:18 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:16:20 [CLIENT] [SEVERE] Realms: Invalid session id
+2013-12-12 12:16:58 [CLIENT] [WARNING] Memory connection overburdened; after processing 2500 packets, we still have 2552 to go!
+2013-12-12 12:17:01 [CLIENT] [WARNING] Memory connection overburdened; after processing 2500 packets, we still have 1867 to go!
+2013-12-12 12:18:08 [CLIENT] [INFO] Stopping!
+2013-12-12 12:18:13 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 12:18:13 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 12:18:14 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 12:18:19 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:18:21 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:18:22 [CLIENT] [SEVERE] Realms: Invalid session id
+2013-12-12 12:18:55 [CLIENT] [INFO] Stopping!
+2013-12-12 12:19:22 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 12:19:22 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 12:19:22 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 12:19:27 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:19:29 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 12:19:30 [CLIENT] [SEVERE] Realms: Invalid session id
+2013-12-12 12:20:04 [CLIENT] [INFO] Stopping!
+2013-12-12 19:44:13 [CLIENT] [INFO] Setting user: Player1234
+2013-12-12 19:44:14 [CLIENT] [INFO] LWJGL Version: 2.9.0
+2013-12-12 19:44:15 [CLIENT] [INFO] Reloading ResourceManager: Default
+2013-12-12 19:44:28 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 19:44:31 [CLIENT] [INFO] Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Runic Dust Mod-Core, FMLFileResourcePack:Runic Dust Mod- Decorative Dusts, FMLFileResourcePack:Runic Dust Mod- Default Runes, FMLFileResourcePack:Runic Dust Mod- Testing Pack
+2013-12-12 19:44:34 [CLIENT] [SEVERE] Realms: Invalid session id
+2013-12-12 19:44:44 [CLIENT] [INFO] Stopping!
