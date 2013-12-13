@@ -1,16 +1,28 @@
-.gradle/
-.idea/
-build/
-config/
-eclipse/
-mods/
-out/
-resourcepacks/
-saves/
-stats/
-ForgeModLoader-client-0.log
-ForgeModLoader-client-0.log.lck
-ForgeModLoader-client-1.log
-ForgeModLoader-client-2.log
-output-client.log
-output-server.log
+# gradle
+.gradle
+build
+
+# ForgeGradle
+/run
+
+# eclipse
+.settings
+.metadata
+.classpath
+.project
+bin
+
+# intellij
+out
+*.idea
+*.iml
+*.iws
+*.ipr
+
+# minecraft
+saves
+mods
+stats
+config
+resourcepacks
+*.log*
