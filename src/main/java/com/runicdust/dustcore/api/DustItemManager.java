@@ -6,11 +6,11 @@ import java.io.InputStreamReader;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StringTranslate;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.config.DustContent;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -32,7 +32,7 @@ public class DustItemManager
 
 	/**
 	 * Register a new dust type to the system. You'll have to manually set the
-	 * recipe/method of getting the dust. The item will just be DustMod.idust
+	 * recipe/method of getting the dust. The item will just be DustModCore.idust
 	 * with the damage value equal to this passed value parameter.
 	 * 
 	 * @param value
@@ -50,7 +50,7 @@ public class DustItemManager
 		if (colors[value] != null)
 		{
 			throw new IllegalArgumentException(
-					"[DustMod] Dust value already taken! " + value);
+					"[DustModCore] Dust value already taken! " + value);
 		}
 
 		colors[value] = colorsRemote[value] = new DustColor(primaryColor,
@@ -89,7 +89,7 @@ public class DustItemManager
 		if (colorsRemote[value] != null)
 		{
 			throw new IllegalArgumentException(
-					"[DustMod] Remote error! Dust value already taken! "
+					"[DustModCore] Remote error! Dust value already taken! "
 							+ value);
 		}
 
@@ -152,17 +152,17 @@ public class DustItemManager
 
 	public static String[] getNames()
 	{
-		return (DustMod.proxy.isClient() ? namesRemote : names);
+		return (DustModCore.proxy.isClient() ? namesRemote : names);
 	}
 
 	public static String[] getIDS()
 	{
-		return (DustMod.proxy.isClient() ? idsRemote : ids);
+		return (DustModCore.proxy.isClient() ? idsRemote : ids);
 	}
 
 	public static DustColor[] getColors()
 	{
-		return (DustMod.proxy.isClient() ? colorsRemote : colors);
+		return (DustModCore.proxy.isClient() ? colorsRemote : colors);
 	}
 
 	public static int getPrimaryColor(int value)
@@ -213,7 +213,7 @@ public class DustItemManager
 
 	public static void reset()
 	{
-		DustMod.log(Level.FINE, "Reseting remote dusts.");
+		DustModCore.log(Level.FINE, "Reseting remote dusts.");
 		colorsRemote = new DustColor[1000];
 		namesRemote = new String[1000];
 		idsRemote = new String[1000];

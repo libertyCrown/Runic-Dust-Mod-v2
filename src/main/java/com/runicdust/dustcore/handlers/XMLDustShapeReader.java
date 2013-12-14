@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import com.runicdust.dustcore.DustModCore;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -11,7 +12,6 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.api.DustManager;
 import com.runicdust.dustcore.event.DustEvent;
@@ -66,8 +66,8 @@ public class XMLDustShapeReader extends DefaultHandler
 			xr.parse(new InputSource(fileStream));
 		} catch (Exception ex)
 		{
-			DustMod.log(Level.SEVERE, "Unable to read rune XML file! "
-					+ runeFile, ex.getMessage());
+			DustModCore.log(Level.SEVERE, "Unable to read rune XML file! "
+                    + runeFile, ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
@@ -186,10 +186,10 @@ public class XMLDustShapeReader extends DefaultHandler
 			String[] splitLine = currentValue.split("\n");
 			if (splitLine.length != height)
 			{
-				DustMod.log(
-						Level.SEVERE,
-						"Error reading rune XML file! Design height does not match the specified height!",
-						idName);
+				DustModCore.log(
+                        Level.SEVERE,
+                        "Error reading rune XML file! Design height does not match the specified height!",
+                        idName);
 			} else
 			{
 				for (String line : splitLine)
@@ -197,10 +197,10 @@ public class XMLDustShapeReader extends DefaultHandler
 					String[] splitComma = line.split(",");
 					if (splitComma.length != width)
 					{
-						DustMod.log(
-								Level.SEVERE,
-								"Error reading rune XML file! Design width does not match the specified width!",
-								idName);
+						DustModCore.log(
+                                Level.SEVERE,
+                                "Error reading rune XML file! Design width does not match the specified width!",
+                                idName);
 						break;
 					}
 					for (String element : splitComma)

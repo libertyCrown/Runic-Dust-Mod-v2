@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Configuration;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.block.BlockDust;
 import com.runicdust.dustcore.config.DustContent;
@@ -43,14 +43,14 @@ public class DustManager
 
 	public static List<String> getNames()
 	{
-		if (DustMod.proxy.isClient())
+		if (DustModCore.proxy.isClient())
 			return namesRemote;
 		return names;
 	}
 
 	public static ArrayList<DustShape> getShapes()
 	{
-		if (DustMod.proxy.isClient())
+		if (DustModCore.proxy.isClient())
 			return shapesRemote;
 		return shapes;
 	}
@@ -150,14 +150,14 @@ public class DustManager
 
 	public static DustShape getShape(int ind)
 	{
-		if (DustMod.proxy.isClient())
+		if (DustModCore.proxy.isClient())
 			return shapesRemote.get(ind);
 		return shapes.get(ind);
 	}
 
 	public static DustShape getShapeFromID(int id)
 	{
-		ArrayList<DustShape> s = (DustMod.proxy.isClient()) ? shapesRemote
+		ArrayList<DustShape> s = (DustModCore.proxy.isClient()) ? shapesRemote
 				: shapes;
 
 		for (DustShape i : s)
@@ -177,10 +177,10 @@ public class DustManager
 	 */
 	public static void resetMultiplayerRunes()
 	{
-		DustMod.log(Level.FINE, "Reseting remote runes.");
+		DustModCore.log(Level.FINE, "Reseting remote runes.");
 		namesRemote = new ArrayList<String>();
 		shapesRemote = new ArrayList<DustShape>();
-		DustMod.proxy.resetPlayerTomePage();
+		DustModCore.proxy.resetPlayerTomePage();
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class DustManager
 		{
 			if (i.id == shape.id)
 			{
-				throw new IllegalArgumentException("[DustMod] Rune ID ["
+				throw new IllegalArgumentException("[DustModCore] Rune ID ["
 						+ shape.id + "] already occupied. " + i + " and "
 						+ shape);
 			}
@@ -207,17 +207,17 @@ public class DustManager
 
 		add(shape.name, eventInstance);
 		shapes.add(shape);
-		DustMod.proxy.checkRunePage(shape);
+		DustModCore.proxy.checkRunePage(shape);
 		if (eventInstance != null && eventInstance instanceof PoweredEvent)
 		{
 			shape.isPower = true;
 		}
 
-		DustMod.log(Level.FINER, "Registering rune: " + shape.name);
+		DustModCore.log(Level.FINER, "Registering rune: " + shape.name);
 
 		if (config == null)
 		{
-			config = new Configuration(DustMod.runeConfig);
+			config = new Configuration(DustModCore.runeConfig);
 			config.load();
 			config.addCustomCategoryComment("INSCRIPTIONS",
 					"Allow specific inscriptions to be used. Options: ALL, NONE, OPS");
@@ -246,9 +246,9 @@ public class DustManager
 
 			if (!eventInstance.permission.equals("ALL"))
 			{
-				DustMod.log(Level.FINE, "Rune permission for "
-						+ eventInstance.name + " set to "
-						+ eventInstance.permission);
+				DustModCore.log(Level.FINE, "Rune permission for "
+                        + eventInstance.name + " set to "
+                        + eventInstance.permission);
 			}
 		}
 
@@ -272,8 +272,8 @@ public class DustManager
 		String name = shape.name;
 		shapesRemote.add(shape);
 		namesRemote.add(shape.name);
-		DustMod.proxy.checkRunePage(shape);
-		DustMod.log(Level.FINER, "Registering remote rune: " + shape.name);
+		DustModCore.proxy.checkRunePage(shape);
+		DustModCore.log(Level.FINER, "Registering remote rune: " + shape.name);
 		LanguageRegistry.instance().addStringLocalization(
 				"tile.scroll" + shape.name + ".name",
 				shape.getRuneName() + " Placing Scroll");
@@ -391,7 +391,7 @@ public class DustManager
 						}
 					}
 
-					DustMod.log(Level.FINER, "Left variable dust in rune.");
+					DustModCore.log(Level.FINER, "Left variable dust in rune.");
 					return;
 				}
 			}
@@ -412,7 +412,7 @@ public class DustManager
 
 		if (found != null)
 		{
-			DustMod.log(Level.FINER, "Found rune: " + found.name);
+			DustModCore.log(Level.FINER, "Found rune: " + found.name);
 			DustManager.initiate(found, found.name, i, j, k, world, points,
 					trim, username, rot);
 		} else
@@ -429,7 +429,7 @@ public class DustManager
 				}
 			}
 
-			DustMod.log(Level.FINER, "No rune found.");
+			DustModCore.log(Level.FINER, "No rune found.");
 		}
 	}
 

@@ -9,8 +9,6 @@ public class EntityAIDustApplyHunterVision extends EntityAIBase
 	private EntityCreature theEntity;
 	private EntityPlayer player;
 
-	// private float field_48331_g;
-
 	public EntityAIDustApplyHunterVision(EntityCreature par1EntityCreature)
 	{
 		theEntity = par1EntityCreature;

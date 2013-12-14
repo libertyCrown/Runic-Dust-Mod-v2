@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 
 import cpw.mods.fml.common.FMLLog;
 
@@ -25,7 +25,7 @@ public class EntityDustManager
 		nextDustEntID++;
 		if (propGeneral == null)
 		{
-			DustMod.log(Level.WARNING, "General property file is null!");
+			DustModCore.log(Level.WARNING, "General property file is null!");
 		}
 		propGeneral.setProperty("entDustNID", "" + nextDustEntID);
 
@@ -35,7 +35,7 @@ public class EntityDustManager
 		} catch (Exception e)
 		{
 			FMLLog.log(Level.SEVERE, e,
-					"[DustMod] : Error loading world properties.");
+					"[DustModCore] : Error loading world properties.");
 		}
 
 		return nextDustEntID - 1;

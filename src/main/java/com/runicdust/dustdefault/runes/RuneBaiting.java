@@ -119,7 +119,7 @@ public class RuneBaiting extends PoweredEvent
 				//
 				//
 				// if(Math.random() < 0.2){
-				// DustMod.spawnParticles(el.worldObj, "smoke", el.posX,
+				// DustModCore.spawnParticles(el.worldObj, "smoke", el.posX,
 				// el.posY+el.height/2, el.posZ,
 				// 0, Math.random() * 0.05, 0, (int)(Math.random()*20), 0.75,
 				// el.height/2, 0.75);

@@ -3,6 +3,7 @@ package com.runicdust.dustcore.item;
 import java.util.Random;
 import java.util.logging.Level;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -17,7 +18,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.util.References;
 
@@ -173,9 +173,9 @@ public class ItemSpiritPickaxe extends ItemPickaxe
 							}
 						} catch (Exception e)
 						{
-							DustMod.log(Level.WARNING, "Error breaking block "
-									+ block.getUnlocalizedName(),
-									e.getMessage());
+							DustModCore.log(Level.WARNING, "Error breaking block "
+                                    + block.getUnlocalizedName(),
+                                    e.getMessage());
 							e.printStackTrace();
 						}
 					}

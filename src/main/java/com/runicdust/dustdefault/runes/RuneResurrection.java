@@ -14,7 +14,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 
@@ -91,7 +91,7 @@ public class RuneResurrection extends DustEvent
 			}
 
 			if (amount <= 0
-					&& DustMod.getEntityIDFromDrop(new ItemStack(id, 0, m), 0) != -1)
+					&& DustModCore.getEntityIDFromDrop(new ItemStack(id, 0, m), 0) != -1)
 			{
 				for (EntityItem ent : itemstacks)
 				{
@@ -115,8 +115,8 @@ public class RuneResurrection extends DustEvent
 					}
 				}
 
-				entClass = DustMod.getEntityIDFromDrop(new ItemStack(id, 0, m),
-						0);
+				entClass = DustModCore.getEntityIDFromDrop(new ItemStack(id, 0, m),
+                        0);
 
 				if (entClass != -1)
 				{

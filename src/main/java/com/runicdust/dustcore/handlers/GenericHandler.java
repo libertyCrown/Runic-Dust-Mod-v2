@@ -9,7 +9,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.api.InscriptionManager;
 import com.runicdust.dustcore.config.DustContent;
@@ -109,7 +109,7 @@ public class GenericHandler implements ICraftingHandler
 			if (item != null
 					&& item.itemID == DustContent.wornInscription.itemID)
 			{
-				boolean[] buttons = DustMod.keyHandler.getButtons(p.username);
+				boolean[] buttons = DustModCore.keyHandler.getButtons(p.username);
 				InscriptionManager.tickInscription((Player) p, buttons,
 						p.inventory.getStackInSlot(38));
 			}

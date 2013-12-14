@@ -66,11 +66,11 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 		PacketHandler.CHANNEL_SetEntVelocity,
 		PacketHandler.CHANNEL_RendBrokenTool })
 
-public class DustMod
+public class DustModCore
 {
 
 	@Instance("DustModCore")
-	public static DustMod instance;
+	public static DustModCore instance;
 	public static int prevVoidSize;
 	public static HashMap<String, ArrayList<ItemStack>> voidInventory;
 	public static ArrayList<int[]> voidNetwork;
@@ -384,7 +384,7 @@ public class DustMod
 
 	public static void log(Level level, String msg, Object... objs)
 	{
-		String message = "[DustMod] " + msg;
+		String message = "[DustModCore] " + msg;
 		for (Object o : Arrays.asList(objs))
 		{
 			message += " " + o;
@@ -394,7 +394,7 @@ public class DustMod
 
 	public static void log(String msg, Object... objs)
 	{
-		String message = "[DustMod] " + msg;
+		String message = "[DustModCore] " + msg;
 		for (Object o : Arrays.asList(objs))
 		{
 			message += " " + o;

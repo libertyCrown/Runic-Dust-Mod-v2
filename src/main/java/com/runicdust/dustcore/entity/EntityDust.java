@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.DustManager;
 import com.runicdust.dustcore.block.BlockDust;
 import com.runicdust.dustcore.config.DustContent;
@@ -86,7 +86,7 @@ public class EntityDust extends Entity
 	public long entityDustID;
 	public int[] data;
 	public String summonerUN;
-	public static final double yOffset = 0;// -1.5D;
+	public static final double yOffset = 0;
 	public int runeWidth;
 	public int runeLength;
 
@@ -634,7 +634,7 @@ public class EntityDust extends Entity
 				{
 					int id = worldObj.getBlockId(i[0], i[1], i[2]);
 
-					if (!DustMod.isDust(id))
+					if (!DustModCore.isDust(id))
 					{
 						kill();
 						return;
@@ -670,11 +670,11 @@ public class EntityDust extends Entity
 				int x = (int) Math.floor(posX);
 				int z = (int) Math.floor(posZ);
 
-				DustMod.spawnParticles(worldObj, "largesmoke",
-						(double) x + 0.5, (double) posY, (double) z + 0.5,
-						0.0D, 0.0D, 0.0D, (int) (Math.random() * 3D + 4D)
-								* runeWidth * runeLength, runeWidth, 0.5,
-						runeLength);
+				DustModCore.spawnParticles(worldObj, "largesmoke",
+                        (double) x + 0.5, (double) posY, (double) z + 0.5,
+                        0.0D, 0.0D, 0.0D, (int) (Math.random() * 3D + 4D)
+                        * runeWidth * runeLength, runeWidth, 0.5,
+                        runeLength);
 
 				kill();
 				return;
@@ -711,7 +711,7 @@ public class EntityDust extends Entity
 					int id = worldObj.getBlockId(i[0], i[1], i[2]);
 					int bid = 0;
 
-					if (DustMod.isDust(id))
+					if (DustModCore.isDust(id))
 					{
 						worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2],
 								BlockDust.UNUSED_DUST, 3);
@@ -961,8 +961,8 @@ public class EntityDust extends Entity
 				locations[i + 2] = (double) ((((float) posZ - f10) + random
 						.nextFloat() * f1) - 0.5F);
 				i += 3;
-				DustMod.spawnParticles(worldObj, s, locations, d, d1, d2, 1,
-						0.01, 0.01, 0.01);
+				DustModCore.spawnParticles(worldObj, s, locations, d, d1, d2, 1,
+                        0.01, 0.01, 0.01);
 			}
 		}
 	}
@@ -1010,7 +1010,7 @@ public class EntityDust extends Entity
 			int id = worldObj.getBlockId(i[0], i[1], i[2]);
 			int bid = 0;
 
-			if (DustMod.isDust(id))
+			if (DustModCore.isDust(id))
 			{
 				worldObj.setBlockMetadataWithNotify(i[0], i[1], i[2],
 						BlockDust.DEAD_DUST, 3);

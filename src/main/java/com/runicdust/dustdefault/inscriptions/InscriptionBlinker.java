@@ -9,7 +9,7 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.InscriptionManager;
 import com.runicdust.dustcore.config.DustContent;
 import com.runicdust.dustcore.entity.EntityDust;
@@ -136,13 +136,13 @@ public class InscriptionBlinker extends InscriptionEvent
 			boolean canTele = canTele(item, wearer);
 			canTele &= dist > 2.5;
 
-			DustMod.spawnParticles(wearer.worldObj, "reddust", testLoc,
-					canTele ? -1 : 1, canTele ? 0.6 : 0, canTele ? 1 : 0,
-					6 / (dist < 3 ? 6 : 1), 0.1, 0.1, 0.1);
-			DustMod.spawnParticles(wearer.worldObj, "reddust", Math
-					.floor(testLoc[0]) + 0.5, newY,
-					Math.floor(testLoc[2]) + 0.5, canTele ? -1 : 0,
-					canTele ? 0.8 : 0, canTele ? 0.8 : 0, 2, 0.5, 0.1, 0.5);
+			DustModCore.spawnParticles(wearer.worldObj, "reddust", testLoc,
+                    canTele ? -1 : 1, canTele ? 0.6 : 0, canTele ? 1 : 0,
+                    6 / (dist < 3 ? 6 : 1), 0.1, 0.1, 0.1);
+			DustModCore.spawnParticles(wearer.worldObj, "reddust", Math
+                    .floor(testLoc[0]) + 0.5, newY,
+                    Math.floor(testLoc[2]) + 0.5, canTele ? -1 : 0,
+                    canTele ? 0.8 : 0, canTele ? 0.8 : 0, 2, 0.5, 0.1, 0.5);
 
 			if (buttons[0] && !getLastMouse(item) && canTele)
 			{
@@ -232,7 +232,7 @@ public class InscriptionBlinker extends InscriptionEvent
 
 	public int[] getClickedBlock(Entity wearer, ItemStack item)
 	{
-		MovingObjectPosition click = DustMod.getWornInscription()
+		MovingObjectPosition click = DustModCore.getWornInscription()
 				.getMovingObjectPositionFromPlayer(wearer.worldObj,
 						(EntityPlayer) wearer, false);
 		if (click != null && click.typeOfHit == EnumMovingObjectType.TILE)

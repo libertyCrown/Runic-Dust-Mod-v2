@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.item.ItemInscription;
 import com.runicdust.dustcore.item.ItemWornInscription;
@@ -201,7 +201,7 @@ public class InscriptionEvent
 		item.damageItem(amt, wearer);
 		if (item.getItemDamage() >= ItemWornInscription.max - 1)
 		{
-			DustMod.sendRenderBreakItem(wearer, item);
+			DustModCore.sendRenderBreakItem(wearer, item);
 		}
 		if (item.stackSize <= 0)
 		{

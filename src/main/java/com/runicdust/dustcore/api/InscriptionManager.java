@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.Configuration;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.event.InscriptionEvent;
 import com.runicdust.dustcore.item.ItemInscription;
 
@@ -37,10 +37,10 @@ public class InscriptionManager
 		}
 		events.add(evt);
 
-		DustMod.log(Level.FINER, "Registering inscription " + evt.idName);
+		DustModCore.log(Level.FINER, "Registering inscription " + evt.idName);
 		if (config == null)
 		{
-			config = new Configuration(DustMod.suggestedConfig);
+			config = new Configuration(DustModCore.suggestedConfig);
 			config.load();
 			config.addCustomCategoryComment("INSCRIPTIONS",
 					"Allow specific inscriptions to be used. Options: ALL, NONE, OPS");
@@ -64,13 +64,13 @@ public class InscriptionManager
 				evt.permission = "NONE";
 			if (!evt.permission.equals("ALL"))
 			{
-				DustMod.log(Level.FINE, "Inscription permission for "
-						+ evt.idName + " set to " + evt.permission);
+				DustModCore.log(Level.FINE, "Inscription permission for "
+                        + evt.idName + " set to " + evt.permission);
 			}
-			DustMod.log(Level.FINER, "Registering local inscription " + evt.idName);
+			DustModCore.log(Level.FINER, "Registering local inscription " + evt.idName);
 			LanguageRegistry.instance().addStringLocalization(
 					"insc." + evt.idName + ".name", evt.properName);
-			DustMod.proxy.checkInscriptionPage(evt);
+			DustModCore.proxy.checkInscriptionPage(evt);
 			evt.isRemote = true;
 		}
 
@@ -80,16 +80,16 @@ public class InscriptionManager
 	public static void registerRemoteInscriptionEvent(InscriptionEvent evt)
 	{
 		eventsRemote.add(evt);
-		DustMod.log(Level.FINER, "Registering remote inscription " + evt.idName);
+		DustModCore.log(Level.FINER, "Registering remote inscription " + evt.idName);
 		LanguageRegistry.instance().addStringLocalization(
 				"insc." + evt.idName + ".name", evt.properName);
-		DustMod.proxy.checkInscriptionPage(evt);
+		DustModCore.proxy.checkInscriptionPage(evt);
 		evt.isRemote = true;
 	}
 
 	public static void resetRemoteInscriptions()
 	{
-		DustMod.log(Level.FINE, "Reseting remote inscriptions.");
+		DustModCore.log(Level.FINE, "Reseting remote inscriptions.");
 
 		eventsRemote = new ArrayList<InscriptionEvent>();
 	}
@@ -104,7 +104,7 @@ public class InscriptionManager
 			return;
 		}
 		InscriptionEvent event = getEvent(p);
-		ItemStack last = lastArmor.get(DustMod.getUsername(p));
+		ItemStack last = lastArmor.get(DustModCore.getUsername(p));
 		boolean equal = (item != null && last != null
 				&& item.itemID == last.itemID && item.getTagCompound().equals(
 				last.getTagCompound()));
@@ -121,7 +121,7 @@ public class InscriptionManager
 			return;
 		}
 		InscriptionEvent event = getEvent(item);
-		ItemStack last = lastArmor.get(DustMod.getUsername(p));
+		ItemStack last = lastArmor.get(DustModCore.getUsername(p));
 		boolean equal = (item != null && last != null
 				&& item.itemID == last.itemID && item.hasTagCompound() && item
 				.getTagCompound().equals(last.getTagCompound()));
@@ -138,14 +138,14 @@ public class InscriptionManager
 				event.onEquip((EntityPlayer) p, item);
 			}
 		}
-		lastArmor.put(DustMod.getUsername(p), item);
+		lastArmor.put(DustModCore.getUsername(p), item);
 	}
 
 	public static InscriptionEvent getEvent(Player p)
 	{
 		EntityPlayer ep = (EntityPlayer) p;
 		ItemStack item = ep.inventory.getStackInSlot(38);
-		if (item == null || item.itemID != DustMod.getWornInscription().itemID)
+		if (item == null || item.itemID != DustModCore.getWornInscription().itemID)
 			return null;
 		if (item.getItemDamage() >= item.getMaxDamage() - 1)
 			return null;
@@ -210,9 +210,9 @@ public class InscriptionManager
 
 				if (event != null)
 				{
-					DustMod.log(Level.FINER, "Inscription Identified: "
-							+ event.idName);
-					// System.out.println("[DustMod] Inscription Identified: " +
+					DustModCore.log(Level.FINER, "Inscription Identified: "
+                            + event.idName);
+					// System.out.println("[DustModCore] Inscription Identified: " +
 					// event.idName);
 					tag = new NBTTagCompound();
 					item.setTagCompound(tag);
@@ -267,7 +267,7 @@ public class InscriptionManager
 
 	public static ArrayList<InscriptionEvent> getEvents()
 	{
-		if (DustMod.proxy.isClient())
+		if (DustModCore.proxy.isClient())
 			return eventsRemote;
 		return events;
 	}

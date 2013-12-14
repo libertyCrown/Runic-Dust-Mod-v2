@@ -2,6 +2,7 @@ package com.runicdust.dustcore.item;
 
 import java.util.List;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -19,7 +20,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.api.InscriptionManager;
 import com.runicdust.dustcore.event.InscriptionEvent;
 import com.runicdust.dustcore.util.References;
@@ -44,7 +44,7 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 			ItemStack armor, DamageSource source, double damage, int slot)
 	{
 		int prevented = (int) damage
-				- DustMod.inscriptionManager.getPreventedDamage(player, armor,
+				- DustModCore.inscriptionManager.getPreventedDamage(player, armor,
 						source, (int) damage);
 		ArmorProperties rtn = new ArmorProperties(0, 1d, prevented);
 		rtn.Slot = 1;
@@ -55,14 +55,14 @@ public class ItemWornInscription extends ItemArmor implements ISpecialArmor
 	public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
 	{
 
-		return DustMod.inscriptionManager.getArmor(player, armor);
+		return DustModCore.inscriptionManager.getArmor(player, armor);
 	}
 
 	@Override
 	public void damageArmor(EntityLivingBase entity, ItemStack stack,
 			DamageSource source, int damage, int slot)
 	{
-		DustMod.inscriptionManager.onDamage(entity, stack, source, damage);
+		DustModCore.inscriptionManager.onDamage(entity, stack, source, damage);
 	}
 	
 	@Override

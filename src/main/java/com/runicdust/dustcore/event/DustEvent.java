@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.config.DustContent;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.handlers.SacrificeHandler;
@@ -520,14 +520,14 @@ public abstract class DustEvent
 									if (!cCol[t].equals(isCol[t]))
 									{
 										match = false;
-										DustMod.log("swabby", cCol[t], isCol[t]);
+										DustModCore.log("swabby", cCol[t], isCol[t]);
 										break;
 									}
 								}
 							} else
 							{
-								DustMod.log("wat", cTag.getTags().size(), isTag
-										.getTags().size());
+								DustModCore.log("wat", cTag.getTags().size(), isTag
+                                        .getTags().size());
 							}
 						} else
 						{

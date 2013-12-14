@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.InscriptionManager;
 import com.runicdust.dustcore.config.DustContent;
 import com.runicdust.dustcore.entity.EntityDust;
@@ -122,7 +122,7 @@ public class InscriptionRocketLaunch extends InscriptionEvent
 
 				wearer.fallDistance = 0.0F;
 				setFalling(item, true);
-				DustMod.sendEntMotionTraits(wearer);
+				DustModCore.sendEntMotionTraits(wearer);
 
 				this.damage((EntityPlayer) wearer, item, level == 1 ? 5 : 2);
 			}

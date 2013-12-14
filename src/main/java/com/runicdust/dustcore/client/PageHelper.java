@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -21,7 +22,6 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -43,7 +43,7 @@ public class PageHelper
 
 	public PageHelper()
 	{
-		String minecraftPath = DustMod.suggestedConfig.getParent();
+		String minecraftPath = DustModCore.suggestedConfig.getParent();
 		File file = new File(minecraftPath);
 		minecraftPath = file.getParent();
 
@@ -71,10 +71,10 @@ public class PageHelper
 			boolean success = new File(folder).mkdir();
 			if (success)
 			{
-				DustMod.log(Level.INFO,
-						"Lexicon Folder " + new File(folder).getAbsolutePath()
-								+ " created.");
-				System.out.println("[DustMod] Lexicon Folder "
+				DustModCore.log(Level.INFO,
+                        "Lexicon Folder " + new File(folder).getAbsolutePath()
+                                + " created.");
+				System.out.println("[DustModCore] Lexicon Folder "
 						+ new File(folder).getAbsolutePath() + " created.");
 			}
 			new File(runeFolder).mkdirs();
@@ -533,7 +533,7 @@ public class PageHelper
 		if (stream == null)
 		{
 			throw new IllegalArgumentException(
-					"[DustMod] Image file not found! " + file
+					"[DustModCore] Image file not found! " + file
 							+ ". Perhaps you installed it wrong?");
 		}
 		rtn = ImageIO.read(stream);

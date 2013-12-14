@@ -6,6 +6,7 @@ package com.runicdust.dustdefault.runes;
 
 import java.util.List;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
@@ -13,7 +14,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 
@@ -82,10 +82,10 @@ public class RuneEnchSilkTouch extends DustEvent
 	{
 		e.setStarScale(e.getStarScale() + 0.001F);
 
-		DustMod.log("GROW");
+		DustModCore.log("GROW");
 		if (e.ticksExisted > 20)
 		{
-			DustMod.log("Drop");
+			DustModCore.log("Drop");
 			Entity en = null;
 			ItemStack create = new ItemStack((int) e.data[1], 1, 0);
 			// if(e.data == mod_DustMod.spiritSword.itemID){

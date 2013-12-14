@@ -2,10 +2,9 @@ package com.runicdust.dustcore.core;
 
 import java.util.HashMap;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
-
-import com.runicdust.dustcore.DustMod;
 
 import cpw.mods.fml.common.network.Player;
 
@@ -23,7 +22,7 @@ public class CommonMouseHandler
 
 	public void checkPlayer(Player p)
 	{
-		buttonsPressed.put(DustMod.getUsername(p), new boolean[3]);
+		buttonsPressed.put(DustModCore.getUsername(p), new boolean[3]);
 	}
 
 	public void tick()
@@ -35,7 +34,7 @@ public class CommonMouseHandler
 			if (p == null)
 				continue;
 			boolean[] buttons = buttonsPressed.get(username);
-			DustMod.inscriptionManager.tick(p, buttons,
+			DustModCore.inscriptionManager.tick(p, buttons,
 					((EntityPlayer) p).getCurrentArmor(2));
 		}
 	}
@@ -50,7 +49,7 @@ public class CommonMouseHandler
 
 	public void setKey(Player p, int key, boolean pressed)
 	{
-		String un = DustMod.getUsername(p);
+		String un = DustModCore.getUsername(p);
 		if (!buttonsPressed.containsKey(un))
 			checkPlayer(p);
 		buttonsPressed.get(un)[key] = pressed;

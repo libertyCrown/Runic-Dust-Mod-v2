@@ -1,11 +1,11 @@
 package com.runicdust.dusttest.inscriptions;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -85,7 +85,7 @@ public class InscriptionGlide extends InscriptionEvent
 		if (player.motionY < 0 && !player.onGround && player.isSneaking()
 				&& !player.capabilities.isFlying)
 		{
-			DustMod.log("FALL " + player.motionY);
+			DustModCore.log("FALL " + player.motionY);
 			// if(player.motionY < -motionYMul){
 			// player.motionY = -motionYMul;
 			// }
@@ -97,13 +97,13 @@ public class InscriptionGlide extends InscriptionEvent
 			// }
 			player.fallDistance = 0;
 			player.jumpMovementFactor = jumpFactor;
-			DustMod.sendEntMotionTraits(wearer);
+			DustModCore.sendEntMotionTraits(wearer);
 			this.damage((EntityPlayer) wearer, item, 2 / power);
 		} else if (player.jumpMovementFactor == jumpFactor)
 		{
 			player.jumpMovementFactor = 0.02f; // Default playerjump movement
 												// factor
-			DustMod.sendEntMotionTraits(wearer);
+			DustModCore.sendEntMotionTraits(wearer);
 		}
 	}
 }

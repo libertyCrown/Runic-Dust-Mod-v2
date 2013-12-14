@@ -8,7 +8,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.util.References;
@@ -37,7 +37,7 @@ public abstract class RuneTrap extends DustEvent
 
 	public void onInit(EntityDust e)
 	{
-		int compare = DustMod.compareDust(References.gunDID, e.dustID);
+		int compare = DustModCore.compareDust(References.gunDID, e.dustID);
 
 		if (compare < 0)
 		{

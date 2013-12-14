@@ -686,7 +686,7 @@ public class DustShape
 
 				int blockID = w.getBlockId(si + x, j, sk + z);
 				int meta = w.getBlockMetadata(si + x, j, sk + z);
-				if (blockID != 0 && !(DustMod.isDust(blockID)/* && meta == 2 */)
+				if (blockID != 0 && !(DustModCore.isDust(blockID)/* && meta == 2 */)
 						&& blockID != Block.tallGrass.blockID)
 				{
 					continue;
@@ -751,7 +751,7 @@ public class DustShape
 		{
 			for (int z = 0; z < tblocks.get(0).size(); z++)
 			{
-				if (DustMod.isDust(w.getBlockId(si + x, j, sk + z)))
+				if (DustModCore.isDust(w.getBlockId(si + x, j, sk + z)))
 				{
 					TileEntityDust ted = (TileEntityDust) w.getBlockTileEntity(
 							si + x, j, sk + z);
@@ -933,7 +933,7 @@ public class DustShape
 
 			int blockID = w.getBlockId(si + x, j, sk + z);
 			int meta = w.getBlockMetadata(si + x, j, sk + z);
-			if (blockID != 0 && !(DustMod.isDust(blockID)/* && meta == 2 */)
+			if (blockID != 0 && !(DustModCore.isDust(blockID)/* && meta == 2 */)
 					&& blockID != Block.tallGrass.blockID)
 			{
 				continue;
@@ -1012,7 +1012,7 @@ public class DustShape
 		{
 			for (int z = 0; z < tblocks.get(0).size(); z++)
 			{
-				if (DustMod.isDust(w.getBlockId(si + x, j, sk + z)))
+				if (DustModCore.isDust(w.getBlockId(si + x, j, sk + z)))
 				{
 					TileEntityDust ted = (TileEntityDust) w.getBlockTileEntity(
 							si + x, j, sk + z);
@@ -1104,7 +1104,7 @@ public class DustShape
 		{
 			if (dust[i] < dustAmt[i])
 			{
-				DustMod.log(Level.FINER, "Not enough dust: " + i);
+				DustModCore.log(Level.FINER, "Not enough dust: " + i);
 				return false;
 			}
 		}

@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityDust;
 
 import cpw.mods.fml.common.FMLLog;
@@ -163,9 +163,9 @@ public class VoidStorageManager
 						voidInventory.put(key, new ArrayList<ItemStack>());
 					}
 					voidInventory.get(key).add(new ItemStack(id, size, dam));
-					DustMod.log(Level.FINER, "Void Inventory loading: " + key
-							+ "[" + id + "," + size + "," + dam + "]");
-					// System.out.println("[DustMod] Void Inventory loading: " +
+					DustModCore.log(Level.FINER, "Void Inventory loading: " + key
+                            + "[" + id + "," + size + "," + dam + "]");
+					// System.out.println("[DustModCore] Void Inventory loading: " +
 					// key + "[" + id + "," + size + "," + dam + "]");
 				}
 			}

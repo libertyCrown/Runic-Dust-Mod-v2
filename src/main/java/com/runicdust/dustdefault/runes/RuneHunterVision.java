@@ -49,7 +49,7 @@ public class RuneHunterVision extends PoweredEvent
 	public void onTick(EntityDust e)
 	{
 		super.onTick(e);
-		// DustMod.hunterVisionActive = e.data[0] % 2 == 0;
+		// DustModCore.hunterVisionActive = e.data[0] % 2 == 0;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class RuneHunterVision extends PoweredEvent
 	public void onUnload(EntityDust e)
 	{
 		super.onUnload(e);
-		// DustMod.hunterVisionActive = false;
+		// DustModCore.hunterVisionActive = false;
 	}
 
 	@Override

@@ -4,13 +4,13 @@
  */
 package com.runicdust.dustdefault.runes;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 
@@ -45,7 +45,7 @@ public class RuneCompression extends DustEvent
 			return;
 		}
 		// Cant use negator
-		if (this.takeItems(e, new ItemStack(DustMod.getNegator().itemID, 1, -1)))
+		if (this.takeItems(e, new ItemStack(DustModCore.getNegator().itemID, 1, -1)))
 		{
 			e.fizzle();
 			return;

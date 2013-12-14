@@ -1,5 +1,6 @@
 package com.runicdust.dusttest.inscriptions;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -63,7 +63,7 @@ public class InscriptionMountainCutter extends InscriptionEvent
 		{
 			try
 			{
-				MovingObjectPosition click = DustMod.getWornInscription()
+				MovingObjectPosition click = DustModCore.getWornInscription()
 						.getMovingObjectPositionFromPlayer(ep.worldObj, ep,
 								true);
 

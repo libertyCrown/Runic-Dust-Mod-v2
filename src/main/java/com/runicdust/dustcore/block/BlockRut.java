@@ -17,7 +17,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.config.DustContent;
 import com.runicdust.dustcore.tileentity.TileEntityRut;
 import com.runicdust.dustcore.util.References;
@@ -40,7 +40,7 @@ public class BlockRut extends BlockContainer
 	@Override
 	public int getRenderType()
 	{
-		return DustMod.proxy.getBlockModel(this);
+		return DustModCore.proxy.getBlockModel(this);
 	}
 
 	public boolean renderAsNormalBlock()

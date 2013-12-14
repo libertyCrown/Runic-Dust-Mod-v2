@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -70,9 +70,9 @@ public class InscriptionForesight extends InscriptionEvent
 							{
 								dummy.setPosition(x + i, y + j, z + k);
 								if (dummy.getCanSpawnHere())
-									DustMod.spawnParticles(world, "witchMagic",
-											x + i + 0.5, y + j, z + k + 0.5, 0,
-											-0.8, 0, 5, 0.5d);
+									DustModCore.spawnParticles(world, "witchMagic",
+                                            x + i + 0.5, y + j, z + k + 0.5, 0,
+                                            -0.8, 0, 5, 0.5d);
 							}
 						}
 					}

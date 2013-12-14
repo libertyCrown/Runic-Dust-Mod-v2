@@ -6,6 +6,7 @@ package com.runicdust.dusttest.runes;
 
 import java.util.Random;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
@@ -13,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 
@@ -272,7 +272,7 @@ public class RuneLumberjack extends DustEvent
 			for (int a = rand.nextInt(maxDust); a >= 0; a--)
 			{
 				EntityItem ei = new EntityItem(world, x, y, z, new ItemStack(
-						DustMod.getItemDust().itemID, 1, 100));
+						DustModCore.getItemDust().itemID, 1, 100));
 				world.spawnEntityInWorld(ei);
 			}
 		}
@@ -325,7 +325,7 @@ public class RuneLumberjack extends DustEvent
 		double width = 1.3d;
 		double height = 1.3d;
 
-		DustMod.spawnParticles(world, "explode", x + width / 2, y + height / 2,
-				z + width / 2, 0, 0, 0, 5, width, height, width);
+		DustModCore.spawnParticles(world, "explode", x + width / 2, y + height / 2,
+                z + width / 2, 0, 0, 0, 5, width, height, width);
 	}
 }

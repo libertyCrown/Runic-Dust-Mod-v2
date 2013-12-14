@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.PoweredEvent;
 import com.runicdust.dustcore.tileentity.TileEntityDust;
@@ -324,7 +324,7 @@ public class RunePowerRelay extends PoweredEvent
 			y = -Math.pow((x - ((loc2[0] - loc1[0]) / 2)), 2) / (d * 2) + c + h;
 			// System.out.println("Penis " + x + " " + y);
 			// System.out.printf("Penis {0} {1}", x,y);
-			// DustMod.spawnParticles(world, "reddust", x, y, 0.5, 1, 0, 0, 5,
+			// DustModCore.spawnParticles(world, "reddust", x, y, 0.5, 1, 0, 0, 5,
 			// 0.01);
 			locations[iter] = x;
 			locations[iter + 1] = y;
@@ -336,11 +336,11 @@ public class RunePowerRelay extends PoweredEvent
 		}
 		// System.out.println("You're a dick " + iter + " " + locations.length);
 
-		// DustMod.spawnParticles(world, "reddust", x, y, 0.5, 1, 0, 0, 5,
+		// DustModCore.spawnParticles(world, "reddust", x, y, 0.5, 1, 0, 0, 5,
 		// 0.01);
 		// Double[] locations = new Double[particles.size()];
 		// locations = particles.toArray(locations);
-		DustMod.spawnParticles(world, "reddust", locations, 0, 1, 0, 2, 0.01,
-				0.01, 0.01);
+		DustModCore.spawnParticles(world, "reddust", locations, 0, 1, 0, 2, 0.01,
+                0.01, 0.01);
 	}
 }

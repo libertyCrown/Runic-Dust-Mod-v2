@@ -2,6 +2,7 @@ package com.runicdust.dustcore.item;
 
 import java.util.List;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -15,7 +16,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.api.DustManager;
 import com.runicdust.dustcore.config.DustContent;
@@ -56,7 +56,7 @@ public class ItemPlaceScroll extends Item
 		int r = (int) MathHelper
 				.floor_double((double) ((wielder.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 
-		if (DustMod.isDust(world.getBlockId(i, j, k)))
+		if (DustModCore.isDust(world.getBlockId(i, j, k)))
 		{
 			j--;
 		}

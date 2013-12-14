@@ -2,10 +2,10 @@ package com.runicdust.dustdefault.runes;
 
 import java.util.List;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.api.InscriptionManager;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
@@ -49,7 +49,7 @@ public class RuneChargeInscription extends DustEvent
 			for (EntityItem ei : items)
 			{
 				ItemStack i = ei.getEntityItem();
-				if (i.itemID == DustMod.getWornInscription().itemID
+				if (i.itemID == DustModCore.getWornInscription().itemID
 						&& i.getItemDamage() != 0)
 				{ 
 					// If the inscription is charged, it is ignored

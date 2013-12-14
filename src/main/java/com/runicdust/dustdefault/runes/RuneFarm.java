@@ -7,12 +7,12 @@ package com.runicdust.dustdefault.runes;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 
@@ -112,7 +112,7 @@ public class RuneFarm extends DustEvent
 						if ((bidb == Block.dirt.blockID
 								|| bidb == Block.grass.blockID
 								|| bidb == Block.tilledField.blockID || bidb == Block.sand.blockID)
-								&& (bidt == 0 || DustMod.isDust(bidt) || bidt == Block.tallGrass.blockID))
+								&& (bidt == 0 || DustModCore.isDust(bidt) || bidt == Block.tallGrass.blockID))
 						{
 							world.setBlock(i + di, j + dj - 1, k + dk,
 									Block.tilledField.blockID, 0, 3);
@@ -151,8 +151,8 @@ public class RuneFarm extends DustEvent
 			{
 				locations[d] = locs.get(d);
 			}
-			DustMod.spawnParticles(e.worldObj, "smoke", locations, 0, 0, 0, 8,
-					0.5, 0.2, 0.5);
+			DustModCore.spawnParticles(e.worldObj, "smoke", locations, 0, 0, 0, 8,
+                    0.5, 0.2, 0.5);
 		}
 		e.fade();
 	}

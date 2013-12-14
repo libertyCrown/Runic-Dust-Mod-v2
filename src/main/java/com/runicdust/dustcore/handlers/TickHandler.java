@@ -2,7 +2,7 @@ package com.runicdust.dustcore.handlers;
 
 import java.util.EnumSet;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -17,8 +17,8 @@ public class TickHandler implements ITickHandler
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData)
 	{
-		DustMod.proxy.tickMouseManager();
-		DustMod.keyHandler.tick();
+		DustModCore.proxy.tickMouseManager();
+		DustModCore.keyHandler.tick();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class TickHandler implements ITickHandler
 	@Override
 	public String getLabel()
 	{
-		return "DustMod";
+		return "DustModCore";
 	}
 
 }

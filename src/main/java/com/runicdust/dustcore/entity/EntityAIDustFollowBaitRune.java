@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 
 public class EntityAIDustFollowBaitRune extends EntityAIBase
 {
@@ -89,10 +89,10 @@ public class EntityAIDustFollowBaitRune extends EntityAIBase
 
 		if (Math.random() < 0.2)
 		{
-			DustMod.spawnParticles(theEntity.worldObj, "smoke", theEntity.posX,
-					theEntity.posY + theEntity.height / 2, theEntity.posZ, 0,
-					Math.random() * 0.05, 0, (int) (Math.random() * 20), 0.75,
-					theEntity.height / 2, 0.75);
+			DustModCore.spawnParticles(theEntity.worldObj, "smoke", theEntity.posX,
+                    theEntity.posY + theEntity.height / 2, theEntity.posZ, 0,
+                    Math.random() * 0.05, 0, (int) (Math.random() * 20), 0.75,
+                    theEntity.height / 2, 0.75);
 		}
 	}
 

@@ -25,7 +25,7 @@ import cpw.mods.fml.common.network.NetworkMod;
  * @author billythegoat101
  * 
  */
-@Mod(modid = "DustTestPack", name = "Runic Dust Mod- Testing Pack", version = "v2.0", dependencies = "after:DustMod")
+@Mod(modid = "DustTestPack", name = "Runic Dust Mod- Testing Pack", version = "v2.0", dependencies = "after:DustModCore")
 @NetworkMod(clientSideRequired = false, serverSideRequired = false)
 public class DustModTestPack
 {

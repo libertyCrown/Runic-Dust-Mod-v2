@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,7 +19,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.entity.EntityBlock;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.PoweredEvent;
@@ -96,10 +96,10 @@ public class RuneTeleport extends PoweredEvent
 				{
 					fnd = i;
 					e.data[0] = world.getBlockId(i[0], i[1] - 1, i[2]);
-					DustMod.log("Warp ID set to "
-							+ e.data[0]
-							+ " "
-							+ (Block.blocksList[e.data[0]].getUnlocalizedName()));
+					DustModCore.log("Warp ID set to "
+                            + e.data[0]
+                            + " "
+                            + (Block.blocksList[e.data[0]].getUnlocalizedName()));
 				}
 			} else
 			{
@@ -113,8 +113,8 @@ public class RuneTeleport extends PoweredEvent
 			{
 				if (x == 0 || z == 0)
 				{
-					if (DustMod.isDust(world.getBlockId(fnd[0] + x, fnd[1],
-							fnd[2] + z)))
+					if (DustModCore.isDust(world.getBlockId(fnd[0] + x, fnd[1],
+                            fnd[2] + z)))
 					{
 						TileEntityDust ted = (TileEntityDust) world
 								.getBlockTileEntity(x + fnd[0], fnd[1], fnd[2]

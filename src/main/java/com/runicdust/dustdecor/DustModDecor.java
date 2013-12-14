@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.DustItemManager;
 
 import cpw.mods.fml.common.Mod;
@@ -76,7 +76,7 @@ public class DustModDecor
 		for (int i = 0; i < 16; i++)
 		{
 			GameRegistry.addShapelessRecipe(new ItemStack(
-					DustMod.getItemDust(), 4, i + 10), new ItemStack(
+					DustModCore.getItemDust(), 4, i + 10), new ItemStack(
 					Item.dyePowder, 1, i), new ItemStack(Block.sand, 1));
 		}
 

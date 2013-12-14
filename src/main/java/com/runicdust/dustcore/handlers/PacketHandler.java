@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -23,7 +24,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.api.InscriptionManager;
@@ -479,7 +479,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 		boolean hasFlame;
 		int r, g, b;
 		TileEntityDust ted;
-		World world = DustMod.proxy.getClientWorld();
+		World world = DustModCore.proxy.getClientWorld();
 
 		try
 		{
@@ -528,7 +528,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 				new ByteArrayInputStream(data));
 		int x, y, z;
 		TileEntityDustTable tel;
-		World world = DustMod.proxy.getClientWorld();
+		World world = DustModCore.proxy.getClientWorld();
 
 		try
 		{
@@ -559,7 +559,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 		boolean hasFlame;
 		int r, g, b;
 		TileEntityRut ter;
-		World world = DustMod.proxy.getClientWorld();
+		World world = DustModCore.proxy.getClientWorld();
 
 		try
 		{
@@ -689,7 +689,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 	private static void onInscriptionDeclarationPacket(byte[] data,
 			Player player)
 	{
-		// System.out.println("[DustMod] Inscription recieved");
+		// System.out.println("[DustModCore] Inscription recieved");
 		DataInputStream dis = new DataInputStream(
 				new ByteArrayInputStream(data));
 
@@ -831,7 +831,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 			keyID = dis.readInt();
 			pressed = dis.readBoolean();
 
-			DustMod.keyHandler.setKey(player, keyID, pressed);
+			DustModCore.keyHandler.setKey(player, keyID, pressed);
 
 		} catch (IOException e)
 		{
@@ -1045,7 +1045,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 			INetworkManager manager)
 	{
 
-		DustMod.keyHandler.checkPlayer(player);
+		DustModCore.keyHandler.checkPlayer(player);
 		for (int i = 0; i < DustItemManager.ids.length; i++)
 		{
 			if (DustItemManager.ids[i] != null)
@@ -1081,7 +1081,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 	public void connectionOpened(NetHandler netClientHandler, String server,
 			int port, INetworkManager manager)
 	{
-		DustMod.log(Level.FINER, "Resetting due to opened connection.1");
+		DustModCore.log(Level.FINER, "Resetting due to opened connection.1");
 		DustManager.resetMultiplayerRunes();
 		DustItemManager.reset();
 		InscriptionManager.resetRemoteInscriptions();
@@ -1091,7 +1091,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 	public void connectionOpened(NetHandler netClientHandler,
 			MinecraftServer server, INetworkManager manager)
 	{
-		DustMod.log(Level.FINER, "Resetting due to opened connection.2");
+		DustModCore.log(Level.FINER, "Resetting due to opened connection.2");
 		DustManager.resetMultiplayerRunes();
 		DustItemManager.reset();
 		InscriptionManager.resetRemoteInscriptions();
@@ -1100,7 +1100,7 @@ public class PacketHandler implements IPacketHandler, IConnectionHandler
 	@Override
 	public void connectionClosed(INetworkManager manager)
 	{
-		// System.out.println("[DustMod] Resetting due to closed connection.");
+		// System.out.println("[DustModCore] Resetting due to closed connection.");
 		// DustManager.resetMultiplayerRunes();
 		// DustItemManager.reset();
 		// InscriptionManager.resetRemoteInscriptions();

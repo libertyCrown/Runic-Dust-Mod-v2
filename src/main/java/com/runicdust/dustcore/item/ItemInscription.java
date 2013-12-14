@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.InscriptionManager;
 import com.runicdust.dustcore.client.inventory.InventoryInscription;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -43,7 +43,7 @@ public class ItemInscription extends Item
 	public ItemStack onItemRightClick(ItemStack item, World world,
 			EntityPlayer player)
 	{
-		player.openGui(DustMod.instance, 0, world, (int) player.posX,
+		player.openGui(DustModCore.instance, 0, world, (int) player.posX,
 				(int) player.posY, (int) player.posZ);
 
 		return item;
@@ -146,7 +146,7 @@ public class ItemInscription extends Item
 			{
 				id = event.id;
 				InscriptionManager.onCreate((EntityPlayer) ent, item);
-				item.itemID = DustMod.getWornInscription().itemID;
+				item.itemID = DustModCore.getWornInscription().itemID;
 				item.setItemDamage(ItemInscription.max);
 			} else
 			{

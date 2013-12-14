@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,6 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.block.BlockDust;
 import com.runicdust.dustcore.entity.EntityDust;
@@ -269,7 +269,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 			}
 		}
 
-		if (DustMod.isDust(worldObj.getBlockId(xCoord - 1, yCoord, zCoord)))
+		if (DustModCore.isDust(worldObj.getBlockId(xCoord - 1, yCoord, zCoord)))
 		{
 			TileEntityDust ted = (TileEntityDust) worldObj.getBlockTileEntity(
 					xCoord - 1, yCoord, zCoord);
@@ -280,7 +280,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 			}
 		}
 
-		if (DustMod.isDust(worldObj.getBlockId(xCoord + 1, yCoord, zCoord)))
+		if (DustModCore.isDust(worldObj.getBlockId(xCoord + 1, yCoord, zCoord)))
 		{
 			TileEntityDust ted = (TileEntityDust) worldObj.getBlockTileEntity(
 					xCoord + 1, yCoord, zCoord);
@@ -291,7 +291,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 			}
 		}
 
-		if (DustMod.isDust(worldObj.getBlockId(xCoord, yCoord, zCoord - 1)))
+		if (DustModCore.isDust(worldObj.getBlockId(xCoord, yCoord, zCoord - 1)))
 		{
 			TileEntityDust ted = (TileEntityDust) worldObj.getBlockTileEntity(
 					xCoord, yCoord, zCoord - 1);
@@ -302,7 +302,7 @@ public class TileEntityDust extends TileEntity implements IInventory
 			}
 		}
 
-		if (DustMod.isDust(worldObj.getBlockId(xCoord, yCoord, zCoord + 1)))
+		if (DustModCore.isDust(worldObj.getBlockId(xCoord, yCoord, zCoord + 1)))
 		{
 			TileEntityDust ted = (TileEntityDust) worldObj.getBlockTileEntity(
 					xCoord, yCoord, zCoord + 1);

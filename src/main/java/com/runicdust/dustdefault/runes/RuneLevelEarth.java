@@ -9,7 +9,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 
@@ -136,7 +136,7 @@ public class RuneLevelEarth extends DustEvent
 						int id = world.getBlockId(ix + x, iy + y, iz + z);
 						int meta = world.getBlockId(ix + x, iy + y, iz + z);
 
-						if (id != 0 && !DustMod.isDust(id))
+						if (id != 0 && !DustModCore.isDust(id))
 						{
 							if (Block.blocksList[id] instanceof BlockContainer)
 							{

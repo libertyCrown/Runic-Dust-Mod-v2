@@ -1,5 +1,6 @@
 package com.runicdust.dustcore.item;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -7,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.api.DustManager;
 import com.runicdust.dustcore.config.DustContent;
@@ -34,7 +34,7 @@ public class ItemRunicTome extends Item
 	{
 		if (p.isSneaking())
 		{
-			DustMod.proxy.openTomeGUI(itemstack, p);
+			DustModCore.proxy.openTomeGUI(itemstack, p);
 		}
 
 		return super.onItemRightClick(itemstack, world, p);
@@ -57,7 +57,7 @@ public class ItemRunicTome extends Item
 		int r = (MathHelper
 				.floor_double((double) (p.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3);
 
-		if (DustMod.isDust(world.getBlockId(i, j, k)))
+		if (DustModCore.isDust(world.getBlockId(i, j, k)))
 		{
 			if (world.getBlockMetadata(i, j, k) == References.DustMetaUsed)
 			{

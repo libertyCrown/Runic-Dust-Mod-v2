@@ -46,8 +46,9 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void resetPlayerTomePage()
 	{
+        GuiTome.guidePage = 0;
 		GuiTome.runePage = 0;
-		GuiTome.insPage = 0;
+		GuiTome.inscPage = 0;
 	}
 
 	@Override

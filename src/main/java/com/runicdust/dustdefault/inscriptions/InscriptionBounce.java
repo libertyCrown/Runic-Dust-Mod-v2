@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -58,7 +58,7 @@ public class InscriptionBounce extends InscriptionEvent
 			wearer.motionX = -getLastXVel(item) * 0.76D;
 			wearer.motionY = -getLastYVel(item) * 0.76D;
 			wearer.motionZ = -getLastZVel(item) * 0.76D;
-			DustMod.sendEntMotionTraits(wearer);
+			DustModCore.sendEntMotionTraits(wearer);
 			setFalling(item, false, 0, 0, 0, 0);
 
 			this.damage((EntityPlayer) wearer, item, 8);

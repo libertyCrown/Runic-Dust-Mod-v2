@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -56,7 +56,7 @@ public class InscriptionWaterAffinity extends InscriptionEvent
 		{
 			player.jumpMovementFactor = 0.02f;
 			setTriggered(item, false);
-			DustMod.sendEntMotionTraits(wearer);
+			DustModCore.sendEntMotionTraits(wearer);
 		} else if (isTriggered(item) && isServer && !inWater)
 		{
 			player.jumpMovementFactor = 0.71F;
@@ -64,7 +64,7 @@ public class InscriptionWaterAffinity extends InscriptionEvent
 			player.motionZ *= 6.5D;
 			if (player.motionY < 0)
 				player.motionY *= 0.85;
-			DustMod.sendEntMotionTraits(wearer);
+			DustModCore.sendEntMotionTraits(wearer);
 		}
 		if (inWater && !wasInWater && player.motionY < 0
 				&& !player.isSneaking() && !player.capabilities.isFlying)
@@ -74,7 +74,7 @@ public class InscriptionWaterAffinity extends InscriptionEvent
 
 			player.jumpMovementFactor = 0.61F;
 			setTriggered(item, true);
-			DustMod.sendEntMotionTraits(wearer);
+			DustModCore.sendEntMotionTraits(wearer);
 		}
 	}
 

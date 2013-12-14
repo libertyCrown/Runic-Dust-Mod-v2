@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.runicdust.dustcore.DustModCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -22,7 +23,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-import com.runicdust.dustcore.DustMod;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.api.DustManager;
 import com.runicdust.dustcore.config.DustContent;
@@ -153,7 +153,7 @@ public class BlockDust extends BlockContainer
 	@Override
 	public int getRenderType()
 	{
-		return DustMod.proxy.getBlockModel(this);
+		return DustModCore.proxy.getBlockModel(this);
 	}
 
 	@Override

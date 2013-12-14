@@ -10,7 +10,7 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.event.InscriptionEvent;
@@ -221,7 +221,7 @@ public class InscriptionTeleport extends InscriptionEvent
 
 	public int[] getClickedBlock(Entity wearer, ItemStack item)
 	{
-		MovingObjectPosition click = DustMod.getWornInscription()
+		MovingObjectPosition click = DustModCore.getWornInscription()
 				.getMovingObjectPositionFromPlayer(wearer.worldObj,
 						(EntityPlayer) wearer, false);
 		if (click != null && click.typeOfHit == EnumMovingObjectType.TILE)

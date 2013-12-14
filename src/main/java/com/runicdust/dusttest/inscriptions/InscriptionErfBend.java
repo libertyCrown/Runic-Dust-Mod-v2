@@ -19,7 +19,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.DustMod;
+import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.entity.EntityBlock;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
@@ -154,14 +154,14 @@ public class InscriptionErfBend extends InscriptionEvent
 						// if(button == 0){
 						// world.setBlockAndMetadataWithNotify(cx,cy+i+1,cz,bid,meta);
 						// world.setBlockWithNotify(cx,cy+i,cz,getFillerMaterial(bid,meta));
-						DustMod.spawnParticles(wearer.worldObj, "tilecrack_"
-								+ bid + "_" + meta, cx, cy + i + 1, cz, 0, 2,
-								0, 30, 0.5, 0.1, 0.5);
+						DustModCore.spawnParticles(wearer.worldObj, "tilecrack_"
+                                + bid + "_" + meta, cx, cy + i + 1, cz, 0, 2,
+                                0, 30, 0.5, 0.1, 0.5);
 						// }else {
 						// //
 						// world.setBlockAndMetadataWithNotify(cx,cy+i-1,cz,bid,meta);
 						// // world.setBlockWithNotify(cx,cy+i,cz,0);
-						// DustMod.spawnParticles(wearer.worldObj, "tilecrack_"
+						// DustModCore.spawnParticles(wearer.worldObj, "tilecrack_"
 						// + bid + "_" + meta, cx, cy+i, cz, 0, 1, 0, 5,
 						// 0.5,0.1,0.5);
 						// }
@@ -504,7 +504,7 @@ public class InscriptionErfBend extends InscriptionEvent
 	public synchronized void middleClickBlock(EntityLivingBase wearer,
 			ItemStack item)
 	{
-		MovingObjectPosition click = DustMod.getWornInscription()
+		MovingObjectPosition click = DustModCore.getWornInscription()
 				.getMovingObjectPositionFromPlayer(wearer.worldObj,
 						(EntityPlayer) wearer, false);
 		if (click != null && click.typeOfHit == EnumMovingObjectType.TILE)
@@ -553,7 +553,7 @@ public class InscriptionErfBend extends InscriptionEvent
 		// hasTarget = true;
 		// }else {
 		// MovingObjectPosition click =
-		// DustMod.getWornInscription().getMovingObjectPositionFromPlayer(wearer.worldObj,
+		// DustModCore.getWornInscription().getMovingObjectPositionFromPlayer(wearer.worldObj,
 		// (EntityPlayer)wearer, true);
 		// if(click != null){
 		// tx = click.blockX + 0.5;
@@ -628,7 +628,7 @@ public class InscriptionErfBend extends InscriptionEvent
 
 	public synchronized void blockClick(EntityLivingBase wearer, ItemStack item)
 	{
-		MovingObjectPosition click = DustMod.getWornInscription()
+		MovingObjectPosition click = DustModCore.getWornInscription()
 				.getMovingObjectPositionFromPlayer(wearer.worldObj,
 						(EntityPlayer) wearer, false);
 		if (click != null && click.typeOfHit == EnumMovingObjectType.TILE)
