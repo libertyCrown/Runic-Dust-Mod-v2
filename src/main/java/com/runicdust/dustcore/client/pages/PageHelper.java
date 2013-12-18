@@ -1,4 +1,4 @@
-package com.runicdust.dustcore.client;
+package com.runicdust.dustcore.client.pages;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -1,5 +1,6 @@
 package com.runicdust.dustcore.client;
 
+import com.runicdust.dustcore.client.pages.PageHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -7,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 import com.runicdust.dustcore.DustShape;
-import com.runicdust.dustcore.client.gui.GuiTome;
+import com.runicdust.dustcore.client.pages.GuiTome;
 import com.runicdust.dustcore.client.render.DustBlockRenderers;
 import com.runicdust.dustcore.client.render.RenderDustTable;
 import com.runicdust.dustcore.client.render.RenderEntityBlock;

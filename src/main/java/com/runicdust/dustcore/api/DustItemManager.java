@@ -58,6 +58,8 @@ public class DustItemManager
 		names[value] = namesRemote[value] = name;
 		ids[value] = idsRemote[value] = idName;
 
+
+        //TODO- make localizeable
 		LanguageRegistry.instance().addStringLocalization(
 				"tile.dust." + idName + ".name", "en_US", name + " Runic Dust");
 		LanguageRegistry.instance().addStringLocalization(

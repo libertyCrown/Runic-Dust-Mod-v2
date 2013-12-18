@@ -1,10 +1,10 @@
-package com.runicdust.dustcore.client.gui;
+package com.runicdust.dustcore.client.pages;
 
 import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.api.DustManager;
 import com.runicdust.dustcore.api.InscriptionManager;
-import com.runicdust.dustcore.client.PageHelper;
+import com.runicdust.dustcore.client.pages.PageHelper;
 import com.runicdust.dustcore.client.render.RenderDustTable;
 import com.runicdust.dustcore.event.InscriptionEvent;
 import com.runicdust.dustcore.util.References;
@@ -20,7 +20,7 @@ import java.util.Random;
 public class GuiTome extends GuiScreen {
 
     //Texture locations
-    private ResourceLocation texture = new ResourceLocation(References.path + "/tomeGuio.png");
+    private ResourceLocation texture = new ResourceLocation(References.path + "/guiTomev2.png");
     private ResourceLocation norunes = new ResourceLocation(References.path + "/pages/no_runes.png");
     private ResourceLocation noinscription = new ResourceLocation(References.path + "/pages/no_inscriptions.png");
     private ResourceLocation info = new ResourceLocation(References.path + "/pages/info.png");

@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.runicdust.dustcore.api.DustManager;
-import com.runicdust.dustcore.client.PageHelper;
+import com.runicdust.dustcore.client.pages.PageHelper;
 import com.runicdust.dustcore.client.model.ModelDustBook;
 import com.runicdust.dustcore.tileentity.TileEntityDustTable;
 import com.runicdust.dustcore.util.References;

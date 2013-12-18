@@ -4,8 +4,10 @@ build
 
 # ForgeGradle
 /run
+!src/main/resources/assets
 
 # eclipse
+eclipse/assets
 .settings
 .metadata
 .classpath
