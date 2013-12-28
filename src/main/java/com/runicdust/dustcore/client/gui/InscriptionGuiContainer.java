@@ -7,7 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.item.ItemInk;
 
 public class InscriptionGuiContainer extends Container

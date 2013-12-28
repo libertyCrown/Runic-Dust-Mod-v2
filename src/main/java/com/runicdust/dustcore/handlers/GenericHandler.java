@@ -12,7 +12,7 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.api.InscriptionManager;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.item.ItemPouch;
 
 import cpw.mods.fml.common.ICraftingHandler;

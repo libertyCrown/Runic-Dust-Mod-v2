@@ -11,7 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 

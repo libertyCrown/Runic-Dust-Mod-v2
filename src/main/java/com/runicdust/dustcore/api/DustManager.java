@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.logging.Level;
 
 import com.runicdust.dustcore.DustModCore;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Configuration;
 
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.block.BlockDust;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.entity.EntityDustManager;
 import com.runicdust.dustcore.event.DustEvent;

@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.handlers.PacketHandler;
 import com.runicdust.dustcore.util.References;
 

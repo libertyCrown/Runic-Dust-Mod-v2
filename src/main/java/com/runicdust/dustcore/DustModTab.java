@@ -3,7 +3,7 @@ package com.runicdust.dustcore;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 
 public class DustModTab
 {

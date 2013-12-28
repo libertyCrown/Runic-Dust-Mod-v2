@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 import com.runicdust.dustcore.client.gui.GuiInscription;
 import com.runicdust.dustcore.client.gui.InscriptionGuiContainer;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 

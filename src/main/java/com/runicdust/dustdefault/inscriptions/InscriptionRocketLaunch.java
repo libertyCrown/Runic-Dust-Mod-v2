@@ -8,7 +8,7 @@ import net.minecraft.util.Vec3;
 
 import com.runicdust.dustcore.DustModCore;
 import com.runicdust.dustcore.api.InscriptionManager;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.DustEvent;
 import com.runicdust.dustcore.event.InscriptionEvent;

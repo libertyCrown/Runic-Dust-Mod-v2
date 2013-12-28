@@ -1,6 +1,7 @@
 package com.runicdust.dustcore.block;
 
 import com.runicdust.dustcore.DustModCore;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -15,7 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.runicdust.dustcore.api.DustManager;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.tileentity.TileEntityDustTable;
 import com.runicdust.dustcore.util.References;
 

@@ -13,7 +13,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import com.runicdust.dustcore.api.DustItemManager;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.util.References;
 
 import cpw.mods.fml.relauncher.Side;

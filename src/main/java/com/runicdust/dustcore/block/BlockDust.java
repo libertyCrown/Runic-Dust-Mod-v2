@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.runicdust.dustcore.DustModCore;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -25,7 +26,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.api.DustManager;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.item.ItemPouch;
 import com.runicdust.dustcore.tileentity.TileEntityDust;
 import com.runicdust.dustcore.util.References;

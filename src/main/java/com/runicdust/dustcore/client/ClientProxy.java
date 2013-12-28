@@ -1,6 +1,7 @@
 package com.runicdust.dustcore.client;
 
 import com.runicdust.dustcore.client.pages.PageHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,8 @@ import com.runicdust.dustcore.client.render.RenderDustTable;
 import com.runicdust.dustcore.client.render.RenderEntityBlock;
 import com.runicdust.dustcore.client.render.RenderEntityDust;
 import com.runicdust.dustcore.client.render.RenderLastHandler;
-import com.runicdust.dustcore.config.DustContent;
 import com.runicdust.dustcore.core.CommonProxy;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.entity.EntityBlock;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.event.InscriptionEvent;

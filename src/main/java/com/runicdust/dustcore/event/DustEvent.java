@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.runicdust.dustcore.DustModCore;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +18,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.entity.EntityDust;
 import com.runicdust.dustcore.handlers.SacrificeHandler;
 import com.runicdust.dustcore.tileentity.TileEntityDust;

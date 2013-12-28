@@ -3,6 +3,7 @@ package com.runicdust.dustcore.item;
 import java.util.List;
 
 import com.runicdust.dustcore.DustModCore;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -18,7 +19,7 @@ import net.minecraft.world.World;
 
 import com.runicdust.dustcore.DustShape;
 import com.runicdust.dustcore.api.DustManager;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.util.References;
 
 import cpw.mods.fml.relauncher.Side;

@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.client.inventory.InventoryInscription;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.handlers.PacketHandler;
 import com.runicdust.dustcore.item.ItemInk;
 import com.runicdust.dustcore.util.References;

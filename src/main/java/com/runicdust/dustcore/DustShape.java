@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import com.runicdust.dustcore.api.DustItemManager;
 import com.runicdust.dustcore.api.DustManager;
 import com.runicdust.dustcore.block.BlockDust;
-import com.runicdust.dustcore.config.DustContent;
+import com.runicdust.dustcore.core.DustContent;
 import com.runicdust.dustcore.item.ItemPouch;
 import com.runicdust.dustcore.tileentity.TileEntityDust;
 
