@@ -14,6 +14,15 @@ public class ItemDustRod extends Item{
 		this.setCreativeTab(CreativeTabs.tabMisc);
 	}
 	
+    /**
+     * Returns True is the item is renderer in full 3D when hold.
+     */
+    @SideOnly(Side.CLIENT)
+    public boolean isFull3D()
+    {
+        return true;
+    }
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister ireg)
