@@ -16,8 +16,8 @@ public class References
 	public static int lapisDID = 3;
 	public static int blazeDID = 4;
 
-	public static String path = "dustcore:textures";
-	public static String spritePath = "dustcore:";
+	public static String path = "runicdustmod:textures";
+	public static String spritePath = "runicdustmod:";
 	public static int[] tex;
 	public static int groundTex;
 	public static boolean allTex = true;

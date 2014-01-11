@@ -1,17 +1,17 @@
 [
 {
-  "modid": "DustMod",
-  "name": "Runic Dust Mod v2",
-  "description": "A continuation of the popular Runic Dust Mod.",
-  "version": "v2.0",
+  "modid": "RunicDustMod",
+  "name": "The Runic Dust Mod",
+  "description": "A mod which adds magical dusts, runes, and inscriptions.",
+  "version": "v2.1.0",
   "mcversion": "1.6.4",
-  "url": "",
+  "url": "http://zombiepig333.com/?page_id=59",
   "updateUrl": "",
   "authors": [
     "zombiepig333"
   ],
   "credits": "billythegoat101 for making the original mod, dmillerw for helping fix the Runic Tome.",
-  "logoFile": "assets/runicdust/textures/logo.png",
+  "logoFile": "assets/runicdustmod/textures/logo.png",
   "screenshots": [
   ],
   "parent":"",

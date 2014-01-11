@@ -1,0 +1,32 @@
+<rune>
+	<id value="26"/>
+	<name display="Enchanting Rune of Silk Touch" id="ench.silktouch"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-1xDiamondPickaxe + 1xGoldBlock + 10XP
+		OR
+		-1xDiamondShovel + 1xGoldBlock + 10XP
+	</sacrifices>
+	<description>
+		Description:
+		Enchants and repairs your pick or shovel with Silk Touch I.
+	</description>
+	<design width="8" height="8" ox="2" oy="2" cx="2" cy="2">
+		0,		0,		0,		2,		0,		0,		0,		0
+		0,		2,		2,		2,		1,		1,		1,		0
+		0,		2,		2,		4,		2,		1,		1,		0
+		2,		2,		4,		2,		4,		2,		1,		0
+		0,		1,		2,		4,		2,		4,		2,		2
+		0,		1,		1,		2,		4,		2,		2,		0
+		0,		1,		1,		1,		2,		2,		2,		0
+		0,		0,		0,		0,		2,		0,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="0" />
+		<rot1 x="0" z="0" />
+		<rot2 x="0" z="0" />
+		<rot3 x="0" z="0" />
+	</rotationMatrix>
+</rune>

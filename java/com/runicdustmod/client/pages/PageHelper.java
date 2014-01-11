@@ -28,9 +28,9 @@ import com.runicdustmod.event.InscriptionEvent;
 
 public class PageHelper
 {
-	public static String folder = "/assets/dustcore/";
-	public static String runeFolder = "/assets/dustcore/runedata/image/";
-	public static String insFolder = "/assets/dustcore/inscriptiondata/image/";
+	public static String folder = "/assets/runicdustmod/";
+	public static String runeFolder = "/assets/runicdustmod/runedata/image/";
+	public static String insFolder = "/assets/runicdustmod/inscripdata/image/";
 	public static BufferedImage background;
 	public static BufferedImage backgroundIns;
 	public static BufferedImage shade;
@@ -74,7 +74,7 @@ public class PageHelper
 				RunicDustMod.log(Level.INFO,
                         "Lexicon Folder " + new File(folder).getAbsolutePath()
                                 + " created.");
-				System.out.println("[DustModCore] Lexicon Folder "
+				System.out.println("[RunicDustMod] Lexicon Folder "
 						+ new File(folder).getAbsolutePath() + " created.");
 			}
 			new File(runeFolder).mkdirs();
@@ -527,13 +527,13 @@ public class PageHelper
 		}
 		BufferedImage rtn = null;
 		Minecraft mc = Minecraft.getMinecraft();
-		ResourceLocation location = new ResourceLocation("dustcore", file);
+		ResourceLocation location = new ResourceLocation("runicdustmod", file);
 		ResourceManager rp = mc.getMinecraft().getResourceManager();
 		InputStream stream = rp.getResource(location).getInputStream();
 		if (stream == null)
 		{
 			throw new IllegalArgumentException(
-					"[DustModCore] Image file not found! " + file
+					"[RunicDustMod] Image file not found! " + file
 							+ ". Perhaps you installed it wrong?");
 		}
 		rtn = ImageIO.read(stream);

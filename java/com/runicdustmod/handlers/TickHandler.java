@@ -35,7 +35,7 @@ public class TickHandler implements ITickHandler
 	@Override
 	public String getLabel()
 	{
-		return "DustModCore";
+		return "RunicDustMod";
 	}
 
 }

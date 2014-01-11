@@ -199,7 +199,7 @@ public class DustManager
 		{
 			if (i.id == shape.id)
 			{
-				throw new IllegalArgumentException("[DustModCore] Rune ID ["
+				throw new IllegalArgumentException("[RunicDustMod] Rune ID ["
 						+ shape.id + "] already occupied. " + i + " and "
 						+ shape);
 			}
@@ -435,7 +435,7 @@ public class DustManager
 
 	public static void registerDefaultShapes()
 	{
-		
+		//why is this here? :P
 	}
 
 	public static boolean isEmpty()

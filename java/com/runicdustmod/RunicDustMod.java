@@ -120,8 +120,7 @@ public class RunicDustMod
 		
 		// Register mod dusts
 		DustItemManager.registerDefaultDusts();
-		DustManager.registerDefaultShapes();
-		InscriptionManager.registerDefaultInscriptions();
+		//DustItemManager.registerDecorDusts();
 		
 		// Register mod runes
 		RuneRegistry.registerDefaultRunes();

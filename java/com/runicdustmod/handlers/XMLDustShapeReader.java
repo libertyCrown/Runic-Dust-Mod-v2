@@ -210,13 +210,13 @@ public class XMLDustShapeReader extends DefaultHandler
 						if ("N".equals(element))
 							val = -1;
 						else if ("P".equals(element))
-							val = 100;
+							val = 1;
 						else if ("G".equals(element))
-							val = 200;
+							val = 2;
 						else if ("L".equals(element))
-							val = 300;
+							val = 3;
 						else if ("B".equals(element))
-							val = 400;
+							val = 4;
 						else
 							try
 							{

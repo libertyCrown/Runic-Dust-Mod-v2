@@ -1,0 +1,31 @@
+<rune>
+	<id value="35"/>
+	<name display="Rune of Spawner Collection" id="scollect"/>
+	<author>billythegoat101</author>
+	<solid value="false"/>
+	<sacrifices>
+		Sacrifice:
+		-6xGoldIngot + 10XP
+	</sacrifices>
+	<description>
+		Description:
+		Collects a spawner that it is placed around.
+		Note:
+		No matter what spawner you collect, it can only ever be placed as a pig spawner. 
+	</description>
+	<design width="8" height="7" ox="2" oy="3" cx="2" cy="3">
+		3,		2,		2,		2,		2,		2,		2,		3
+		3,		2,		0,		0,		0,		0,		2,		3
+		2,		2,		0,		0,		0,		0,		2,		2
+		3,		3,		0,		0,		0,		0,		3,		3
+		2,		3,		0,		0,		0,		0,		3,		2
+		2,		3,		3,		3,		3,		3,		3,		2
+		0,		0,		3,		3,		3,		3,		0,		0
+	</design>
+	<rotationMatrix>
+		<rot0 x="0" z="1" />
+		<rot1 x="-1" z="0" />
+		<rot2 x="0" z="-1" />
+		<rot3 x="1" z="0" />
+	</rotationMatrix>
+</rune>
