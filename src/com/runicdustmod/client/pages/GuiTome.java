@@ -57,8 +57,8 @@ public class GuiTome extends GuiScreen {
     //Button to change section of current entry
     public GuiButton button;
     
-    public int bookImageWidth = 206;
-    public int bookImageHeight = 200;
+    public int bookImageWidth = 250;
+    public int bookImageHeight = 225;
 
     //X offset for rune text (will be removed/tweaked)
     public int offX;
@@ -83,15 +83,23 @@ public class GuiTome extends GuiScreen {
         int localWidth = (this.width / 2);
         byte localHeight = 8;
         this.drawTexturedModalRect(localWidth, localHeight, 0, 0, this.bookImageWidth, this.bookImageHeight);
-        //drawDefaultBackground();
-        //drawGuiContainerBackgroundLayer(par3, par1, par2);
-        //drawGuiContainerForegroundLayer();
+        
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.getTextureManager().bindTexture(bookLeft);
+        localWidth = localWidth - this.bookImageWidth;
+        this.drawTexturedModalRect(localWidth, localHeight, 256 - this.bookImageWidth, 0, this.bookImageWidth, this.bookImageHeight);
 
-        for (int i = 0; i < buttonList.size(); i++)
-        {
-            GuiButton guibutton = (GuiButton) buttonList.get(i);
-            guibutton.drawButton(mc, par1, par2);
-        }
+        super.drawScreen(par1, par2, par3);
+
+//        if (pageLeft != null)
+//            pageLeft.renderBackgroundLayer(localWidth + 16, localHeight + 12);
+//        if (pageRight != null)
+//            pageRight.renderBackgroundLayer(localWidth + 220, localHeight + 12);
+//
+//        if (pageLeft != null)
+//            pageLeft.renderContentLayer(localWidth + 16, localHeight + 12);
+//        if (pageRight != null)
+//            pageRight.renderContentLayer(localWidth + 220, localHeight + 12);
     }
 
     @Override

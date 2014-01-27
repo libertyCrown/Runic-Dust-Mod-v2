@@ -12,7 +12,7 @@ public class DustModTab
 	{
 		public ItemStack getIconItemStack()
 		{
-			return new ItemStack(DustContent.tome);
+			return new ItemStack(DustContent.dustTome);
 		}
 
 		public String getTabLabel()

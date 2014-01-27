@@ -58,7 +58,8 @@ public class DustConfig
 					.getInt(References.ITEM_WornInscriptionID);
 			References.ITEM_PouchID = config.getItem("DustPouch",
 					References.ITEM_PouchID).getInt(References.ITEM_PouchID);
-
+			References.ITEM_RodID = config.getItem("DustRod", References.ITEM_RodID)
+					.getInt(References.ITEM_RodID);
 			References.ENTITY_FireSpriteID = config.get(
 					Configuration.CATEGORY_GENERAL, "FireSpriteEntityID",
 					References.ENTITY_FireSpriteID).getInt(

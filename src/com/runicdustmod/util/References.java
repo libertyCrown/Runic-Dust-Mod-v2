@@ -30,6 +30,7 @@ public class References
 	public static int BLOCK_DustID = 3465;
 	public static int BLOCK_DustTableID = 3466;
 	public static int BLOCK_RutID = 3467;
+	
 	public static int ITEM_DustID = 21850;
 	public static int ITEM_RunicTomeID = 21851;
 	public static int ITEM_DustScrollID = 21852;
@@ -42,6 +43,8 @@ public class References
 	public static int ITEM_InkID = 21859;
 	public static int ITEM_WornInscriptionID = 21860;
 	public static int ITEM_PouchID = 21861;
+	public static int ITEM_RodID = 21862;
+	
 	public static int ENTITY_FireSpriteID = 149;
 	public static int ENTITY_BlockEntityID = 150;
 	public static boolean Enable_Render_Flames_On_Dust = true;

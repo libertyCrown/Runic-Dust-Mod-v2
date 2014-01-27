@@ -292,7 +292,7 @@ public class BlockDust extends BlockContainer
 
 		if (p.isSneaking())
 		{
-			if (item == null || item.getItem() != DustContent.tome)
+			if (item == null || item.getItem() != DustContent.dustRod)
 			{
 				onBlockClicked(world, i, j, k, p);
 			}
@@ -301,7 +301,7 @@ public class BlockDust extends BlockContainer
 		}
 
 		if (!world.isRemote && item != null
-				&& item.itemID == DustContent.tome.itemID)
+				&& item.itemID == DustContent.dustRod.itemID)
 		{
 			updatePattern(world, i, j, k, p);
 			world.notifyBlockChange(i, j, k, 0);

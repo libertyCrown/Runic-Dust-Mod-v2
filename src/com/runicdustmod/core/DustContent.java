@@ -14,6 +14,7 @@ import com.runicdustmod.block.BlockDustTable;
 import com.runicdustmod.block.BlockRut;
 import com.runicdustmod.item.ItemChisel;
 import com.runicdustmod.item.ItemDust;
+import com.runicdustmod.item.ItemDustRod;
 import com.runicdustmod.item.ItemInk;
 import com.runicdustmod.item.ItemInscription;
 import com.runicdustmod.item.ItemNegateSacrifice;
@@ -36,7 +37,7 @@ public class DustContent
 	public static Block dust;
 	public static Block dustTable;
 	public static Block rutBlock;
-	public static Item tome;
+	public static Item dustTome;
 	public static Item dustScroll;
 	public static Item spiritPickaxe;
 	public static Item spiritSword;
@@ -47,6 +48,7 @@ public class DustContent
 	public static ItemInk ink;
 	public static ItemWornInscription wornInscription;
 	public static ItemPouch pouch;
+	public static Item dustRod;
 	
 	public static void initContent()
 	{
@@ -72,10 +74,10 @@ public class DustContent
 		DustItemManager.idust = new ItemDust(References.ITEM_DustID, dust)
 				.setUnlocalizedName("idust").setCreativeTab(DustModTab.dustTab);
 		GameRegistry.registerItem(DustItemManager.idust, DustItemManager.idust.getUnlocalizedName());
-		tome = new ItemRunicTome(References.ITEM_RunicTomeID)
+		dustTome = new ItemRunicTome(References.ITEM_RunicTomeID)
 				.setUnlocalizedName("dustlibrary").setCreativeTab(
 						DustModTab.dustTab);
-		GameRegistry.registerItem(tome, "DustLibrary");
+		GameRegistry.registerItem(dustTome, "DustLibrary");
 		negateSacrifice = new ItemNegateSacrifice(
 				References.ITEM_SacrificeNegationID).setUnlocalizedName(
 				"negatesacrifice").setCreativeTab(DustModTab.dustTab);
@@ -111,6 +113,9 @@ public class DustContent
 		wornInscription.setCreativeTab(DustModTab.dustTab);
 		pouch = new ItemPouch(References.ITEM_PouchID, dust);
 		pouch.setCreativeTab(DustModTab.dustTab);
+		dustRod = new ItemDustRod(References.ITEM_RodID).setUnlocalizedName("dustrod");
+		GameRegistry.registerItem(dustRod, "dustrod");
+		
 	}
 
 	public static void initCrafting()
@@ -118,11 +123,11 @@ public class DustContent
 		GameRegistry.addRecipe(new ItemStack(dustTable, 1), new Object[] {
 				"dwd", "wbw", "dwd", 'd', new ItemStack(DustItemManager.idust, 1, OreDictionary.WILDCARD_VALUE), 'w',
 				new ItemStack(Block.planks, 1, OreDictionary.WILDCARD_VALUE), 'b',
-				new ItemStack(tome) });
+				new ItemStack(dustTome) });
 		GameRegistry.addRecipe(new ItemStack(dustTable, 1), new Object[] {
 				"wdw", "dbd", "wdw", 'd', new ItemStack(DustItemManager.idust, 1, OreDictionary.WILDCARD_VALUE), 'w',
 				new ItemStack(Block.planks, 1, OreDictionary.WILDCARD_VALUE), 'b',
-				new ItemStack(tome) });
+				new ItemStack(dustTome) });
 		GameRegistry.addRecipe(new ItemStack(chisel, 1), new Object[] { "st",
 				"i ", 's', new ItemStack(Block.cobblestone, 1), 't',
 				new ItemStack(Item.stick, 1), 'i',
@@ -193,7 +198,7 @@ public class DustContent
 				new Object[] { Item.blazePowder, new ItemStack(DustItemManager.idust, 1, 300),
 						new ItemStack(DustItemManager.idust, 1, 300),
 						new ItemStack(DustItemManager.idust, 1, 300) });
-		GameRegistry.addShapelessRecipe(new ItemStack(tome, 1, 0),
+		GameRegistry.addShapelessRecipe(new ItemStack(dustTome, 1, 0),
 				new Object[] { new ItemStack(DustItemManager.idust, 1, OreDictionary.WILDCARD_VALUE), Item.book });
 		GameRegistry.addShapelessRecipe(new ItemStack(runicPaper, 1),
 				new Object[] { Item.paper, Item.goldNugget, Item.goldNugget });
