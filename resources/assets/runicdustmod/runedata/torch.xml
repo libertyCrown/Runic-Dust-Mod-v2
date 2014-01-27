@@ -20,7 +20,7 @@
 		0,	-1,	-1,	0
 		0,	0,	0,	0
 	</design>
-	<allowedVariables>1,2,3,4</allowedVariables>
+	<allowedVariables>100,200,300,400</allowedVariables>
 	<rotationMatrix>
 		<rot0 x="0" z="0" />
 		<rot1 x="0" z="0" />

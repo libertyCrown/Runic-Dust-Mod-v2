@@ -9,6 +9,7 @@ import com.runicdustmod.client.render.RenderDustTable;
 import com.runicdustmod.event.InscriptionEvent;
 import com.runicdustmod.util.References;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureObject;
@@ -21,12 +22,15 @@ import java.util.Random;
 
 public class GuiTome extends GuiScreen {
 
-    //Texture locations
+    //Texture locations (soon to be depreciated for new book system)
     private ResourceLocation texture = new ResourceLocation(References.path + "/guiTomev2.png");
     private ResourceLocation norunes = new ResourceLocation(References.path + "/pages/no_runes.png");
     private ResourceLocation noinscription = new ResourceLocation(References.path + "/pages/no_inscriptions.png");
     private ResourceLocation info = new ResourceLocation(References.path + "/pages/info.png");
 
+    private ResourceLocation bookRight = new ResourceLocation(References.path + "/pages/blank_right.png");
+    private ResourceLocation bookLeft = new ResourceLocation(References.path + "/pages/blank_left.png");
+    
     //Page counters
     public static int guidePage = 0;
     public static int runePage = 0;
@@ -52,6 +56,9 @@ public class GuiTome extends GuiScreen {
 
     //Button to change section of current entry
     public GuiButton button;
+    
+    public int bookImageWidth = 206;
+    public int bookImageHeight = 200;
 
     //X offset for rune text (will be removed/tweaked)
     public int offX;
@@ -72,9 +79,13 @@ public class GuiTome extends GuiScreen {
     public void drawScreen(int par1, int par2, float par3)
     {
         super.drawScreen(par1, par2, par3);
-        drawDefaultBackground();
-        drawGuiContainerBackgroundLayer(par3, par1, par2);
-        drawGuiContainerForegroundLayer();
+        Minecraft.getMinecraft().renderEngine.bindTexture(bookRight);
+        int localWidth = (this.width / 2);
+        byte localHeight = 8;
+        this.drawTexturedModalRect(localWidth, localHeight, 0, 0, this.bookImageWidth, this.bookImageHeight);
+        //drawDefaultBackground();
+        //drawGuiContainerBackgroundLayer(par3, par1, par2);
+        //drawGuiContainerForegroundLayer();
 
         for (int i = 0; i < buttonList.size(); i++)
         {
@@ -106,156 +117,158 @@ public class GuiTome extends GuiScreen {
     {
             "Now version 2!","Supports Thaumcraft 4!","Much runes.","Like a thauminomicron!",
             "Don't ask for updates!","Like an Arcane Compendium!","Make your own runes!",
-            "No dust on walls yet!","Direwolf20 is cool!", "Requires half a brain!"
+            "No dust on walls yet!","Direwolf20 is cool!", "Requires half a brain!", "Now looks 200% better!"
     };
 
     int randomCaption = (int) (Math.random() * splashArray.length);
 
+    
+    //TODO- @Depreciated for new book system
     /**
      * Draw the foreground layer for the GuiContainer (everything in front of the
      * items)
      */
-    protected void drawGuiContainerForegroundLayer()
-    {
-        String entryName = "";
-        String entryCaption = "";
-        String entryText = "";
-        boolean doRecolor = false;
-
-        if ((isEntryGuide() && getGuidePage() == 0) || (isEntryRune() && getRunePage() == 0) || isEntryInsc() && getInscPage() == 0)
-        {
-            //Starting page contents set; default start
-            //TODO-tweak information shown here, maybe make it an xml?
-            entryName = "Legend: "
-                    + (isEntryRune() ? DustManager.namesRemote.size()
-                    : InscriptionManager.eventsRemote.size())
-                    + " installed";
-            entryText = "\n\n"
-                    + "Definitions: \n---\n"
-                    + "Meat: Pork, Beef, or Chicken raw or cooked.\n---\n"
-                    + "Drops: Any item corresponding to a particular mob.\n---\n"
-                    + "Variable: The dust is interchangable and allows you to set traits of the rune.\n---\n"
-                    + "Powered: If the name is red, then it requires fueling via smeltables.";
-
-            entryCaption = splashArray[randomCaption];
-        }
-        else
-        {
-            //loads guide, rune, or inscription data depending on selected tab
-            if (isEntryGuide())
-            {
-                //TODO- establish guide :P
-            }
-
-            if (isEntryRune())
-            {
-                DustShape shape = DustManager.getShape(getRunePage() - 1);
-                entryName = shape.getRuneName();
-                entryText = showSacrifices ? shape.getNotes() : shape.getDescription();
-                entryCaption = "by " + shape.getAuthor();
-                if (shape.isPower)
-                {
-                    doRecolor = true;
-                }
-                Random rand = new Random();
-                randomCaption = (int) (rand.nextInt(splashArray.length));
-            }
-
-            if (isEntryInsc())
-            {
-                //TODO- do whatever needed for xml migration
-                InscriptionEvent event = InscriptionManager
-                        .getEventInOrder(getInscPage() - 1);
-                entryName = event.getInscriptionName();
-                entryText = showSacrifices ? event.getNotes() : event
-                        .getDescription();
-                entryCaption = "by " + event.getAuthor();
-                Random rand = new Random();
-                randomCaption = (int) (rand.nextInt(splashArray.length));
-
-            }
-            GL11.glColor3f(255, 0, 0);
-            //TODO- restore text rendering; out of comission during gui work
-                /*fontRenderer.drawString(name, (width - xSize) / 2 - offX,
-                                (height - ySize) / 2 - fontRenderer.FONT_HEIGHT - 2,
-                                recolor ? 0xFF0000 : 0xEEEEEE);
-                fontRenderer.drawSplitString(notes, (width + xSize) / 2 + 2 - offX,
-                                (height - ySize) / 2 + 2, (width - xSize) / 2 + offX,
-                                0xffa0a0a0);*/
-            GL11.glPushMatrix();
-            float scale = 0.6666F;
-            GL11.glTranslated((width - xSize) / 2 - offX, (height - ySize) / 2 + ySize, 0);
-            GL11.glScalef(scale, scale, scale);
-            fontRenderer.drawString(entryCaption, 0, 0, 0xffa0a0a0);
-            GL11.glPopMatrix();
-        }
-    }
-
-    /**
-     * Draw the background layer for the GuiContainer (everything behind the
-     * items)
-     */
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
-    {
-        TextureObject i = mc.renderEngine.getTexture(texture);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        mc.renderEngine.bindTexture(texture);
-        int j = (width - xSize) / 2;
-        int k = (height - ySize) / 2;
-        xStart = j;
-        yStart = k;
-        int ox = 4;
-        int oy = 4;
-        float scalex = (float) (xSize - ox * 2) / 256F;
-        float scaley = (float) (ySize - oy * 2) / 256F;
-        float res = xSize / ySize;
-        drawTexturedModalRect(j, k, 24, 0, xSize, ySize);
-        GL11.glPushMatrix();
-        GL11.glScalef(1 / res, res, 1);
-        GL11.glTranslatef(j + ox, k + oy, 0);
-        GL11.glScalef(scalex, scaley, 1f);
-
-        if (isEntryRune())
-        {
-            if (getRunePage() == 0)
-            {
-                if (DustManager.isEmpty())
-                {
-                    mc.renderEngine.bindTexture(norunes);
-                } else
-                {
-                    mc.renderEngine.bindTexture(info);
-                }
-            } else mc.renderEngine.bindTexture(new ResourceLocation(References.path + "/runes/r" + getRunePage() + ".png"));
-        } else
-        {
-            if (getInscPage() == 0)
-            {
-                if (InscriptionManager.isEmpty())
-                {
-                    mc.renderEngine.bindTexture(noinscription);
-                } else
-                {
-                    mc.renderEngine.bindTexture(info);
-                }
-            } else
-                PageHelper.bindPage(InscriptionManager.getEventInOrder(
-                        getInscPage() - 1).getIDName());
-        }
-        drawTexturedModalRect(0, 0, 0, 0, 256, 256);
-
-        GL11.glPopMatrix();
-
-        if (isEntryRune())
-        {
-            mc.renderEngine.bindTexture(texture);
-            drawTexturedModalRect(j - 6, k, 12, 0, 12, ySize);
-        } else
-        {
-            mc.renderEngine.bindTexture(texture);
-            drawTexturedModalRect(j - 6, k, 0, 0, 12, ySize);
-        }
-    }
+//    protected void drawGuiContainerForegroundLayer()
+//    {
+//        String entryName = "";
+//        String entryCaption = "";
+//        String entryText = "";
+//        boolean doRecolor = false;
+//
+//        if ((isEntryGuide() && getGuidePage() == 0) || (isEntryRune() && getRunePage() == 0) || isEntryInsc() && getInscPage() == 0)
+//        {
+//            //Starting page contents set; default start
+//            //TODO-tweak information shown here, maybe make it an xml?
+//            entryName = "Legend: "
+//                    + (isEntryRune() ? DustManager.namesRemote.size()
+//                    : InscriptionManager.eventsRemote.size())
+//                    + " installed";
+//            entryText = "\n\n"
+//                    + "Definitions: \n---\n"
+//                    + "Meat: Pork, Beef, or Chicken raw or cooked.\n---\n"
+//                    + "Drops: Any item corresponding to a particular mob.\n---\n"
+//                    + "Variable: The dust is interchangable and allows you to set traits of the rune.\n---\n"
+//                    + "Powered: If the name is red, then it requires fueling via smeltables.";
+//
+//            entryCaption = splashArray[randomCaption];
+//        }
+//        else
+//        {
+//            //loads guide, rune, or inscription data depending on selected tab
+//            if (isEntryGuide())
+//            {
+//                //TODO- establish guide :P
+//            }
+//
+//            if (isEntryRune())
+//            {
+//                DustShape shape = DustManager.getShape(getRunePage() - 1);
+//                entryName = shape.getRuneName();
+//                entryText = showSacrifices ? shape.getNotes() : shape.getDescription();
+//                entryCaption = "by " + shape.getAuthor();
+//                if (shape.isPower)
+//                {
+//                    doRecolor = true;
+//                }
+//                Random rand = new Random();
+//                randomCaption = (int) (rand.nextInt(splashArray.length));
+//            }
+//
+//            if (isEntryInsc())
+//            {
+//                //TODO- do whatever needed for xml migration
+//                InscriptionEvent event = InscriptionManager
+//                        .getEventInOrder(getInscPage() - 1);
+//                entryName = event.getInscriptionName();
+//                entryText = showSacrifices ? event.getNotes() : event
+//                        .getDescription();
+//                entryCaption = "by " + event.getAuthor();
+//                Random rand = new Random();
+//                randomCaption = (int) (rand.nextInt(splashArray.length));
+//
+//            }
+//            GL11.glColor3f(255, 0, 0);
+//            //TODO- restore text rendering; out of comission during gui work
+//                /*fontRenderer.drawString(name, (width - xSize) / 2 - offX,
+//                                (height - ySize) / 2 - fontRenderer.FONT_HEIGHT - 2,
+//                                recolor ? 0xFF0000 : 0xEEEEEE);
+//                fontRenderer.drawSplitString(notes, (width + xSize) / 2 + 2 - offX,
+//                                (height - ySize) / 2 + 2, (width - xSize) / 2 + offX,
+//                                0xffa0a0a0);*/
+//            GL11.glPushMatrix();
+//            float scale = 0.6666F;
+//            GL11.glTranslated((width - xSize) / 2 - offX, (height - ySize) / 2 + ySize, 0);
+//            GL11.glScalef(scale, scale, scale);
+//            fontRenderer.drawString(entryCaption, 0, 0, 0xffa0a0a0);
+//            GL11.glPopMatrix();
+//        }
+//    }
+//
+//    /**
+//     * Draw the background layer for the GuiContainer (everything behind the
+//     * items)
+//     */
+//    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+//    {
+//        TextureObject i = mc.renderEngine.getTexture(texture);
+//        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+//        mc.renderEngine.bindTexture(texture);
+//        int j = (width - xSize) / 2;
+//        int k = (height - ySize) / 2;
+//        xStart = j;
+//        yStart = k;
+//        int ox = 4;
+//        int oy = 4;
+//        float scalex = (float) (xSize - ox * 2) / 256F;
+//        float scaley = (float) (ySize - oy * 2) / 256F;
+//        float res = xSize / ySize;
+//        drawTexturedModalRect(j, k, 24, 0, xSize, ySize);
+//        GL11.glPushMatrix();
+//        GL11.glScalef(1 / res, res, 1);
+//        GL11.glTranslatef(j + ox, k + oy, 0);
+//        GL11.glScalef(scalex, scaley, 1f);
+//
+//        if (isEntryRune())
+//        {
+//            if (getRunePage() == 0)
+//            {
+//                if (DustManager.isEmpty())
+//                {
+//                    mc.renderEngine.bindTexture(norunes);
+//                } else
+//                {
+//                    mc.renderEngine.bindTexture(info);
+//                }
+//            } else mc.renderEngine.bindTexture(new ResourceLocation(References.path + "/runes/r" + getRunePage() + ".png"));
+//        } else
+//        {
+//            if (getInscPage() == 0)
+//            {
+//                if (InscriptionManager.isEmpty())
+//                {
+//                    mc.renderEngine.bindTexture(noinscription);
+//                } else
+//                {
+//                    mc.renderEngine.bindTexture(info);
+//                }
+//            } else
+//                PageHelper.bindPage(InscriptionManager.getEventInOrder(
+//                        getInscPage() - 1).getIDName());
+//        }
+//        drawTexturedModalRect(0, 0, 0, 0, 256, 256);
+//
+//        GL11.glPopMatrix();
+//
+//        if (isEntryRune())
+//        {
+//            mc.renderEngine.bindTexture(texture);
+//            drawTexturedModalRect(j - 6, k, 12, 0, 12, ySize);
+//        } else
+//        {
+//            mc.renderEngine.bindTexture(texture);
+//            drawTexturedModalRect(j - 6, k, 0, 0, 12, ySize);
+//        }
+//    }
 
     @Override
     protected void keyTyped(char par1, int key)

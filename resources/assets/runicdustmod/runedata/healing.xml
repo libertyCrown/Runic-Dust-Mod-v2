@@ -23,5 +23,5 @@
 		<rot3 x="0" z="0" />
 	</rotationMatrix>
 	<author>billythegoat101</author>
-	<allowedVariables>1,2,3,4</allowedVariables>
+	<allowedVariables>100,200,300,400</allowedVariables>
 </rune>

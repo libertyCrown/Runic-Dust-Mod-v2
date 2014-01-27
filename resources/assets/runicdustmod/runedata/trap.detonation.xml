@@ -19,12 +19,12 @@
 	<design width="5" height="6" ox="0" oy="2" cx="0" cy="2">
 		0,		0,		0,		0,		-1
 		0,		0,		0,		-1,		-1
-		2,		2,		2,		-1,		0
-		2,		-1,		-1,		2,		0
-		2,		-1,		-1,		2,		0
-		2,		2,		2,		2,		0
+		200,	200,	200,	-1,		0
+		200,	-1,		-1,		200,	0
+		200,	-1,		-1,		200,	0
+		200,	200,	200,	200,	0
 	</design>
-	<allowedVariables>1, 2, 3, 4</allowedVariables>
+	<allowedVariables>100, 200, 300, 400</allowedVariables>
 	<rotationMatrix>
 		<rot0 x="0" z="0" />
 		<rot1 x="0" z="0" />

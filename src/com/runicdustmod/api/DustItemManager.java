@@ -198,10 +198,10 @@ public class DustItemManager
 
 	public static void registerDefaultDusts()
 	{
-		registerDust(6, "Plant", "plantdust", 0x629B26, 0x8AD041, 0xC2E300);
-		registerDust(7, "Gunpowder", "gundust", 0x696969, 0x979797, 0x666464);
-		registerDust(8, "Lapis", "lapisdust", 0x345EC3, 0x5A82E2, 0x0087FF);
-		registerDust(9, "Blaze", "blazedust", 0xEA8A00, 0xFFFE31, 0xFF6E1E);	
+		registerDust(100, "Plant", "plantdust", 0x629B26, 0x8AD041, 0xC2E300);
+		registerDust(200, "Gunpowder", "gundust", 0x696969, 0x979797, 0x666464);
+		registerDust(300, "Lapis", "lapisdust", 0x345EC3, 0x5A82E2, 0x0087FF);
+		registerDust(400, "Blaze", "blazedust", 0xEA8A00, 0xFFFE31, 0xFF6E1E);	
 	}	
 	
 	public static void registerDecorDusts()

@@ -213,8 +213,6 @@ public class InscriptionManager
 				{
 					RunicDustMod.log(Level.FINER, "Inscription Identified: "
                             + event.idName);
-					// System.out.println("[DustModCore] Inscription Identified: " +
-					// event.idName);
 					tag = new NBTTagCompound();
 					item.setTagCompound(tag);
 					tag.setInteger("eventID", event.id);
