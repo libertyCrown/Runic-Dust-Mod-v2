@@ -49,6 +49,12 @@ public class References
 	public static boolean Enable_Decorative_Ruts = false;
 	public static boolean verbose = false;
 	
+	//Module Activation booleans
+	public static boolean Enable_Default_Dusts = true;
+	public static boolean Enable_Decor_Dusts = true;
+	public static boolean Enable_Thaumcraft_Dusts = false;
+	public static boolean Enable_Beta_Dusts = false;
+	
 	//Reference methods that should be here
 	public static ItemWornInscription getWornInscription()
 	{

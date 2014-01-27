@@ -43,10 +43,8 @@ public class DustConfig
 					References.ITEM_SpiritPickID);
 			References.ITEM_ChiselID = config.getItem("ChiselItem",
 					References.ITEM_ChiselID).getInt(References.ITEM_ChiselID);
-			References.ITEM_SacrificeNegationID = config
-					.getItem("SacrificeNegatorItem",
-							References.ITEM_SacrificeNegationID).getInt(
-							References.ITEM_SacrificeNegationID);
+			References.ITEM_SacrificeNegationID = config.getItem("SacrificeNegatorItem",
+							References.ITEM_SacrificeNegationID).getInt(References.ITEM_SacrificeNegationID);
 			References.ITEM_RunicPaperID = config.getItem("RunicPaperItem",
 					References.ITEM_RunicPaperID).getInt(
 					References.ITEM_RunicPaperID);
@@ -73,11 +71,20 @@ public class DustConfig
 			References.Enable_Decorative_Ruts = config.get("config",
 					"DecorativeRuts", References.Enable_Decorative_Ruts)
 					.getBoolean(References.Enable_Decorative_Ruts);
-			References.verbose = config.get("config", "verbose",
-					References.verbose).getBoolean(References.verbose);
+			References.verbose = config.get("config", "verbose", References.verbose).getBoolean(References.verbose);
+			References.Enable_Default_Dusts = config.get("Modules", "Default Runes:", References.Enable_Default_Dusts)
+					.getBoolean(References.Enable_Default_Dusts);
+			References.Enable_Decor_Dusts = config.get("Modules", "Decorative Dusts:", References.Enable_Decor_Dusts)
+					.getBoolean(References.Enable_Decor_Dusts);
+			References.Enable_Beta_Dusts = config.get("Modules", "Beta Runes:", References.Enable_Beta_Dusts)
+					.getBoolean(References.Enable_Beta_Dusts);
+			References.Enable_Thaumcraft_Dusts = config.get("Modules", "Thaumcraft Runes:", References.Enable_Thaumcraft_Dusts)
+					.getBoolean(References.Enable_Thaumcraft_Dusts);
+			
+			
 		} catch (Exception e)
 		{
-			FMLLog.log(Level.SEVERE, e, "[DustMod] : Error loading config.");
+			FMLLog.log(Level.SEVERE, e, "[RunicDustMod] : Error loading config.");
 		} finally
 		{
 			config.save();

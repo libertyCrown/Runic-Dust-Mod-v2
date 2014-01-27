@@ -120,12 +120,23 @@ public class RunicDustMod
 		
 		// Register mod dusts
 		DustItemManager.registerDefaultDusts();
-		//DustItemManager.registerDecorDusts();
-		
+		if (References.Enable_Decor_Dusts)
+		{
+			DustItemManager.registerDecorDusts();
+		}
 		// Register mod runes
-		RuneRegistry.registerDefaultRunes();
-		RuneRegistry.registerTestingRunes();
-		RuneRegistry.registerThaumcraftRunes();
+		if (References.Enable_Default_Dusts == true)
+		{
+			RuneRegistry.registerDefaultRunes();
+		}
+		if (References.Enable_Beta_Dusts == true)
+		{
+			RuneRegistry.registerTestingRunes();
+		}
+		if (References.Enable_Thaumcraft_Dusts)
+		{
+			RuneRegistry.registerThaumcraftRunes();
+		}
 		
 		// Register mod inscriptions
 		InscriptionRegistry.registerDefaultInscriptions();
