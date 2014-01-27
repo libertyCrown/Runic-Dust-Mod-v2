@@ -226,9 +226,7 @@ public class GuiTome extends GuiScreen {
                 {
                     mc.renderEngine.bindTexture(info);
                 }
-            } else
-                PageHelper.bindPage(RenderDustTable
-                        .getRunePageName(getRunePage()));
+            } else mc.renderEngine.bindTexture(new ResourceLocation(References.path + "/runes/r" + getRunePage() + ".png"));
         } else
         {
             if (getInscPage() == 0)

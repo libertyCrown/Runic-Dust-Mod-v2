@@ -99,9 +99,10 @@ public class RenderDustTable extends TileEntitySpecialRenderer
 		if (page == 0)
 		{
 			Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-		} else
+		} 
+		else
 		{
-			PageHelper.bindPage(getRunePageName(page));
+			Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(getAltRunePageName(page)));
 		}
 		book.renderPages(null, f1, f4, f5, f6, 0.0F, 0.0625F);
 		GL11.glPopMatrix();
@@ -141,4 +142,17 @@ public class RenderDustTable extends TileEntitySpecialRenderer
 		}
 		return rtn;
 	}
+	
+	public static String getAltRunePageName(int page)
+	{
+	    List<String> names = DustManager.getNames();
+	    if (page == 0)
+	    {
+	        return "/pages/info.png";
+	    }
+	    else
+	    {
+	       return "/runes/r" + page + ".png";
+	    }
+}
 }
