@@ -101,10 +101,8 @@ public class RunicDustMod
 				.getParent() + File.separator + "forge.cfg");
 		runeConfig = new File(evt.getSuggestedConfigurationFile()
 				.getParent() + File.separator + "runicdustmod/RuneConfig.cfg");
-		
 		DustConfig.configInit(new File(evt.getModConfigurationDirectory()
 						.getAbsolutePath() + File.separator + "runicdustmod/Core.cfg"));
-		
 		// Loads blocks, items, tiles, and crafting recipes
 		DustContent.initContent();
 		DustContent.initCrafting();
@@ -118,13 +116,11 @@ public class RunicDustMod
 		proxy.registerTileEntityRenderers();
 		proxy.registerRenderInformation();
 		
-		// Register mod dusts
 		DustItemManager.registerDefaultDusts();
 		if (References.Enable_Decor_Dusts)
 		{
 			DustItemManager.registerDecorDusts();
 		}
-		// Register mod runes
 		if (References.Enable_Default_Dusts == true)
 		{
 			RuneRegistry.registerDefaultRunes();
@@ -139,8 +135,14 @@ public class RunicDustMod
 		}
 		
 		// Register mod inscriptions
-		InscriptionRegistry.registerDefaultInscriptions();
-		InscriptionRegistry.registerTestingInscriptions();
+		if (References.Enable_Default_Dusts)
+		{
+			InscriptionRegistry.registerDefaultInscriptions();
+		}
+		if (References.Enable_Beta_Dusts)
+		{
+			InscriptionRegistry.registerTestingInscriptions();
+		}
 		
 		// Finish up already!
 		NetworkRegistry.instance().registerConnectionHandler(new PacketHandler());
@@ -180,9 +182,6 @@ public class RunicDustMod
 		VoidTeleManager.load(savePath);
 		EntityDustManager.load(savePath);
 	}
-
-	
-	/* EVERYTHING PAST THIS POINT MAY/PROBABLY WILL BE MOVED */
 	
 	public static String getUsername(Player p)
 	{

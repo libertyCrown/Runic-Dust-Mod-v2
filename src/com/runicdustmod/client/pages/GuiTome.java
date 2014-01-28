@@ -23,11 +23,6 @@ import java.util.Random;
 public class GuiTome extends GuiScreen {
 
     //Texture locations (soon to be depreciated for new book system)
-    private ResourceLocation texture = new ResourceLocation(References.path + "/guiTomev2.png");
-    private ResourceLocation norunes = new ResourceLocation(References.path + "/pages/no_runes.png");
-    private ResourceLocation noinscription = new ResourceLocation(References.path + "/pages/no_inscriptions.png");
-    private ResourceLocation info = new ResourceLocation(References.path + "/pages/info.png");
-
     private ResourceLocation bookRight = new ResourceLocation(References.path + "/pages/blank_right.png");
     private ResourceLocation bookLeft = new ResourceLocation(References.path + "/pages/blank_left.png");
     
@@ -308,7 +303,8 @@ public class GuiTome extends GuiScreen {
         {
             //HEY! ZOMBIEPIG! HERE IS THAT CODE YOU WERE LOOKING FOR!!
             y -= yStart;
-            if (y > 56){
+            if (y > 56)
+            {
                 setSection(1);
             }else if (y > 16){
                 setSection(0);
