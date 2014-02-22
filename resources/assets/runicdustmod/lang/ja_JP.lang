@@ -1,0 +1,16 @@
+tile.runicdust.dusttable.name=辞書テーブル
+tile.runicdust.dustrut.name=溝付きブロック
+
+item.dustlibrary.name=ルーンの書
+item.negatesacrifice.name=代用供物
+item.runicpaper.name=呪紙
+item.dustscroll.name=粉の巻物
+item.dustchisel.name=ノミと鎚
+item.spiritsword.name=精霊の剣
+item.spiritpickaxe.name=精霊のツルハシ
+item.dustinscription.name=空白の碑文
+item.dustrod.name=ルーンの杖
+
+emptyinsc.name=白紙の札
+driedinsc.name=乾いた碑文
+dryinginsc.name=乾いている碑文
